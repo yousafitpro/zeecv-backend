@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "devsense.phptools-vscode",
+        "onecentlin.laravel-extension-pack",
+        "xdebug.php-pack",
+        "mehedidracula.php-namespace-resolver"
+    ]
+}

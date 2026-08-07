@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'in_stock'   => 'Disponibile',
+    'subtotal'   => 'Totale parziale',
+    'total'   => 'Totale',
+    'phone_incorrect' => 'Il numero di telefono deve includere un prefisso internazionale valido, es. +39 123 4567890.',
+    'free_shipping'   => 'Spedizione gratuita',
+    'shipping' => 'Spedizione',
+    'pay' => 'Paga',
+    'saving' => 'Salvataggio...',
+    'more_about_product'=> 'Di più sul prodotto',
+    'contact'   => 'Contatto',
+    'email_address'   => 'Indirizzo email',
+    'email_me_with_order_updates'   => 'Inviami aggiornamenti sull\'ordine via email',
+    'delivery'   => 'Consegna',
+    'country_region'   => 'Paese/Regione',
+    'full_name'   => 'Nome e cognome',
+    'quantity'   => 'Quantità',
+    'street_address'   => 'Indirizzo',
+    'give_us_more_information'   => 'Forniscici ulteriori informazioni',
+    'city'   => 'Città',
+    'postal_code'   => 'CAP',
+    'phone_like'   => 'Telefono come 391234567890',
+    'save_this_informaton_for_next_time'   => 'Salva queste informazioni per la prossima volta',
+    'confirm_&_pay'   => 'Conferma & Paga',
+    'confirm_&_order'   => 'Conferma & Ordina',
+];

@@ -1,0 +1,35 @@
+.ui-v4-mini-rectangle-card{
+    margin-top: 10px;
+height: 30px;
+width: 100%;
+background-color: white;
+border-left: solid 4px var(--primary);
+padding: 4px;
+padding-left: 6px;
+}
+.ui-v4-mini-rectangle-card .left{
+font-weight: bold;
+float: left;
+color: gray;
+}
+.ui-v4-mini-rectangle-card .right{
+    font-weight: bold;
+    color: lightgrey;
+    float: right;
+    }
+.actionContainer{
+    border-radius: 30px;
+    background: white;
+    margin-top: 10px;
+    border:dotted 1px lightgrey;
+}
+.actionContainer .title{
+    font-size: 14px;
+    font-weight: bold;
+}
+.actionContainer .button{
+    font-size: 12px;
+}
+.ui-v4-table-head{
+
+}
