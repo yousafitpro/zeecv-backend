@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home | Scalify</title>
+    <title>ZeeCV</title>
     <link href="{{asset('themes/eshoper/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('themes/eshoper/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('themes/eshoper/css/prettyPhoto.css')}}" rel="stylesheet">
