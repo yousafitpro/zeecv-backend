@@ -354,7 +354,7 @@ Route::prefix('system')
     });
     });
 });
-Route::get('/',[FrontendController::class,'index']);
+Route::get('/',[HomeController::class,'index']);
 Route::get('/shop',[FrontendController::class,'shop'])->name('frontend.shop');
 Route::get('/terms',[FrontendController::class,'terms'])->name('frontend.terms');
 Route::get('/privacy',[FrontendController::class,'privacy'])->name('frontend.privacy');
