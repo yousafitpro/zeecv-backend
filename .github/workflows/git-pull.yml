@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy Production / Sandbox / Pakistan
+      - name: Deploy Production 
         uses: appleboy/ssh-action@v0.1.8
         with:
-          host: server410.web-hosting.com
+          host: 104.207.79.91
           username: zeecdlaa
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 22
