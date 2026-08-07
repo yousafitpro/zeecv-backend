@@ -1,0 +1,42 @@
+name: Auto Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-main:
+    if: github.ref_name != 'KSA'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy Production / Sandbox / Pakistan
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: server410.web-hosting.com
+          username: zeecdlaa
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: 22
+          script: |
+            echo "🚀 Starting deployment..."
+            echo "🌿 Branch: ${{ github.ref_name }}"
+
+            if [ "${{ github.ref_name }}" = "main" ]; then
+              cd public_html
+              BRANCH="main"
+
+            else
+              cd public_html
+              BRANCH="main"
+            fi
+
+            echo "⬇️ Deploying $BRANCH"
+            git checkout $BRANCH
+            git reset --hard origin/$BRANCH
+            git pull origin $BRANCH
+
+            php composer.phar install --no-dev --optimize-autoloader
+            php artisan optimize:clear
+            echo "✅ Deployment complete for $BRANCH"
+
