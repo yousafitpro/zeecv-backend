@@ -7,7 +7,6 @@ on:
 
 jobs:
   deploy-main:
-    if: github.ref_name != 'KSA'
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +16,7 @@ jobs:
           host: 104.207.79.91
           username: zeecdlaa
           key: ${{ secrets.SERVER_SSH_KEY }}
-          port: 22
+          port: 21098
           script: |
             echo "🚀 Starting deployment..."
             echo "🌿 Branch: ${{ github.ref_name }}"
