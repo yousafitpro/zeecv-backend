@@ -46,6 +46,12 @@ class ResumeController extends Controller
                'summary'
             ])->first();
       $pdf = Pdf::loadView('pdfs.resume.resume', $data);
+      $pdf->setOptions([
+            'defaultFont' => 'sans-serif',
+            'isHtml5ParserEnabled' => true,
+            'isRemoteEnabled' => true,
+        ]);
+        
       // return $pdf->stream('resume.pdf');
       return $pdf->download('resume.pdf');
     }
