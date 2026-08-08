@@ -61,10 +61,13 @@ class AuthController extends Controller
                 'message' => 'Invalid email or password.',
             ], 401);
         }
-
+        $user=User::where('email',$request->email)->first();
         return response()->json([
             'success' => true,
-            'access_token' => $token,
+            'token' => $token,
+            'name' => $user->name,
+            'email' => $user->email,
+            'id' => $user->id,
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60,
         ]);
