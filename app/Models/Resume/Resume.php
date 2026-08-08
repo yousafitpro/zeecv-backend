@@ -18,9 +18,21 @@ class Resume extends Model
     {
         return $this->hasOne(Summary::class, 'resume_id');
     }
+    public function template()
+    {
+        return $this->hasOne(Template::class, 'resume_id');
+    }
     public function experiences()
     {
         return $this->hasMany(Experience::class, 'resume_id');
+    }
+    public function educations()
+    {
+        return $this->hasMany(Education::class, 'resume_id');
+    }
+    public function skills()
+    {
+        return $this->hasMany(Skill::class, 'resume_id');
     }
 
 }

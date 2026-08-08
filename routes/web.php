@@ -27,8 +27,10 @@ use App\Http\Controllers\GLSShipmentController;
 use App\Http\Controllers\PMM\Lookup\AddressController;
 use App\Http\Controllers\PMM\Lookup\GlsProfile;
 use App\Http\Controllers\Resume\ContactController;
+use App\Http\Controllers\Resume\EducationController;
 use App\Http\Controllers\Resume\ExperienceController;
 use App\Http\Controllers\Resume\ResumeController;
+use App\Http\Controllers\Resume\SkillController;
 use App\Http\Controllers\Resume\SummaryController;
 
 //adasdasdassdssasd
@@ -532,10 +534,24 @@ Route::prefix('resume')
     ->group(function () {
         Route::get('/', [ResumeController::class,'create'])->name('resume.create');
         Route::get('/edit/{id}', [ResumeController::class,'edit'])->name('resume.edit');
+
+        // experiences
         Route::get('/experience/list', [ExperienceController::class,'list'])->name('resume.experience.list');
         Route::post('/experience/save', [ExperienceController::class,'save'])->name('resume.experience.save');
         Route::post('/experience/add', [ExperienceController::class,'add'])->name('resume.experience.add');
         Route::post('/experience/delete/{id}', [ExperienceController::class,'delete'])->name('resume.experience.delete');
+        
+        // education
+        Route::get('/education/list', [EducationController::class,'list'])->name('resume.education.list');
+        Route::post('/education/save', [EducationController::class,'save'])->name('resume.education.save');
+        Route::post('/education/add', [EducationController::class,'add'])->name('resume.education.add');
+        Route::post('/education/delete/{id}', [EducationController::class,'delete'])->name('resume.education.delete');
+       
+        // skill
+        Route::get('/skill/list', [SkillController::class,'list'])->name('resume.skill.list');
+        Route::post('/skill/save', [SkillController::class,'save'])->name('resume.skill.save');
+        Route::post('/skill/add', [SkillController::class,'add'])->name('resume.skill.add');
+        Route::post('/skill/delete/{id}', [SkillController::class,'delete'])->name('resume.skill.delete');
 
         // contact
         Route::post('/contact/save', [ContactController::class,'save'])->name('resume.contact.save');

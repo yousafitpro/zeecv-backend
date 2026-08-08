@@ -50,6 +50,8 @@
            @include('zeecv.resume.components.summary')
            
            @include('zeecv.resume.components.experience')
+           @include('zeecv.resume.components.education')
+           @include('zeecv.resume.components.skill')
 
 
 
