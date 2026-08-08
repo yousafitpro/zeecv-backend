@@ -10,8 +10,8 @@
       <h1>Build your <span>AI-powered CV - 100% FREE</h1>
       <p>ZeeCV leverages advanced AI and smart analytics to craft a resume that stands out. Get a free, tailored, modern, and data‑driven resume today.</p>
       <div class="hero-actions">
-        <a href="#" class="btn-primary"><i class="fas fa-magic"></i> Start with AI</a>
-        <a href="#" style="color: #2563eb; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">See templates <i class="fas fa-arrow-right"></i></a>
+        <a href="{{ url('signup') }}" class="btn-primary"><i class="fas fa-magic"></i> Start with AI</a>
+        <a href="{{ url('signup') }}" style="color: #2563eb; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">See templates <i class="fas fa-arrow-right"></i></a>
       </div>
       <div class="hero-stats">
         <div><span class="number">12k+</span><span class="label">CVs generated</span></div>
@@ -116,6 +116,6 @@
   <div class="cta-section">
     <h2>Start building your <span style="background: linear-gradient(135deg, #2563eb, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">AI CV</span> today</h2>
     <p>Join thousands of professionals who upgraded their career with ZeeCV.</p>
-    <a href="#" class="btn-primary"><i class="fas fa-rocket"></i> Create my CV now</a>
+    <a href="{{ url('signup') }}" class="btn-primary"><i class="fas fa-rocket"></i> Create my CV now</a>
   </div>
 @endsection
