@@ -39,6 +39,10 @@
                    <a href="{{route('signup')}}" class="link">Sign Up</a>
                </div>
             </div>
+            <br>
+            <div class="row justify-content-center">
+                <a href="{{ url('/') }}">Go To Home</a>
+            </div>
         </div>
         </form>
 

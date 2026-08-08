@@ -31,10 +31,6 @@
                 </div>
 
 
-                    <select id="type" name="type" class="form-control" required style="height: 40px">
-                        <option value="" disabled selected>Select Account Type</option>
-                        <option value="marketer" selected>Marketer</option>
-                    </select>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="g-recaptcha" data-sitekey="{{config('myconfig.Recap.site_key')}}" data-callback="recaptcha_successfull_response" data-error-callback="data_error_callback" data-expired-callback="recaptcha_expired_callback"></div>
@@ -50,6 +46,10 @@
                     <span class="msg">Already have an account?</span>
                     <a href="{{ url('login') }}" class="link">Sign In</a>
                 </div>
+            </div>
+             <br>
+            <div class="row justify-content-center">
+                <a href="{{ url('/') }}">Go To Home</a>
             </div>
         </div>
     </form>

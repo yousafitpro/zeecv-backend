@@ -54,5 +54,8 @@
             </div>
         </div>
     </div>
+        <div class="row justify-content-center">
+        <a href="{{ url('/') }}">Go To Home</a>
+    </div>
 </div>
 @endsection

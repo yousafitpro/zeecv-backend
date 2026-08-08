@@ -23,7 +23,6 @@ class WebAuthController extends Controller
     {
 
 
-
         if (!User::where('email',$request->email)->exists())
         {
 
@@ -42,22 +41,22 @@ class WebAuthController extends Controller
             'token'=>$data['token']
         ]);
         $data['user']=User::where('email',$request->email)->first();
-        try {
+        // try {
             Mail::to($request->email)->send(new PasswordResetLinkMaill($data));
 
-        }
-        catch (\Exception $e)
-        {
+        // }
+        // catch (\Exception $e)
+        // {
 
-            return redirect(url('login'))
-                ->with([
-                    'toast' => [
-                        'heading' => 'Message',
-                        'message' => 'Something Going Wrong',
-                        'type' => 'error',
-                    ]
-                ]);
-        }
+        //     return redirect(url('login'))
+        //         ->with([
+        //             'toast' => [
+        //                 'heading' => 'Message',
+        //                 'message' => 'Something Going Wrong',
+        //                 'type' => 'error',
+        //             ]
+        //         ]);
+        // }
         return redirect(url('login'))
             ->with([
                 'toast' => [

@@ -7,10 +7,12 @@
   <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/favicon/favicon-32x32.png')}}">
   <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/favicon/favicon-16x16.png')}}">
   <link rel="manifest" href="{{asset('assets/favicon/site.webmanifest')}}">
+  <link rel="stylesheet" href="{{asset('theme/css/bootstrap.min.css')}}">
   <title>ZeeCV · AI CV Builder</title>
   <!-- Font Awesome (free icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 @include('home.css.style')
+@include("layout.includes.css")
 </head>
 <body>
 
@@ -25,7 +27,7 @@
       <a href="#">Features</a>
       <a href="#">Templates</a>
       <a href="#">Pricing</a>
-      <a href="#" class="btn-outline">Log in</a>
+      <a href="{{ url('login') }}" class="btn-outline">Log in</a>
       <a href="#" class="btn-primary" style="padding: 0.6rem 1.8rem;">Get started</a>
     </div>
   </nav>

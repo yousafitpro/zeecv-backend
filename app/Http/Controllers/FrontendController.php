@@ -336,7 +336,6 @@ class FrontendController extends Controller
       $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|unique:users,email',
-            'type' => 'required|in:merchant,marketer',
             'password' => [
                 'required',
                 'string',
@@ -356,34 +355,8 @@ class FrontendController extends Controller
             'type'    => "User",
             'password' => Hash::make($request->password),
         ]);
-        if($request->type=='merchant')
-        {
-            PMMMerchant::create([
-                'user_id'=>$user->id,
-                'created_by_id'=>$user->id,
-                'status'=>'active'
-            ]);
-            $role=MyRole::where('unique_key','Merchant')->first();
-            MyUserRole::create(
-            ['my_role_id'=>$role->id,
-            'created_by_id'=>$user->id,
-            'user_id'=>$user->id,
-            ]);
-        }
-        if($request->type=='marketer')
-        {
-            PMMAffiliate::create([
-                'user_id'=>$user->id,
-                'created_by_id'=>$user->id,
-                'status'=>'active'
-            ]);
-            $role=MyRole::where('unique_key','marketer')->first();
-            MyUserRole::create(
-            ['my_role_id'=>$role->id,
-            'created_by_id'=>$user->id,
-            'user_id'=>$user->id,
-            ]);
-        }
+
+
      $setting = UserSetting::firstOrCreate(
                 ['user_id' => $user->id],
                 ['is_two_step_enabled' => 'false'] // default value if new record is created
