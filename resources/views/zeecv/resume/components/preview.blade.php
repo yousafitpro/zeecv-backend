@@ -18,7 +18,7 @@
 
           <!-- Summary Section -->
           <p class="resume-summary text-secondary small leading-relaxed mb-4">
-            A dedicated Full Stack Developer with a strong background in PHP, Laravel, and CodeIgniter, alongside experience in Python, Django, and FastAPI. I have a knack for developing and integrating APIs, optimising database performance, and setting up efficient CI/CD pipelines.
+           {{ $cv->summary->summary }}
           </p>
 
 

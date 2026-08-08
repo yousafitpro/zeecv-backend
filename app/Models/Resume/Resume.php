@@ -14,6 +14,10 @@ class Resume extends Model
     {
         return $this->hasOne(Contact::class, 'resume_id');
     }
+    public function summary()
+    {
+        return $this->hasOne(Summary::class, 'resume_id');
+    }
     public function experiences()
     {
         return $this->hasMany(Experience::class, 'resume_id');
