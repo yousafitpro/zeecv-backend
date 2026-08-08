@@ -10,5 +10,9 @@ class Resume extends Model
     //
     protected $guarded = [];
      public $table = 'resumes';
+    public function contact()
+    {
+        return $this->hasOne(Contact::class, 'resume_id');
+    }
 
 }

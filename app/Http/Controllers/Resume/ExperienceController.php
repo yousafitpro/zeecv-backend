@@ -40,7 +40,8 @@ class ExperienceController extends Controller
       $input=$request->all();
       $item=Experience::create([
          'status'=>"Created",
-         'user_id'=>auth_user_id()
+         'user_id'=>auth_user_id(),
+         'resume_id'=>unique_decrypt($request->resume_id),
       ]);
       return response()->json([
          'code'=>'1',

@@ -72,6 +72,9 @@ function addExperience() {
     $.ajax({
         url: "{{ route('resume.experience.add') }}",
         type: 'POST',
+        data:{
+            'resume_id':'{{ request('id') }}'
+        },
         headers: {
             'X-CSRF-TOKEN': "{{ csrf_token() }}"
         },

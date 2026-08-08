@@ -1,5 +1,5 @@
   <!-- RIGHT COLUMN: Real-Time Resume Sheet Preview -->
-      <div class="col-lg-8 col-md-7">
+   
         <div class="resume-sheet bg-white p-5 shadow-sm rounded">
           
           <!-- Header Profile -->
@@ -109,4 +109,4 @@
           </section>
 
         </div>
-      </div>
+      

@@ -58,15 +58,43 @@
         @include('zeecv.resume.components.template')
 
       </div>
-
-        @include('zeecv.resume.components.preview')
-
+   <div class="col-lg-8 col-md-7">
+        <div id="CV_Preview_div"></div>
+   </div>
     </div>
   </main>
 
 
-
+ <script>
+      $(document).ready(function(){
+      LoadCVPreview()
+    })
+  function LoadCVPreview() {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: '{{ route('resume.preview') }}',
+            type: 'POST',
+            data:{
+              'resume_id':'{{ request('id') }}'
+            },
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            beforeSend: function() {
+            },
+            success: function(response) {
+                $('#CV_Preview_div').html(response);
+                resolve(response);
+            },
+            error: function(xhr, status, error) {
+                reject({ xhr, status, error });
+            }
+        });
+    });
+}
+ </script>
  @include('zeecv.resume.edit.script')
+
 </body>
 </html>
 @endsection

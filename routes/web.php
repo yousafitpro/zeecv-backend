@@ -538,4 +538,5 @@ Route::prefix('resume')
 
         // contact
         Route::post('/contact/save', [ContactController::class,'save'])->name('resume.contact.save');
+        Route::post('/preview', [ResumeController::class,'preview'])->name('resume.preview');
     });
