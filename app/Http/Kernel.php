@@ -40,6 +40,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\SetLanguage::class,
             \App\Http\Middleware\GlobalInputSanitization::class,
+            \App\Http\Middleware\TrackVisitedUrls::class,
         ],
 
         'api' => [

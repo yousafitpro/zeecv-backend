@@ -65,7 +65,7 @@
                         <li>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{url('profile')}}">Settings </a>
-                           <a class="dropdown-item" href="{{route('pmm.paymentprofile.view')}}">Payment Profiles</a>
+                           {{-- <a class="dropdown-item" href="{{route('pmm.paymentprofile.view')}}">Payment Profiles</a> --}}
 {{--                            <a class="dropdown-item" href="#">Inbox</a>--}}
 {{--                            <div class="dropdown-divider"></div>--}}
 {{--                            <a class="dropdown-item" href="#">Account Setting</a>--}}
