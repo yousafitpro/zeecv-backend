@@ -51,9 +51,9 @@ class ResumeController extends Controller
             'isHtml5ParserEnabled' => true,
             'isRemoteEnabled' => true,
         ]);
-        
+      //   dd($data['cv']);
       // return $pdf->stream('resume.pdf');
-      return $pdf->download('resume.pdf');
+      return $pdf->download($data['cv']->contact->desired_job_title.'.pdf');
     }
     public function edit($id)
     {
