@@ -35,17 +35,8 @@
 
 @yield('content')
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div>© 2026 ZeeCV — AI CV builder</div>
-    <div class="socials">
-      <i class="fab fa-twitter"></i>
-      <i class="fab fa-linkedin-in"></i>
-      <i class="fab fa-github"></i>
-      <i class="fab fa-youtube"></i>
-    </div>
-  </footer>
-</div>
+
+
 <!-- end container -->
 
 </body>
