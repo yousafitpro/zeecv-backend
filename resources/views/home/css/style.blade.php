@@ -65,7 +65,7 @@
       border: 1.5px solid #2563eb;
       background: transparent;
       padding: 0.5rem 1.5rem;
-      border-radius: 60px;
+      border-radius: 10px;
       font-weight: 600;
       color: #2563eb;
       transition: all 0.2s;
@@ -75,12 +75,16 @@
       background: #2563eb;
       color: white;
     }
+    .nav-links a:hover{
+      cursor: pointer;
+      color: white !important;
+    }
 
     .btn-primary {
       background: #2563eb;
       border: none;
       padding: 0.7rem 2rem;
-      border-radius: 60px;
+      border-radius: 10px;
       font-weight: 600;
       color: white;
       box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
