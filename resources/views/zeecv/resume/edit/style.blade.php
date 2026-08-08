@@ -16,11 +16,13 @@ body {
 .app-header {
   border-bottom: 1px solid #e2ded6;
 }
-
+.rounded-pill{
+  border-radius: 10px !important;
+}
 .btn-save {
   background: var(--primary) !important;
-  color: #ffffff;
-  font-weight: bold;
+  color: #ffffff !important;
+  font-weight: bold !important;
   border: none;
   transition: background-color 0.2s ease;
 }
