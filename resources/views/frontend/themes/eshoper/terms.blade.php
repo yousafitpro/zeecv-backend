@@ -1,11 +1,14 @@
-@extends('frontend.themes.eshoper.layout')
+@extends('layout.home')
 @section('content')
 <br>
 <div class="container-fluid" style="background:white !important">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+  
+ <div class="row">
+       <div class="col-md-8 offset-md-2">
 
-     <div class="card card-body">
+     <div class="">
+        <br>
+        <br>
         <br>
            <h2 style="text-align: center">TERMS OF SERVICE</h2>
         <p>The following document outlines the terms and conditions under which the <strong>ScalifyPro</strong> platform will manage its relationship with its publishers.</p>
@@ -80,9 +83,10 @@
             <p class="text-muted text-center">Last updated: {{ date('d/m/Y') }}</p>
      </div>
         </div>
+ </div>
 
 
-    <div class="col-md-2"></div>
+    
 </div>
 <br>
 @endsection
