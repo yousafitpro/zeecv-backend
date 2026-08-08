@@ -32,7 +32,13 @@
     @include("layout.sidebar")
     <div class="main-panel">
         <div class="content">
-            <div class="page-inner">
+            <div class="page-inner" style="background: linear-gradient(
+                                                            135deg, 
+                                                            #fff1ec 0%, 
+                                                            #f3e7e9 25%, 
+                                                            #e3eeff 60%, 
+                                                            #e0f2fe 100%
+                                                            );min-height:600px">
              @include('loaders.index')
              @include('app-notification.text-box')
        @yield('content')

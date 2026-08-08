@@ -26,6 +26,7 @@ use App\Http\Controllers\UppSellController;
 use App\Http\Controllers\GLSShipmentController;
 use App\Http\Controllers\PMM\Lookup\AddressController;
 use App\Http\Controllers\PMM\Lookup\GlsProfile;
+use App\Http\Controllers\Resume\ResumeController;
 
 //adasdasdassdssasd
     Route::get('login', [LoginController::class, 'index'])->name('login');
@@ -523,4 +524,9 @@ Route::prefix('Call-Center/operators')
         Route::post('/add', [OperatorController::class,'add'])->name('system.CallCenter.operator.add')->middleware('basic.permission:system.CallCenter.operator.add');
         Route::post('/update/{id}', [OperatorController::class,'update'])->name('system.CallCenter.operator.update')->middleware('basic.permission:system.CallCenter.operator.edit');
         Route::get('/delete/{id}', [OperatorController::class,'delete'])->name('system.CallCenter.operator.delete')->middleware('basic.permission:system.CallCenter.operator.remove');
+    });
+Route::prefix('resume')
+    ->group(function () {
+        Route::get('/', [ResumeController::class,'create'])->name('resume.create');
+        Route::get('/edit/{id}', [ResumeController::class,'edit'])->name('resume.edit');
     });
