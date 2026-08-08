@@ -42,7 +42,6 @@ class ResumeController extends Controller
             'user_id'=>auth_user_id()
          ]
       );
-      dd($data);
        return view('zeecv.resume.edit',$data);
     }
  
