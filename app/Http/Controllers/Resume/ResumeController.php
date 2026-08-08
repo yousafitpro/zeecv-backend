@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Resume\Contact;
 use App\Models\Resume\Resume;
 use App\Models\Resume\Summary;
+use App\Models\Resume\Template;
 use Illuminate\Http\Request;
 
 class ResumeController extends Controller
@@ -44,6 +45,12 @@ class ResumeController extends Controller
          ]
       );
       $data['summary']=Summary::updateOrCreate(
+         [
+            'resume_id'=>unique_decrypt($id),
+            'user_id'=>auth_user_id()
+         ]
+      );
+      $data['template']=Template::updateOrCreate(
          [
             'resume_id'=>unique_decrypt($id),
             'user_id'=>auth_user_id()

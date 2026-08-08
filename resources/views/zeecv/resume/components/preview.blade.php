@@ -49,46 +49,40 @@
           </section>
           @endif
    
+@if (!empty($cv->educations))
 
           <!-- Education Section -->
+          
           <section class="mb-4">
             <h5 class="section-heading text-uppercase font-weight-bold pb-1 border-bottom">EDUCATION</h5>
             <div class="timeline-container mt-3">
+              @foreach ($cv->educations as $edu)
               <div class="timeline-item position-relative pl-4">
-                <h6 class="font-weight-bold mb-0 text-dark">Bachelor's in Information Technology</h6>
+                <h6 class="font-weight-bold mb-0 text-dark">{{$edu->degree}}</h6>
                 <div class="d-flex justify-content-between align-items-baseline">
-                  <span class="text-muted font-italic small">University of Gujrat</span>
-                  <span class="text-muted font-italic small">01/2017 – 01/2021</span>
+                  <span class="text-muted font-italic small">{{$edu->institution}}</span>
+                  <span class="text-muted font-italic small">{{$edu->start_month}}/{{$edu->start_year}}– {{$edu->end_month}}/{{$edu->end_year}}</span>
                 </div>
-                <div class="text-muted small">Lahore, Pakistan</div>
+                <div class="text-muted small">{{$exp->location}},{{$exp->country}}</div>
               </div>
+               @endforeach
             </div>
           </section>
+            
+         
+@endif
 
+@if (!empty($cv->skills))
           <!-- Skills Section -->
           <section>
             <h5 class="section-heading text-uppercase font-weight-bold pb-1 border-bottom">SKILLS</h5>
             <div class="d-flex flex-wrap gap-2 mt-3">
-              <span class="skill-pill">PHP</span>
-              <span class="skill-pill">Python</span>
-              <span class="skill-pill">Django</span>
-              <span class="skill-pill">PM</span>
-              <span class="skill-pill">Fast API</span>
-              <span class="skill-pill">Laravel</span>
-              <span class="skill-pill">CodeIgniter</span>
-              <span class="skill-pill">CI/CD</span>
-              <span class="skill-pill">EC2</span>
-              <span class="skill-pill">S3</span>
-              <span class="skill-pill">JavaScript</span>
-              <span class="skill-pill">JQuery</span>
-              <span class="skill-pill">Bootstrap</span>
-              <span class="skill-pill">VueJS</span>
-              <span class="skill-pill">Angular8+</span>
-              <span class="skill-pill">ReactJS</span>
-              <span class="skill-pill">Flutter</span>
-              <span class="skill-pill">Livewire</span>
+              @foreach ($cv->skills as $skill)
+                <span class="skill-pill">{{$skill->skill}}</span>
+              @endforeach
             </div>
           </section>
+@endif
 
         </div>
       

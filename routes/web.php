@@ -32,6 +32,8 @@ use App\Http\Controllers\Resume\ExperienceController;
 use App\Http\Controllers\Resume\ResumeController;
 use App\Http\Controllers\Resume\SkillController;
 use App\Http\Controllers\Resume\SummaryController;
+use App\Http\Controllers\Resume\TemplateController;
+use App\Models\Resume\Template;
 
 //adasdasdassdssasd
     Route::get('login', [LoginController::class, 'index'])->name('login');
@@ -556,8 +558,11 @@ Route::prefix('resume')
         // contact
         Route::post('/contact/save', [ContactController::class,'save'])->name('resume.contact.save');
 
-        // contact
+        // summary
         Route::post('/summary/save', [SummaryController::class,'save'])->name('resume.summary.save');
+
+        // template
+        Route::post('/template/save', [TemplateController::class,'save'])->name('resume.template.save');
 
 
         Route::any('/preview', [ResumeController::class,'preview'])->name('resume.preview');
