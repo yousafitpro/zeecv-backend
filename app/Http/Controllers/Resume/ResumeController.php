@@ -19,7 +19,7 @@ class ResumeController extends Controller
       );
       $data['cv']=Resume::where([
          'user_id'=>auth_user_id(),
-         'id'=>$request->resume_id
+         'id'=>unique_decrypt($request->resume_id)
          ])
       ->with([
          'experiences',
