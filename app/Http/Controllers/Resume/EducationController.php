@@ -61,7 +61,7 @@ class EducationController extends Controller
     }
     public function list()
     {
-       $data['list']=$this->process()->get();
+       $data['list']=$this->process()->get()->where('resume_id',unique_decrypt(request('resume_id')));
        return view('zeecv.resume.ajax.education-list',$data);
     }
  

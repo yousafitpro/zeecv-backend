@@ -121,7 +121,7 @@ function loadExperiences() {
     LoadCVPreview()
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: '{{ route('resume.experience.list') }}',
+            url: '{{ route('resume.experience.list') }}?resume_id={{ request('id') }}',
             type: 'GET',
             beforeSend: function() {
                 // $('#experience_div').html(`

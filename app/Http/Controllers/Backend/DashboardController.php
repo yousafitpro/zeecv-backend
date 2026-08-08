@@ -10,6 +10,7 @@ use App\Http\Controllers\PMM\Product\PMMProductController;
 use App\Http\Controllers\PMM\Transactions\PMMTransactionsController;
 use App\Models\PMM\Product\PMMProduct;
 use App\Models\PMM\Product\PMMProductClick;
+use App\Models\Resume\Resume;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -36,7 +37,8 @@ class DashboardController extends Controller
     }
 
     public function userDasboard(Request $request){
-        return view('zeecv.dashboard');
+        $data['resumes']=Resume::where('user_id',auth_user_id())->get();
+        return view('zeecv.dashboard',$data);
     }
 public function getMonthlyProductStats(Request $request)
 {
