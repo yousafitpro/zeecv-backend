@@ -47,7 +47,7 @@ class ResumeController extends Controller
             ])->first();
       $pdf = Pdf::loadView('pdfs.resume.resume', $data);
       // return $pdf->stream('resume.pdf');
-      // return $pdf->download('resume.pdf');
+      return $pdf->download('resume.pdf');
     }
     public function edit($id)
     {
