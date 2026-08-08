@@ -51,10 +51,11 @@
                     {{-- <button class="btn btn-sm btn-outline-primary">
                         <i class="fas fa-eye"></i>
                     </button> --}}
-
+<a href="{{ route('resume.edit',unique_encrypt($res->id)) }}"> 
                     <button class="btn btn-sm btn-outline-secondary">
-                       <a href="{{ route('resume.edit',unique_encrypt($res->id)) }}"> <i class="fas fa-edit"></i></a>
+                       <i class="fas fa-edit"></i>
                     </button>
+</a>
                     {{-- <button class="btn btn-sm btn-outline-info">
                         <i class="fas fa-download"></i>
                     </button> --}}
