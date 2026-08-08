@@ -2,9 +2,9 @@
 @section('title',"Dashboard")
 @section('content')
 <style>
-    /* Page Backgrounds & General Setup */
+/* Page Backgrounds & General Setup */
 body {
-  background-color: #f5f2eb; /* Off-white beige canvas */
+  background-color: #f5f2eb;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color: #333333;
 }
@@ -178,6 +178,7 @@ body {
   margin-bottom: 6px;
 }
 </style>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -188,8 +189,6 @@ body {
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -219,201 +218,237 @@ body {
         </div>
 
         <!-- Section Accordion Container -->
-        <div class="accordion-list">
+        <div class="accordion-list" id="builderAccordion">
           
           <!-- Contact Card -->
-          <div class="builder-card p-3 mb-2 bg-white rounded shadow-sm d-flex justify-content-between align-items-center">
-            <div>
-              <i class="fas fa-th mr-2 text-muted drag-handle"></i>
-              <strong class="h6 mb-0">Contact</strong>
+          <div class="builder-card bg-white rounded shadow-sm mb-2">
+            <div class="p-3 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseContact" style="cursor: pointer;">
+              <div>
+                <i class="fas fa-th mr-2 text-muted drag-handle"></i>
+                <strong class="h6 mb-0">Contact</strong>
+              </div>
+              <div>
+                <i class="fas fa-cog text-muted mr-3 action-icon"></i>
+                <i class="fas fa-chevron-down text-muted action-icon icon-toggle"></i>
+              </div>
             </div>
-            <div>
-              <i class="fas fa-cog text-muted mr-3 action-icon"></i>
-              <i class="fas fa-chevron-down text-muted action-icon"></i>
+            <div id="collapseContact" class="collapse p-3 border-top" data-parent="#builderAccordion">
+              <p class="text-muted small mb-0">Contact details settings dynamic form inputs here...</p>
             </div>
           </div>
 
           <!-- Summary Card -->
-          <div class="builder-card p-3 mb-2 bg-white rounded shadow-sm d-flex justify-content-between align-items-center">
-            <div>
-              <i class="fas fa-th mr-2 text-muted drag-handle"></i>
-              <strong class="h6 mb-0">Summary</strong>
+          <div class="builder-card bg-white rounded shadow-sm mb-2">
+            <div class="p-3 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseSummary" style="cursor: pointer;">
+              <div>
+                <i class="fas fa-th mr-2 text-muted drag-handle"></i>
+                <strong class="h6 mb-0">Summary</strong>
+              </div>
+              <div>
+                <i class="fas fa-cog text-muted mr-3 action-icon"></i>
+                <i class="fas fa-chevron-down text-muted action-icon icon-toggle"></i>
+              </div>
             </div>
-            <div>
-              <i class="fas fa-cog text-muted mr-3 action-icon"></i>
-              <i class="fas fa-chevron-down text-muted action-icon"></i>
+            <div id="collapseSummary" class="collapse p-3 border-top" data-parent="#builderAccordion">
+              <p class="text-muted small mb-0">Summary text editor form controls here...</p>
             </div>
           </div>
 
-          <!-- Work Experience Card (Expanded) -->
+          <!-- Work Experience Card (Expanded by Default) -->
           <div class="builder-card bg-white rounded shadow-sm mb-2 overflow-hidden">
-            <div class="p-3 d-flex justify-content-between align-items-center border-bottom">
+            <div class="p-3 d-flex justify-content-between align-items-center border-bottom" data-toggle="collapse" data-target="#collapseWork" style="cursor: pointer;">
               <div>
                 <i class="fas fa-th mr-2 text-muted drag-handle"></i>
                 <strong class="h6 mb-0">Work Experience</strong>
               </div>
               <div>
                 <i class="fas fa-cog text-muted mr-3 action-icon"></i>
-                <i class="fas fa-chevron-up text-muted action-icon"></i>
+                <i class="fas fa-chevron-up text-muted action-icon icon-toggle"></i>
               </div>
             </div>
 
-            <!-- Expanded Work Item Form -->
-            <div class="p-3 bg-light border-bottom">
-              <div class="d-flex justify-content-between align-items-start mb-2">
-                <i class="fas fa-th text-muted drag-handle mr-2 mt-1"></i>
-                <div class="flex-grow-1 pr-2">
-                  <h6 class="mb-0 text-dark font-weight-bold" id="formRoleTitle">Sr Full Stack Developer | PHP | Pyt</h6>
-                  <small class="text-muted" id="formDateSubtitle">Sept 2025 – Present</small>
-                </div>
-                <div>
-                  <i class="far fa-trash-alt text-muted mr-2 action-icon"></i>
-                  <i class="fas fa-chevron-up text-muted action-icon"></i>
-                </div>
-              </div>
-
-              <!-- Form Fields -->
-              <form class="mt-3">
-                <div class="floating-label-group mb-3">
-                  <input type="text" id="roleTitle" class="form-control" value="Sr Full Stack Developer | PHP | Python | Larav">
-                  <label for="roleTitle">Role/Job title</label>
-                </div>
-
-                <div class="form-check mb-3">
-                  <input type="checkbox" class="form-check-input" id="currentPos" checked>
-                  <label class="form-check-label font-weight-bold text-dark" for="currentPos">Current position</label>
-                </div>
-
-                <div class="floating-label-group mb-3">
-                  <input type="text" id="companyName" class="form-control" value="XAD Group of Companies">
-                  <label for="companyName">Company</label>
-                </div>
-
-                <div class="form-row mb-3">
-                  <div class="col-6">
-                    <div class="floating-label-group">
-                      <input type="text" id="location" class="form-control" value="Sharjah">
-                      <label for="location">Location</label>
-                    </div>
+            <div id="collapseWork" class="collapse show" data-parent="#builderAccordion">
+              
+              <!-- First Expanded Entry -->
+              <div class="border-bottom">
+                <div class="p-3 bg-light d-flex justify-content-between align-items-start" data-toggle="collapse" data-target="#workForm1" style="cursor: pointer;">
+                  <i class="fas fa-th text-muted drag-handle mr-2 mt-1"></i>
+                  <div class="flex-grow-1 pr-2">
+                    <h6 class="mb-0 text-dark font-weight-bold" id="formRoleTitle">Sr Full Stack Developer | PHP | Pyt</h6>
+                    <small class="text-muted" id="formDateSubtitle">Sept 2025 – Present</small>
                   </div>
-                  <div class="col-6">
-                    <div class="floating-label-group">
-                      <input type="text" id="country" class="form-control" value="UAE">
-                      <label for="country">Country (optional)</label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-row mb-3">
-                  <div class="col-6">
-                    <div class="floating-label-group">
-                      <select class="form-control custom-select" id="startMonth">
-                        <option selected>September</option>
-                      </select>
-                      <label for="startMonth">Start month</label>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="floating-label-group">
-                      <select class="form-control custom-select" id="startYear">
-                        <option selected>2025</option>
-                      </select>
-                      <label for="startYear">Start year</label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-row mb-3">
-                  <div class="col-6">
-                    <div class="floating-label-group">
-                      <select class="form-control custom-select" disabled id="endMonth">
-                        <option selected>End month</option>
-                      </select>
-                      <label for="endMonth">End month</label>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="floating-label-group">
-                      <select class="form-control custom-select" disabled id="endYear">
-                        <option selected>End year</option>
-                      </select>
-                      <label for="endYear">End year</label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="floating-label-group mb-2">
-                  <textarea id="description" class="form-control" rows="3">XAD Group of Companies</textarea>
-                  <label for="description">Description (optional)</label>
-                </div>
-                <div class="text-right text-muted small mb-3">22/1500</div>
-
-                <button type="button" class="btn btn-ai btn-block rounded-pill">
-                  <i class="fas fa-sparkles mr-1"></i> Rewrite with AI
-                </button>
-              </form>
-            </div>
-
-            <!-- Item Lists -->
-            <div class="item-collapsed-list">
-              <div class="p-3 border-bottom d-flex justify-content-between align-items-center bg-light-item">
-                <div class="d-flex align-items-center">
-                  <i class="fas fa-th text-muted drag-handle mr-2"></i>
                   <div>
-                    <span class="d-block font-weight-bold small">Project Manager | Laravel | PHP | V</span>
-                    <small class="text-muted">Jan 2025 – Sept 2025</small>
+                    <i class="far fa-trash-alt text-muted mr-2 action-icon"></i>
+                    <i class="fas fa-chevron-up text-muted action-icon icon-toggle"></i>
                   </div>
                 </div>
-                <div>
-                  <i class="far fa-trash-alt text-muted mr-2 action-icon"></i>
-                  <i class="fas fa-chevron-down text-muted action-icon"></i>
+
+                <!-- Expanded Work Item Form -->
+                <div id="workForm1" class="collapse show p-3 bg-light">
+                  <form class="mt-1">
+                    <div class="floating-label-group mb-3">
+                      <input type="text" id="roleTitle" class="form-control" value="Sr Full Stack Developer | PHP | Python | Larav">
+                      <label for="roleTitle">Role/Job title</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                      <input type="checkbox" class="form-check-input" id="currentPos" checked>
+                      <label class="form-check-label font-weight-bold text-dark" for="currentPos">Current position</label>
+                    </div>
+
+                    <div class="floating-label-group mb-3">
+                      <input type="text" id="companyName" class="form-control" value="XAD Group of Companies">
+                      <label for="companyName">Company</label>
+                    </div>
+
+                    <div class="form-row mb-3">
+                      <div class="col-6">
+                        <div class="floating-label-group">
+                          <input type="text" id="location" class="form-control" value="Sharjah">
+                          <label for="location">Location</label>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="floating-label-group">
+                          <input type="text" id="country" class="form-control" value="UAE">
+                          <label for="country">Country (optional)</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-row mb-3">
+                      <div class="col-6">
+                        <div class="floating-label-group">
+                          <select class="form-control custom-select" id="startMonth">
+                            <option selected>September</option>
+                          </select>
+                          <label for="startMonth">Start month</label>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="floating-label-group">
+                          <select class="form-control custom-select" id="startYear">
+                            <option selected>2025</option>
+                          </select>
+                          <label for="startYear">Start year</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-row mb-3">
+                      <div class="col-6">
+                        <div class="floating-label-group">
+                          <select class="form-control custom-select" disabled id="endMonth">
+                            <option selected>End month</option>
+                          </select>
+                          <label for="endMonth">End month</label>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="floating-label-group">
+                          <select class="form-control custom-select" disabled id="endYear">
+                            <option selected>End year</option>
+                          </select>
+                          <label for="endYear">End year</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="floating-label-group mb-2">
+                      <textarea id="description" class="form-control" rows="3">XAD Group of Companies</textarea>
+                      <label for="description">Description (optional)</label>
+                    </div>
+                    <div class="text-right text-muted small mb-3">22/1500</div>
+
+                    <button type="button" class="btn btn-ai btn-block rounded-pill">
+                      <i class="fas fa-sparkles mr-1"></i> Rewrite with AI
+                    </button>
+                  </form>
                 </div>
               </div>
 
-              <div class="p-3 border-bottom d-flex justify-content-between align-items-center bg-light-item">
-                <div class="d-flex align-items-center">
-                  <i class="fas fa-th text-muted drag-handle mr-2"></i>
-                  <div>
-                    <span class="d-block font-weight-bold small">Software Engineer | PHP | Laravel</span>
-                    <small class="text-muted">Jun 2023 – Dec 2024</small>
+              <!-- Item Lists -->
+              <div class="item-collapsed-list">
+                <div class="border-bottom">
+                  <div class="p-3 d-flex justify-content-between align-items-center bg-light-item" data-toggle="collapse" data-target="#workForm2" style="cursor: pointer;">
+                    <div class="d-flex align-items-center">
+                      <i class="fas fa-th text-muted drag-handle mr-2"></i>
+                      <div>
+                        <span class="d-block font-weight-bold small">Project Manager | Laravel | PHP | V</span>
+                        <small class="text-muted">Jan 2025 – Sept 2025</small>
+                      </div>
+                    </div>
+                    <div>
+                      <i class="far fa-trash-alt text-muted mr-2 action-icon"></i>
+                      <i class="fas fa-chevron-down text-muted action-icon icon-toggle"></i>
+                    </div>
+                  </div>
+                  <div id="workForm2" class="collapse p-3 bg-light">
+                    <p class="text-muted small mb-0">Project Manager position form controls here...</p>
                   </div>
                 </div>
-                <div>
-                  <i class="far fa-trash-alt text-muted mr-2 action-icon"></i>
-                  <i class="fas fa-chevron-down text-muted action-icon"></i>
+
+                <div class="border-bottom">
+                  <div class="p-3 d-flex justify-content-between align-items-center bg-light-item" data-toggle="collapse" data-target="#workForm3" style="cursor: pointer;">
+                    <div class="d-flex align-items-center">
+                      <i class="fas fa-th text-muted drag-handle mr-2"></i>
+                      <div>
+                        <span class="d-block font-weight-bold small">Software Engineer | PHP | Laravel</span>
+                        <small class="text-muted">Jun 2023 – Dec 2024</small>
+                      </div>
+                    </div>
+                    <div>
+                      <i class="far fa-trash-alt text-muted mr-2 action-icon"></i>
+                      <i class="fas fa-chevron-down text-muted action-icon icon-toggle"></i>
+                    </div>
+                  </div>
+                  <div id="workForm3" class="collapse p-3 bg-light">
+                    <p class="text-muted small mb-0">Software Engineer position form controls here...</p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- Add New Entry Button -->
-            <div class="p-3 text-center bg-white">
-              <a href="#" class="text-muted font-weight-bold text-decoration-none">
-                <i class="far fa-plus-circle mr-1"></i> Add new entry
-              </a>
+              <!-- Add New Entry Button -->
+              <div class="p-3 text-center bg-white">
+                <a href="#" class="text-muted font-weight-bold text-decoration-none">
+                  <i class="far fa-plus-circle mr-1"></i> Add new entry
+                </a>
+              </div>
+
             </div>
           </div>
 
           <!-- Education Card -->
-          <div class="builder-card p-3 mb-2 bg-white rounded shadow-sm d-flex justify-content-between align-items-center">
-            <div>
-              <i class="fas fa-th mr-2 text-muted drag-handle"></i>
-              <strong class="h6 mb-0">Education</strong>
+          <div class="builder-card bg-white rounded shadow-sm mb-2">
+            <div class="p-3 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseEducation" style="cursor: pointer;">
+              <div>
+                <i class="fas fa-th mr-2 text-muted drag-handle"></i>
+                <strong class="h6 mb-0">Education</strong>
+              </div>
+              <div>
+                <i class="fas fa-cog text-muted mr-3 action-icon"></i>
+                <i class="fas fa-chevron-down text-muted action-icon icon-toggle"></i>
+              </div>
             </div>
-            <div>
-              <i class="fas fa-cog text-muted mr-3 action-icon"></i>
-              <i class="fas fa-chevron-down text-muted action-icon"></i>
+            <div id="collapseEducation" class="collapse p-3 border-top" data-parent="#builderAccordion">
+              <p class="text-muted small mb-0">Education details form controls here...</p>
             </div>
           </div>
 
           <!-- Skills Card -->
-          <div class="builder-card p-3 mb-2 bg-white rounded shadow-sm d-flex justify-content-between align-items-center">
-            <div>
-              <i class="fas fa-th mr-2 text-muted drag-handle"></i>
-              <strong class="h6 mb-0">Skills</strong>
+          <div class="builder-card bg-white rounded shadow-sm mb-2">
+            <div class="p-3 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseSkills" style="cursor: pointer;">
+              <div>
+                <i class="fas fa-th mr-2 text-muted drag-handle"></i>
+                <strong class="h6 mb-0">Skills</strong>
+              </div>
+              <div>
+                <i class="fas fa-cog text-muted mr-3 action-icon"></i>
+                <i class="fas fa-chevron-down text-muted action-icon icon-toggle"></i>
+              </div>
             </div>
-            <div>
-              <i class="fas fa-cog text-muted mr-3 action-icon"></i>
-              <i class="fas fa-chevron-down text-muted action-icon"></i>
+            <div id="collapseSkills" class="collapse p-3 border-top" data-parent="#builderAccordion">
+              <p class="text-muted small mb-0">Skills list form controls here...</p>
             </div>
           </div>
 
@@ -539,51 +574,58 @@ body {
   <!-- JS Dependencies -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
   <!-- Custom JS -->
   <script>
     $(document).ready(function () {
-  
-  // Real-time synchronization between editor form and preview sheet
-  $('#roleTitle').on('input', function () {
-    const val = $(this).val();
-    $('#previewRole').text(val);
-    $('#formRoleTitle').text(val.substring(0, 30) + (val.length > 30 ? '...' : ''));
-  });
 
-  $('#companyName').on('input', function () {
-    const val = $(this).val();
-    $('#previewCompany').text(val);
-  });
+      // Dynamic chevron icon flipping on collapse show/hide
+      $('.collapse').on('show.bs.collapse', function () {
+        $(this).prev().find('.icon-toggle').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+      }).on('hide.bs.collapse', function () {
+        $(this).prev().find('.icon-toggle').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+      });
 
-  $('#location, #country').on('input', function () {
-    const loc = $('#location').val();
-    const country = $('#country').val();
-    $('#previewLocation').text(`${loc}${country ? ', ' + country : ''}`);
-  });
+      // Real-time synchronization between editor form and preview sheet
+      $('#roleTitle').on('input', function () {
+        const val = $(this).val();
+        $('#previewRole').text(val);
+        $('#formRoleTitle').text(val.substring(0, 30) + (val.length > 30 ? '...' : ''));
+      });
 
-  $('#description').on('input', function () {
-    $('#previewDescription').text($(this).val());
-  });
+      $('#companyName').on('input', function () {
+        const val = $(this).val();
+        $('#previewCompany').text(val);
+      });
 
-  // Toggle present position dates
-  $('#currentPos').on('change', function () {
-    if ($(this).is(':checked')) {
-      $('#endMonth, #endYear').prop('disabled', true);
-      $('#previewDates').text(`${$('#startMonth').val()}/${$('#startYear').val()} – Present`);
-    } else {
-      $('#endMonth, #endYear').prop('disabled', false);
-    }
-  });
+      $('#location, #country').on('input', function () {
+        const loc = $('#location').val();
+        const country = $('#country').val();
+        $('#previewLocation').text(`${loc}${country ? ', ' + country : ''}`);
+      });
 
-  // Toggle Content / Template pill tabs
-  $('.toggle-pills .btn-pill').on('click', function () {
-    $('.toggle-pills .btn-pill').removeClass('active');
-    $(this).addClass('active');
-  });
+      $('#description').on('input', function () {
+        $('#previewDescription').text($(this).val());
+      });
 
-});
+      // Toggle present position dates
+      $('#currentPos').on('change', function () {
+        if ($(this).is(':checked')) {
+          $('#endMonth, #endYear').prop('disabled', true);
+          $('#previewDates').text(`${$('#startMonth').val()}/${$('#startYear').val()} – Present`);
+        } else {
+          $('#endMonth, #endYear').prop('disabled', false);
+        }
+      });
+
+      // Toggle Content / Template pill tabs
+      $('.toggle-pills .btn-pill').on('click', function () {
+        $('.toggle-pills .btn-pill').removeClass('active');
+        $(this).addClass('active');
+      });
+
+    });
   </script>
 </body>
 </html>
-
 @endsection
