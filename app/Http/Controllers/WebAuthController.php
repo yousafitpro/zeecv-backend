@@ -7,6 +7,7 @@ use App\Mail\RegisterMail;
 use App\Models\User;
 use App\Notifications\passwordChangedNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
@@ -100,7 +101,37 @@ class WebAuthController extends Controller
     }
     public function verify_email_address(Request $request,$token)
     {
-        return view('auth.verifyemailaddress',['token'=>$token]);
+        $user = User::where('token', $token)->first();
+
+        if ($user) {
+            $user->update([
+                'token' => '12121h1h2h1h20',
+                'email_verified_at' => now(),
+            ]);
+            
+            // Login using specific guard (if you have multiple guards)
+            Auth::guard('web')->login($user);
+            
+            // Or if using custom guard
+            // Auth::guard('user')->login($user);
+            
+            return redirect(url('dashboard'))->with([
+                'toast' => [
+                    'heading' => 'Message',
+                    'message' => 'Congrats! Account has been verified successfully',
+                    'type' => 'success',
+                ]
+            ]);
+        }
+
+        // Handle case where user not found
+        return redirect()->route('login')->with([
+            'toast' => [
+                'heading' => 'Error',
+                'message' => 'Invalid verification token',
+                'type' => 'error',
+            ]
+        ]);
     }
        public function verify_email(Request $request,$token)
     {

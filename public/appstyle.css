@@ -1,6 +1,6 @@
         :root{
-        --primary:#28a5ab !important;
-        --blue:#28a5ab !important;
+        --primary:#8589d1 !important;
+        --blue:var(--primary);
         --link-color:rgb(0, 120, 212) !important;
     }
     body{

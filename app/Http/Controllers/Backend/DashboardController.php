@@ -17,9 +17,12 @@ use Illuminate\Support\Facades\DB;
 class DashboardController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
            $user=auth()->user();
+           if($user->type=="User"){
+             return $this->userDasboard($request);
+           }
         $data['products'] = (new PMMProductController())->process()->where('status','active')->latest()->take(4)->get();
         $data['orders']=(new PMMTransactionsController())->process()
         ->whereDate('created_at', Carbon::today())
@@ -32,6 +35,9 @@ class DashboardController extends Controller
         return view('dashboard.index',$data);
     }
 
+    public function userDasboard(Request $request){
+        return view('zeecv.dashboard');
+    }
 public function getMonthlyProductStats(Request $request)
 {
     return response()->json((new PMMGraphController())->ProductInsigts($request));

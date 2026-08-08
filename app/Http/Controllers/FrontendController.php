@@ -354,9 +354,10 @@ class FrontendController extends Controller
             'email'    => $request->email,
             'type'    => "User",
             'password' => Hash::make($request->password),
+            'email_verified_at'=>null
         ]);
 
-
+      
      $setting = UserSetting::firstOrCreate(
                 ['user_id' => $user->id],
                 ['is_two_step_enabled' => 'false'] // default value if new record is created
