@@ -5,14 +5,14 @@
           <!-- Header Profile -->
           <div class="row mb-3">
             <div class="col-md-7">
-              <h1 class="resume-name font-weight-bold mb-1">Muhammad Yousaf</h1>
-              <p class="resume-subtitle text-muted mb-0">Full Stack | PHP | Python | Laravel | Codeigniter | Fast API | Django | API</p>
+              <h1 class="resume-name font-weight-bold mb-1">{{$cv->contact->first_name.' '.$cv->contact->last_name}}</h1>
+              <p class="resume-subtitle text-muted mb-0">{{$cv->contact->desired_job_title}}</p>
             </div>
             <div class="col-md-5 text-md-right resume-contact">
-              <div>yousaf.connect@gmail.com <i class="far fa-envelope ml-1"></i></div>
-              <div>+92-317-0773093 <i class="fas fa-phone-alt ml-1"></i></div>
-              <div>Islamabad, Pakistan <i class="fas fa-map-marker-alt ml-1"></i></div>
-              <div>https://linkedin.com/in/yousafitpro <i class="fab fa-linkedin ml-1"></i></div>
+              <div>   {{$cv->contact->email}} <i class="far fa-envelope ml-1"></i></div>
+              <div>   {{$cv->contact->phone}} <i class="fas fa-phone-alt ml-1"></i></div>
+              <div>   {{$cv->contact->location}} ,    {{$cv->contact->country}} <i class="fas fa-map-marker-alt ml-1"></i></div>
+              <div>   {{$cv->contact->profile_link}} <i class="fab fa-linkedin ml-1"></i></div>
             </div>
           </div>
 
@@ -21,52 +21,34 @@
             A dedicated Full Stack Developer with a strong background in PHP, Laravel, and CodeIgniter, alongside experience in Python, Django, and FastAPI. I have a knack for developing and integrating APIs, optimising database performance, and setting up efficient CI/CD pipelines.
           </p>
 
-          <!-- Work Experience Timeline -->
+
+          @if (!empty($cv->experiences))
+                   <!-- Work Experience Timeline -->
           <section class="mb-4">
             <h5 class="section-heading text-uppercase font-weight-bold pb-1 border-bottom">WORK EXPERIENCE</h5>
             
             <div class="timeline-container mt-3">
               
+              @foreach ($cv->experiences as $exp)
               <!-- Timeline Item 1 -->
               <div class="timeline-item position-relative pl-4 pb-3">
                 <div class="d-flex justify-content-between align-items-baseline">
-                  <h6 class="font-weight-bold mb-0 text-dark" id="previewRole">Sr Full Stack Developer | PHP | Python | Laravel | CodeIgniter</h6>
-                  <span class="text-muted font-italic small" id="previewDates">09/2025 – Present</span>
+                  <h6 class="font-weight-bold mb-0 text-dark" id="previewRole">{{$exp->job_title}}</h6>
+                  <span class="text-muted font-italic small" id="previewDates">{{$exp->start_month}}/{{$exp->start_year}}– {{$exp->end_month}}/{{$exp->end_year}}</span>
                 </div>
-                <div class="text-muted font-italic small mb-1" id="previewCompany">XAD Group of Companies</div>
-                <div class="text-muted small mb-2" id="previewLocation">Sharjah, UAE</div>
-                <div class="timeline-bullets text-secondary small" id="previewDescription">
-                  XAD Group of Companies
-                </div>
+                <div class="text-muted font-italic small mb-1" id="previewCompany">{{$exp->company}}</div>
+                <div class="text-muted small mb-2" id="previewLocation">{{$exp->location}},{{$exp->country}}</div>
+              
               </div>
+              @endforeach
 
-              <!-- Timeline Item 2 -->
-              <div class="timeline-item position-relative pl-4 pb-3">
-                <div class="d-flex justify-content-between align-items-baseline">
-                  <h6 class="font-weight-bold mb-0 text-dark">Project Manager | Laravel | PHP | Vue</h6>
-                  <span class="text-muted font-italic small">01/2025 – 09/2025</span>
-                </div>
-                <div class="text-muted font-italic small mb-1">ZPAYD.COM</div>
-                <div class="text-muted small mb-2">Mississauga, Canada</div>
-                <ul class="pl-3 mb-0 text-secondary small">
-                  <li>Engineered and developed APIs, facilitating seamless integrations and advancing overall functionality.</li>
-                  <li>Revamped database queries, yielding enhanced performance and scalability.</li>
-                  <li>Established CI/CD pipelines, promoting efficient and reliable deployment processes.</li>
-                </ul>
-              </div>
 
-              <!-- Timeline Item 3 -->
-              <div class="timeline-item position-relative pl-4 pb-1">
-                <div class="d-flex justify-content-between align-items-baseline">
-                  <h6 class="font-weight-bold mb-0 text-dark">Software Engineer | PHP | Laravel</h6>
-                  <span class="text-muted font-italic small">06/2023 – 12/2024</span>
-                </div>
-                <div class="text-muted font-italic small mb-1">ACE MONEY TRANSFER</div>
-                <div class="text-muted small">Lahore, Pakistan</div>
-              </div>
+     
 
             </div>
           </section>
+          @endif
+   
 
           <!-- Education Section -->
           <section class="mb-4">

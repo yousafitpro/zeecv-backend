@@ -13,6 +13,7 @@
               <div id="collapseContact" class="collapse p-3 border-top" data-parent="#builderAccordion">
                  <form class="mt-1" method="post" action="{{ route('resume.contact.save') }}"  onsubmit="saveContact(event,this)">
                       @csrf
+                      <input hidden name="resume_id" value="{{ request('id') }}">
                       <div class="floating-label-group mb-3">
                         <input type="text" id="roleTitle" name="desired_job_title" class="form-control" value="{{ $contact->desired_job_title}}">
                         <label for="roleTitle">Desired Job title</label>
@@ -95,6 +96,7 @@
         success: function(response) {
             if (response.code === '1') {
             $("#collapseContact").collapse('toggle');
+            LoadCVPreview()
             }
         },
         error: function(xhr) {

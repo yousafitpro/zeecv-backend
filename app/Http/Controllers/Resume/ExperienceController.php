@@ -18,7 +18,16 @@ class ExperienceController extends Controller
       $item=Experience::where('id',$input['item_id'])->first();
       $item->update(
          [
-            'job_title'=>$input['job_title']
+            'job_title'=>$input['job_title'],
+            'company'=>$input['company'],
+            'location'=>$input['location'],
+            'country'=>$input['country'],
+            'start_month'=>$input['start_month'],
+            'start_year'=>$input['start_year'],
+            'end_month'=>$input['end_month'],
+            'end_year'=>$input['end_year'],
+            'description'=>$input['description'],
+            
          ]
       );
       return response()->json([

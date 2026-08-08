@@ -29,6 +29,7 @@ use App\Http\Controllers\PMM\Lookup\GlsProfile;
 use App\Http\Controllers\Resume\ContactController;
 use App\Http\Controllers\Resume\ExperienceController;
 use App\Http\Controllers\Resume\ResumeController;
+use App\Http\Controllers\Resume\SummaryController;
 
 //adasdasdassdssasd
     Route::get('login', [LoginController::class, 'index'])->name('login');
@@ -538,5 +539,10 @@ Route::prefix('resume')
 
         // contact
         Route::post('/contact/save', [ContactController::class,'save'])->name('resume.contact.save');
+
+        // contact
+        Route::post('/summary/save', [SummaryController::class,'save'])->name('resume.summary.save');
+
+
         Route::post('/preview', [ResumeController::class,'preview'])->name('resume.preview');
     });

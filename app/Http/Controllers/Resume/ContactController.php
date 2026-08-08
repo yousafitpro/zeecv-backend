@@ -16,7 +16,7 @@ class ContactController extends Controller
     }
     public function save(Request $request){
       $input=$request->all();
-      $item=$this->process()->first();
+      $item=$this->process()->where('resume_id',unique_decrypt($request->resume_id))->first();
       $item->update(
          [
             'desired_job_title'=>$input['desired_job_title'],

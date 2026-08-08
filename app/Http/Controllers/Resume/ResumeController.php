@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Resume;
 use App\Http\Controllers\Controller;
 use App\Models\Resume\Contact;
 use App\Models\Resume\Resume;
+use App\Models\Resume\Summary;
 use Illuminate\Http\Request;
 
 class ResumeController extends Controller
@@ -30,6 +31,12 @@ class ResumeController extends Controller
     public function edit($id)
     {
       $data['contact']=Contact::updateOrCreate(
+         [
+            'resume_id'=>unique_decrypt($id),
+            'user_id'=>auth_user_id()
+         ]
+      );
+      $data['summary']=Summary::updateOrCreate(
          [
             'resume_id'=>unique_decrypt($id),
             'user_id'=>auth_user_id()

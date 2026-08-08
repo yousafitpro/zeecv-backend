@@ -46,8 +46,9 @@
         <!-- CONTENT TAB VIEW -->
         <div id="contentView">
           <div class="accordion-list" id="builderAccordion">
-            
-           @include('zeecv.resume.components.contact')
+            @include('zeecv.resume.components.contact')
+           @include('zeecv.resume.components.summary')
+           
            @include('zeecv.resume.components.experience')
 
 

@@ -56,7 +56,7 @@ function saveExperiences(event, form) {
         },
         success: function(response) {
             if (response.code === '1') {
-             $("#workForm"+response.item.id).removeClass("show")
+             loadExperiences();
             }
         },
         error: function(xhr) {
@@ -118,6 +118,7 @@ function deleteExperience(url) {
     });
 }
 function loadExperiences() {
+    LoadCVPreview()
     return new Promise((resolve, reject) => {
         $.ajax({
             url: '{{ route('resume.experience.list') }}',
