@@ -4,8 +4,9 @@
 @include("layout.includes.css")
 <style>
     :root{
-        --blue:#28a5ab !important;
-        --primary:#28a5ab !important;
+        --primary:#8589d1 !important;
+        --blue:var(--primary) !important;
+        
     }
 </style>
 </head>
