@@ -1,9 +1,13 @@
 @extends('layout.home')
+@section('meta_tags')
+<meta name="description" content="ZeeCV leverages advanced AI and smart analytics to craft a resume that stands out. Get a free, tailored, modern, and data‑driven resume today.">
+@endsection
 @section('content')
+
   <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Build your <span>AI-powered</span> CV in minutes</h1>
+      <h1>Build your <span>AI-powered CV - 100% FREE</h1>
       <p>ZeeCV leverages advanced AI and smart analytics to craft a resume that stands out. Tailored, modern, and data‑driven.</p>
       <div class="hero-actions">
         <a href="#" class="btn-primary"><i class="fas fa-magic"></i> Start with AI</a>

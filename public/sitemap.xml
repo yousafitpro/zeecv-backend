@@ -1,0 +1,88 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Post;
+use App\Models\Page;
+use App\Models\Category;
+
+class SitemapController extends Controller
+{
+    /**
+     * Generate the main sitemap index
+     */
+    public function index()
+    {
+        $sitemaps = [
+            'pages',
+            'posts',
+            'categories',
+            'tags',
+            // Add more sitemap types as needed
+        ];
+
+        return response()->view('sitemap.index', compact('sitemaps'))
+            ->header('Content-Type', 'application/xml');
+    }
+
+    /**
+     * Generate sitemap for pages
+     */
+    public function pages()
+    {
+        $pages = Page::where('is_active', true)
+            ->whereNotNull('slug')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
+        return response()->view('sitemap.pages', compact('pages'))
+            ->header('Content-Type', 'application/xml');
+    }
+
+    /**
+     * Generate sitemap for blog posts
+     */
+    public function posts()
+    {
+        $posts = Post::where('is_published', true)
+            ->whereNotNull('slug')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
+        return response()->view('sitemap.posts', compact('posts'))
+            ->header('Content-Type', 'application/xml');
+    }
+
+    /**
+     * Generate sitemap for categories
+     */
+    public function categories()
+    {
+        $categories = Category::where('is_active', true)
+            ->whereNotNull('slug')
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
+        return response()->view('sitemap.categories', compact('categories'))
+            ->header('Content-Type', 'application/xml');
+    }
+
+    /**
+     * Generate dynamic sitemap based on type
+     */
+    public function dynamic($type)
+    {
+        switch ($type) {
+            case 'pages':
+                return $this->pages();
+            case 'posts':
+                return $this->posts();
+            case 'categories':
+                return $this->categories();
+            default:
+                abort(404);
+        }
+    }
+}

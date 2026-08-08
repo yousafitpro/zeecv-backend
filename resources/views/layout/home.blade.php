@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  @yield('meta_tags')
   <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/favicon/apple-touch-icon.png')}}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/favicon/favicon-32x32.png')}}">
   <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/favicon/favicon-16x16.png')}}">
@@ -11,8 +12,10 @@
   <title>ZeeCV · AI CV Builder</title>
   <!-- Font Awesome (free icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-@include('home.css.style')
+
+  @include('home.css.style')
 @include("layout.includes.css")
+
 </head>
 <body>
 
@@ -24,9 +27,7 @@
       <span>ZeeCV</span>
     </div>
     <div class="nav-links">
-      <a href="#">Features</a>
-      <a href="#">Templates</a>
-      <a href="#">Pricing</a>
+      <a href="{{ url('/') }}">Features</a>
       <a href="{{ url('login') }}" class="btn-outline">Log in</a>
       <a href="{{ url('signup') }}" class="btn-primary" style="padding: 0.6rem 1.8rem;">Get started</a>
     </div>
