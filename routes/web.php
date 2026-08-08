@@ -355,6 +355,7 @@ Route::prefix('system')
     });
 });
 Route::get('/',[HomeController::class,'index']);
+Route::get('/please-verify-account',[HomeController::class,'pleaseVerifyAccount']);
 Route::get('/shop',[FrontendController::class,'shop'])->name('frontend.shop');
 Route::get('/terms',[FrontendController::class,'terms'])->name('frontend.terms');
 Route::get('/privacy',[FrontendController::class,'privacy'])->name('frontend.privacy');

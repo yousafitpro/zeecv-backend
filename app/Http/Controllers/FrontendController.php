@@ -366,13 +366,7 @@ class FrontendController extends Controller
         // Auto-login the user
         (new WebAuthController())->createEmailVerification($user->id);
         DB::commit();
-        return redirect('login')->with([
-                'toast' => [
-                    'heading' => 'Message',
-                    'message' => 'Mail Sent! Check your inbox to activate account',
-                    'type' => 'success',
-                ]
-            ]);
+        return redirect(url('please-verify-account'));
     }
 
 }
