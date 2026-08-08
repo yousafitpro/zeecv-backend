@@ -544,5 +544,5 @@ Route::prefix('resume')
         Route::post('/summary/save', [SummaryController::class,'save'])->name('resume.summary.save');
 
 
-        Route::post('/preview', [ResumeController::class,'preview'])->name('resume.preview');
+        Route::any('/preview', [ResumeController::class,'preview'])->name('resume.preview');
     });

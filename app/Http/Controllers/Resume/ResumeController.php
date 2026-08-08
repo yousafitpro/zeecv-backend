@@ -17,7 +17,12 @@ class ResumeController extends Controller
             'user_id'=>auth_user_id()
          ]
       );
-      $data['cv']=Resume::where('user_id',auth_user_id())->first();
+      $data['cv']=Resume::where('user_id',auth_user_id())
+      ->with([
+         'experiences',
+         'summary'
+      ])->first();
+      dd($data);
       return view('zeecv.resume.components.preview',$data);
     }
     public function create()
