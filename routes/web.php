@@ -26,6 +26,7 @@ use App\Http\Controllers\UppSellController;
 use App\Http\Controllers\GLSShipmentController;
 use App\Http\Controllers\PMM\Lookup\AddressController;
 use App\Http\Controllers\PMM\Lookup\GlsProfile;
+use App\Http\Controllers\Resume\ContactController;
 use App\Http\Controllers\Resume\ExperienceController;
 use App\Http\Controllers\Resume\ResumeController;
 
@@ -534,4 +535,7 @@ Route::prefix('resume')
         Route::post('/experience/save', [ExperienceController::class,'save'])->name('resume.experience.save');
         Route::post('/experience/add', [ExperienceController::class,'add'])->name('resume.experience.add');
         Route::post('/experience/delete/{id}', [ExperienceController::class,'delete'])->name('resume.experience.delete');
+
+        // contact
+        Route::post('/contact/save', [ContactController::class,'save'])->name('resume.contact.save');
     });

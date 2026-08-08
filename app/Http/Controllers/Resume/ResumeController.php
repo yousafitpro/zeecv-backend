@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Resume;
 
 use App\Http\Controllers\Controller;
+use App\Models\Resume\Contact;
 use App\Models\Resume\Resume;
 
 class ResumeController extends Controller
@@ -16,7 +17,12 @@ class ResumeController extends Controller
     }
     public function edit()
     {
-       return view('zeecv.resume.edit');
+      $data['contact']=Contact::updateOrCreate(
+         [
+            'user_id'=>auth_user_id()
+         ]
+      );
+       return view('zeecv.resume.edit',$data);
     }
  
 

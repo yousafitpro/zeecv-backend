@@ -1,6 +1,6 @@
                 <!-- First Entry (Expanded Form) -->
-                @foreach ($list as $item)
-                  <div class="border-bottom">
+            @foreach ($list as $item)
+              <div class="border-bottom">
                   <div class="p-3 bg-light d-flex justify-content-between align-items-start"  style="cursor: pointer;">
                     <i class="fas fa-th text-muted drag-handle mr-2 mt-1"></i>
                     <div class="flex-grow-1 pr-2">
@@ -136,4 +136,4 @@
                     </form>
                   </div>
                 </div>
-                @endforeach
+          @endforeach
