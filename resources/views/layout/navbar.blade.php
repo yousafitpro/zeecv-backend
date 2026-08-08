@@ -10,7 +10,7 @@
 <div class="main-header" data-background-color="#23395d"  >
     <!-- Logo Header -->
 
-    <div class="logo-header" style="background-color: var(--primary) !important"  >
+    <div class="logo-header" style="background: var(--primary) !important"  >
 
 
         <a href="{{url('/')}}" class="logo" >

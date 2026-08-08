@@ -28,7 +28,7 @@
       <a href="#">Templates</a>
       <a href="#">Pricing</a>
       <a href="{{ url('login') }}" class="btn-outline">Log in</a>
-      <a href="#" class="btn-primary" style="padding: 0.6rem 1.8rem;">Get started</a>
+      <a href="{{ url('signup') }}" class="btn-primary" style="padding: 0.6rem 1.8rem;">Get started</a>
     </div>
   </nav>
 
