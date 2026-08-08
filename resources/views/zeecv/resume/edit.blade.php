@@ -1,6 +1,9 @@
 @extends('zeecv.resume.layout')
 @section('title',"Dashboard")
 @section('content')
+<!-- Include Print.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.6.0/print.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.6.0/print.min.css">
 @include('zeecv.resume.edit.style')
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +26,7 @@
     <a href="#" class="btn btn-link text-secondary text-decoration-none p-0">
       <i class="fas fa-arrow-left mr-2"></i>Back to previous page
     </a>
-    <button class="btn btn-save px-4 rounded-pill">Save</button>
+    <button class="btn btn-save px-4 rounded-pill" onclick="resumePrintFun('{{ route('resume.pdf',request('id')) }}')">Print & Save</button>
   </header>
 
   <!-- Main Container -->
@@ -69,6 +72,10 @@
 
 
  <script>
+
+  function resumePrintFun(url){
+    window.location.href=url
+  }
       $(document).ready(function(){
       LoadCVPreview()
     })

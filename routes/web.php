@@ -536,6 +536,7 @@ Route::prefix('resume')
     ->group(function () {
         Route::get('/', [ResumeController::class,'create'])->name('resume.create');
         Route::get('/edit/{id}', [ResumeController::class,'edit'])->name('resume.edit');
+        Route::get('/pdf/{id}', [ResumeController::class,'pdf'])->name('resume.pdf');
 
         // experiences
         Route::get('/experience/list', [ExperienceController::class,'list'])->name('resume.experience.list');

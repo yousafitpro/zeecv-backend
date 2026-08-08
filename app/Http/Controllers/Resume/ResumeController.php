@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Resume;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use App\Models\Resume\Contact;
 use App\Models\Resume\Resume;
@@ -26,7 +26,7 @@ class ResumeController extends Controller
          'experiences',
          'summary'
       ])->first();
-      return view('zeecv.resume.components.preview',$data);
+      return view('pdfs.resume.resume',$data);
     }
     public function create()
     {
@@ -35,6 +35,19 @@ class ResumeController extends Controller
         'user_id'=>auth_user_id()
        ]);
        return redirect()->route('resume.edit',unique_encrypt($res->id));
+    }
+    public function pdf($id){
+         $data['cv']=Resume::where([
+               'user_id'=>auth_user_id(),
+               'id'=>unique_decrypt($id)
+               ])
+            ->with([
+               'experiences',
+               'summary'
+            ])->first();
+      $pdf = Pdf::loadView('pdfs.resume.resume', $data);
+      // return $pdf->stream('resume.pdf');
+      // return $pdf->download('resume.pdf');
     }
     public function edit($id)
     {

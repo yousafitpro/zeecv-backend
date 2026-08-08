@@ -1,6 +1,6 @@
   <!-- RIGHT COLUMN: Real-Time Resume Sheet Preview -->
    
-        <div class="resume-sheet bg-white p-5 shadow-sm rounded">
+        <div class="resume-sheet bg-white p-5 shadow-sm rounded" id="resumePrintDive">
           
           <!-- Header Profile -->
           <div class="row mb-3">
