@@ -1,11 +1,17 @@
 @extends('auth.layout')
 @section('content')
+<style>
+    .container-login2{
+        width: 500px !important;
+
+    }
+</style>
     <body class="login">
     <div class="wrapper wrapper-login">
         <form action="{{url('login')}}" method="post" class="web-form">
             @csrf
             @include('includes.form-errors')
-        <div class="container container-login animated fadeIn">
+        <div class="container container-login container-login2 animated fadeIn">
             <div style="width: 100%" class="myFlex">
                 <img src="{{asset('app-icons/logo.png')}}" style="width: 80px" alt="">
             </div>

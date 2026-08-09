@@ -27,7 +27,7 @@
       <span>ZeeCV</span>
     </div>
     <div class="nav-links">
-      <a href="{{ url('/') }}">Features</a>
+      {{-- <a href="{{ url('/') }}">Features</a> --}}
       <a href="{{ url('login') }}" class="btn-outline">Log in</a>
       <a href="{{ url('signup') }}" class="btn-primary" style="padding: 0.6rem 1.8rem;">Get started</a>
     </div>

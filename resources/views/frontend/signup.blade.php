@@ -1,5 +1,12 @@
 @extends('auth.layout')
 @section('content')
+<style>
+    .container-singup2{
+        width: 500px !important;
+
+    }
+</style>
+
 <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 <body class="login">
 <div class="wrapper wrapper-login">
@@ -7,7 +14,7 @@
         @csrf
         @include('includes.form-errors')
 
-        <div class="container container-login animated fadeIn">
+        <div class="container container-login container-singup2 animated fadeIn">
             <div style="width: 100%" class="myFlex text-center mb-3">
                 <img src="{{ asset('app-icons/logo.png') }}" style="width: 80px" alt="">
             </div>
