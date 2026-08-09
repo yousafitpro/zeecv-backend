@@ -1,50 +1,63 @@
 <style>
 /* Skills Container */
-.skills-container {
+.skills-div-outer .skills-container {
     padding: 20px;
 }
 
+
 /* Pill Styles */
-.skill-pill-wrapper {
+.skills-div-outer .skill-pill-wrapper {
     display: inline-block;
     margin: 5px;
     animation: fadeIn 0.3s ease;
 }
 
+
 @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-.skill-pill {
+
+.skills-div-outer .skill-pill {
     display: inline-flex;
     align-items: center;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     padding: 8px 16px !important;
-    border-radius:20px !important;
+    border-radius: 20px !important;
     font-size: 0.95rem;
     font-weight: 500;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    gap: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    gap: 0px;
     cursor: pointer;
     position: relative;
 }
 
-.skill-pill:hover {
+
+.skills-div-outer .skill-pill:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
 
-.skill-pill .pill-text {
+
+.skills-div-outer .skill-pill .pill-text {
     max-width: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.skill-pill .delete-cross {
+
+.skills-div-outer .skill-pill .delete-cross {
     cursor: pointer;
     font-size: 1.1rem;
     font-weight: 300;
@@ -55,29 +68,33 @@
     color: white;
 }
 
-.skill-pill .delete-cross:hover {
+
+.skills-div-outer .skill-pill .delete-cross:hover {
     opacity: 1;
     transform: scale(1.3) rotate(90deg);
     color: #ff4757;
 }
 
+
 /* Edit Mode - Inline */
-.skill-edit-form {
+.skills-div-outer .skill-edit-form {
     display: none;
     align-items: center;
     background: white;
     border-radius: 50px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     padding: 2px;
 }
 
-.skill-edit-form.active {
+
+.skills-div-outer .skill-edit-form.active {
     display: inline-flex;
     animation: fadeIn 0.2s ease;
 }
 
-.skill-edit-form input {
+
+.skills-div-outer .skill-edit-form input {
     border: none;
     padding: 8px 16px;
     outline: none;
@@ -86,11 +103,13 @@
     background: transparent;
 }
 
-.skill-edit-form input:focus {
+
+.skills-div-outer .skill-edit-form input:focus {
     outline: none;
 }
 
-.skill-edit-form .btn-edit-save {
+
+.skills-div-outer .skill-edit-form .btn-edit-save {
     background: #28a745;
     color: white;
     border: none;
@@ -100,11 +119,13 @@
     font-size: 0.9rem;
 }
 
-.skill-edit-form .btn-edit-save:hover {
+
+.skills-div-outer .skill-edit-form .btn-edit-save:hover {
     background: #218838;
 }
 
-.skill-edit-form .btn-edit-cancel {
+
+.skills-div-outer .skill-edit-form .btn-edit-cancel {
     background: #dc3545;
     color: white;
     border: none;
@@ -114,12 +135,14 @@
     font-size: 0.9rem;
 }
 
-.skill-edit-form .btn-edit-cancel:hover {
+
+.skills-div-outer .skill-edit-form .btn-edit-cancel:hover {
     background: #c82333;
 }
 
+
 /* Add Skill Form */
-.add-skill-form {
+.skills-div-outer .add-skill-form {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -127,23 +150,26 @@
     max-width: 500px;
 }
 
-.add-skill-form .input-group-custom {
+
+.skills-div-outer .add-skill-form .input-group-custom {
     display: flex;
     flex: 1;
     background: white;
     border-radius: 50px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border: 2px solid transparent;
     transition: all 0.3s ease;
 }
 
-.add-skill-form .input-group-custom:focus-within {
+
+.skills-div-outer .add-skill-form .input-group-custom:focus-within {
     border-color: #667eea;
     box-shadow: 0 2px 12px rgba(102, 126, 234, 0.3);
 }
 
-.add-skill-form input {
+
+.skills-div-outer .add-skill-form input {
     flex: 1;
     border: none;
     padding: 10px 20px;
@@ -151,11 +177,13 @@
     font-size: 0.95rem;
 }
 
-.add-skill-form input:focus {
+
+.skills-div-outer .add-skill-form input:focus {
     outline: none;
 }
 
-.add-skill-form .btn-add {
+
+.skills-div-outer .add-skill-form .btn-add {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     border: none;
@@ -167,37 +195,40 @@
     white-space: nowrap;
 }
 
-.add-skill-form .btn-add:hover {
+
+.skills-div-outer .add-skill-form .btn-add:hover {
     opacity: 0.9;
     transform: scale(1.02);
 }
 
-.add-skill-form .btn-add:disabled {
+
+.skills-div-outer .add-skill-form .btn-add:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
 }
 
+
 /* Empty State */
-.empty-skills {
+.skills-div-outer .empty-skills {
     text-align: center;
     padding: 40px;
     color: #999;
 }
 
-.empty-skills i {
+
+.skills-div-outer .empty-skills i {
     font-size: 3rem;
     margin-bottom: 10px;
     opacity: 0.3;
 }
 
-.empty-skills p {
+
+.skills-div-outer .empty-skills p {
     margin: 0;
 }
-
-
 </style>
-
+<div class="skills-div-outer">
 <div class="skills-container">
     <!-- Add Skill Form -->
     <form class="add-skill-form" onsubmit="addSkill(event, this)">
@@ -217,7 +248,7 @@
 
     <!-- Skills Display -->
     <div class="skills-list" id="skillsList">
-        <div class="d-flex flex-wrap" style="gap: 8px;">
+        <div class="d-flex flex-wrap" style="gap: 0px;">
             @forelse ($list as $index => $item)
                 @php
                     $colorClass = 'color-' . (($index % 6) + 1);
@@ -260,7 +291,7 @@
         </div>
     </div>
 </div>
-
+</div>
 <script>
 // Add Skill
 function addSkill(event, form) {
