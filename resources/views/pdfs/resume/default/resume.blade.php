@@ -51,7 +51,7 @@
                 @foreach ($cv->experiences as $index => $exp)
                     <tr>
                         <!-- Timeline Bullet & Line Column -->
-                        <td class="timeline-bullet-cell" style="{{ !$loop->last ? 'border-right: 1px dotted #a38c73;' : '' }}">
+                        <td class="timeline-bullet-cell" style="">
                             <span class="timeline-bullet"></span>
                         </td>
 
@@ -66,7 +66,7 @@
 
                         <!-- Date Column -->
                         <td class="entry-date" width="160" style="padding-bottom: 8px;">
-                            {{ $exp->start_month }}/{{ $exp->start_year }} – {{ $exp->end_month }}/{{ $exp->end_year }}
+                            {{ $exp->start_month }} / {{ $exp->start_year }} – {{ $exp->end_month }} / {{ $exp->end_year }}
                         </td>
                     </tr>
                 @endforeach

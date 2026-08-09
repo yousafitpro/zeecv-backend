@@ -7,6 +7,8 @@
             --pdf-primary-color:#c7885c;
             --pdf-primary-text-color:#333333;
             --pdf-heading-text-color:#333333;
+            --pdf-muted-text-color:#797777;
+            --pdf-full-muted-text-color:#a8a6a6;
             --pdf-sub-text-color:var(--pdf-primary-color);
             --pdf-font-primary:'Montserrat', sans-serif;
             --pdf-font-secondary:'Inter', sans-serif;
@@ -115,7 +117,7 @@
             font-family: var(--pdf-font-secondary);
             font-weight: 400;
             font-size:9px;
-            color: #555555;
+            color: var(--pdf-muted-text-color);
             text-align: right;
             line-height: 1.5;
         }
@@ -127,7 +129,7 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             color: var(--pdf-font-primary);
-            border-bottom: 1px solid #dcdcdc;
+            border-bottom: 2px solid var(--pdf-primary-color);
             padding-bottom: 4px;
             margin-top: 15px;
             margin-bottom: 12px;
@@ -135,7 +137,7 @@
 
         .summary-text {
             font-size: 10px;
-            color: #444444;
+            color: var(--pdf-muted-text-color);
             font-family: var(--pdf-font-secondary);
             line-height: 1.5;
             margin-bottom: 12px;
@@ -149,51 +151,58 @@
 
         .timeline-bullet {
             display: inline-block;
-            width: 6px;
-            height: 6px;
-            border: 2px solid #a38c73;
+            width: 8px;
+            height: 8px;
+            border: 3px solid var(--pdf-primary-color);
             border-radius: 50%;
             background-color: #ffffff;
             margin-top: 2px;
         }
 
         .timeline-line-cell {
-            width: 16px;
+            /* width: 16px;
             background: url('data:image/png;base64,iVBORw0KGgoAAAANSUheader...') repeat-y center;
-            border-right: 1px dotted #a38c73;
+            border-right: 1px solid var(--pdf-primary-color); */
         }
 
         .entry-title {
+            font-family: var(--pdf-font-secondary);
             font-size: 11px;
-            font-weight: bold;
-            color: #111111;
+            font-weight: 700;
+            color: var(--pdf-primary-text-color);
             margin: 0;
         }
 
         .entry-subtitle {
             font-size: 10px;
             font-style: italic;
-            color: #666666;
+            color: var(--pdf-muted-text-color);
+            font-family: var(--pdf-font-secondary);
             margin: 2px 0;
         }
 
         .entry-location {
             font-size: 9.5px;
-            color: #777777;
+            font-family: var(--pdf-font-secondary);
+            color: var(--pdf-primary-color);
             margin: 0 0 10px 0;
         }
 
         .entry-date {
             font-size: 10px;
             font-style: italic;
-            color: #666666;
+            font-weight: 400;
+            font-family: var(--pdf-font-secondary);
+            color: var(--pdf-primary-color);
             text-align: right;
             white-space: nowrap;
         }
 
         /* Skills Pill Layout */
         .skill-pill {
-            background-color: #b0a18f;
+            background-color: var(--pdf-primary-color);
+            font-family: var(--pdf-font-secondary);
+            font-weight: 500;
             color: #ffffff;
             font-size: 9px;
             padding: 3px 8px;
