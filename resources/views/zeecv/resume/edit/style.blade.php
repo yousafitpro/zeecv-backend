@@ -209,4 +209,9 @@ body {
 .skill_pill{
   background-color: var(--primary) !important;
 }
+    @media (max-width: 991.98px) {
+      .icon-toggle-sub{
+        margin-top: 20px;
+      }
+    }
 </style>

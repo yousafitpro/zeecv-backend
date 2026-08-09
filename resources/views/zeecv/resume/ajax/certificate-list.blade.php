@@ -9,7 +9,7 @@
                     </div>
                     <div class="toggle-icons-outer">
                       <i class="far fa-trash-alt text-muted mr-2 " onclick="deleteCertificate('{{ route('resume.certificate.delete',$item->id) }}')"></i>
-                      <i class="fas fa-chevron-down text-muted action-icon icon-toggle" onclick="toggleUpDown(this)" data-toggle="collapse" data-target="#CertificateForm{{ $item->id }}"></i>
+                      <i class="fas fa-chevron-down text-muted action-icon icon-toggle icon-toggle-sub" onclick="toggleUpDown(this)" data-toggle="collapse" data-target="#CertificateForm{{ $item->id }}"></i>
                     </div>
                   </div>
 
