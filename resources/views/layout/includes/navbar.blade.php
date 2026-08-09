@@ -112,7 +112,7 @@
           <a class="nav-link" href="#">Templates</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+          <a class="nav-link" href="{{ route('home.pricing') }}">Pricing</a>
         </li>
         
         <!-- Action Buttons -->

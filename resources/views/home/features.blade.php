@@ -1,6 +1,5 @@
 <style>
   :root {
-    --primary: #2563eb;
     --primary-hover: #1d4ed8;
     --primary-light: rgba(37, 99, 235, 0.1);
     --text-dark: #0f172a;

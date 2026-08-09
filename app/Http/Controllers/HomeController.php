@@ -12,6 +12,9 @@ class HomeController extends Controller
     public function features(){
         return view('home.features');
     }
+    public function pricing(){
+        return view('home.pricing');
+    }
     public function pleaseVerifyAccount(){
         return view('zeecv.notes.please_verify_email');
     }
