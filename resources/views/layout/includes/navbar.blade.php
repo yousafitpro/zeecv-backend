@@ -97,6 +97,9 @@
       margin-top: 1rem;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
+    .navbar-toggler{
+      zoom: 1.5;
+    }
     .navbar-brand{
       margin-left: 30px;
     }
