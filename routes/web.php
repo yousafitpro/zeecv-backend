@@ -26,9 +26,11 @@ use App\Http\Controllers\UppSellController;
 use App\Http\Controllers\GLSShipmentController;
 use App\Http\Controllers\PMM\Lookup\AddressController;
 use App\Http\Controllers\PMM\Lookup\GlsProfile;
+use App\Http\Controllers\Resume\CertificateController;
 use App\Http\Controllers\Resume\ContactController;
 use App\Http\Controllers\Resume\EducationController;
 use App\Http\Controllers\Resume\ExperienceController;
+use App\Http\Controllers\Resume\LanguageController;
 use App\Http\Controllers\Resume\ResumeController;
 use App\Http\Controllers\Resume\SkillController;
 use App\Http\Controllers\Resume\SummaryController;
@@ -550,12 +552,22 @@ Route::prefix('resume')
         Route::post('/education/save', [EducationController::class,'save'])->name('resume.education.save');
         Route::post('/education/add', [EducationController::class,'add'])->name('resume.education.add');
         Route::post('/education/delete/{id}', [EducationController::class,'delete'])->name('resume.education.delete');
+     
+        // certificate
+        Route::get('/certificate/list', [CertificateController::class,'list'])->name('resume.certificate.list');
+        Route::post('/certificate/save', [CertificateController::class,'save'])->name('resume.certificate.save');
+        Route::post('/certificate/add', [CertificateController::class,'add'])->name('resume.certificate.add');
+        Route::post('/certificate/delete/{id}', [CertificateController::class,'delete'])->name('resume.certificate.delete');
        
         // skill
         Route::get('/skill/list', [SkillController::class,'list'])->name('resume.skill.list');
         Route::post('/skill/save', [SkillController::class,'save'])->name('resume.skill.save');
-        Route::post('/skill/add', [SkillController::class,'add'])->name('resume.skill.add');
         Route::post('/skill/delete/{id}', [SkillController::class,'delete'])->name('resume.skill.delete');
+
+        // language
+        Route::get('/language/list', [LanguageController::class,'list'])->name('resume.language.list');
+        Route::post('/language/save', [LanguageController::class,'save'])->name('resume.language.save');
+        Route::post('/language/delete/{id}', [LanguageController::class,'delete'])->name('resume.language.delete');
 
         // contact
         Route::post('/contact/save', [ContactController::class,'save'])->name('resume.contact.save');

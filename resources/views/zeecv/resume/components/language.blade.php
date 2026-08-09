@@ -1,9 +1,9 @@
             <!-- Work Experience Card (Expanded by Default) -->
             <div class="builder-card bg-white rounded shadow-sm mb-2 overflow-hidden">
-              <div class="p-3 d-flex justify-content-between align-items-center border-bottom" data-toggle="collapse" data-target="#collapseSkill" style="cursor: pointer;">
+              <div class="p-3 d-flex justify-content-between align-items-center border-bottom" data-toggle="collapse" data-target="#collapseLanguage" style="cursor: pointer;">
                 <div>
                   <i class="fas fa-th mr-2 text-muted drag-handle"></i>
-                  <strong class="h6 mb-0">Skills</strong>
+                  <strong class="h6 mb-0">Languages</strong>
                 </div>
                 <div class="toggle-icons-outer">
                   {{-- <i class="fas fa-cog text-muted mr-3 action-icon"></i> --}}
@@ -11,9 +11,9 @@
                 </div>
               </div>
 
-              <div id="collapseSkill" class="collapse" data-parent="#builderAccordion">
+              <div id="collapseLanguage" class="collapse" data-parent="#builderAccordion">
                 
-              <div id="Skill_div"></div>
+              <div id="Language_div"></div>
 
         
 
@@ -22,9 +22,9 @@
 
   <script>
     $(document).ready(function(){
-      loadSkills()
+      loadLangauges()
     })
-function saveSkill(event, form) {
+function saveLanguage(event, form) {
     // 1. Prevent the default form submission
     event.preventDefault();
 
@@ -49,7 +49,7 @@ function saveSkill(event, form) {
         },
         success: function(response) {
             if (response.code === '1') {
-             loadSkills();
+             loadLangauges();
             }
         },
         error: function(xhr) {
@@ -71,7 +71,7 @@ function deleteSkill(url) {
         },
         success: function(response) {
             if (response.code === '1') {
-                loadSkills();
+                loadLangauges();
             }
         },
         error: function(xhr) {
@@ -80,11 +80,11 @@ function deleteSkill(url) {
         }
     });
 }
-function loadSkills() {
+function loadLangauges() {
     LoadCVPreview()
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: '{{ route('resume.skill.list') }}?resume_id={{ request('id') }}',
+            url: '{{ route('resume.language.list') }}?resume_id={{ request('id') }}',
             type: 'GET',
             beforeSend: function() {
                 // $('#experience_div').html(`
@@ -97,7 +97,7 @@ function loadSkills() {
                 // `);
             },
             success: function(response) {
-                $('#Skill_div').html(response);
+                $('#Language_div').html(response);
                 resolve(response);
             },
             error: function(xhr, status, error) {

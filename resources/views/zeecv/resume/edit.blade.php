@@ -58,6 +58,8 @@
            @include('zeecv.resume.components.experience')
            @include('zeecv.resume.components.education')
            @include('zeecv.resume.components.skill')
+           @include('zeecv.resume.components.language')
+           @include('zeecv.resume.components.certificate')
 
 
 

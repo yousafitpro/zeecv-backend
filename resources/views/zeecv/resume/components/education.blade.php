@@ -11,7 +11,7 @@
                 </div>
               </div>
 
-              <div id="collapseEducation" class="collapse show" data-parent="#builderAccordion">
+              <div id="collapseEducation" class="collapse" data-parent="#builderAccordion">
                 
               <div id="education_div"></div>
 

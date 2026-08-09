@@ -1,6 +1,6 @@
             <!-- Work Experience Card (Expanded by Default) -->
             <div class="builder-card bg-white rounded shadow-sm mb-2 overflow-hidden">
-              <div class="p-3 d-flex justify-content-between align-items-center border-bottom" data-toggle="collapse" data-target="#collapseWork" style="cursor: pointer;">
+              <div class="p-3 d-flex justify-content-between align-items-center border-bottom" data-toggle="collapse" data-target="#collapseExp" style="cursor: pointer;">
                 <div>
                   <i class="fas fa-th mr-2 text-muted drag-handle"></i>
                   <strong class="h6 mb-0">Work Experience</strong>
@@ -11,7 +11,7 @@
                 </div>
               </div>
 
-              <div id="collapseWork" class="collapse" data-parent="#builderAccordion">
+              <div id="collapseExp" class="collapse" data-parent="#builderAccordion">
                 
               <div id="experience_div"></div>
 
