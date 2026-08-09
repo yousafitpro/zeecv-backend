@@ -101,7 +101,7 @@
       zoom: 1.5;
     }
     .navbar-brand{
-      margin-left: 30px;
+      margin-left: 20px;
     }
   }
    .custom-navbar .nav-item a{
