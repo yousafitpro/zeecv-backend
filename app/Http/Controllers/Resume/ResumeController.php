@@ -26,7 +26,6 @@ class ResumeController extends Controller
          'experiences',
          'summary'
       ])->first();
-      
       return view('pdfs.resume.default.resume',$data);
     }
     public function create()
@@ -46,6 +45,7 @@ class ResumeController extends Controller
                'experiences',
                'summary'
             ])->first();
+            
       $pdf = Pdf::loadView('pdfs.resume.default.resume', $data);
       $pdf->setOptions([
             'defaultFont' => 'sans-serif',

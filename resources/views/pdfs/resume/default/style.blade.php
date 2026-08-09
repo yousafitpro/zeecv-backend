@@ -1,10 +1,11 @@
     @php
     $interPath = asset('fonts/Montserrat-Open-Sans/Inter/static');
+    $primaryColor = $cv->template->color ?? '#c7885c';
     @endphp
 
     <style>
         :root{
-            --pdf-primary-color:#c7885c;
+            --pdf-primary-color:{{ $primaryColor }};
             --pdf-primary-text-color:#333333;
             --pdf-heading-text-color:#333333;
             --pdf-muted-text-color:#797777;

@@ -107,6 +107,41 @@
                 @endforeach
             </table>
         @endif
+                <!-- Languages SECTION -->
+        @if (!empty($cv->languages) && count($cv->languages) > 0)
+            <div class="section-heading">Languages</div>
+            <div style="padding-top: 4px;">
+                @foreach ($cv->languages as $lang)
+                    <span class="skill-pill">{{ $lang->language }}</span>
+                @endforeach
+            </div>
+        @endif
+        <!-- Certificates SECTION -->
+        @if (!empty($cv->certificates) && count($cv->certificates) > 0)
+            <div class="section-heading">Certificates</div>
+
+            <table width="100%">
+                @foreach ($cv->certificates as $edu)
+                    <tr>
+                        <!-- Timeline Bullet & Line Column -->
+                        <td class="timeline-bullet-cell" style="{{ !$loop->last ? 'border-right: 1px dotted #a38c73;' : '' }}">
+                            <span class="timeline-bullet"></span>
+                        </td>
+
+                        <!-- Details Column -->
+                        <td style="padding-left: 8px; padding-bottom: 8px;">
+                            <div class="entry-title">{{ $edu->name }}</div>
+                            <div class="entry-subtitle">{{ $edu->organization }}</div>
+                        </td>
+
+                        <!-- Date Column -->
+                        <td class="entry-date" width="160" style="padding-bottom: 8px;">
+                            {{ $edu->start_month }}/{{ $edu->start_year }}
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        @endif
 
         <!-- SKILLS SECTION -->
         @if (!empty($cv->skills) && count($cv->skills) > 0)

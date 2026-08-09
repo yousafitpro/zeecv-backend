@@ -21,7 +21,8 @@ class TemplateController extends Controller
       $item=$this->process()->where('resume_id',unique_decrypt($request->resume_id))->first();
       $item->update(
          [
-            'template'=>$input['template']
+            'template'=>$input['template'],
+            'color'=>$input['color']
          ]
       );
       return response()->json([

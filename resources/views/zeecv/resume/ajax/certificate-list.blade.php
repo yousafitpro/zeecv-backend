@@ -51,7 +51,7 @@
                           }
                           ?>
                       </select>
-                            <label for="startMonth">Start month</label>
+                            <label for="startMonth">Month</label>
                           </div>
                         </div>
                         <div class="col-6">
@@ -68,7 +68,7 @@
                             }
                             ?>
                         </select>
-                            <label for="startYear">Start year</label>
+                            <label for="startYear">Year</label>
                           </div>
                         </div>
                       </div>

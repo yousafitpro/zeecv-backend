@@ -12,6 +12,64 @@
                         </select>
                         <label for="template">Template</label>
                       </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+setTimeout(() => {
+     const colorInput = document.getElementById('template_color');
+    const template_color_input = document.getElementById('template_color_input');
+    const pickr = Pickr.create({
+        el: colorInput,
+
+        theme: 'classic',
+
+        default: '{{ $template->color }}' || '#000000',
+
+        components: {
+
+            preview: true,
+
+            opacity: false,
+
+            hue: true,
+
+            interaction: {
+                hex: true,
+                rgba: false,
+                hsla: false,
+                hsva: false,
+                cmyk: false,
+                input: true,
+                clear: true,
+                save: true
+            }
+        }
+    });
+
+    pickr.on('save', (color) => {
+        if (color) {
+            template_color_input.value = color.toHEXA().toString();
+        }
+
+        pickr.hide();
+    }); 
+}, 200);
+
+});
+</script>
+                        <div class="floating-label-group mb-3">
+                          <input hidden id="template_color_input" name="color">
+                            <input
+                               value=""
+                                type="text"
+                                id="template_color"
+                                class="form-control"
+                                value="{{ $template->color ?? '#000000' }}"
+                            >
+
+                            <label for="color">Color</label>
+                        </div>
                       <button type="submit" class="btn btn-primary btn-block rounded-pill btn-save-list">
                         <i class="fas fa-sparkles mr-1"></i> Save
                       </button>

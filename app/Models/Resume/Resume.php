@@ -33,6 +33,14 @@ class Resume extends Model
     {
         return $this->hasMany(Education::class, 'resume_id');
     }
+    public function certificates()
+    {
+        return $this->hasMany(Certificate::class, 'resume_id');
+    }
+    public function languages()
+    {
+        return $this->hasMany(ResumeLanguage::class, 'resume_id');
+    }
     public function skills()
     {
         return $this->hasMany(Skill::class, 'resume_id');

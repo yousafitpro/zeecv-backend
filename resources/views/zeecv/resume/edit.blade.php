@@ -2,9 +2,7 @@
 @section('title',"Dashboard")
 @section('content')
  
-<!-- Include Print.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.6.0/print.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.6.0/print.min.css">
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +17,11 @@
     <!-- JS Dependencies -->
   <script src="{{ asset("resume/js/jquery-3.5.1.min.js") }}"></script>
   <script src="{{ asset('resume/js/bootstrap-4.6.2.bundle.min.js') }}"></script>
+  <link
+    rel="stylesheet"
+    href="{{ asset('resume/css/colorpicker-classic.min.css') }}"
+/>
+<script src="{{ asset('resume/js/colorpicker.js') }}"></script>
   @include('zeecv.resume.edit.script')
   @include('zeecv.resume.edit.style')
 </head>
