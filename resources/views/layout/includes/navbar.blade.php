@@ -109,7 +109,7 @@
           <a class="nav-link" href="{{ route('home.features') }}">Features</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('home.templates') }}">Templatesas</a>
+          <a class="nav-link" href="{{ route('home.templates') }}">Templates</a>
         </li>
 
         {{-- asdasd --}}
