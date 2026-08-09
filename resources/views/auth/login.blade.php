@@ -5,6 +5,12 @@
         width: 500px !important;
 
     }
+      @media (max-width: 991.98px) {
+        .container-login2{
+        width:100% !important;
+
+    }
+      }
 </style>
     <body class="login">
     <div class="wrapper wrapper-login">

@@ -5,6 +5,12 @@
         width: 500px !important;
 
     }
+     @media (max-width: 991.98px) {
+        .container-singup2{
+        width:100% !important;
+
+    }
+      }
 </style>
 
 <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
