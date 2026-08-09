@@ -217,4 +217,13 @@ body {
         font-size: 15px;
       }
     }
+        @media (max-width: 991.98px) {
+       .resumePrintDiveInner{
+           min-width: 1200px;
+       }
+      .resumePrintDiveOuter{
+           
+           overflow: auto;
+      }
+    }
 </style>

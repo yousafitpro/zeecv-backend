@@ -78,7 +78,11 @@
 
       </div>
    <div class="col-lg-8 col-md-7">
-        <div id="CV_Preview_div"></div>
+     <div class="resumePrintDiveOuter">
+     <div class="resumePrintDiveInner">
+        <div id="CV_Preview_div" style="width: 100%;"></div>
+     </div>
+     </div>
    </div>
     </div>
   </main>

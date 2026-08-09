@@ -9,7 +9,7 @@
 
 </head>
 <body>
-    <div class="resumePrintDiveOuter">
+    
     <div id="resumePrintDive" class="resumePrintDiveInner">
 
         <!-- HEADER SECTION TABLE -->
