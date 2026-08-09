@@ -8,7 +8,12 @@
      @media (max-width: 991.98px) {
         .container-singup2{
         width:100% !important;
-
+           min-height: 1000px;
+    }
+        .wrapper-login{
+        display: block !important;
+        padding: 0px !important;
+        min-height: 1000px;
     }
       }
 </style>
