@@ -18,91 +18,7 @@
       padding: 0 2rem;
     }
 
-    /* header / nav */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 0;
-      flex-wrap: wrap;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: #0b1a2e;
-    }
-    .logo i {
-      color: #3b82f6;
-      font-size: 2rem;
-    }
-    .logo span {
-      background: linear-gradient(145deg, #2563eb, #7c3aed);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      align-items: center;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: #1e293b;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover {
-      color: #2563eb;
-    }
-    .btn-outline {
-      border: 1.5px solid #2563eb;
-      background: transparent;
-      padding: 0.5rem 1.5rem;
-      border-radius: 10px;
-      font-weight: 600;
-      color: #2563eb;
-      transition: all 0.2s;
-      cursor: default;
-    }
-    .btn-outline:hover {
-      background: #2563eb;
-      color: white;
-    }
-    .nav-links a:hover{
-      cursor: pointer;
-      color: white !important;
-    }
-
-    .btn-primary {
-      background: #2563eb;
-      border: none;
-      padding: 0.7rem 2rem;
-      border-radius: 10px;
-      font-weight: 600;
-      color: white;
-      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
-      transition: all 0.25s;
-      cursor: default;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .btn-primary i {
-      font-size: 1rem;
-    }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(37, 99, 235, 0.35);
-      background: #1d4ed8;
-    }
-
+  
     /* hero section */
     .hero {
       display: flex;
@@ -457,4 +373,5 @@
         gap: 0.5rem;
       }
     }
+ 
   </style>

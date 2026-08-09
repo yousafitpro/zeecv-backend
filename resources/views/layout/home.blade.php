@@ -1,6 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @php
+    $plus_jakarta_sans_path = asset('fonts/Plus_Jakarta_Sans/static/');
+    @endphp
+  <style>
+      /* Regular */
+    @font-face {
+        font-family: 'Plus Jakarta Sans';
+        src: url("{{ asset($plus_jakarta_sans_path.'PlusJakartaSans-Regular.ttf') }}") format('truetype');
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    /* Medium */
+    @font-face {
+        font-family: 'Plus Jakarta Sans';
+        src: url("{{ asset($plus_jakarta_sans_path.'PlusJakartaSans-Medium.ttf') }}") format('truetype');
+        font-weight: 500;
+        font-style: normal;
+    }
+
+    /* SemiBold */
+    @font-face {
+        font-family: 'Plus Jakarta Sans';
+        src: url("{{ asset($plus_jakarta_sans_path.'PlusJakartaSans-SemiBold.ttf') }}") format('truetype');
+        font-weight: 600;
+        font-style: normal;
+    }
+
+    /* Bold */
+    @font-face {
+        font-family: 'Plus Jakarta Sans';
+        src: url("{{ asset($plus_jakarta_sans_path.'PlusJakartaSans-Bold.ttf') }}") format('truetype');
+        font-weight: 700;
+        font-style: normal;
+    }
+    body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+  </style>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   @yield('meta_tags')
@@ -18,26 +57,16 @@
 
 </head>
 <body>
-
+<div style="height: 100px"></div>
 <div class="container">
-  <!-- NAV -->
-  <nav class="navbar">
-    <div class="logo">
-      <i class="fas fa-brain"></i>
-      <span>ZeeCV</span>
-    </div>
-    <div class="nav-links">
-      {{-- <a href="{{ url('/') }}">Features</a> --}}
-      <a href="{{ url('login') }}" class="btn-outline">Log in</a>
-      <a href="{{ url('signup') }}" class="btn-primary" style="padding: 0.6rem 1.8rem;">Get started</a>
-    </div>
-  </nav>
+
+@include('layout.includes.navbar')
 
 @yield('content')
 
 
 
 <!-- end container -->
-
+</div>
 </body>
 </html>
