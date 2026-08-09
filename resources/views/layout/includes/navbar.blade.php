@@ -111,6 +111,8 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home.templates') }}">Templates</a>
         </li>
+
+        {{-- asdasd --}}
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home.pricing') }}">Pricing</a>
         </li>
