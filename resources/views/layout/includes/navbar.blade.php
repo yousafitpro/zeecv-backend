@@ -1,3 +1,6 @@
+<!-- Required Bootstrap 4 JavaScript Dependencies for Mobile Menu Toggle -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
   /* Navigation Container Styles */
@@ -23,7 +26,7 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
     color: #475569 !important;
     font-weight: 500;
-    font-size: 0.98rem;
+    font-size: 1.1rem; /* Slightly reduced for better mobile fit */
     padding: 0.5rem 1rem !important;
     transition: color 0.2s ease, transform 0.2s ease;
   }
@@ -38,6 +41,7 @@
     background: transparent;
     color: #2563eb;
     font-weight: 600;
+    font-size: 1rem;
     padding: 0.55rem 1.6rem;
     border-radius: 10px;
     transition: all 0.25s ease;
@@ -56,6 +60,7 @@
     background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
     color: #ffffff !important;
     font-weight: 600;
+    font-size: 1rem;
     padding: 0.55rem 1.6rem;
     border-radius: 10px;
     border: none;
@@ -72,7 +77,7 @@
     text-decoration: none;
   }
 
-  /* Mobile Toggler Styling */
+  /* Mobile Toggler & Collapsible Menu Styling */
   .custom-navbar .navbar-toggler {
     border: none;
     padding: 0.4rem 0.6rem;
@@ -82,9 +87,23 @@
     outline: none;
     box-shadow: none;
   }
- .custom-navbar .nav-item a{
+
+  /* Mobile Dropdown Spacing */
+  @media (max-width: 991.98px) {
+    .custom-navbar .navbar-collapse {
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-top: 1rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+  }
+   .custom-navbar .nav-item a{
+
     font-family: 'Plus Jakarta Sans', sans-serif;
+
     font-size: 20px !important;
+
  }
 </style>
 
@@ -104,15 +123,13 @@
 
     <!-- Navbar Links & Buttons -->
     <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-content navbar-nav ml-auto align-items-lg-center">
+      <ul class="navbar-nav ml-auto align-items-lg-center">
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home.features') }}">Features</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home.templates') }}">Templates</a>
         </li>
-
-        {{-- asdasd --}}
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home.pricing') }}">Pricing</a>
         </li>
