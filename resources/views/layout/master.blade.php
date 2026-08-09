@@ -38,7 +38,7 @@
                                                             #f3e7e9 25%, 
                                                             #e3eeff 60%, 
                                                             #e0f2fe 100%
-                                                            );min-height:600px">
+                                                            );min-height:1000px">
              @include('loaders.index')
              @include('app-notification.text-box')
        @yield('content')
