@@ -71,7 +71,14 @@
 
                         <!-- Date Column -->
                         <td class="entry-date" width="160" style="padding-bottom: 8px;">
-                            {{ $exp->start_month }} / {{ $exp->start_year }} – {{ $exp->end_month }} / {{ $exp->end_year }}
+                            {{ $exp->start_month }} / {{ $exp->start_year }} 
+                            @if ($exp->is_present==1)
+                              - Present
+                             @else
+                             
+                             – {{ $exp->end_month }} / {{ $exp->end_year }}
+                            @endif
+                            
                         </td>
                     </tr>
                 @endforeach

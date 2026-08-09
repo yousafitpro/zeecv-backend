@@ -25,6 +25,7 @@ class ExperienceController extends Controller
             'start_month'=>$input['start_month'],
             'start_year'=>$input['start_year'],
             'end_month'=>$input['end_month'],
+            'is_present'=>isset($input['is_present'])?1:0,
             'end_year'=>$input['end_year'],
             'description'=>$input['description'],
             

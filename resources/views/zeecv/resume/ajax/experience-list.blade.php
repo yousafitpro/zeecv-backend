@@ -23,10 +23,10 @@
                         <label for="roleTitle">Role/Job title</label>
                       </div>
 
-                      {{-- <div class="form-check mb-3">
-                        <input type="checkbox" class="form-check-input" id="currentPos" checked>
+                      <div class="form-check mb-3">
+                        <input type="checkbox" name="is_present" class="form-check-input" id="is_current" item-id='{{ $item->id }}' onclick="toggleIsPresent(this)" {{ $item->is_present==1?'checked':'' }}>
                         <label class="form-check-label font-weight-bold text-dark" for="currentPos">Current position</label>
-                      </div> --}}
+                      </div>
 
                       <div class="floating-label-group mb-3">
                         <input type="text" id="companyName" name="company" class="form-control" value="{{ $item->company}}">
@@ -86,7 +86,7 @@
                         </div>
                       </div>
 
-                      <div class="form-row mb-3">
+                      <div class="form-row mb-3 {{ $item->is_present==1?'d-none':'' }}" id="endMonthOuter_<?php echo $item->id; ?>">
                         <div class="col-6">
                           <div class="floating-label-group">
                       <select class="form-control custom-select" id="endMonth_<?php echo $item->id; ?>" name="end_month">
@@ -138,4 +138,11 @@
                 </div>
           @endforeach
 
-    
+    <script>
+function toggleIsPresent(el) {
+    var id = $(el).attr('item-id');
+    var isChecked = $(el).prop('checked');
+
+    $("#endMonthOuter_" + id).toggleClass("d-none", isChecked);
+}
+    </script>
