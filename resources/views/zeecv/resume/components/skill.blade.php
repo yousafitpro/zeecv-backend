@@ -11,18 +11,11 @@
                 </div>
               </div>
 
-              <div id="collapseSkill" class="collapse" data-parent="#builderAccordion">
+              <div id="collapseSkill" class="collapse show" data-parent="#builderAccordion">
                 
               <div id="Skill_div"></div>
 
         
-
-                <!-- Add New Entry Button -->
-                <div class="p-3 text-center bg-white btn-add-entry-outer" onclick="addSkill()">
-                  <a href="javascript:void" class="text-muted font-weight-bold text-decoration-none btn-add-entry">
-                    <i class="fas fa-plus-circle ml-1"></i>
-                  </a>
-                </div>
 
               </div>
             </div>

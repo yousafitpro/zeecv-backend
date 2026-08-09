@@ -1,32 +1,338 @@
-                <!-- First Entry (Expanded Form) -->
-            @foreach ($list as $item)
-              <div class="border-bottom">
-                  <div class="p-3 bg-light d-flex justify-content-between align-items-start"  style="cursor: pointer;">
-                    <i class="fas fa-th text-muted drag-handle mr-2 mt-1"></i>
-                    <div class="flex-grow-1 pr-2">
-                      <h6 class="mb-0 text-dark font-weight-bold" id="formRoleTitle">{{ $item->skill}}</h6>
-                      
-                    </div>
-                    <div class="toggle-icons-outer">
-                      <i class="far fa-trash-alt text-muted mr-2 " onclick="deleteSkill('{{ route('resume.skill.delete',$item->id) }}')"></i>
-                      {{-- <i class="fas fa-chevron-up text-muted action-icon icon-toggle" data-toggle="collapse" data-target="#EducaionForm{{ $item->id }}"></i> --}}
-                    </div>
-                  </div>
+<style>
+/* Skills Container */
+.skills-container {
+    padding: 20px;
+}
 
-                  <!-- Expanded Work Item Form -->
-                  <div id="EducaionForm{{ $item->id }}" class="collapse p-3 bg-light">
-                    <form class="mt-1" method="post" action="{{ route('resume.skill.save') }}"  onsubmit="saveSkill(event,this)">
-                      @csrf
-                      <input hidden value="{{ $item->id }}" name="item_id">
-                      <div class="floating-label-group mb-3">
-                        <input type="text" id="skill" name="skill" class="form-control" value="{{ $item->skill}}">
-                        <label for="skill">Skill</label>
-                      </div>
+/* Pill Styles */
+.skill-pill-wrapper {
+    display: inline-block;
+    margin: 5px;
+    animation: fadeIn 0.3s ease;
+}
 
-                      <button type="submit" class="btn btn-primary btn-block rounded-pill btn-save-list">
-                        <i class="fas fa-sparkles mr-1"></i> Save
-                      </button>
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.skill-pill {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    gap: 8px;
+    cursor: pointer;
+    position: relative;
+}
+
+.skill-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.skill-pill .pill-text {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.skill-pill .delete-cross {
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 300;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    line-height: 1;
+    margin-left: 4px;
+    color: white;
+}
+
+.skill-pill .delete-cross:hover {
+    opacity: 1;
+    transform: scale(1.3) rotate(90deg);
+    color: #ff4757;
+}
+
+/* Edit Mode - Inline */
+.skill-edit-form {
+    display: none;
+    align-items: center;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    overflow: hidden;
+    padding: 2px;
+}
+
+.skill-edit-form.active {
+    display: inline-flex;
+    animation: fadeIn 0.2s ease;
+}
+
+.skill-edit-form input {
+    border: none;
+    padding: 8px 16px;
+    outline: none;
+    width: 150px;
+    font-size: 0.95rem;
+    background: transparent;
+}
+
+.skill-edit-form input:focus {
+    outline: none;
+}
+
+.skill-edit-form .btn-edit-save {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.skill-edit-form .btn-edit-save:hover {
+    background: #218838;
+}
+
+.skill-edit-form .btn-edit-cancel {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.skill-edit-form .btn-edit-cancel:hover {
+    background: #c82333;
+}
+
+/* Add Skill Form */
+.add-skill-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+.add-skill-form .input-group-custom {
+    display: flex;
+    flex: 1;
+    background: white;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.add-skill-form .input-group-custom:focus-within {
+    border-color: #667eea;
+    box-shadow: 0 2px 12px rgba(102, 126, 234, 0.3);
+}
+
+.add-skill-form input {
+    flex: 1;
+    border: none;
+    padding: 10px 20px;
+    outline: none;
+    font-size: 0.95rem;
+}
+
+.add-skill-form input:focus {
+    outline: none;
+}
+
+.add-skill-form .btn-add {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 0 50px 50px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.add-skill-form .btn-add:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+.add-skill-form .btn-add:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Empty State */
+.empty-skills {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+}
+
+.empty-skills i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    opacity: 0.3;
+}
+
+.empty-skills p {
+    margin: 0;
+}
+
+
+</style>
+
+<div class="skills-container">
+    <!-- Add Skill Form -->
+    <form class="add-skill-form" onsubmit="addSkill(event, this)">
+        @csrf
+
+        <div class="input-group-custom">
+            <input type="text" 
+                   name="skill" 
+                   placeholder="Add a new skill..." 
+                   required
+                   autocomplete="off">
+            <button type="submit" class="btn-add">
+                <i class="fas fa-plus"></i> Add Skill
+            </button>
+        </div>
+    </form>
+
+    <!-- Skills Display -->
+    <div class="skills-list" id="skillsList">
+        <div class="d-flex flex-wrap" style="gap: 8px;">
+            @forelse ($list as $index => $item)
+                @php
+                    $colorClass = 'color-' . (($index % 6) + 1);
+                @endphp
+                <div class="skill-pill-wrapper" id="skill-{{ $item->id }}">
+                    <!-- View Mode - Click to Edit -->
+                    <span class="skill-pill {{ $colorClass }} view-mode" 
+                          id="view-{{ $item->id }}"
+                          onclick="editSkill('{{ $item->id }}')">
+                        <span class="pill-text">{{ $item->skill }}</span>
+                        <span class="delete-cross" 
+                              onclick="event.stopPropagation(); deleteSkill('{{ route('resume.skill.delete', $item->id) }}', '{{ $item->id }}')">
+                            ×
+                        </span>
+                    </span>
+
+                    <!-- Edit Mode -->
+                    <form class="skill-edit-form" id="edit-{{ $item->id }}" onsubmit="updateSkill(event, this, '{{ $item->id }}')">
+                        @csrf
+                        <input type="hidden" name="item_id" value="{{ $item->id }}">
+                        <input type="text" 
+                               name="skill" 
+                               value="{{ $item->skill }}" 
+                               required
+                               autofocus>
+                        <button type="submit" class="btn-edit-save">
+                            <i class="fas fa-check"></i>
+                        </button>
+                        <button type="button" class="btn-edit-cancel" onclick="cancelEdit('{{ $item->id }}')">
+                            <i class="fas fa-times"></i>
+                        </button>
                     </form>
-                  </div>
                 </div>
-          @endforeach
+            @empty
+                <div class="empty-skills">
+                    <i class="fas fa-tags"></i>
+                    <p>No skills added yet. Add your first skill above!</p>
+                </div>
+            @endforelse
+        </div>
+    </div>
+</div>
+
+<script>
+// Add Skill
+function addSkill(event, form) {
+    event.preventDefault();
+    const formData = new FormData(form);
+    const submitBtn = $(form).find('.btn-add');
+    
+    submitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Adding...');
+    
+    $.ajax({
+        url: "{{ route('resume.skill.save') }}?resume_id={{ $resume_id }}",
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        success: function(response) {
+            loadSkills()
+        },
+        error: function(xhr) {
+        }
+    });
+}
+
+
+
+
+
+// Cancel Edit
+
+// Delete Skill
+function deleteSkill(url, id) {
+    event.stopPropagation();
+
+    
+    $.ajax({
+        url: url,
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        beforeSend: function() {
+            $(`#skill-${id}`).fadeOut(300);
+        },
+        success: function(response) {
+           loadSkills()
+        },
+        error: function(xhr) {
+            $(`#skill-${id}`).fadeIn(300);
+            alert('Error deleting skill');
+        }
+    });
+}
+
+// Toast Notification (Optional)
+function showToast(type, message) {
+    if (typeof toastr !== 'undefined') {
+        toastr[type](message);
+    } else {
+        alert(message);
+    }
+}
+
+// Handle Enter and Escape keys in edit mode
+$(document).on('keydown', '.skill-edit-form input', function(e) {
+    if (e.key === 'Escape') {
+        const id = $(this).closest('.skill-edit-form').attr('id').replace('edit-', '');
+        cancelEdit(id);
+    }
+});
+
+
+</script>

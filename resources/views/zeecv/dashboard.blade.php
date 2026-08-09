@@ -80,11 +80,9 @@
 
 
     <!-- Create New Resume Card -->
-    <div class="col-md-6 col-lg-4 mb-4">
-        <a href="{{ route('resume.create') }}" class="card h-100" 
-             style="border: 2px dashed #dcdde1; border-radius: 12px; cursor: pointer; transition: all 0.3s;"
-             onmouseover="this.style.borderColor='#3498db'; this.style.background='#f8f9fa';"
-             onmouseout="this.style.borderColor='#dcdde1'; this.style.background='transparent';">
+    <div class="col-md-6 col-lg-4 mb-4 create_resume_list_btn_outer">
+        <a href="{{ route('resume.create') }}" class="card h-100 create_resume_list_btn" 
+             style="border: 2px dashed #dcdde1; border-radius: 12px; cursor: pointer; transition: all 0.3s;"">
             <div class="card-body d-flex flex-column align-items-center justify-content-center text-center" style="min-height: 200px;">
                 <i class="fas fa-plus-circle" style="font-size: 48px; color: #3498db;"></i>
                 <h6 class="mt-3 mb-1 font-weight-bold">Create New Resume</h6>
@@ -128,6 +126,10 @@
   .create-resume-circle span {
     font-size: 16px;
     font-weight: 600;
+  }
+  .create_resume_list_btn_outer:hover a{
+     text-decoration: none;
+     color: var(--primary);
   }
 </style>
 @endsection

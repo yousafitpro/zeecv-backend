@@ -17,10 +17,11 @@ class SkillController extends Controller
     }
     public function save(Request $request){
       $input=$request->all();
-      $item=Skill::where('id',$input['item_id'])->first();
-      $item->update(
+      $item=Skill::create(
          [
-            'skill'=>$input['skill']
+            'skill'=>$input['skill'],
+            'user_id'=>auth_user_id(),
+            'resume_id'=>unique_decrypt($input['resume_id']),
             
          ]
       );
@@ -55,6 +56,7 @@ class SkillController extends Controller
     public function list()
     {
        $data['list']=$this->process()->get()->where('resume_id',unique_decrypt(request('resume_id')));
+       $data['resume_id']=request('resume_id');
        return view('zeecv.resume.ajax.skill-list',$data);
     }
  

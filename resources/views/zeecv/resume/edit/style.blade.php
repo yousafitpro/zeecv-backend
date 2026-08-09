@@ -206,4 +206,7 @@ body {
   font-size: 15px;
   font-weight: bold;
 }
+.skill_pill{
+  background-color: var(--primary) !important;
+}
 </style>
