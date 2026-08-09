@@ -7,7 +7,7 @@
                 </div>
                 <div class="toggle-icons-outer">
                   {{-- <i class="fas fa-cog text-muted mr-3 action-icon"></i> --}}
-                  <i class="fas fa-chevron-up text-muted action-icon icon-toggle" onclick="toggleUpDown(this)"></i>
+                  <i class="fas fa-chevron-down text-muted action-icon icon-toggle" onclick="toggleUpDown(this)"></i>
                 </div>
               </div>
 
