@@ -106,7 +106,7 @@
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-content navbar-nav ml-auto align-items-lg-center">
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('/') }}">Features</a>
+          <a class="nav-link" href="{{ route('home.features') }}">Features</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Templates</a>

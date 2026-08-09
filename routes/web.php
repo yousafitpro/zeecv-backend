@@ -582,3 +582,7 @@ Route::prefix('resume')
 
         Route::any('/preview', [ResumeController::class,'preview'])->name('resume.preview');
     });
+Route::prefix('resume-builder')
+    ->group(function () {
+       Route::get('/features', [HomeController::class,'features'])->name('home.features');
+    });
