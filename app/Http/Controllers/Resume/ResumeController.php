@@ -26,7 +26,8 @@ class ResumeController extends Controller
          'experiences',
          'summary'
       ])->first();
-      return view('pdfs.resume.resume',$data);
+      
+      return view('pdfs.resume.default.resume',$data);
     }
     public function create()
     {
@@ -45,14 +46,14 @@ class ResumeController extends Controller
                'experiences',
                'summary'
             ])->first();
-      $pdf = Pdf::loadView('pdfs.resume.resume', $data);
+      $pdf = Pdf::loadView('pdfs.resume.default.resume', $data);
       $pdf->setOptions([
             'defaultFont' => 'sans-serif',
             'isHtml5ParserEnabled' => true,
             'isRemoteEnabled' => true,
         ]);
       //   dd($data['cv']);
-      // return $pdf->stream('resume.pdf');
+      return $pdf->stream('resume.pdf');
       return $pdf->download($data['cv']->contact->desired_job_title.'.pdf');
     }
     public function edit($id)
@@ -76,6 +77,19 @@ class ResumeController extends Controller
          ]
       );
        return view('zeecv.resume.edit',$data);
+    }
+    public function delete($id)
+    {
+       $resume= Resume::find(unique_decrypt($id));
+       $resume->delete();
+       return back()
+            ->with([
+                'toast' => [
+                    'heading' => 'Message',
+                    'message' => $resume->contact->desired_job_title." deleted successfully",
+                    'type' => 'success',
+                ]
+            ]);
     }
  
 

@@ -1,0 +1,33 @@
+Name:              Montserrat 700
+Section headings:  Montserrat 700
+Job titles:        Inter 600
+Body:              Inter 400
+Skills:            Inter 500
+Dates:             Inter 400
+
+
+Name:              28–32px
+Section heading:   12–14px
+Job title:         10.5–11.5px
+Company:            9.5–10.5px
+Body:              9.5–10.5px
+Dates:              8.5–9.5px
+
+
+/* Name */
+font-weight: 700;
+
+/* Section headings */
+font-weight: 700;
+
+/* Job title */
+font-weight: 600;
+
+/* Company */
+font-weight: 500;
+
+/* Description */
+font-weight: 400;
+
+/* Dates */
+font-weight: 400;

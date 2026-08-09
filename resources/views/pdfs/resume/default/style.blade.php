@@ -1,0 +1,209 @@
+    @php
+    $interPath = asset('fonts/Montserrat-Open-Sans/Inter/static');
+    @endphp
+
+    <style>
+        :root{
+            --pdf-primary-color:#c7885c;
+            --pdf-primary-text-color:#333333;
+            --pdf-heading-text-color:#333333;
+            --pdf-sub-text-color:var(--pdf-primary-color);
+            --pdf-font-primary:'Montserrat', sans-serif;
+            --pdf-font-secondary:'Inter', sans-serif;
+        }
+         @font-face {
+        font-family: 'Montserrat';
+        src: url('{{ asset("fonts/Montserrat-Open-Sans/Montserrat/static/Montserrat-Regular.ttf") }}') format('truetype');
+        font-weight: 400;
+        font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('{{ asset("fonts/Montserrat-Open-Sans/Montserrat/static/Montserrat-SemiBold.ttf") }}') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('{{ asset("fonts/Montserrat-Open-Sans/Montserrat/static/Montserrat-Bold.ttf") }}') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('{{ asset("fonts/Montserrat-Open-Sans/Montserrat/static/Montserrat-ExtraBold.ttf") }}') format('truetype');
+            font-weight: 800;
+            font-style: normal;
+        }
+        
+        // Inter Font
+            @font-face {
+                font-family: 'Inter';
+                src: url('{{ $interPath }}/Inter_18pt-Regular.ttf') format('truetype');
+                font-weight: 400;
+                font-style: normal;
+            }
+
+            @font-face {
+                font-family: 'Inter';
+                src: url('{{ $interPath }}/Inter_18pt-Medium.ttf') format('truetype');
+                font-weight: 500;
+                font-style: normal;
+            }
+
+            @font-face {
+                font-family: 'Inter';
+                src: url('{{ $interPath }}/Inter_18pt-SemiBold.ttf') format('truetype');
+                font-weight: 600;
+                font-style: normal;
+            }
+
+            @font-face {
+                font-family: 'Inter';
+                src: url('{{ $interPath }}/Inter_18pt-Bold.ttf') format('truetype');
+                font-weight: 700;
+                font-style: normal;
+            }
+
+        /* PDF Page Setup */
+        @page {
+            margin: 25px 30px;
+        }
+
+        body {
+            font-family: var(--pdf-font-primary);
+            color: var(--pdf-primary-text-color);
+            font-size: 11px;
+            line-height: 1.4;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        /* Table Resets */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        td {
+            padding: 0;
+            vertical-align: top;
+        }
+
+        /* Typography */
+        .resume-name {
+            font-family: var(--pdf-font-primary);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--pdf-heading-text-color);
+            margin: 0 0 3px 0;
+        }
+
+        .resume-subtitle {
+            font-size: 12px;
+            font-family: var(--pdf-font-secondary);
+            color: var(--pdf-sub-text-color);
+            margin: 0;
+        }
+
+        .contact-text {
+            font-family: var(--pdf-font-secondary);
+            font-weight: 400;
+            font-size:9px;
+            color: #555555;
+            text-align: right;
+            line-height: 1.5;
+        }
+
+        .section-heading {
+            font-family: var(--pdf-font-primary);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--pdf-font-primary);
+            border-bottom: 1px solid #dcdcdc;
+            padding-bottom: 4px;
+            margin-top: 15px;
+            margin-bottom: 12px;
+        }
+
+        .summary-text {
+            font-size: 10px;
+            color: #444444;
+            font-family: var(--pdf-font-secondary);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        /* Timeline Table Structure */
+        .timeline-bullet-cell {
+            width: 16px;
+            text-align: center;
+        }
+
+        .timeline-bullet {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border: 2px solid #a38c73;
+            border-radius: 50%;
+            background-color: #ffffff;
+            margin-top: 2px;
+        }
+
+        .timeline-line-cell {
+            width: 16px;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUheader...') repeat-y center;
+            border-right: 1px dotted #a38c73;
+        }
+
+        .entry-title {
+            font-size: 11px;
+            font-weight: bold;
+            color: #111111;
+            margin: 0;
+        }
+
+        .entry-subtitle {
+            font-size: 10px;
+            font-style: italic;
+            color: #666666;
+            margin: 2px 0;
+        }
+
+        .entry-location {
+            font-size: 9.5px;
+            color: #777777;
+            margin: 0 0 10px 0;
+        }
+
+        .entry-date {
+            font-size: 10px;
+            font-style: italic;
+            color: #666666;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        /* Skills Pill Layout */
+        .skill-pill {
+            background-color: #b0a18f;
+            color: #ffffff;
+            font-size: 9px;
+            padding: 3px 8px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-right: 4px;
+            margin-bottom: 5px;
+        }
+#resumePrintDive{
+    background: white;
+    padding: 20px 30px;
+}
+    </style>

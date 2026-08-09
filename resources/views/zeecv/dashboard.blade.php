@@ -51,18 +51,25 @@
                     {{-- <button class="btn btn-sm btn-outline-primary">
                         <i class="fas fa-eye"></i>
                     </button> --}}
-<a href="{{ route('resume.edit',unique_encrypt($res->id)) }}"> 
+                  <a href="{{ route('resume.edit',unique_encrypt($res->id)) }}"> 
                     <button class="btn btn-sm btn-outline-secondary">
                        <i class="fas fa-edit"></i>
                     </button>
-</a>
+                    </a>
                     {{-- <button class="btn btn-sm btn-outline-info">
                         <i class="fas fa-download"></i>
                     </button> --}}
                 </div>
-                {{-- <button class="btn btn-sm btn-outline-danger">
+                
+                <form action="{{ route('resume.delete', unique_encrypt($res->id)) }}"  
+                      method="POST" 
+                      onsubmit="return confirm('Are you sure?')">
+                    @csrf
+                    @method('GET')
+                    <button type="submit"  class="btn btn-sm btn-outline-danger" style="float: right;">
                     <i class="fas fa-trash-alt"></i>
-                </button> --}}
+                    </a>
+                </form>
             </div>
         </div>
     </div>
