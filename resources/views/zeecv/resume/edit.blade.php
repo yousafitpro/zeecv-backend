@@ -4,7 +4,7 @@
 <!-- Include Print.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.6.0/print.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.6.0/print.min.css">
-@include('zeecv.resume.edit.style')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +18,7 @@
     <!-- JS Dependencies -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  @include('zeecv.resume.edit.style')
 </head>
 <body>
 

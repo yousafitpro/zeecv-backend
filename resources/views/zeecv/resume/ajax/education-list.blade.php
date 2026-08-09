@@ -130,7 +130,7 @@
                       </div>
                       <div class="text-right text-muted small mb-3">22/1500</div>
 
-                      <button type="submit" class="btn btn-primary  btn-block rounded-pill btn-primary-v2">
+                      <button type="submit" class="btn btn-primary  btn-block rounded-pill btn-save-list">
                         <i class="fas fa-sparkles mr-1"></i> Save
                       </button>
                     </form>

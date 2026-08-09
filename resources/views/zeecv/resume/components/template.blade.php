@@ -12,7 +12,7 @@
                         </select>
                         <label for="template">Summary</label>
                       </div>
-                      <button type="submit" class="btn btn-primary btn-block rounded-pill">
+                      <button type="submit" class="btn btn-primary btn-block rounded-pill btn-save-list">
                         <i class="fas fa-sparkles mr-1"></i> Save
                       </button>
                     </form>

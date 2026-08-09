@@ -62,7 +62,7 @@
                         <input type="text" id="profile_link" name="profile_link" class="form-control" value="{{ $contact->profile_link}}">
                         <label for="profile_link">Profile Link</label>
                       </div>
-                      <button type="submit" class="btn btn-primary btn-block rounded-pill">
+                      <button type="submit" class="btn btn-primary btn-block rounded-pill btn-save-list">
                         <i class="fas fa-sparkles mr-1"></i> Save
                       </button>
                     </form>

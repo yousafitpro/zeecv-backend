@@ -182,4 +182,14 @@ body {
   margin-right: 4px;
   margin-bottom: 6px;
 }
+.btn-save-list{
+  border-radius: 10px;
+  background-color: white;
+  border:solid 1px var(--primary);
+  color: var(--primary);
+
+}
+.btn-save-list:hover{
+  background-color: var(--primary);
+}
 </style>
