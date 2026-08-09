@@ -113,6 +113,12 @@
             margin: 0;
         }
 
+        .contact-text i{
+          color: var(--pdf-primary-color);
+          font-size: 12px;
+          margin-left: 5px;
+          margin-top: 5px;
+        }
         .contact-text {
             font-family: var(--pdf-font-secondary);
             font-weight: 400;

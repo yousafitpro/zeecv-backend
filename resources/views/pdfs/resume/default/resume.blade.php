@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Resume PDF</title>
     @include('pdfs.resume.default.style')
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
 
@@ -21,16 +23,16 @@
                 <!-- Contact Details -->
                 <td width="40%" class="contact-text" style="vertical-align: middle;">
                     @if (!empty($cv->contact->email))
-                        <div>{{ $cv->contact->email }} &#9993;</div>
+                        <div>{{ $cv->contact->email }} <i class="fa-solid fa-envelope"></i></div>
                     @endif
                     @if (!empty($cv->contact->phone))
-                        <div>{{ $cv->contact->phone }} &#128222;</div>
+                        <div>{{ $cv->contact->phone }} <i class="fa-solid fa-phone"></i></div>
                     @endif
                     @if (!empty($cv->contact->location) || !empty($cv->contact->country))
-                        <div>{{ implode(', ', array_filter([$cv->contact->location, $cv->contact->country])) }} &#128205;</div>
+                        <div>{{ implode(', ', array_filter([$cv->contact->location, $cv->contact->country])) }} <i class="fa-solid fa-map"></i></div>
                     @endif
                     @if (!empty($cv->contact->profile_link))
-                        <div>{{ $cv->contact->profile_link }} &#128279;</div>
+                        <div>{{ $cv->contact->profile_link }} <i class="fa-solid fa-link"></i></div>
                     @endif
                 </td>
             </tr>
