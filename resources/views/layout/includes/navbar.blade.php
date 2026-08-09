@@ -130,9 +130,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home.templates') }}">Templates</a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a class="nav-link" href="{{ route('home.pricing') }}">Pricing</a>
-        </li>
+        </li> --}}
         
         <!-- Action Buttons -->
         <li class="nav-item my-2 my-lg-0 ml-lg-3">
