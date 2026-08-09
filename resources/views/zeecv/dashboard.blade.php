@@ -2,7 +2,7 @@
 @section('title',"Dashboard")
 @section('content')
 
-@if (empty($resumes))
+@if (count($resumes)==0)
   <div class="row">
   <div class="col-md-12">
     <!-- Empty State - No Resumes Created Yet -->
@@ -46,7 +46,7 @@
                     <span class="badge badge-light"><i class="far fa-edit mr-1"></i> Active</span>
                 </div>
             </div>
-            <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
+            <div class="card-footer resume-card-footer bg-transparent border-top-0 d-flex justify-content-between">
                 <div>
                     {{-- <button class="btn btn-sm btn-outline-primary">
                         <i class="fas fa-eye"></i>
@@ -84,7 +84,7 @@
         <a href="{{ route('resume.create') }}" class="card h-100 create_resume_list_btn" 
              style="border: 2px dashed #dcdde1; border-radius: 12px; cursor: pointer; transition: all 0.3s;"">
             <div class="card-body d-flex flex-column align-items-center justify-content-center text-center" style="min-height: 200px;">
-                <i class="fas fa-plus-circle" style="font-size: 48px; color: #3498db;"></i>
+                <i class="fas fa-plus-circle create-resume-circle-2" style="font-size: 48px; color: #3498db;"></i>
                 <h6 class="mt-3 mb-1 font-weight-bold">Create New Resume</h6>
                 <p class="text-muted small mb-0">Start building your professional resume</p>
             </div>
@@ -130,6 +130,35 @@
   .create_resume_list_btn_outer:hover a{
      text-decoration: none;
      color: var(--primary);
+  }
+  .resume-card-footer button i{
+    color: white !important;
+  }
+  .resume-card-footer button{
+    background: var(--primary);
+    border-radius: 10px;
+  }
+  .create-resume-circle-2 i{
+       color:white !important;
+  }
+  .create-resume-circle-2{
+    background: white;
+    border-radius: 10px;
+    
+  }
+  .resume-card-footer .btn-outline-danger{
+    background: darkred;
+    
+
+  }
+  /* .create-resume-circle i{
+    background: var(--primary);
+  } */
+  @media (max-width: 991.98px) {
+    .create-resume-circle-2 {
+      background: var(--primary);
+      border-radius: 30px;
+    }
   }
 </style>
 @endsection

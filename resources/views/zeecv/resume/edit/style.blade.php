@@ -213,5 +213,8 @@ body {
       .icon-toggle-sub{
         margin-top: 20px;
       }
+      .btn-link{
+        font-size: 15px;
+      }
     }
 </style>
