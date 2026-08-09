@@ -78,6 +78,9 @@ class ResumeController extends Controller
       );
        return view('zeecv.resume.edit',$data);
     }
+    public function payAndUnlock(){
+       return view('zeecv.resume.payandunlock');
+    }
     public function delete($id)
     {
        $resume= Resume::find(unique_decrypt($id));

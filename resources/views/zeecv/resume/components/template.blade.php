@@ -78,6 +78,7 @@ setTimeout(() => {
 
           </div>
         </div>
+       @include('zeecv.resume.components.pay_and_unlock')
         <script>
   function saveTemplate(event, form) {
     // 1. Prevent the default form submission
