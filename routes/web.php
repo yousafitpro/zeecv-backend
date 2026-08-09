@@ -586,4 +586,5 @@ Route::prefix('resume-builder')
     ->group(function () {
        Route::get('/features', [HomeController::class,'features'])->name('home.features');
        Route::get('/pricing', [HomeController::class,'pricing'])->name('home.pricing');
+       Route::get('/templates', [HomeController::class,'templates'])->name('home.templates');
     });
