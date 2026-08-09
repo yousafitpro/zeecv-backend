@@ -6,10 +6,11 @@
     @include('pdfs.resume.default.style')
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 <body>
-
-    <div id="resumePrintDive">
+    <div class="resumePrintDiveOuter">
+    <div id="resumePrintDive" class="resumePrintDiveInner">
 
         <!-- HEADER SECTION TABLE -->
         <table width="100%" style="margin-bottom: 15px;">
@@ -161,6 +162,6 @@
         @endif
 
     </div>
-
+</div>
 </body>
 </html>

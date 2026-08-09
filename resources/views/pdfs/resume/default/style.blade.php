@@ -232,4 +232,13 @@
     background: white;
     padding: 20px 30px;
 }
+    @media (max-width: 991.98px) {
+       .resumePrintDiveInner{
+           min-width: 1200px;
+       }
+      .resumePrintDiveOuter{
+           
+           overflow: auto;
+      }
+    }
     </style>

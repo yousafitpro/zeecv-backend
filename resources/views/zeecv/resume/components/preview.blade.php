@@ -1,5 +1,14 @@
   <!-- RIGHT COLUMN: Real-Time Resume Sheet Preview -->
-   
+   <style>
+    @media (max-width: 991.98px) {
+      .resumePrintDiveOuter .resume-name{
+           min-width: 1200px;
+           overflow: auto;
+           background-color: red;
+      }
+    }
+   </style>
+      <div class="resumePrintDiveOuter">
         <div class="resume-sheet bg-white p-5 shadow-sm rounded" id="resumePrintDive">
           
           <!-- Header Profile -->
@@ -85,4 +94,4 @@
 @endif
 
         </div>
-      
+      </div>
