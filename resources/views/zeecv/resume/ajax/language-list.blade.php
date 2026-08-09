@@ -241,7 +241,7 @@
                    required
                    autocomplete="off">
             <button type="submit" class="btn-add">
-                <i class="fas fa-plus"></i> Add Language
+                <i class="fas fa-plus"></i> Add
             </button>
         </div>
     </form>
@@ -260,7 +260,7 @@
                           onclick="editSkill('{{ $item->id }}')">
                         <span class="pill-text">{{ $item->language }}</span>
                         <span class="delete-cross" 
-                              onclick="event.stopPropagation(); deleteSkill('{{ route('resume.language.delete', $item->id) }}', '{{ $item->id }}')">
+                              onclick="event.stopPropagation(); deleteLanguage('{{ route('resume.language.delete', $item->id) }}', '{{ $item->id }}')">
                             ×
                         </span>
                     </span>

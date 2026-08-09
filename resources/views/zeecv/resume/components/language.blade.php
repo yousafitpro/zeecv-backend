@@ -61,7 +61,7 @@ function saveLanguage(event, form) {
     });
 }
 
-function deleteSkill(url) {
+function deleteLanguage(url) {
     // 4. Send AJAX request
     $.ajax({
         url: url,
