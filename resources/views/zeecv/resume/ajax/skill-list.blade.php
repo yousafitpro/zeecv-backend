@@ -21,8 +21,8 @@
     align-items: center;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 8px 16px;
-    border-radius: 50px;
+    padding: 8px 16px !important;
+    border-radius:20px !important;
     font-size: 0.95rem;
     font-weight: 500;
     transition: all 0.3s ease;
