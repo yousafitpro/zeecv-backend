@@ -20,15 +20,10 @@ class CertificateController extends Controller
       $item=Certificate::where('id',$input['item_id'])->first();
       $item->update(
          [
-            'degree'=>$input['degree'],
-            'institution'=>$input['institution'],
-            'location'=>$input['location'],
-            'country'=>$input['country'],
+            'name'=>$input['name'],
+            'organization'=>$input['organization'],
             'start_month'=>$input['start_month'],
-            'start_year'=>$input['start_year'],
-            'end_month'=>$input['end_month'],
-            'end_year'=>$input['end_year'],
-            'description'=>$input['description'],
+            'start_year'=>$input['start_year']
             
          ]
       );

@@ -231,17 +231,17 @@
 <div class="language-div-outer">
 <div class="skills-container">
     <!-- Add Skill Form -->
-    <form class="add-skill-form" onsubmit="addSkill(event, this)">
+    <form class="add-skill-form" onsubmit="addLanguage(event, this)">
         @csrf
 
         <div class="input-group-custom">
             <input type="text" 
-                   name="skill" 
+                   name="language" 
                    placeholder="Add a new language..." 
                    required
                    autocomplete="off">
             <button type="submit" class="btn-add">
-                <i class="fas fa-plus"></i> Add Skill
+                <i class="fas fa-plus"></i> Add Language
             </button>
         </div>
     </form>
@@ -258,7 +258,7 @@
                     <span class="skill-pill {{ $colorClass }} view-mode" 
                           id="view-{{ $item->id }}"
                           onclick="editSkill('{{ $item->id }}')">
-                        <span class="pill-text">{{ $item->skill }}</span>
+                        <span class="pill-text">{{ $item->language }}</span>
                         <span class="delete-cross" 
                               onclick="event.stopPropagation(); deleteSkill('{{ route('resume.language.delete', $item->id) }}', '{{ $item->id }}')">
                             ×
@@ -294,7 +294,7 @@
 </div>
 <script>
 // Add Skill
-function addSkill(event, form) {
+function addLanguage(event, form) {
     event.preventDefault();
     const formData = new FormData(form);
     const submitBtn = $(form).find('.btn-add');
@@ -311,7 +311,7 @@ function addSkill(event, form) {
             'X-CSRF-TOKEN': '{{ csrf_token() }}'
         },
         success: function(response) {
-            loadSkills()
+            loadLangauges()
         },
         error: function(xhr) {
         }

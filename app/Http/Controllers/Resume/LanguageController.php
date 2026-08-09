@@ -20,7 +20,7 @@ class LanguageController extends Controller
       $input=$request->all();
       $item=ResumeLanguage::create(
          [
-            'skill'=>$input['skill'],
+            'language'=>$input['language'],
             'user_id'=>auth_user_id(),
             'resume_id'=>unique_decrypt($input['resume_id']),
             

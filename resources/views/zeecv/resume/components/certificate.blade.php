@@ -31,7 +31,7 @@
     $(document).ready(function(){
       loadCertificates()
     })
-function saveExperiences(event, form) {
+function saveCertificate(event, form) {
     // 1. Prevent the default form submission
     event.preventDefault();
 
@@ -83,7 +83,7 @@ function addCertificate() {
                 loadCertificates().then(function() {
                     // Use response from the original AJAX call
                     if (response.item && response.item.id) {
-                        $("#workForm" + response.item.id).addClass("show");
+                        $("#CertificateForm" + response.item.id).addClass("show");
                     }
                 }).catch(function(error) {
                     console.error('Failed to load experiences:', error);
@@ -98,7 +98,7 @@ function addCertificate() {
         }
     });
 }
-function deleteExperience(url) {
+function deleteCertificate(url) {
     // 4. Send AJAX request
     $.ajax({
         url: url,
