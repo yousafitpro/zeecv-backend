@@ -62,6 +62,9 @@
                             <div class="entry-location">
                                 {{ implode(', ', array_filter([$exp->location, $exp->country])) }}
                             </div>
+                            <div class="entry-description">
+                                {{ $exp->description}}
+                            </div>
                         </td>
 
                         <!-- Date Column -->

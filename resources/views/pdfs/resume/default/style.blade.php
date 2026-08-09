@@ -185,7 +185,17 @@
             font-size: 9.5px;
             font-family: var(--pdf-font-secondary);
             color: var(--pdf-primary-color);
-            margin: 0 0 10px 0;
+            margin: 0 0 2px 0;
+        }
+        .entry-description {
+            font-size: 10px;
+            color: var(--pdf-muted-text-color);
+            font-family: var(--pdf-font-secondary);
+            line-height: 1.5;
+            margin-bottom: 12px;
+            border-left: dotted 3px var(--pdf-primary-color);
+            padding-left:5px;
+            margin-top:10px;
         }
 
         .entry-date {
