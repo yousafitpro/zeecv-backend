@@ -5,9 +5,9 @@
                   <i class="fas fa-th mr-2 text-muted drag-handle"></i>
                   <strong class="h6 mb-0">Summary</strong>
                 </div>
-                <div>
-                  <i class="fas fa-cog text-muted mr-3 action-icon"></i>
-                  <i class="fas fa-chevron-down text-muted action-icon icon-toggle"></i>
+                <div class="toggle-icons-outer">
+                  {{-- <i class="fas fa-cog text-muted mr-3 action-icon"></i> --}}
+                  <i class="fas fa-chevron-down text-muted action-icon icon-toggle" onclick="toggleUpDown(this)"></i>
                 </div>
               </div>
               <div id="collapseSummary" class="collapse p-3 border-top" data-parent="#builderAccordion">

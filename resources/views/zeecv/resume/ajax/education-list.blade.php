@@ -7,9 +7,9 @@
                       <h6 class="mb-0 text-dark font-weight-bold" id="formRoleTitle">{{ $item->degree}}</h6>
                       <small class="text-muted" id="formDateSubtitle">Sept 2025 – Present</small>
                     </div>
-                    <div>
+                    <div class="toggle-icons-outer">
                       <i class="far fa-trash-alt text-muted mr-2 " onclick="deleteEducation('{{ route('resume.education.delete',$item->id) }}')"></i>
-                      <i class="fas fa-chevron-up text-muted action-icon icon-toggle" data-toggle="collapse" data-target="#EducaionForm{{ $item->id }}"></i>
+                      <i class="fas fa-chevron-up text-muted action-icon icon-toggle" onclick="toggleUpDown(this)" data-toggle="collapse" data-target="#EducaionForm{{ $item->id }}"></i>
                     </div>
                   </div>
 

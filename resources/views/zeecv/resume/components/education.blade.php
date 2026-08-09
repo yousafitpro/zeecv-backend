@@ -5,9 +5,9 @@
                   <i class="fas fa-th mr-2 text-muted drag-handle"></i>
                   <strong class="h6 mb-0">Education</strong>
                 </div>
-                <div>
-                  <i class="fas fa-cog text-muted mr-3 action-icon"></i>
-                  <i class="fas fa-chevron-up text-muted action-icon icon-toggle"></i>
+                <div class="toggle-icons-outer">
+                  {{-- <i class="fas fa-cog text-muted mr-3 action-icon"></i> --}}
+                  <i class="fas fa-chevron-down text-muted action-icon icon-toggle" onclick="toggleUpDown(this)"></i>
                 </div>
               </div>
 
@@ -18,9 +18,9 @@
         
 
                 <!-- Add New Entry Button -->
-                <div class="p-3 text-center bg-white" onclick="addEducation()">
-                  <a href="javascript:void" class="text-muted font-weight-bold text-decoration-none">
-                    <i class="far fa-plus-circle mr-1"></i> Add new entry
+                <div class="p-3 text-center bg-white btn-add-entry-outer" onclick="addEducation()">
+                  <a href="javascript:void" class="text-muted font-weight-bold text-decoration-none btn-add-entry">
+                    <i class="fas fa-plus-circle ml-1"></i>
                   </a>
                 </div>
 

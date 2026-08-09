@@ -192,4 +192,18 @@ body {
 .btn-save-list:hover{
   background-color: var(--primary);
 }
+.btn-add-entry{
+  color: var(--primary) !important;
+  font-size: 30px !important;
+}
+.btn-add-entry-outer{
+  cursor: pointer;
+}
+.toggle-icons-outer .fa-trash-alt{
+  color:darkred !important;
+}
+.toggle-icons-outer i{
+  font-size: 15px;
+  font-weight: bold;
+}
 </style>

@@ -1,6 +1,7 @@
 @extends('zeecv.resume.layout')
 @section('title',"Dashboard")
 @section('content')
+ 
 <!-- Include Print.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.6.0/print.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.6.0/print.min.css">
@@ -12,12 +13,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resume Builder Layout</title>
   <!-- Bootstrap 4 CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ asset('resume/css/bootstrap-4.6.2.min.css') }}">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="{{ asset('resume/css/font-awesome-5.15.4.css') }}">
     <!-- JS Dependencies -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ asset("resume/js/jquery-3.5.1.min.js") }}"></script>
+  <script src="{{ asset('resume/js/bootstrap-4.6.2.bundle.min.js') }}"></script>
+  @include('zeecv.resume.edit.script')
   @include('zeecv.resume.edit.style')
 </head>
 <body>
@@ -104,7 +106,7 @@
     });
 }
  </script>
- @include('zeecv.resume.edit.script')
+
 
 </body>
 </html>

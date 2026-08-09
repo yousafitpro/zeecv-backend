@@ -10,7 +10,7 @@
                         <select id="template" name="template" class="form-control">
                           <option value="default" {{ $template->template=='default'?'selected':'' }}>Default</option>
                         </select>
-                        <label for="template">Summary</label>
+                        <label for="template">Template</label>
                       </div>
                       <button type="submit" class="btn btn-primary btn-block rounded-pill btn-save-list">
                         <i class="fas fa-sparkles mr-1"></i> Save
