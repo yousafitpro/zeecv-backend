@@ -97,6 +97,9 @@
       margin-top: 1rem;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
+    .navbar-brand{
+      margin-left: 30px;
+    }
   }
    .custom-navbar .nav-item a{
 
