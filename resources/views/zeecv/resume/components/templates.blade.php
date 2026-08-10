@@ -7,6 +7,7 @@
 .zeecv_template_outer .template-item {
     cursor: pointer;
     transition: all 0.3s ease;
+    border-radius: 10px;
 }
 .zeecv_template_outer .template-item:hover {
     transform: scale(1.02);
