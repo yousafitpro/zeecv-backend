@@ -41,7 +41,7 @@
       <i class="fas fa-arrow-left mr-2"></i>Dashboard
     </a>
     <div class="resume-edit-action-buttons">
-      <button class="btn btn-save btn-preview px-4 rounded-pill" onclick="resumePrintFunNewWindow('{{ route('resume.pdf.preview',request('id')) }}?resume={{now()}}')">PDF Preview</button>
+      <button class="btn btn-save btn-preview px-4 rounded-pill" onclick="resumePrintFunNewWindow('{{ route('resume.pdf.preview',request('id')) }}')">PDF Preview</button>
     <button class="btn btn-save px-4 rounded-pill" onclick="resumePrintFun('{{ route('resume.pdf',request('id')) }}')">Download</button>
   </div>
   </header>
@@ -100,8 +100,10 @@ function resumePrintFun(url) {
     window.open(url, '_blank');
 }
 function resumePrintFunNewWindow(url) {
+    const randomNumber = Math.floor(Math.random() * 1000000);
+
     window.open(
-        url,
+        url + '?resume=' + randomNumber,
         '_blank',
         'width=1000,height=800,noopener,noreferrer'
     );
