@@ -27,6 +27,7 @@
                         alt="{{ $key }} template"
                     >
                 </div>
+                <h6 style="text-align: center;margin-top:5px;">{{ $value['name'] }}</h3>
             </div>
         @endforeach
     </div>
