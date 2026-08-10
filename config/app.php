@@ -14,8 +14,8 @@ return [
     */
 
     'checkout_gateway' => env('APP_CHECKOUT_GATEWAY', 'stripe'),
-    'name' => env('APP_NAME', 'zPAYD'),
-    'name2' => env('APP_NAME_2', 'zpayd.com'),
+    'name' => env('APP_NAME', 'zeecv.com'),
+    'name2' => env('APP_NAME_2', 'zeecv.com'),
 
     /*
     |--------------------------------------------------------------------------
