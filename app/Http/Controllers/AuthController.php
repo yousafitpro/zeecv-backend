@@ -67,7 +67,7 @@ class AuthController extends Controller
         return response()->json([
             'success' => true,
             'token' => $token,
-            'login_token'=>(new MobileAppController())->generateLoginTokenProcess($user),
+            'loginToken'=>(new MobileAppController())->generateLoginTokenProcess($user),
             'name' => $user->name,
             'email' => $user->email,
             'id' => $user->id,
