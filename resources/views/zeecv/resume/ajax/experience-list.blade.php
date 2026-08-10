@@ -5,7 +5,14 @@
                     {{-- <i class="fas fa-th text-muted drag-handle mr-2 mt-1"></i> --}}
                     <div class="flex-grow-1 pr-2">
                       <h6 class="mb-0 text-dark font-weight-bold" id="formRoleTitle">{{ $item->job_title}}</h6>
-                      <small class="text-muted" id="formDateSubtitle">Sept 2025 – Present</small>
+                      <small class="text-muted" id="formDateSubtitle">
+                        {{ $item->start_month }}/{{ $item->start_year }} – 
+                                @if ($item->is_present == 1)
+                                    Present
+                                @else
+                                    {{ $item->end_month }}/{{ $item->end_year }}
+                                @endif
+                      </small>
                     </div>
                     <div class="toggle-icons-outer">
                       <i class="far fa-trash-alt text-muted mr-2 " onclick="deleteExperience('{{ route('resume.experience.delete',$item->id) }}')"></i>
