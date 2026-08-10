@@ -20,7 +20,7 @@ class AppGoogleRecaptchaController extends Controller
         ]
         ];
          // Step 2: Verify with Google
-        $response = Http::post('https://recaptchaenterprise.googleapis.com/v1/projects/422037176748/assessments?key='.config('myconfig.Recap.secret_key'),
+        $response = Http::post('https://recaptchaenterprise.googleapis.com/v1/projects/zeecv-505109/assessments?key='.config('myconfig.Recap.secret_key'),
         $recap_data);
 
         $result = $response->json();
