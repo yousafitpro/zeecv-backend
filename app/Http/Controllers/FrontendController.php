@@ -364,7 +364,7 @@ class FrontendController extends Controller
             );
 
         // Auto-login the user
-        // (new WebAuthController())->createEmailVerification($user->id);
+        (new WebAuthController())->createEmailVerification($user->id);
         DB::commit();
         return redirect(url('please-verify-account'));
     }
