@@ -55,14 +55,7 @@
   @include('home.css.style')
 @include("layout.includes.css")
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GQYT8LDL91"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-GQYT8LDL91');
-</script>
+@include('home.google-tag')
 </head>
 <body>
 <div style="height: 100px"></div>
