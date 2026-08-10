@@ -209,6 +209,9 @@ body {
 .skill_pill{
   background-color: var(--primary) !important;
 }
+.resume-edit-action-buttons .btn-preview{
+  background-color: gray !important;
+}
     @media (max-width: 991.98px) {
       .icon-toggle-sub{
         margin-top: 20px;
@@ -218,6 +221,10 @@ body {
       }
     }
         @media (max-width: 991.98px) {
+        .resume-edit-action-buttons button{
+          font-size: 12px;
+
+        }
        .resumePrintDiveInner{
            min-width: 1200px;
        }

@@ -40,7 +40,10 @@
     <a href="{{ url('dashboard') }}" class="btn btn-link text-secondary text-decoration-none p-0">
       <i class="fas fa-arrow-left mr-2"></i>Dashboard
     </a>
+    <div class="resume-edit-action-buttons">
+      <button class="btn btn-save btn-preview px-4 rounded-pill" onclick="resumePrintFun('{{ route('resume.pdf.preview',request('id')) }}')">Preview</button>
     <button class="btn btn-save px-4 rounded-pill" onclick="resumePrintFun('{{ route('resume.pdf',request('id')) }}')">Download</button>
+  </div>
   </header>
 
   <!-- Main Container -->
@@ -93,9 +96,9 @@
 
  <script>
 
-  function resumePrintFun(url){
-    window.location.href=url
-  }
+function resumePrintFun(url) {
+    window.open(url, '_blank');
+}
       $(document).ready(function(){
       LoadCVPreview()
     })
