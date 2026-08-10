@@ -322,17 +322,17 @@ class FrontendController extends Controller
     {
        $input=$request->all();
 
-        $score=(new AppGoogleRecaptchaController())->getScore($input['g-recaptcha-response']);
-        if($score<0.7)
-        {
-           return redirect()->back()->withInput()->with([
-                'toast' => [
-                    'heading' => 'Message',
-                    'message' => 'Invalid recaptcha',
-                    'type' => 'danger',
-                ]
-            ]);
-        }
+        // $score=(new AppGoogleRecaptchaController())->getScore($input['g-recaptcha-response']);
+        // if($score<0.7)
+        // {
+        //    return redirect()->back()->withInput()->with([
+        //         'toast' => [
+        //             'heading' => 'Message',
+        //             'message' => 'Invalid recaptcha',
+        //             'type' => 'danger',
+        //         ]
+        //     ]);
+        // }
       $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|unique:users,email',
