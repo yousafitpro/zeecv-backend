@@ -543,6 +543,7 @@ Route::prefix('resume')
         Route::post('/update-template', [ResumeController::class,'updateTemplate'])->name('resume.update.template');
         Route::get('/delete/{id}', [ResumeController::class,'delete'])->name('resume.delete');
         Route::get('/pdf/{id}', [ResumeController::class,'pdf'])->name('resume.pdf');
+        Route::get('/preview/{id}', [ResumeController::class,'pdfPreview'])->name('resume.pdf.preview');
 
         // experiences
         Route::get('/experience/list', [ExperienceController::class,'list'])->name('resume.experience.list');

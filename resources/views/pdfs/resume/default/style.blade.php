@@ -76,15 +76,7 @@
             margin: 25px 30px;
         }
 
-        body {
-            font-family: var(--pdf-font-primary);
-            color: var(--pdf-primary-text-color);
-            font-size: 11px;
-            line-height: 1.4;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-        }
+
 
         /* Table Resets */
         table {

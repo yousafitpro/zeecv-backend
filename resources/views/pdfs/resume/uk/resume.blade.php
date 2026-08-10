@@ -11,15 +11,6 @@
             background-color: #ffffff;
         }
 
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #222222;
-            -webkit-print-color-adjust: exact;
-        }
-
         .zeecv_pdf_outer {
             width: 100%;
             background-color: #ffffff !important;

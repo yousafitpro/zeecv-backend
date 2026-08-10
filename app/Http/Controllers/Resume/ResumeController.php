@@ -84,6 +84,26 @@ class ResumeController extends Controller
       // return $pdf->stream('resume.pdf');
       return $pdf->download($data['cv']->contact->desired_job_title.'.pdf');
     }
+    public function pdfPreview($id){
+         $data['cv']=Resume::where([
+               'user_id'=>auth_user_id(),
+               'id'=>unique_decrypt($id)
+               ])
+            ->with([
+               'experiences',
+               'summary'
+            ])->first();
+      $template=!empty($data['cv']->template->template)?$data['cv']->template->template:'default';  
+      $pdf = Pdf::loadView('pdfs.resume.'.$template.'.resume', $data);
+      $pdf->setOptions([
+         'isHtml5ParserEnabled' => true,
+         'isRemoteEnabled' => true,
+         'defaultPaperSize' => 'a4',  // Add this line
+      ]);
+      //   dd($data['cv']);
+      return $pdf->stream('resume.pdf');
+      return $pdf->download($data['cv']->contact->desired_job_title.'.pdf');
+    }
     public function updateTemplate(Request $request){
         $resume=$this->process()->where('id',unique_decrypt($request->resume_id))->first();
         $template=zeecv_templates()[$request->template];
