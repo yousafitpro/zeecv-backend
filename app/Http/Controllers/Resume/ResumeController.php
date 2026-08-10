@@ -48,10 +48,10 @@ class ResumeController extends Controller
             
       $pdf = Pdf::loadView('pdfs.resume.default.resume', $data);
       $pdf->setOptions([
-            'defaultFont' => 'sans-serif',
-            'isHtml5ParserEnabled' => true,
-            'isRemoteEnabled' => true,
-        ]);
+         'isHtml5ParserEnabled' => true,
+         'isRemoteEnabled' => true,
+         'defaultPaperSize' => 'a4',  // Add this line
+      ]);
       //   dd($data['cv']);
       // return $pdf->stream('resume.pdf');
       return $pdf->download($data['cv']->contact->desired_job_title.'.pdf');
