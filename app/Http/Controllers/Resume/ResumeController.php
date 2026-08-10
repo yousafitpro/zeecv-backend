@@ -101,7 +101,7 @@ class ResumeController extends Controller
          'defaultPaperSize' => 'a4',  // Add this line
       ]);
       //   dd($data['cv']);
-      return $pdf->stream('resume.pdf');
+      return $pdf->stream('resume-'.now().'.pdf');
       return $pdf->download($data['cv']->contact->desired_job_title.'.pdf');
     }
     public function updateTemplate(Request $request){
