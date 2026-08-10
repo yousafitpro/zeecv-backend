@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\App\AppAlertController;
+use App\Http\Controllers\App\MobileAppController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Backend\DashboardController;
@@ -589,3 +590,11 @@ Route::prefix('resume-builder')
        Route::get('/pricing', [HomeController::class,'pricing'])->name('home.pricing');
        Route::get('/templates', [HomeController::class,'templates'])->name('home.templates');
     });
+
+Route::group([
+    'prefix' => 'mobile-app'
+], function ($router) {
+
+    Route::get('login-using-token/{token}', [MobileAppController::class,'loginUsingToken']);
+
+});

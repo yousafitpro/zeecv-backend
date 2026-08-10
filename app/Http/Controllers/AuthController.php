@@ -37,6 +37,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
+            'type'    => "User",
             'password' => bcrypt($validated['password']),
         ]);
         return response()->json([
