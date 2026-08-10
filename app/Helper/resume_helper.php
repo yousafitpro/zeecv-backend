@@ -13,6 +13,11 @@ if ( ! function_exists('zeecv_templates')){
                 'template'=>'uk',
                 'thumbnail'=>asset('resume/templates/uk.png')
                 ],
+            'ca'=>[
+                'color'=>'#c7885c',
+                'template'=>'ca',
+                'thumbnail'=>asset('resume/templates/ca.png')
+                ],
         ];
     }
 }
