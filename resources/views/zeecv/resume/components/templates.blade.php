@@ -17,7 +17,7 @@
 <div style="padding: 10px;" class="zeecv_template_outer">
     <div class="row">
         @foreach ($templates as $key => $value)
-            <div class="col-6 col-md-6 mb-3">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-4 mb-3">
                 <div class="template-item {{ isset($template) && $template->template == $key ? 'active_template' : '' }}">
                     <img 
                         src="{{ $value['thumbnail'] }}" 
