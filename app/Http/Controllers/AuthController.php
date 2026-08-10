@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\App\MobileAppController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -66,6 +67,7 @@ class AuthController extends Controller
         return response()->json([
             'success' => true,
             'token' => $token,
+            'login_token'=>(new MobileAppController())->generateLoginTokenProcess($user),
             'name' => $user->name,
             'email' => $user->email,
             'id' => $user->id,

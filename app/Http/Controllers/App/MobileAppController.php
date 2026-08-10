@@ -11,12 +11,16 @@ use Illuminate\Support\Facades\Http;
 
 class MobileAppController extends Controller
 {
-    public function generateLoginToken()
-    {
+    public function generateLoginTokenProcess($user){
       $token = bin2hex(random_bytes(32));
-      $user=auth()->user();
       $user->login_token=$token;
       $user->save();
+      return $token;
+    }
+    public function generateLoginToken()
+    {
+      $user=auth()->user();
+      $token = $this->generateLoginTokenProcess($user);
       return response()->json(['login_token'=>$token]);
     }
     public function loginUsingToken($token)
