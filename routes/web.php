@@ -539,6 +539,7 @@ Route::prefix('resume')
         Route::get('/pay-and-unlock', [ResumeController::class,'payAndUnlock'])->name('resume.pay_and_unlock');
         Route::get('/', [ResumeController::class,'create'])->name('resume.create');
         Route::get('/edit/{id}', [ResumeController::class,'edit'])->name('resume.edit');
+        Route::post('/update-template', [ResumeController::class,'updateTemplate'])->name('resume.update.template');
         Route::get('/delete/{id}', [ResumeController::class,'delete'])->name('resume.delete');
         Route::get('/pdf/{id}', [ResumeController::class,'pdf'])->name('resume.pdf');
 

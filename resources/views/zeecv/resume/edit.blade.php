@@ -22,6 +22,9 @@
     <!-- JS Dependencies -->
   <script src="{{ asset("resume/js/jquery-3.5.1.min.js") }}"></script>
   <script src="{{ asset('resume/js/bootstrap-4.6.2.bundle.min.js') }}"></script>
+      <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
   <link
     rel="stylesheet"
     href="{{ asset('resume/css/colorpicker-classic.min.css') }}"
@@ -80,7 +83,7 @@
    <div class="col-lg-8 col-md-7">
      <div class="resumePrintDiveOuter">
      <div class="resumePrintDiveInner">
-        <div id="CV_Preview_div" style="width: 100%;"></div>
+      <div id="CV_Preview_div" style="width: 100%;background:white;padding: 20px 30px"></div>
      </div>
      </div>
    </div>

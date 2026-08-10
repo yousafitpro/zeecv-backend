@@ -77,7 +77,9 @@ setTimeout(() => {
           
 
           </div>
+          @include('zeecv.resume.components.templates')
         </div>
+       
        @include('zeecv.resume.components.pay_and_unlock')
         <script>
   function saveTemplate(event, form) {

@@ -52,7 +52,8 @@
             "app/Helper/nexmo.php",
             "app/Helper/my_gallery.php",
             "app/Helper/filesystem.php",
-            "app/Helper/admin.php"
+            "app/Helper/admin.php",
+            "app/Helper/resume_helper.php"
         ],
         "psr-4": {
             "App\\": "app/",
