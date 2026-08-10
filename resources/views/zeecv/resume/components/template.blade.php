@@ -1,6 +1,6 @@
       <!-- TEMPLATE TAB VIEW (Hidden by default) -->
         <div id="templateView" style="display: none;">
-          <div class="bg-white p-3 rounded shadow-sm">
+          {{-- <div class="bg-white p-3 rounded shadow-sm">
             <h6 class="font-weight-bold mb-3">Choose Layout & Styling</h6>
              <form class="mt-1" method="post" action="{{ route('resume.template.save') }}"  onsubmit="saveTemplate(event,this)">
                       @csrf
@@ -76,12 +76,12 @@ setTimeout(() => {
                     </form>
           
 
-          </div>
+          </div> --}}
           @include('zeecv.resume.components.templates')
         </div>
        
        @include('zeecv.resume.components.pay_and_unlock')
-        <script>
+        {{-- <script>
   function saveTemplate(event, form) {
     // 1. Prevent the default form submission
     event.preventDefault();
@@ -119,4 +119,4 @@ setTimeout(() => {
         }
     });
 }
-</script>
+</script> --}}
