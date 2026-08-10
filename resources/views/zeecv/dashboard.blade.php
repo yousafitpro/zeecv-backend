@@ -39,7 +39,7 @@
                     <i class="fas fa-briefcase mr-1"></i> {{ $res->contact->desired_job_title }}
                 </p>
                 <p class="card-text text-muted small">
-                    <i class="far fa-calendar-alt mr-1"></i> Updated: Dec 15, 2025
+                    <i class="far fa-calendar-alt mr-1"></i> Updated: {{ $res->created_at->format('M d, Y') }}
                 </p>
                 <div class="mt-3">
                     <span class="badge badge-light"><i class="far fa-file-pdf mr-1"></i> PDF</span>
