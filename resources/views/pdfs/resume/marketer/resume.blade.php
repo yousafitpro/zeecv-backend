@@ -15,14 +15,14 @@
         /* STRICTLY SCOPED CSS - Dompdf & PDF Safe */
         .zeecv_pdf_outer {
             width: 88%;
-            /* max-width: 800px; */
+            max-width: 800px;
             margin: 0 auto;
             background-color: #ffffff !important;
             box-sizing: border-box;
             color: #1e293b;
             font-size: 8.5pt;
             line-height: 1.45;
-            /* padding: 10mm 12mm; */
+            padding: 10mm 12mm;
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
