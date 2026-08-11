@@ -8,10 +8,23 @@
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 10px;
+    height: 250px;
+}
+.template-item img{
+     height: 250px;
+     border-radius: 10px;
 }
 .zeecv_template_outer .template-item:hover {
     transform: scale(1.02);
 }
+    @media (max-width: 991.98px) {
+        .zeecv_template_outer .template-item {
+            height: 200px;
+        }
+        .template-item img{
+            height: 200px;
+        }
+    }
 </style>
 
 <div style="padding: 10px;" class="zeecv_template_outer">
