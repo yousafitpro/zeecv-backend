@@ -131,6 +131,9 @@
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav ml-auto align-items-lg-center">
         <li class="nav-item">
+          <a class="nav-link" target="_blank" href="{{ url('terms') }}">Terms</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{ route('home.features') }}">Features</a>
         </li>
         <li class="nav-item">
