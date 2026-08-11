@@ -9,6 +9,18 @@ if ( ! function_exists('zeecv_templates')){
                 'thumbnail'=>asset('resume/templates/default.png'),
                 'name'=>'Default'
                 ],
+                 'temp1'=>[
+                'color'=>'#c7885c',
+                'template'=>'temp1',
+                'thumbnail'=>asset('resume/templates/ca.png'),
+                'name'=>'Template 1'
+                ],
+            'temp2'=>[
+                'color'=>'#c7885c',
+                'template'=>'temp2',
+                'thumbnail'=>asset('resume/templates/ca.png'),
+                'name'=>'Template 2'
+                ],
             'marketer'=>[
                 'color'=>'#c7885c',
                 'template'=>'marketer',
@@ -39,18 +51,7 @@ if ( ! function_exists('zeecv_templates')){
                 'thumbnail'=>asset('resume/templates/ca.png'),
                 'name'=>'Canada'
                 ],
-            'temp1'=>[
-                'color'=>'#c7885c',
-                'template'=>'temp1',
-                'thumbnail'=>asset('resume/templates/ca.png'),
-                'name'=>'Template 1'
-                ],
-            'temp2'=>[
-                'color'=>'#c7885c',
-                'template'=>'temp2',
-                'thumbnail'=>asset('resume/templates/ca.png'),
-                'name'=>'Template 2'
-                ]
+           
         ];
     }
 }
