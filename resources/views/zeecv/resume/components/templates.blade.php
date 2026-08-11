@@ -5,10 +5,7 @@
     padding: 3px;
 }
 .zeecv_template_outer .temp_name h6{
-  background: white;
-  border-radius: 1px;
-  padding: 0.1rem 0px;
-  margin-top: 10px;
+ font-size: 10px;
 }
 .zeecv_template_outer .template-item {
 
