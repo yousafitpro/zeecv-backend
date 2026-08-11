@@ -181,7 +181,7 @@
                     {{ $cv->contact->email }}
                 </td>
                 <td width="50%">
-                    <span class="icon-circle" style="width:28px;height:28px;"><i class="fa fa-map-marker-alt"></i></span>
+                    <span class="icon-circle" ><i class="fa fa-map-marker-alt"></i></span>
                     {{ $cv->contact->location }}, {{ $cv->contact->country }}
                 </td>
             </tr>
