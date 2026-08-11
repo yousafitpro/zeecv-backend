@@ -234,7 +234,7 @@
                 <tr>
                     <td width="62%">
                         <h1 class="zeecv_pdf_outer resume-name">{{ $cv->contact->first_name . ' ' . $cv->contact->last_name }}</h1>
-                        <p class="zeecv_pdf_outer resume-subtitle"><span style="color:#0284c7;">&#9654;</span> {{ $cv->contact->desired_job_title }}</p>
+                        <p class="zeecv_pdf_outer resume-subtitle"> {{ $cv->contact->desired_job_title }}</p>
                     </td>
                     <td width="38%" class="zeecv_pdf_outer contact-text">
                         @if (!empty($cv->contact->email))
