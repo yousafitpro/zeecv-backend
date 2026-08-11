@@ -600,3 +600,10 @@ Route::group([
     Route::get('login-using-token/{token}', [MobileAppController::class,'loginUsingToken']);
 
 });
+Route::group([
+    'prefix' => 'account'
+], function ($router) {
+
+    Route::get('delete', [MobileAppController::class,'deleteAccount']);
+
+});

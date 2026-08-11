@@ -17,6 +17,11 @@ class MobileAppController extends Controller
       $user->save();
       return $token;
     }
+    public function deleteAccount(){
+      return response()->json([
+        'message'=>"Account Successfully deleted"
+      ]);
+    }
     public function generateLoginToken()
     {
       $user=auth()->user();
