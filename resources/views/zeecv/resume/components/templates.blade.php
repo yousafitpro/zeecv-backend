@@ -8,14 +8,14 @@
  font-size: 10px;
 }
 .zeecv_template_outer .template-item {
-
+    padding: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 10px;
     height: 250px;
 }
 .template-item img{
-     height: 250px;
+     height: 240px;
      border-radius: 10px;
 }
 .zeecv_template_outer .template-item:hover {
@@ -26,7 +26,7 @@
             height: 200px;
         }
         .template-item img{
-            height: 200px;
+            height: 190px;
         }
     }
 </style>
