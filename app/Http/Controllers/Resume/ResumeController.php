@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Resume;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\WebAuthController;
 use App\Models\Resume\Contact;
 use App\Models\Resume\Resume;
 use App\Models\Resume\Summary;
@@ -11,6 +12,10 @@ use Illuminate\Http\Request;
 
 class ResumeController extends Controller
 {
+    public function emailTest(Request $request){
+      (new WebAuthController())->createEmailVerification(auth()->user()->id);
+      dd(auth()->user()->email);
+    }
     public function preview(Request $request){
          Contact::updateOrCreate(
          [

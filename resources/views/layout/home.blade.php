@@ -56,6 +56,8 @@
 @include("layout.includes.css")
 <!-- Google tag (gtag.js) -->
 @include('home.google-tag')
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5874917464902670"
+     crossorigin="anonymous"></script>
 </head>
 <body>
 <div style="height: 100px"></div>
