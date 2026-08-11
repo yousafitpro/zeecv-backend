@@ -4,7 +4,14 @@
     border-radius: 4px;
     padding: 3px;
 }
+.zeecv_template_outer .temp_name h6{
+  background: white;
+  border-radius: 1px;
+  padding: 0.1rem 0px;
+  margin-top: 10px;
+}
 .zeecv_template_outer .template-item {
+
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 10px;
@@ -40,7 +47,9 @@
                         alt="{{ $key }} template"
                     >
                 </div>
-                <h6 style="text-align: center;margin-top:5px;">{{ $value['name'] }}</h3>
+                <div class="temp_name">
+                    <h6 style="text-align: center;margin-top:5px;">{{ $value['name'] }}</h3>
+                </div>
             </div>
         @endforeach
     </div>

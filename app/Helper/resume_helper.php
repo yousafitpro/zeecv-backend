@@ -43,7 +43,7 @@ if ( ! function_exists('zeecv_templates')){
                 'color'=>'#c7885c',
                 'template'=>'fashiondesigner',
                 'thumbnail'=>asset('resume/templates/uk.png'),
-                'name'=>'Fashion Designerr'
+                'name'=>'Fashion Designer'
                 ],
             'ca'=>[
                 'color'=>'#c7885c',
