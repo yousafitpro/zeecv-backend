@@ -44,6 +44,12 @@ if ( ! function_exists('zeecv_templates')){
                 'template'=>'temp1',
                 'thumbnail'=>asset('resume/templates/ca.png'),
                 'name'=>'Template 1'
+                ],
+            'temp2'=>[
+                'color'=>'#c7885c',
+                'template'=>'temp2',
+                'thumbnail'=>asset('resume/templates/ca.png'),
+                'name'=>'Template 2'
                 ]
         ];
     }
