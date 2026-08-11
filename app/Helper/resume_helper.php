@@ -38,6 +38,12 @@ if ( ! function_exists('zeecv_templates')){
                 'template'=>'ca',
                 'thumbnail'=>asset('resume/templates/ca.png'),
                 'name'=>'Canada'
+                ],
+            'temp1'=>[
+                'color'=>'#c7885c',
+                'template'=>'temp1',
+                'thumbnail'=>asset('resume/templates/ca.png'),
+                'name'=>'Template 1'
                 ]
         ];
     }
