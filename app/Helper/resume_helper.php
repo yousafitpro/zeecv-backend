@@ -21,6 +21,18 @@ if ( ! function_exists('zeecv_templates')){
                 'thumbnail'=>asset('resume/templates/uk.png'),
                 'name'=>'UK'
                 ],
+            'gamedeveloper'=>[
+                'color'=>'#c7885c',
+                'template'=>'gamedeveloper',
+                'thumbnail'=>asset('resume/templates/uk.png'),
+                'name'=>'Game Developer'
+                ],
+            'fashiondesigner'=>[
+                'color'=>'#c7885c',
+                'template'=>'fashiondesigner',
+                'thumbnail'=>asset('resume/templates/uk.png'),
+                'name'=>'Fashion Designerr'
+                ],
             'ca'=>[
                 'color'=>'#c7885c',
                 'template'=>'ca',
