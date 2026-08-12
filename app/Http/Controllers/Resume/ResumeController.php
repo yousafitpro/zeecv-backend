@@ -8,6 +8,7 @@ use App\Models\Resume\Contact;
 use App\Models\Resume\Resume;
 use App\Models\Resume\Summary;
 use App\Models\Resume\Template;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ResumeController extends Controller
@@ -69,7 +70,12 @@ class ResumeController extends Controller
       );
        return redirect()->route('resume.edit',unique_encrypt($res->id));
     }
-    public function pdf($id){
+    public function pdf(Request $request,$id){
+      if(!auth()->check() && !empty($request->resume_token)){
+         $user=User::where('login_token',$request->resume_token)->first();
+         auth()->login($user);
+      }
+      
          $data['cv']=Resume::where([
                // 'user_id'=>auth_user_id(),
                'id'=>unique_decrypt($id)
@@ -89,7 +95,11 @@ class ResumeController extends Controller
       // return $pdf->stream('resume.pdf');
       return $pdf->download($data['cv']->contact->desired_job_title.'.pdf');
     }
-    public function pdfPreview($id){
+    public function pdfPreview(Request $request,$id){
+      if(!auth()->check() && !empty($request->resume_token)){
+         $user=User::where('login_token',$request->resume_token)->first();
+         auth()->login($user);
+      }
          $data['cv']=Resume::where([
                // 'user_id'=>auth_user_id(),
                'id'=>unique_decrypt($id)
