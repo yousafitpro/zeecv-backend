@@ -8,6 +8,7 @@ use App\Models\Resume\Resume;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 
 class MobileAppController extends Controller
 {
@@ -31,6 +32,7 @@ class MobileAppController extends Controller
     public function loginUsingToken($token)
     {
       $user=User::where('login_token',$token)->first();
+      Session::put('is_app','yes');
       if($user){
         auth()->login($user);
         $resumes=Resume::where('user_id',$user->id)->get();
