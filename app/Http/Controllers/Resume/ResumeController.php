@@ -51,7 +51,8 @@ class ResumeController extends Controller
          'summary'
       ])->first();
       $template=!empty($data['cv']->template->template)?$data['cv']->template->template:'default';
-      return view('pdfs.resume.'.$template.'.resume',$data);
+      $data['r_id']=$id;
+      return view('mobile-app.pdf_iframe',$data);
     }
     public function create()
     {
@@ -114,6 +115,31 @@ class ResumeController extends Controller
       return $pdf->download($data['cv']->contact->desired_job_title.'.pdf');
     }
     public function pdfPreview(Request $request,$id){
+       $input=$request->all();
+      if(!auth()->check() && !empty($input['resume_token'])){
+         $user=User::where('login_token',$request->resume_token)->first();
+         auth()->login($user);
+      }
+         $data['cv']=Resume::where([
+               // 'user_id'=>auth_user_id(),
+               'id'=>unique_decrypt($id)
+               ])
+            ->with([
+               'experiences',
+               'summary'
+            ])->first();
+      $template=!empty($data['cv']->template->template)?$data['cv']->template->template:'default';  
+      $pdf = Pdf::loadView('pdfs.resume.'.$template.'.resume', $data);
+      $pdf->setOptions([
+         'isHtml5ParserEnabled' => true,
+         'isRemoteEnabled' => true,
+         'defaultPaperSize' => 'a4',  // Add this line
+      ]);
+      //   dd($data['cv']);
+      return $pdf->stream('resume-'.now().'.pdf');
+      return $pdf->download($data['cv']->contact->desired_job_title.'.pdf');
+    }
+    public function pdfPreview2(Request $request,$id){
        $input=$request->all();
       if(!auth()->check() && !empty($input['resume_token'])){
          $user=User::where('login_token',$request->resume_token)->first();

@@ -51,7 +51,7 @@
             . '&resume_token=' . urlencode(auth()->user()->login_token);
         }
       @endphp
-      <a  href="{{ $preview_url }}" target="_blank" class="btn btn-save btn-preview px-4 rounded-pill" >PDF Preview {{session('is_app','no')}}</a>
+      <a  href="{{ $preview_url }}" target="_blank" class="btn btn-save btn-preview px-4 rounded-pill" >PDF Preview </a>
     <a href="{{ route('resume.pdf',request('id')) }}?resume={{ now() }}&resume_token={{ auth()->user()->login_token }}" class="btn btn-save px-4 rounded-pill" >Download</a>
   
   </div>

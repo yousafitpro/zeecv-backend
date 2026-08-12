@@ -545,6 +545,7 @@ Route::prefix('resume')
         Route::get('/delete/{id}', [ResumeController::class,'delete'])->name('resume.delete');
         Route::get('/download-pdf/pdf/{id}', [ResumeController::class,'pdf'])->name('resume.pdf');
         Route::get('/download-pdf/preview/{id}', [ResumeController::class,'pdfPreview'])->name('resume.pdf.preview');
+        Route::get('/fg/bn/{id}', [ResumeController::class,'pdfPreview2'])->name('resume.pdf.preview2');
 
         // experiences
         Route::get('/experience/list', [ExperienceController::class,'list'])->name('resume.experience.list');
