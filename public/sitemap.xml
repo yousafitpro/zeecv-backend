@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+		<!--	created with www.mysitemapgenerator.com	-->
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://zeecv.com/</loc>
+	<lastmod>2026-08-12T18:47:36+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://zeecv.com/terms</loc>
+	<lastmod>2026-08-12T18:47:36+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://zeecv.com/resume-builder/features</loc>
+	<lastmod>2026-08-12T18:47:36+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://zeecv.com/resume-builder/templates</loc>
+	<lastmod>2026-08-12T18:47:36+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://zeecv.com/login</loc>
+	<lastmod>2026-08-12T18:47:36+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://zeecv.com/signup</loc>
+	<lastmod>2026-08-12T18:47:36+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://zeecv.com/reset-email</loc>
+	<lastmod>2026-08-12T18:47:39+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+</urlset>
