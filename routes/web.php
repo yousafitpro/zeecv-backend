@@ -543,8 +543,8 @@ Route::prefix('resume')
         Route::get('/edit/{id}', [ResumeController::class,'edit'])->name('resume.edit');
         Route::post('/update-template', [ResumeController::class,'updateTemplate'])->name('resume.update.template');
         Route::get('/delete/{id}', [ResumeController::class,'delete'])->name('resume.delete');
-        Route::get('/pdf/{id}', [ResumeController::class,'pdf'])->name('resume.pdf');
-        Route::get('/preview/{id}', [ResumeController::class,'pdfPreview'])->name('resume.pdf.preview');
+        Route::get('/download-pdf/pdf/{id}', [ResumeController::class,'pdf'])->name('resume.pdf');
+        Route::get('/download-pdf/preview/{id}', [ResumeController::class,'pdfPreview'])->name('resume.pdf.preview');
 
         // experiences
         Route::get('/experience/list', [ExperienceController::class,'list'])->name('resume.experience.list');
