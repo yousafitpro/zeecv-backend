@@ -71,7 +71,7 @@ class ResumeController extends Controller
     }
     public function pdf($id){
          $data['cv']=Resume::where([
-               'user_id'=>auth_user_id(),
+               // 'user_id'=>auth_user_id(),
                'id'=>unique_decrypt($id)
                ])
             ->with([
@@ -91,7 +91,7 @@ class ResumeController extends Controller
     }
     public function pdfPreview($id){
          $data['cv']=Resume::where([
-               'user_id'=>auth_user_id(),
+               // 'user_id'=>auth_user_id(),
                'id'=>unique_decrypt($id)
                ])
             ->with([
