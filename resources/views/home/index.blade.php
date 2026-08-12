@@ -14,13 +14,13 @@
         <i class="fas fa-magic"></i> Start with AI
     </a>
 
-    <a href="https://play.google.com/store/apps/details?id=com.zeecv"
+    {{-- <a href="https://play.google.com/store/apps/details?id=com.zeecv"
        target="_blank"
        rel="noopener noreferrer"
        class="download-app-btn">
         <i class="fab fa-google-play"></i>
         Download App
-    </a>
+    </a> --}}
 </div>
       <div class="hero-stats">
         <div><span class="number">12k+</span><span class="label">CVs generated</span></div>
