@@ -41,7 +41,7 @@
       <i class="fas fa-arrow-left mr-2"></i>Dashboard
     </a>
     <div class="resume-edit-action-buttons">
-      <a href="{{ route('resume.pdf.preview',request('id')) }}?resume={{ now() }}" class="btn btn-save btn-preview px-4 rounded-pill" >PDF Preview</a>
+      <a  href="{{ route('resume.pdf.preview',request('id')) }}?resume={{ now() }}" target="_blank" class="btn btn-save btn-preview px-4 rounded-pill" >PDF Preview</a>
     <a href="{{ route('resume.pdf',request('id')) }}?resume={{ now() }}" class="btn btn-save px-4 rounded-pill" >Download</a>
   </div>
   </header>
