@@ -97,16 +97,13 @@
  <script>
 
 function resumePrintFun(url) {
-    window.open(url, '_blank');
+    window.location.href = url;
 }
+
 function resumePrintFunNewWindow(url) {
     const randomNumber = Math.floor(Math.random() * 1000000);
 
-    window.open(
-        url + '?resume=' + randomNumber,
-        '_blank',
-        'width=1000,height=800,noopener,noreferrer'
-    );
+    window.location.href = url + '?resume=' + randomNumber;
 }
       $(document).ready(function(){
       LoadCVPreview()
