@@ -35,6 +35,24 @@ class ResumeController extends Controller
       $template=!empty($data['cv']->template->template)?$data['cv']->template->template:'default';
       return view('pdfs.resume.'.$template.'.resume',$data);
     }
+    public function rawPDF(Request $request,$id){
+         Contact::updateOrCreate(
+         [
+            'resume_id'=>unique_decrypt($id),
+            'user_id'=>auth_user_id()
+         ]
+      );
+      $data['cv']=Resume::where([
+         'user_id'=>auth_user_id(),
+         'id'=>unique_decrypt($id)
+         ])
+      ->with([
+         'experiences',
+         'summary'
+      ])->first();
+      $template=!empty($data['cv']->template->template)?$data['cv']->template->template:'default';
+      return view('pdfs.resume.'.$template.'.resume',$data);
+    }
     public function create()
     {
       if(Resume::where(['user_id'=>auth_user_id()])->count()>10){
@@ -96,7 +114,8 @@ class ResumeController extends Controller
       return $pdf->download($data['cv']->contact->desired_job_title.'.pdf');
     }
     public function pdfPreview(Request $request,$id){
-      if(!auth()->check() && !empty($request->resume_token)){
+       $input=$request->all();
+      if(!auth()->check() && !empty($input['resume_token'])){
          $user=User::where('login_token',$request->resume_token)->first();
          auth()->login($user);
       }

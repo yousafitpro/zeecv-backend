@@ -607,3 +607,10 @@ Route::group([
     Route::get('delete', [MobileAppController::class,'deleteAccount']);
 
 });
+Route::group([
+    'prefix' => 'goat'
+], function ($router) {
+
+     Route::get('/hk/p/{id}', [ResumeController::class,'rawPDF'])->name('raw.pdf.review');
+
+});
