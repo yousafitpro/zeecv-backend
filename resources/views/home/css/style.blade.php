@@ -340,7 +340,35 @@
     .footer .socials i:hover {
       color: #2563eb;
     }
+.start-with-ai-app-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 18px;
+    background: var(--primary);
+    color: #fff !important;
+    border-radius: 8px;
+    text-decoration: none !important;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+.download-app-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 18px;
+    background: #111827;
+    color: #fff !important;
+    border-radius: 8px;
+    text-decoration: none !important;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
 
+.download-app-btn:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
     /* responsive */
     @media (max-width: 800px) {
       .hero-content h1 {
