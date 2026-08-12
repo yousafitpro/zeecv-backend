@@ -41,7 +41,10 @@
       <i class="fas fa-arrow-left mr-2"></i>Dashboard
     </a>
     <div class="resume-edit-action-buttons">
-      <a  href="{{ route('resume.pdf.preview',request('id')) }}?resume={{ now() }}&resume_token={{ auth()->user()->login_token }}" target="_blank" class="btn btn-save btn-preview px-4 rounded-pill" >PDF Preview {{session('is_app','no')}}</a>
+      @if (session('is_app','no')!='yes')
+        <a  href="{{ route('resume.pdf.preview',request('id')) }}?resume={{ now() }}&resume_token={{ auth()->user()->login_token }}" target="_blank" class="btn btn-save btn-preview px-4 rounded-pill" >PDF Preview</a>
+      @endif
+      
     <a href="{{ route('resume.pdf',request('id')) }}?resume={{ now() }}&resume_token={{ auth()->user()->login_token }}" class="btn btn-save px-4 rounded-pill" >Download</a>
   
   </div>
