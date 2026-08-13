@@ -41,6 +41,8 @@
     <a href="{{ url('dashboard') }}" class="btn btn-link text-secondary text-decoration-none p-0" style="float:right">
       <i class="fas fa-arrow-left mr-2"></i>Dashboard
     </a>
+    @else
+    <div><h4>Edit Resume</h4></div>
     @endif
     <div class="resume-edit-action-buttons">
       @if (session('is_app','no')!='yes')
