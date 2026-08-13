@@ -32,46 +32,28 @@
 <div class="zeecv-blog-detail">
 
 
-
-    {{-- ============================= --}}
-    {{-- Header Image --}}
+{{-- ============================= --}}
+    {{-- Full Width Header Image --}}
     {{-- ============================= --}}
 
     @if(!empty($blog->headerimg))
 
-        <section class="py-4 py-lg-5">
+        <section class="p-0 border-0 overflow-hidden">
 
-            <div class="container">
-
-                <div class="row justify-content-center">
-
-                    <div class="col-lg-10">
-
-                        <div class="overflow-hidden rounded-4 shadow-sm">
-
-                            <img
-                                src="{{ asset($blog->headerimg->file_url) }}"
-                                alt="{{ $blog->title }}"
-                                class="w-100"
-                                style="
-                                    max-height: 520px;
-                                    object-fit: cover;
-                                "
-                            >
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
+            <img
+                src="{{ asset($blog->headerimg->file_url) }}"
+                alt="{{ $blog->title }}"
+                class="w-100"
+                style="
+                    max-height: 520px;
+                    object-fit: cover;
+                    display: block; /* Removes tiny space at bottom of image */
+                "
+            >
 
         </section>
 
     @endif
-
-
     {{-- ============================= --}}
     {{-- Blog Content --}}
     {{-- ============================= --}}
@@ -114,178 +96,8 @@
     </section>
 
 
-    {{-- ============================= --}}
-    {{-- CTA --}}
-    {{-- ============================= --}}
 
-    <section class="py-5">
 
-        <div class="container">
-
-            <div class="row justify-content-center">
-
-                <div class="col-lg-9">
-
-                    <div class="bg-primary text-white rounded-4 p-4 p-lg-5 text-center shadow-sm">
-
-                        <span class="badge bg-white text-primary px-3 py-2 rounded-pill mb-3">
-                            Build Your Resume with ZeeCV
-                        </span>
-
-                        <h2 class="fw-bold mb-3">
-                            Ready to Create a Better Resume?
-                        </h2>
-
-                        <p class="mb-4 opacity-75 fs-5">
-
-                            Build an ATS-friendly resume, optimize it with AI,
-                            and make your next opportunity count.
-
-                        </p>
-
-                        <a href="{{ url('/') }}"
-                           class="btn btn-light btn-lg px-4 fw-semibold">
-
-                            Create Your Resume
-
-                            <i class="bi bi-arrow-right ms-2"></i>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    {{-- ============================= --}}
-    {{-- Related Blogs --}}
-    {{-- ============================= --}}
-
-    @if(isset($relatedBlogs) && $relatedBlogs->count())
-
-        <section class="py-5 bg-light">
-
-            <div class="container">
-
-                <div class="text-center mb-5">
-
-                    <span class="text-primary fw-semibold">
-                        ZeeCV Blog
-                    </span>
-
-                    <h2 class="fw-bold mt-2">
-                        You May Also Like
-                    </h2>
-
-                    <p class="text-muted">
-                        More career and resume insights from ZeeCV.
-                    </p>
-
-                </div>
-
-
-                <div class="row g-4">
-
-                    @foreach($relatedBlogs as $related)
-
-                        <div class="col-lg-4 col-md-6">
-
-                            <article class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-
-                                {{-- Image --}}
-                                @if(!empty($related->thumbnail))
-
-                                    <a href="{{ url('/blog/' . $related->slug) }}">
-
-                                        <img
-                                            src="{{ asset($related->thumbnail->file_url) }}"
-                                            class="card-img-top"
-                                            alt="{{ $related->title }}"
-                                            loading="lazy"
-                                            style="
-                                                height: 210px;
-                                                object-fit: cover;
-                                            "
-                                        >
-
-                                    </a>
-
-                                @endif
-
-
-                                <div class="card-body p-4 d-flex flex-column">
-
-                                    @if(!empty($related->category))
-
-                                        <span class="small text-primary fw-semibold mb-2">
-
-                                            {{ $related->category->name }}
-
-                                        </span>
-
-                                    @endif
-
-
-                                    <h3 class="h5 fw-bold mb-3">
-
-                                        <a
-                                            href="{{ url('/blog/' . $related->slug) }}"
-                                            class="text-dark text-decoration-none"
-                                        >
-
-                                            {{ $related->title }}
-
-                                        </a>
-
-                                    </h3>
-
-
-                                    <p class="text-muted mb-4">
-
-                                        {{ \Illuminate\Support\Str::limit(
-                                            strip_tags($related->description ?? $related->metadata ?? ''),
-                                            120
-                                        ) }}
-
-                                    </p>
-
-
-                                    <div class="mt-auto">
-
-                                        <a
-                                            href="{{ url('/blog/' . $related->slug) }}"
-                                            class="text-primary fw-semibold text-decoration-none"
-                                        >
-
-                                            Read More
-
-                                            <i class="bi bi-arrow-right ms-1"></i>
-
-                                        </a>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-                    @endforeach
-
-                </div>
-
-            </div>
-
-        </section>
-
-    @endif
 
 </div>
 
