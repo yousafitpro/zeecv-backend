@@ -56,6 +56,7 @@ class GlobalInputSanitization
         'password',
         'description',
         'long_description',
+        'meta_tags',
         'password_confirmation',
         'file',
         'files',

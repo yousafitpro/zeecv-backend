@@ -101,6 +101,15 @@
 
                 <div class="row">
                     <div class="col-md-12">
+                        <label>Meta Tags</label>
+                        <textarea style="width: 100%;height:100px" class="form-control" name="meta_tags" >{{$item->meta_tags}}</textarea>
+                    </div>
+
+                </div>       
+                <br>
+
+                <div class="row">
+                    <div class="col-md-12">
                         <label>Description</label>
                         <textarea id="page_content" style="width: 100%;height:200px" class="form-control" name="description" >{{$item->metadata}}</textarea>
                     </div>

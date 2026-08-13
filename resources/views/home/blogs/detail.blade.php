@@ -5,18 +5,9 @@
 
     <title>{{ $blog->title }} - ZeeCV</title>
 
-    <meta name="description"
-          content="{{ \Illuminate\Support\Str::limit(strip_tags($blog->description ?? $blog->metadata ?? ''), 160) }}">
-
-    <meta name="keywords"
-          content="{{ $blog->title }}, resume tips, CV tips, ATS resume, career advice, job search, ZeeCV">
-
-    {{-- Open Graph --}}
-    <meta property="og:title" content="{{ $blog->title }} - ZeeCV">
-
-    <meta property="og:description"
-          content="{{ \Illuminate\Support\Str::limit(strip_tags($blog->description ?? $blog->metadata ?? ''), 160) }}">
-
+    @if(!empty($blog->meta_tags))
+      {!! $blog->meta_tags !!}
+    @endif
     @if(!empty($blog->thumbnail))
         <meta property="og:image" content="{{ asset($blog->thumbnail->file_url) }}">
     @endif
