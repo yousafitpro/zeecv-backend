@@ -36,7 +36,7 @@
 <body>
 
   <!-- Top Navigation Bar -->
-  <header class="app-header sticky-top d-flex justify-content-between align-items-center px-4 py-2 bg-white">
+  <header class="app-header sticky-top {{session('is_app','no')=='yes'?'':'d-flex justify-content-between align-items-center'}} px-4 py-2 bg-white">
     @if (session('is_app','no')!='yes')
     <a href="{{ url('dashboard') }}" class="btn btn-link text-secondary text-decoration-none p-0" style="float:right">
       <i class="fas fa-arrow-left mr-2"></i>Dashboard
