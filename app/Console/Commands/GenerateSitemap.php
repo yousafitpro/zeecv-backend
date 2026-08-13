@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Controllers\Job\JobsController;
+use App\Http\Controllers\Job\Models\JobCareer;
 use App\Models\Pages\Page\Page;
 use Illuminate\Console\Command;
 use Spatie\Sitemap\SitemapGenerator;
@@ -33,14 +35,20 @@ class GenerateSitemap extends Command
             ->add(Url::create('/resume-builder/features')->setPriority(1.0))
             ->add(Url::create('/resume-buildertemplates')->setPriority(0.8))
             ->add(Url::create('/resume-builder/pricing')->setPriority(0.8))
+            ->add(Url::create('/resume-builder/jobs')->setPriority(0.8))
             ->add(Url::create('/login')->setPriority(0.8))
             ->add(Url::create('/signup')->setPriority(0.8));
 
-        // Add all public CVs/Profiles from database
+        // Add Blogs
         Page::query()
        ->where('type','blog')
        ->where('status','active')->get()->each(function (Page $blog) use ($sitemap) {
             $sitemap->add(Url::create("/blogs/{$blog->slug}"));
+        });
+
+        //add jobs
+       (new JobsController())->process()->get()->each(function (JobCareer $job) use ($sitemap) {
+            $sitemap->add(Url::create("/resume-builder/jobs/{$job->slug}"));
         });
 
         $sitemap->writeToFile(public_path('sitemap.xml'));
