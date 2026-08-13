@@ -29,11 +29,11 @@ class GenerateSitemap extends Command
     {
         $sitemap = Sitemap::create()
             ->add(Url::create('/')->setPriority(1.0))
-            ->add(Url::create('/features')->setPriority(1.0))
-            ->add(Url::create('/pricing')->setPriority(0.8))
+            ->add(Url::create('/resume-builder/features')->setPriority(1.0))
+            ->add(Url::create('/resume-buildertemplates')->setPriority(0.8))
+            ->add(Url::create('/resume-builder/pricing')->setPriority(0.8))
             ->add(Url::create('/login')->setPriority(0.8))
-            ->add(Url::create('/signup')->setPriority(0.8))
-            ->add(Url::create('/templates')->setPriority(0.8));
+            ->add(Url::create('/signup')->setPriority(0.8));
 
         // Add all public CVs/Profiles from database
         // User::all()->each(function (User $user) use ($sitemap) {
