@@ -79,7 +79,7 @@
                         <h2 class="h5 fw-bold mb-3">
 
                             <a
-                                href="{{ url('/blog/' . $blog->slug) }}"
+                                href="{{ url('/blogs/' . $blog->slug) }}"
                                 class="text-dark text-decoration-none"
                             >
                                 {{ $blog->title }}
