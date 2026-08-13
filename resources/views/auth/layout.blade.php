@@ -8,6 +8,9 @@
         --blue:var(--primary) !important;
         
     }
+    .btn-rounded{
+        border-radius: 10px !important;
+    }
 </style>
 </head>
 

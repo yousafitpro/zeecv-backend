@@ -87,7 +87,88 @@
     outline: none;
     box-shadow: none;
   }
+/* Resume Dropdown */
+.custom-navbar .resume-dropdown {
+    min-width: 280px;
+    padding: 8px;
+    margin-top: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.12);
+}
 
+.custom-navbar .resume-dropdown .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 10px;
+    color: #334155;
+    white-space: normal;
+    transition: all 0.2s ease;
+}
+
+.custom-navbar .resume-dropdown .dropdown-item:hover {
+    background: #f8fafc;
+    color: #2563eb;
+}
+
+.resume-menu-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 17px;
+}
+
+.resume-dropdown .dropdown-item strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1e293b;
+    line-height: 1.3;
+}
+
+.resume-dropdown .dropdown-item small {
+    display: block;
+    margin-top: 3px;
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+.resume-dropdown .dropdown-item:hover strong {
+    color: #2563eb;
+}
+
+/* Desktop dropdown arrow */
+.custom-navbar .dropdown-toggle::after {
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+/* Mobile */
+@media (max-width: 991.98px) {
+
+    .custom-navbar .resume-dropdown {
+        min-width: 100%;
+        margin-top: 5px;
+        border: none;
+        box-shadow: none;
+        background: #f8fafc;
+    }
+
+    .custom-navbar .resume-dropdown .dropdown-item {
+        padding: 12px 10px;
+    }
+
+}
   /* Mobile Dropdown Spacing */
   @media (max-width: 991.98px) {
     .custom-navbar .navbar-collapse {
@@ -143,6 +224,42 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home.templates') }}">Templates</a>
         </li>
+        <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle"
+       href="#"
+       id="resumeDropdown"
+       role="button"
+       data-toggle="dropdown"
+       aria-haspopup="true"
+       aria-expanded="false">
+        Resume
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-right resume-dropdown"
+         aria-labelledby="resumeDropdown">
+
+        <a class="dropdown-item" href="{{ url('home.resume.creator') }}">
+            <span class="resume-menu-icon">
+                <i class="fas fa-file-alt"></i>
+            </span>
+            <span>
+                <strong>Resume Creator</strong>
+                <small>Create a professional resume</small>
+            </span>
+        </a>
+
+        <a class="dropdown-item" href="{{ route('home.templates') }}">
+            <span class="resume-menu-icon">
+                <i class="fas fa-layer-group"></i>
+            </span>
+            <span>
+                <strong>Templates</strong>
+                <small>Choose your resume template</small>
+            </span>
+        </a>
+
+    </div>
+</li>
         {{-- <li class="nav-item">
           <a class="nav-link" href="{{ route('home.pricing') }}">Pricing</a>
         </li> --}}
@@ -152,7 +269,7 @@
           <a href="{{ url('login') }}" class="btn-nav-outline w-100">Log in</a>
         </li>
         <li class="nav-item my-2 my-lg-0 ml-lg-2">
-          <a href="{{ url('signup') }}" class="btn-nav-primary w-100">Get started</a>
+          <a href="{{ url('signup') }}" class="btn-nav-primary w-100">Create Resume</a>
         </li>
       </ul>
     </div>
