@@ -81,6 +81,7 @@ class PageController extends Controller
                 'user_id'=>auth_user_id(),
                 'created_by_id'=>auth_user_id(),
                 'metadata'=>$data['description'],
+                'long_description'=>$data['long_description'],
                 'status'=>$data['status'],
                 'type'=>$data['type']
             ]);
@@ -138,6 +139,7 @@ class PageController extends Controller
                 'title'=>$data['title'],
                 'slug'=> Str::slug($data['title']),
                 'metadata'=>html_entity_decode($data['description']),
+                'long_description'=>html_entity_decode($data['long_description']),
                 'status'=>$data['status'],
                 'type'=>$data['type']
             ]);

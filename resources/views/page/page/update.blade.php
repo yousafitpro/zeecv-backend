@@ -107,6 +107,15 @@
 
                 </div>       
                 <br>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Log Description (HTML)</label>
+                        <textarea  style="width: 100%;height:200px" class="form-control" name="long_description" >{{$item->long_description}}</textarea>
+                    </div>
+
+                </div>       
+                <br>
                  <div class="row">
                     <div class="col-md-6">
                         <label>Thumbnail</label>
