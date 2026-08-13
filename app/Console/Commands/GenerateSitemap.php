@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Pages\Page\Page;
 use Illuminate\Console\Command;
 use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Sitemap\Sitemap;
@@ -36,9 +37,11 @@ class GenerateSitemap extends Command
             ->add(Url::create('/signup')->setPriority(0.8));
 
         // Add all public CVs/Profiles from database
-        // User::all()->each(function (User $user) use ($sitemap) {
-        //     $sitemap->add(Url::create("/profile/{$user->username}"));
-        // });
+        Page::query()
+       ->where('type','blog')
+       ->where('status','active')->get()->each(function (Page $blog) use ($sitemap) {
+            $sitemap->add(Url::create("/blogs/{$blog->slug}"));
+        });
 
         $sitemap->writeToFile(public_path('sitemap.xml'));
     }
