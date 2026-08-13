@@ -108,7 +108,7 @@
                             </small>
 
                             <a
-                                href="{{ url('/blog/' . $blog->slug) }}"
+                                href="{{ url('/blogs/' . $blog->slug) }}"
                                 class="text-primary fw-semibold text-decoration-none"
                             >
                                 Read More
