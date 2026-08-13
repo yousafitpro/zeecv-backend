@@ -15,6 +15,9 @@ class HomeController extends Controller
     public function templates(){
         return view('home.templates');
     }
+    public function about(){
+        return view('home.about');
+    }
     public function pricing(){
         return view('home.pricing');
     }

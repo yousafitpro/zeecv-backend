@@ -213,17 +213,16 @@
       <ul class="navbar-nav ml-auto align-items-lg-center">
   
         <li class="nav-item">
+          <a class="nav-link" href="{{ route('home.about') }}">About</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{ route('home.jobs') }}">Jobs</a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('home.features') }}">Features</a>
+          <a class="nav-link" href="{{ route('pages.page.blogs.list') }}">Blog</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('pages.page.blogs.list') }}">Blogs</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('home.templates') }}">Templates</a>
-        </li>
+
         <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle"
        href="#"
@@ -238,7 +237,7 @@
     <div class="dropdown-menu dropdown-menu-right resume-dropdown"
          aria-labelledby="resumeDropdown">
 
-        <a class="dropdown-item" href="{{ url('home.resume.creator') }}">
+        <a class="dropdown-item" href="{{ route('home.about') }}">
             <span class="resume-menu-icon">
                 <i class="fas fa-file-alt"></i>
             </span>
@@ -255,6 +254,15 @@
             <span>
                 <strong>Templates</strong>
                 <small>Choose your resume template</small>
+            </span>
+        </a>
+        <a class="dropdown-item" href="{{ route('home.features') }}">
+            <span class="resume-menu-icon">
+                <i class="fas fa-layer-group"></i>
+            </span>
+            <span>
+                <strong>Features</strong>
+                <small>All options available</small>
             </span>
         </a>
 

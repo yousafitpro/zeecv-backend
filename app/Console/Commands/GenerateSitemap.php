@@ -36,6 +36,7 @@ class GenerateSitemap extends Command
             ->add(Url::create('/resume-buildertemplates')->setPriority(0.8))
             ->add(Url::create('/resume-builder/pricing')->setPriority(0.8))
             ->add(Url::create('/resume-builder/jobs')->setPriority(0.8))
+            ->add(Url::create('/resume-builder/about')->setPriority(0.8))
             ->add(Url::create('/login')->setPriority(0.8))
             ->add(Url::create('/signup')->setPriority(0.8));
 
