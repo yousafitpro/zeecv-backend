@@ -91,7 +91,7 @@
 
                             {!! $blog->content !!}
 
-                        @elseif(!empty($blog->description))
+                        @elseif(!empty($blog->metadata))
 
                             {!! $blog->description !!}
 
