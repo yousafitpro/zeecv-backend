@@ -62,10 +62,10 @@
 
         <div class="container">
 
-            <div class="row justify-content-center">
+            <div class="row">
 
                 {{-- Main Article --}}
-                <div class="col-lg-8">
+                <div class="col-lg-12">
 
                     <article class="zeecv-blog-content">
 
