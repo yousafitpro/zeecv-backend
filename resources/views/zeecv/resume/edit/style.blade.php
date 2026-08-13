@@ -223,6 +223,7 @@ body {
         @media (max-width: 991.98px) {
         .resume-edit-action-buttons a{
           font-size: 12px;
+          padding: 4px 8px !important;
 
         }
        .resumePrintDiveInner{
