@@ -19,6 +19,10 @@ class JobsController extends Controller
                 $endOfLastWeek
             ]);
     }
+    public function jobDetail($slug){
+         $data['job']=JobCareer::where('slug',$slug)->first();
+         return view('home.jobs-detail',$data);
+    }
     public function index()
     {
         $data['list']=$this->process()->paginate(20)

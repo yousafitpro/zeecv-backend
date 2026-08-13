@@ -66,7 +66,7 @@
 @include('layout.includes.navbar')
 
 @yield('content')
-
+@include('home.footer')
 
 
 <!-- end container -->

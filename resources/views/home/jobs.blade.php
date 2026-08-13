@@ -15,7 +15,73 @@
 @section('content')
 
 <style>
+.job_container_outer_pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 35px;
+    padding: 20px 0;
+    border-top: 1px solid #e5e7eb;
+}
 
+.job_container_outer_pagination_info {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.job_container_outer_pagination_links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.job_container_outer_page {
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all .2s ease;
+}
+
+.job_container_outer_page:hover {
+    border-color: #111827;
+    color: #111827;
+    background: #f9fafb;
+}
+
+.job_container_outer_page.active {
+    background: #111827;
+    border-color: #111827;
+    color: #fff;
+}
+
+.job_container_outer_page.disabled {
+    opacity: .4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+@media (max-width: 600px) {
+
+    .job_container_outer_pagination {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .job_container_outer_pagination_links {
+        width: 100%;
+        justify-content: center;
+    }
+}
     /* =========================================
        MAIN CONTAINER
     ========================================= */
@@ -783,7 +849,7 @@
 
     <section class="job_container_outer_section">
 
-        <div class="container">
+        <div class="container" style="padding-left:0px;padding-right:0px;">
 
 
             {{-- Header --}}
@@ -858,7 +924,7 @@
                                     <h3 class="job_container_outer_title">
 
                                         <a
-                                            href="{{ url('/jobs/' . $job->slug) }}"
+                                            href="{{ route('home.jobs.single' , $job->slug) }}"
                                             class="job_container_outer_title_link"
                                         >
 
@@ -1001,7 +1067,7 @@
 
 
                                 <a
-                                    href="{{ url('/jobs/' . $job->slug) }}"
+                                    href="{{ route('home.jobs.single',$job->slug) }}"
                                     class="job_container_outer_button"
                                 >
 
@@ -1056,15 +1122,60 @@
                          PAGINATION
                     ================================== --}}
 
-                    @if($list->hasPages())
+@if($list->hasPages())
+    <div class="job_container_outer_pagination">
 
-                        <div class="job_container_outer_pagination">
+        <div class="job_container_outer_pagination_info">
+            Showing {{ $list->firstItem() }}–{{ $list->lastItem() }}
+            of {{ $list->total() }} jobs
+        </div>
 
-                            {{ $list->links() }}
+        <div class="job_container_outer_pagination_links">
 
-                        </div>
+            {{-- Previous --}}
+            @if($list->onFirstPage())
+                <span class="job_container_outer_page disabled">
+                    ‹
+                </span>
+            @else
+                <a href="{{ $list->previousPageUrl() }}" class="job_container_outer_page">
+                    ‹
+                </a>
+            @endif
 
-                    @endif
+            {{-- Pages --}}
+            @foreach($list->getUrlRange(
+                max(1, $list->currentPage() - 2),
+                min($list->lastPage(), $list->currentPage() + 2)
+            ) as $page => $url)
+
+                @if($page == $list->currentPage())
+                    <span class="job_container_outer_page active">
+                        {{ $page }}
+                    </span>
+                @else
+                    <a href="{{ $url }}" class="job_container_outer_page">
+                        {{ $page }}
+                    </a>
+                @endif
+
+            @endforeach
+
+            {{-- Next --}}
+            @if($list->hasMorePages())
+                <a href="{{ $list->nextPageUrl() }}" class="job_container_outer_page">
+                    ›
+                </a>
+            @else
+                <span class="job_container_outer_page disabled">
+                    ›
+                </span>
+            @endif
+
+        </div>
+
+    </div>
+@endif
 
 
                 </div>
@@ -1104,7 +1215,7 @@
 
 
                         <a
-                            href="{{ url('/') }}"
+                            href="{{ url('/signup') }}"
                             class="job_container_outer_sidebar_button"
                         >
 

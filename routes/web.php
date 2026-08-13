@@ -596,6 +596,7 @@ Route::prefix('resume-builder')
        Route::get('/pricing', [HomeController::class,'pricing'])->name('home.pricing');
        Route::get('/templates', [HomeController::class,'templates'])->name('home.templates');
        Route::get('/jobs', [JobsController::class,'index'])->name('home.jobs');
+       Route::get('/jobs/{slug}', [JobsController::class,'jobDetail'])->name('home.jobs.single');
     });
 
 Route::group([
