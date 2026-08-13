@@ -38,7 +38,7 @@
 
     @if(!empty($blog->headerimg))
 
-        <section class="p-0 border-0 overflow-hidden">
+        <section class="p-0 border-0 overflow-hidden blog-detail-page-header">
 
             <img
                 src="{{ asset($blog->headerimg->file_url) }}"
@@ -107,7 +107,9 @@
 {{-- ============================= --}}
 
 <style>
-
+  .blog-detail-page-header img{
+    border-radius: 10px;
+  }
     .zeecv-blog-detail {
         background: #ffffff;
     }
