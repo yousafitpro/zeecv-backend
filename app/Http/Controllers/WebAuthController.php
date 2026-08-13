@@ -114,8 +114,7 @@ class WebAuthController extends Controller
             
             // Or if using custom guard
             // Auth::guard('user')->login($user);
-            
-            return redirect(url('dashboard'))->with([
+            return redirect(route('resume.create'))->with([
                 'toast' => [
                     'heading' => 'Message',
                     'message' => 'Congrats! Account has been verified successfully',

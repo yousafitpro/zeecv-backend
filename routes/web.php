@@ -536,7 +536,7 @@ Route::prefix('Call-Center/operators')
         Route::post('/update/{id}', [OperatorController::class,'update'])->name('system.CallCenter.operator.update')->middleware('basic.permission:system.CallCenter.operator.edit');
         Route::get('/delete/{id}', [OperatorController::class,'delete'])->name('system.CallCenter.operator.delete')->middleware('basic.permission:system.CallCenter.operator.remove');
     });
-Route::prefix('resume')
+Route::prefix('v2/resume')
     ->group(function () {
         Route::get('/email-test', [ResumeController::class,'emailTest'])->name('resume.emailtest');
         Route::get('/pay-and-unlock', [ResumeController::class,'payAndUnlock'])->name('resume.pay_and_unlock');
