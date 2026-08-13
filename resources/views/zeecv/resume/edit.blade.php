@@ -37,9 +37,11 @@
 
   <!-- Top Navigation Bar -->
   <header class="app-header sticky-top d-flex justify-content-between align-items-center px-4 py-2 bg-white">
+    @if (session('is_app','no')!='yes')
     <a href="{{ url('dashboard') }}" class="btn btn-link text-secondary text-decoration-none p-0">
       <i class="fas fa-arrow-left mr-2"></i>Dashboard
     </a>
+    @endif
     <div class="resume-edit-action-buttons">
       @if (session('is_app','no')!='yes')
         <a  href="{{ route('resume.pdf.preview',request('id')) }}?resume={{ now() }}&resume_token={{ auth()->user()->login_token }}" target="_blank" class="btn btn-save btn-preview px-4 rounded-pill" >PDF Preview</a>
