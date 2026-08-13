@@ -1,5 +1,6 @@
 @extends('auth.layout')
 @section('content')
+
 <style>
     .container-login2{
         width: 500px !important;
@@ -19,8 +20,10 @@
       }
 </style>
     <body class="login">
-    <div class="wrapper wrapper-login">
-        <form action="{{url('login')}}" method="post" class="web-form">
+
+        <div class="wrapper wrapper-login">
+
+
             @csrf
             @include('includes.form-errors')
         <div class="container container-login container-login2 animated fadeIn">
@@ -52,6 +55,19 @@
                 <div class="form-action mb-3">
                     <button type="submit" class="btn btn-primary btn-rounded btn-login">Sign In</button>
                 </div>
+                        <form action="{{url('login')}}" method="post" class="web-form">
+                        <div id="g_id_onload"
+        data-client_id="{{ config('services.google.client_id') }}"
+        data-callback="handleGoogleResponse">
+        </div>
+
+        <div class="g_id_signin"
+            data-type="standard"
+            data-size="large"
+            data-theme="outline"
+            data-text="signin_with"
+            data-shape="rectangular">
+        </div>
                <div class="login-account">
                    <span class="msg">Don't have an account yet ?</span>
                    <a href="{{route('signup')}}" class="link">Sign Up</a>
@@ -69,5 +85,32 @@
 
 
     </body>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 
+<script>
+    function handleGoogleResponse(response) {
+        fetch("{{ route('auth.google') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+            body: JSON.stringify({
+                credential: response.credential
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = data.redirect;
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Google login failed.");
+        });
+    }
+</script>
 @stop

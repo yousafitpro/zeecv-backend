@@ -32,6 +32,9 @@ return [
     'nexmo' => [
         'sms_from' => 'Zpayd',
     ],
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+    ],
     'Stripe' =>[
         'sk_key'=>env('Stripe_secret_key', 'none'),
         'pk_key'=>env('Stripe_public_key', 'none'),

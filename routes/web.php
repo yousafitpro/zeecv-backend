@@ -625,6 +625,12 @@ Route::group([
 
     });
 
+    Route::prefix('google')
+     ->group(function(){
+     Route::get('/',[App\Http\Controllers\Pages\Page\PageController::class,'blogs'])->name('auth.google');
+
+    });
+
 
 
 
