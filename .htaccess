@@ -1,25 +1,18 @@
 <IfModule mod_rewrite.c>
-<Files .env>
-order allow,deny
-Deny from all
-</Files>
-    <IfModule mod_negotiation.c>
-        Options -MultiViews -Indexes
-    </IfModule>
 
     RewriteEngine On
 
-    # Handle Authorization Header
-    RewriteCond %{HTTP:Authorization} .
-    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    # Prevent direct access to Laravel sensitive files
+    <FilesMatch "^\.">
+        Require all denied
+    </FilesMatch>
 
-    # Redirect Trailing Slashes If Not A Folder...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} (.+)/$
-    RewriteRule ^ %1 [L,R=301]
+    # Redirect /public/... to /...
+    RewriteCond %{THE_REQUEST} \s/+zeecv-backend/public/([^\s?]*) [NC]
+    RewriteRule ^public/(.*)$ /zeecv-backend/$1 [R=301,L]
 
-    # Send Requests To Front Controller...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
+    # Internally load everything from the public directory
+    RewriteCond %{REQUEST_URI} !^/zeecv-backend/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+
 </IfModule>
