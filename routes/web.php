@@ -26,6 +26,7 @@ use App\Http\Controllers\PMM\CruncyController;
 use App\Http\Controllers\UppSellController;
 use App\Http\Controllers\GLSShipmentController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\Job\JobsController;
 use App\Http\Controllers\PMM\Lookup\AddressController;
 use App\Http\Controllers\PMM\Lookup\GlsProfile;
 use App\Http\Controllers\Resume\CertificateController;
@@ -594,6 +595,7 @@ Route::prefix('resume-builder')
        Route::get('/features', [HomeController::class,'features'])->name('home.features');
        Route::get('/pricing', [HomeController::class,'pricing'])->name('home.pricing');
        Route::get('/templates', [HomeController::class,'templates'])->name('home.templates');
+       Route::get('/jobs', [JobsController::class,'index'])->name('home.jobs');
     });
 
 Route::group([
@@ -633,7 +635,11 @@ Route::group([
     });
 
 
+    Route::prefix('jobs')
+     ->group(function(){
+     Route::get('/sync/arbeitnow',[JobsController::class,'arbeitnowJobs']);
 
+    });
 
 
 // commands

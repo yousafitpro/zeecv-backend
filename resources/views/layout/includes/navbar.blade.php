@@ -134,6 +134,9 @@
           <a class="nav-link" target="_blank" href="{{ url('terms') }}">Terms</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{{ route('home.jobs') }}">Jobs</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{ route('home.features') }}">Features</a>
         </li>
         <li class="nav-item">
