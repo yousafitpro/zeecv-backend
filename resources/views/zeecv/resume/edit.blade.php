@@ -42,7 +42,7 @@
       <i class="fas fa-arrow-left mr-2"></i>Dashboard
     </a>
     @else
-    <div>Resume</div>
+    <div>Edit Resume</div>
     @endif
     <div class="resume-edit-action-buttons">
       @if (session('is_app','no')!='yes')
