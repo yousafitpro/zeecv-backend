@@ -1,3 +1,5 @@
+@extends('pdfs.resume.layout')
+@section('resume_content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -303,3 +305,4 @@
     </div>
 </body>
 </html>
+@endsection
