@@ -12,11 +12,9 @@
 
 @section('content')
 <style>
-  @media (max-width: 767.98px) {
     .zeecv-mobile-margin {
         margin-top: 15px;
     }
-}
 </style>
 <div class="container py-5">
 
