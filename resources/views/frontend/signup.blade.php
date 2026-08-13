@@ -59,6 +59,24 @@
                 <div class="form-action mb-3">
                     <button type="submit" class="btn btn-primary btn-rounded btn-login">Create Account</button>
                 </div>
+                                <div class="d-flex justify-content-center align-items-center">
+                    <div >
+                               <div id="g_id_onload"
+        data-client_id="{{ config('services.google.client_id') }}"
+        tyle="width: 100%"
+        data-callback="handleGoogleResponse">
+        </div>
+
+        <div class="g_id_signin"
+             style="width: 100%"
+            data-type="standard"
+            data-size="large"
+            data-theme="outline"
+            data-text="signin_with"
+            data-shape="rectangular">
+        </div>
+                    </div>
+                 </div>
 
                 <div class="login-account">
                     <span class="msg">Already have an account?</span>
@@ -92,6 +110,34 @@
     function data_error_callback()
     {
 
+    }
+</script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script>
+    function handleGoogleResponse(response) {
+        fetch("{{ route('auth.google') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+            body: JSON.stringify({
+                credential: response.credential
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = data.redirect;
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Google login failed.");
+        });
     }
 </script>
 @stop

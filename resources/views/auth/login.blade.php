@@ -56,18 +56,24 @@
                     <button type="submit" class="btn btn-primary btn-rounded btn-login">Sign In</button>
                 </div>
                         <form action="{{url('login')}}" method="post" class="web-form">
-                        <div id="g_id_onload"
+                 <div class="d-flex justify-content-center align-items-center">
+                    <div >
+                               <div id="g_id_onload"
         data-client_id="{{ config('services.google.client_id') }}"
+        tyle="width: 100%"
         data-callback="handleGoogleResponse">
         </div>
 
         <div class="g_id_signin"
+             style="width: 100%"
             data-type="standard"
             data-size="large"
             data-theme="outline"
             data-text="signin_with"
             data-shape="rectangular">
         </div>
+                    </div>
+                 </div>
                <div class="login-account">
                    <span class="msg">Don't have an account yet ?</span>
                    <a href="{{route('signup')}}" class="link">Sign Up</a>
