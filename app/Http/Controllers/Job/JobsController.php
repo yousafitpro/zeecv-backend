@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Job\Models\JobCareer;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
-
+use Illuminate\Support\Str;
 class JobsController extends Controller
 {
     public function process()
@@ -25,7 +25,7 @@ class JobsController extends Controller
     }
     public function index()
     {
-        $data['list']=$this->process()->paginate(20)
+        $data['list']=$this->process()->latest('job_created_at')->paginate(20)
         ->withQueryString();
         return view('home.jobs',$data);
     }
@@ -75,4 +75,69 @@ class JobsController extends Controller
             'message' => 'Jobs successfully synced',
         ]);
     }
+public function himalayasJobs()
+{
+    $limit = 20;
+    $maxJobs = 100;
+
+    for ($offset = 0; $offset < $maxJobs; $offset += $limit) {
+
+        $res = Http::timeout(30)->get('https://himalayas.app/jobs/api', [
+            'limit' => $limit,
+            'offset' => $offset,
+        ]);
+
+        if (!$res->successful()) {
+            continue;
+        }
+
+        $jobs = $res->json('jobs', []);
+
+        foreach ($jobs as $item) {
+
+            JobCareer::updateOrCreate(
+                [
+                    'slug' => Str::slug(
+                        ($item['title'] ?? 'job') . '-' .
+                        ($item['companyName'] ?? '')
+                    ),
+                    'source' => 'himalayas',
+                ],
+                [
+                    'company_name' => $item['companyName'] ?? null,
+                    'title' => $item['title'] ?? null,
+                    'currency' => $item['currency'] ?? null,
+                    'description' => $item['description'] ?? null,
+
+                    'job_created_at' => !empty($item['pubDate'])
+                        ? Carbon::parse($item['pubDate'])
+                        : null,
+                    'expiry_date' => !empty($item['expiryDate'])
+                        ? Carbon::parse($item['expiryDate'])
+                        : null,
+
+                    'location' => !empty($item['locationRestrictions'])
+                        ? $item['locationRestrictions'][0]
+                        : null,
+
+                    'url' => $item['applicationLink'] ?? null,
+
+                    'tags' => implode(
+                        ', ',
+                        $item['categories'] ?? []
+                    ),
+                ]
+            );
+        }
+
+        // Stop if API returns fewer than 20 jobs
+        if (count($jobs) < $limit) {
+            break;
+        }
+    }
+
+    return response()->json([
+        'message' => 'First 100 jobs successfully synced',
+    ]);
+}
 }

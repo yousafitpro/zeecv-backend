@@ -640,6 +640,7 @@ Route::group([
     Route::prefix('jobs')
      ->group(function(){
      Route::get('/sync/arbeitnow',[JobsController::class,'arbeitnowJobs']);
+     Route::get('/sync/himalayas',[JobsController::class,'himalayasJobs']);
 
     });
 
