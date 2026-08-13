@@ -34,6 +34,13 @@ class PageController extends Controller
         return view('home.blogs.index',$data);
 
     }
+    public function blogDetail($slug)
+    {
+
+       $data['blog']=Page::where('slug',$slug)->first();
+        return view('home.blogs.detail',$data);
+
+    }
 
     public function search(Request $request)
     {

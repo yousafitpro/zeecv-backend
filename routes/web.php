@@ -621,6 +621,7 @@ Route::group([
     Route::prefix('blogs')
      ->group(function(){
      Route::get('/',[App\Http\Controllers\Pages\Page\PageController::class,'blogs'])->name('pages.page.blogs.list');
+     Route::get('/{slug}',[App\Http\Controllers\Pages\Page\PageController::class,'blogDetail'])->name('pages.page.blogs.deetail');
 
     });
 

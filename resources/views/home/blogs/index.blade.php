@@ -46,7 +46,7 @@
 
                     {{-- Image --}}
                     @if(!empty($blog->thumbnail))
-                        <a href="{{ url('/blog/' . $blog->slug) }}">
+                        <a href="{{ url('/blogs/' . $blog->slug) }}">
                            <img
                           src="{{ asset($blog->thumbnail->file_url) }}"
                           class="card-img-top"
