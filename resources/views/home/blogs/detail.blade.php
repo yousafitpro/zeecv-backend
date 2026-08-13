@@ -111,7 +111,7 @@
     border-radius: 10px;
   }
     .zeecv-blog-detail {
-        background: #ffffff;
+        background: transparent;
     }
 
     .zeecv-blog-content {
