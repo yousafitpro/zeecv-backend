@@ -60,14 +60,14 @@
 
     <section class="pb-5">
 
-        <div class="container">
+        <div class="container-fluid">
 
             <div class="row">
 
                 {{-- Main Article --}}
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
 
-                    <article class="zeecv-blog-content">
+                    <article class="zeecv-blog-content" >
 
                         @if(!empty($blog->content))
 
