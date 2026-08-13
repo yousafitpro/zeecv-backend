@@ -1,39 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-		<!--	created with www.mysitemapgenerator.com	-->
-		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-	<loc>https://zeecv.com/</loc>
-	<lastmod>2026-08-12T18:47:36+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
-<url>
-	<loc>https://zeecv.com/terms</loc>
-	<lastmod>2026-08-12T18:47:36+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
-<url>
-	<loc>https://zeecv.com/resume-builder/features</loc>
-	<lastmod>2026-08-12T18:47:36+01:00</lastmod>
-	<priority>0.8</priority>
-</url>
-<url>
-	<loc>https://zeecv.com/resume-builder/templates</loc>
-	<lastmod>2026-08-12T18:47:36+01:00</lastmod>
-	<priority>0.8</priority>
-</url>
-<url>
-	<loc>https://zeecv.com/login</loc>
-	<lastmod>2026-08-12T18:47:36+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
-<url>
-	<loc>https://zeecv.com/signup</loc>
-	<lastmod>2026-08-12T18:47:36+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
-<url>
-	<loc>https://zeecv.com/reset-email</loc>
-	<lastmod>2026-08-12T18:47:39+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+    <url>
+    <loc>http://localhost/zeecv-backend</loc>
+    <priority>1.0</priority>
+            </url>
+    <url>
+    <loc>http://localhost/zeecv-backend/features</loc>
+    <priority>1.0</priority>
+            </url>
+    <url>
+    <loc>http://localhost/zeecv-backend/pricing</loc>
+    <priority>0.8</priority>
+            </url>
+    <url>
+    <loc>http://localhost/zeecv-backend/login</loc>
+    <priority>0.8</priority>
+            </url>
+    <url>
+    <loc>http://localhost/zeecv-backend/signup</loc>
+    <priority>0.8</priority>
+            </url>
+    <url>
+    <loc>http://localhost/zeecv-backend/templates</loc>
+    <priority>0.8</priority>
+            </url>
 </urlset>
