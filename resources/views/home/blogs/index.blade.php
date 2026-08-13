@@ -18,10 +18,6 @@
     <div class="row mb-5">
         <div class="col-lg-8 mx-auto text-center">
 
-            <span class="badge bg-primary-subtle text-primary px-3 py-2 mb-3">
-                ZeeCV Blog
-            </span>
-
             <h1 class="fw-bold display-5 mb-3">
                 Career & Resume Insights
             </h1>
