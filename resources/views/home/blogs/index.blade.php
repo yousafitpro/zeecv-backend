@@ -11,7 +11,13 @@
 @endsection
 
 @section('content')
-
+<style>
+  @media (max-width: 767.98px) {
+    .zeecv-mobile-margin {
+        margin-top: 15px;
+    }
+}
+</style>
 <div class="container py-5">
 
     {{-- Header --}}
@@ -36,7 +42,7 @@
 
         @forelse($list as $blog)
 
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-6 zeecv-mobile-margin">
 
                 <article class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
 
