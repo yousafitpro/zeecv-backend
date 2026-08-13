@@ -25,6 +25,7 @@ use  App\Http\Controllers\PMM\Lookup\lookupController;
 use App\Http\Controllers\PMM\CruncyController;
 use App\Http\Controllers\UppSellController;
 use App\Http\Controllers\GLSShipmentController;
+use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\PMM\Lookup\AddressController;
 use App\Http\Controllers\PMM\Lookup\GlsProfile;
 use App\Http\Controllers\Resume\CertificateController;
@@ -627,7 +628,7 @@ Route::group([
 
     Route::prefix('google')
      ->group(function(){
-     Route::get('/',[App\Http\Controllers\Pages\Page\PageController::class,'blogs'])->name('auth.google');
+     Route::post('/',[GoogleAuthController::class,'login'])->name('auth.google');
 
     });
 

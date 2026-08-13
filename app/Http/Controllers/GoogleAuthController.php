@@ -20,7 +20,6 @@ class GoogleAuthController extends Controller
         $client = new GoogleClient([
             'client_id' => config('services.google.client_id'),
         ]);
-
         $payload = $client->verifyIdToken($request->credential);
 
         if (!$payload) {
@@ -41,6 +40,7 @@ class GoogleAuthController extends Controller
             $user = User::create([
                 'name' => $name,
                 'email' => $email,
+                'type'=>'User',
                 'password' => bcrypt(Str::random(32)),
             ]);
         }
@@ -50,7 +50,7 @@ class GoogleAuthController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Login successful.',
-            'redirect' => route('dashboard'),
+            'redirect' => route('resume.create'),
         ]);
     }
 }
