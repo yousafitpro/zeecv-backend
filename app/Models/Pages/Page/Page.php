@@ -25,5 +25,13 @@ class Page extends Model
     {
         return $this->belongsTo(AppFile::class,'app_file_id');
     }
+     public function thumbnail()
+    {
+        return $this->belongsTo(AppFile::class, 'thumbnail_file_id');
+    }
+     public function headerimg()
+    {
+        return $this->belongsTo(AppFile::class, 'header_img_file_id');
+    }
 
 }

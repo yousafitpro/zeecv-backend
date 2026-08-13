@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
     <url>
-    <loc>https://zeecv.com</loc>
+    <loc>http://localhost/zeecv-backend</loc>
     <priority>1.0</priority>
             </url>
     <url>
-    <loc>https://zeecv.com/resume-builder/features</loc>
+    <loc>http://localhost/zeecv-backend/resume-builder/features</loc>
     <priority>1.0</priority>
             </url>
     <url>
-    <loc>https://zeecv.com/resume-buildertemplates</loc>
+    <loc>http://localhost/zeecv-backend/resume-buildertemplates</loc>
     <priority>0.8</priority>
             </url>
     <url>
-    <loc>https://zeecv.com/resume-builder/pricing</loc>
+    <loc>http://localhost/zeecv-backend/resume-builder/pricing</loc>
     <priority>0.8</priority>
             </url>
     <url>
-    <loc>https://zeecv.com/login</loc>
+    <loc>http://localhost/zeecv-backend/login</loc>
     <priority>0.8</priority>
             </url>
     <url>
-    <loc>https://zeecv.com/signup</loc>
+    <loc>http://localhost/zeecv-backend/signup</loc>
     <priority>0.8</priority>
             </url>
 </urlset>

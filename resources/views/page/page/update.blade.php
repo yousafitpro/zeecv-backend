@@ -7,21 +7,21 @@
 <script>
 
 
-   $(document).ready(function(){
-         tinymce.init({
-        selector: '#page_content',
-        height: 500,
-        plugins: 'advlist autolink lists link image charmap preview anchor ' +
-                 'searchreplace visualblocks code fullscreen ' +
-                 'insertdatetime media table code help wordcount',
-        toolbar: 'undo redo | formatselect | ' +
-                 'bold italic underline strikethrough | link image media | ' +
-                 'alignleft aligncenter alignright alignjustify | ' +
-                 'bullist numlist outdent indent | removeformat | help',
-        menubar: 'file edit view insert format tools table help',
-        branding: false // Hide "Powered by TinyMCE"
-    });
-    })
+//    $(document).ready(function(){
+//          tinymce.init({
+//         selector: '#page_content',
+//         height: 500,
+//         plugins: 'advlist autolink lists link image charmap preview anchor ' +
+//                  'searchreplace visualblocks code fullscreen ' +
+//                  'insertdatetime media table code help wordcount',
+//         toolbar: 'undo redo | formatselect | ' +
+//                  'bold italic underline strikethrough | link image media | ' +
+//                  'alignleft aligncenter alignright alignjustify | ' +
+//                  'bullist numlist outdent indent | removeformat | help',
+//         menubar: 'file edit view insert format tools table help',
+//         branding: false // Hide "Powered by TinyMCE"
+//     });
+//     })
 
 
 </script>
@@ -76,15 +76,23 @@
             @csrf
 
                 <div class="row">
-                    <div class="col-md-8 div-sm">
+                    <div class="col-md-6 div-sm">
                         <label>Title</label>
                         <input  class="form-control" value="{{$item->title}}"  required  name="title">
                     </div>
-                    <div class="col-md-4 div-sm">
+                    <div class="col-md-3 div-sm">
                         <label>Status</label>
                         <select name="status" class="form-control" >
                         <option value="active" {{$item->status=='active'?'selected':''}} >Active</option>
                         <option value="inactive" {{$item->status=='inactive'?'selected':''}} >In Active</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-3 div-sm">
+                        <label>Type</label>
+                        <select name="type" class="form-control" >
+                        <option value="default" {{$item->type=='default'?'selected':''}} >Default</option>
+                        <option value="blog" {{$item->type=='blog'?'selected':''}} >Blog</option>
 
                         </select>
                     </div>
@@ -97,7 +105,37 @@
                         <textarea id="page_content" style="width: 100%;height:200px" class="form-control" name="description" >{{$item->metadata}}</textarea>
                     </div>
 
-                </div>       <br>
+                </div>       
+                <br>
+                 <div class="row">
+                    <div class="col-md-6">
+                        <label>Thumbnail</label>
+                     <input type="file" class="form-control" name="thumbnail">
+                     @if(!empty($item->thumbnail))
+                     <img
+                          src="{{ asset($item->thumbnail->file_url) }}"
+                          style="max-width: 100px"
+
+                          alt="{{ $item->title }}"
+                          loading="lazy"
+                          style="height:220px; object-fit:cover;">
+                        @endif
+                    </div>
+                                        <div class="col-md-6">
+                        <label>Header Image</label>
+                     <input type="file" class="form-control" name="header_img">
+                     @if(!empty($item->headerimg))
+                     <img
+                          src="{{ asset($item->headerimg->file_url) }}"
+                          style="max-width: 100px"
+
+                          alt="{{ $item->title }}"
+                          loading="lazy"
+                          style="height:220px; object-fit:cover;">
+                        @endif
+                    </div>
+                </div>
+                <br>
 
 
 
@@ -183,6 +221,9 @@ function submitForm(event, formElement) {
                     if (response.code == 1) {
                         $("#attachment").prop('src',response.item_url)
                         swal("Success!", response.message, "success");
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 2000);
                     } else if (response.code == 0) {
                         swal("Sorry!", response.message, "error");
                     } else {

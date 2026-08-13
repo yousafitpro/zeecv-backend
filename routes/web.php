@@ -37,6 +37,7 @@ use App\Http\Controllers\Resume\SkillController;
 use App\Http\Controllers\Resume\SummaryController;
 use App\Http\Controllers\Resume\TemplateController;
 use App\Models\Resume\Template;
+use Illuminate\Support\Facades\Artisan;
 
 //adasdasdassdssasd
     Route::get('login', [LoginController::class, 'index'])->name('login');
@@ -614,4 +615,27 @@ Route::group([
 
      Route::get('/hk/p/{id}', [ResumeController::class,'rawPDF'])->name('raw.pdf.review');
 
+});
+
+
+    Route::prefix('blogs')
+     ->group(function(){
+     Route::get('/',[App\Http\Controllers\Pages\Page\PageController::class,'blogs'])->name('pages.page.blogs.list');
+
+    });
+
+
+
+
+
+// commands
+
+Route::get('/generate-sitemap', function () {
+
+    Artisan::call('app:generate-sitemap');
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Sitemap generated successfully.',
+    ]);
 });

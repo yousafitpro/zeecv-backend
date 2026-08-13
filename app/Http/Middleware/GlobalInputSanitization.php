@@ -54,6 +54,7 @@ class GlobalInputSanitization
         '_token',
         '_method',
         'password',
+        'description',
         'password_confirmation',
         'file',
         'files',

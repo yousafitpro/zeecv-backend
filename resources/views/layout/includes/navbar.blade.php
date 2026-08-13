@@ -137,6 +137,9 @@
           <a class="nav-link" href="{{ route('home.features') }}">Features</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{{ route('pages.page.blogs.list') }}">Blogs</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{ route('home.templates') }}">Templates</a>
         </li>
         {{-- <li class="nav-item">

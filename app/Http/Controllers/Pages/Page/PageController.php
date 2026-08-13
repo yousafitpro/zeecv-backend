@@ -24,6 +24,16 @@ class PageController extends Controller
         return view('page.page.index',$data);
 
     }
+    public function blogs()
+    {
+
+       $data['list']=Page::query()
+       ->where('type','blog')
+       ->where('status','active')
+       ->latest()->paginate(50);
+        return view('home.blogs.index',$data);
+
+    }
 
     public function search(Request $request)
     {
@@ -55,17 +65,30 @@ class PageController extends Controller
     public function addPost(Request $request)
     {
         $data=$request->except('_token');
-
         try{
             DB::beginTransaction();
+
             $page=Page::create([
                 'title'=>$data['title'],
                 'slug'=> Str::slug($data['title']),
                 'user_id'=>auth_user_id(),
                 'created_by_id'=>auth_user_id(),
                 'metadata'=>$data['description'],
-                'status'=>$data['status']
+                'status'=>$data['status'],
+                'type'=>$data['type']
             ]);
+            $thumbnail = $request->file('thumbnail');
+            if ($thumbnail) {
+                    $data['thumbnail']=fun_save_file($thumbnail,'zeecv/uploads');
+                    $page->thumbnail_file_id=$data['thumbnail']->id;
+                    $page->save();
+                }
+            $header_img = $request->file('header_img');
+            if ($header_img) {
+                    $data['header_img']=fun_save_file($header_img,'zeecv/uploads');
+                    $page->header_img_file_id=$data['header_img']->id;
+                    $page->save();
+                }
 
         DB::commit();
          return response()->json(['code'=>1,'message'=>"Page added successfully!",'url'=>route('pages.page.update',$page->id)]);
@@ -108,8 +131,21 @@ class PageController extends Controller
                 'title'=>$data['title'],
                 'slug'=> Str::slug($data['title']),
                 'metadata'=>html_entity_decode($data['description']),
-                'status'=>$data['status']
+                'status'=>$data['status'],
+                'type'=>$data['type']
             ]);
+                    $thumbnail = $request->file('thumbnail');
+            if ($thumbnail) {
+                    $data['thumbnail']=fun_save_file($thumbnail,'zeecv/uploads');
+                    $post->thumbnail_file_id=$data['thumbnail']->id;
+                    $post->save();
+                }
+            $header_img = $request->file('header_img');
+            if ($header_img) {
+                    $data['header_img']=fun_save_file($header_img,'zeecv/uploads');
+                    $post->header_img_file_id=$data['header_img']->id;
+                    $post->save();
+                }
 
 
 

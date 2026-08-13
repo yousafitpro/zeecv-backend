@@ -50,3 +50,4 @@ storage/framework/*
 /zpayd/files/*
 /config/telescope.php
 
+public/sitemap.xml
