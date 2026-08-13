@@ -14,7 +14,6 @@ body {
 
 /* Header Navbar */
 .app-header {
-  width: 100%;
   border-bottom: 1px solid #e2ded6;
 }
 .rounded-pill{
