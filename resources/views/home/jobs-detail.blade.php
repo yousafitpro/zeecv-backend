@@ -680,7 +680,7 @@
 
                 <div class="job_container_outer_breadcrumb">
 
-                    <a href="{{ url('/jobs') }}">
+                    <a href="{{ route('home.jobs') }}">
                         Jobs
                     </a>
 
