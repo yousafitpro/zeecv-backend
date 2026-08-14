@@ -926,7 +926,7 @@
                             <div class="job_container_outer_meta">
 
 
-                                {{-- @if(!empty($job->location))
+                                @if(!empty($job->location))
 
                                     <span class="job_container_outer_meta_item">
 
@@ -936,7 +936,7 @@
 
                                     </span>
 
-                                @endif --}}
+                                @endif
 
 
                                 @if(!empty($job->job_created_at))
@@ -954,7 +954,7 @@
                                 @endif
 
 
-                                @if(!empty($job->source))
+                                {{-- @if(!empty($job->source))
 
                                     <span class="job_container_outer_meta_item">
 
@@ -964,7 +964,7 @@
 
                                     </span>
 
-                                @endif
+                                @endif --}}
 
 
                             </div>
