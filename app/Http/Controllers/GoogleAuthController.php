@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Resume\Resume;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +47,15 @@ class GoogleAuthController extends Controller
         }
 
         Auth::login($user, true);
-
+        $redirect_url='';
+        $resumes=Resume::where('user_id',$user->id)->get();
+        if(count($resumes)>0){
+           $resu=$resumes->first();
+           $redirect_url=route('resume.edit',unique_encrypt($resu->id));
+         
+        }else{
+            $redirect_url=route('resume.create');
+        }
         return response()->json([
             'success' => true,
             'message' => 'Login successful.',
