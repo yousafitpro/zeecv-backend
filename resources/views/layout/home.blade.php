@@ -4,7 +4,12 @@
     @php
     $plus_jakarta_sans_path = asset('fonts/Plus_Jakarta_Sans/static/');
     @endphp
+    @include("layout.includes.css")
+
   <style>
+    :root{
+        --primary:#111827 !important
+    }
       /* Regular */
     @font-face {
         font-family: 'Plus Jakarta Sans';
@@ -54,7 +59,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
   @include('home.css.style')
-@include("layout.includes.css")
 
 <!-- Google tag (gtag.js) -->
 @include('home.google-tag')

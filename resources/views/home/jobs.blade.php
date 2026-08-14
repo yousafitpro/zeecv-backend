@@ -193,7 +193,7 @@
 
         .job_container_outer_layout {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) 310px;
+            grid-template-columns: minmax(0, 1fr) 290px;
 
             gap: 25px;
 
@@ -832,7 +832,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <button class="btn btn-primary btn-block" style="background: #1d4ed8" type="submit">Search</button>
+                        <button class="btn btn-primary btn-block" style="background:var(--primary) !important" type="submit">Search</button>
                     </div>
                    </div>
                 </form>
