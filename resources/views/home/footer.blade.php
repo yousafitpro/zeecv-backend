@@ -112,7 +112,7 @@
                     </li>
 
                     <li>
-                        <a href="{{ url('/privacy-policy') }}">
+                        <a href="{{ url('page-view/privacy-policy') }}">
                             Privacy Policy
                         </a>
                     </li>
