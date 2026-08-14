@@ -5,7 +5,7 @@
     <title>{{ $job->title }} | ZeeCV Jobs</title>
 
     <meta name="description"
-          content="{{ \Illuminate\Support\Str::limit(strip_tags($job->description ?? 'Find the latest job opportunity on ZeeCV.'), 155) }}">
+          content="ZeeCV Job - Details {{ \Illuminate\Support\Str::limit(strip_tags($job->description ?? 'Find the latest job opportunity on ZeeCV.'), 155) }}">
 
     <meta name="robots" content="index, follow">
 
