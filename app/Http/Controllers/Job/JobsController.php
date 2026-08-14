@@ -11,6 +11,7 @@ class JobsController extends Controller
 {
     public function process()
     {
+        //dadasd
            $startOfLastWeek = Carbon::now()->startOfWeek();
             $endOfLastWeek   = Carbon::now()->endOfWeek();
 
