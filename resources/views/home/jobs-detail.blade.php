@@ -662,7 +662,7 @@
 </style>
 
 
-<div class="job_container_outer">
+<div class="job_container_outer" style="background: transparent">
 
 
     {{-- =========================================

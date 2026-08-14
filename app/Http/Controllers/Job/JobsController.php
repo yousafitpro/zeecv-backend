@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Job;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Job\Models\JobCareer;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 class JobsController extends Controller
@@ -24,10 +25,24 @@ class JobsController extends Controller
          $data['job']=JobCareer::where('slug',$slug)->first();
          return view('home.jobs-detail',$data);
     }
-    public function index()
+    public function index(Request $request)
     {
-        $data['list']=$this->process()->latest('job_created_at')->paginate(20)
+        $input=$request->all();
+        
+        $data['list'] = $this->process()
+            ->when(!empty($input['search']), function ($query) use ($input) {
+                $search = '%' . $input['search'] . '%';
+
+                return $query->where(function ($q) use ($search) {
+                    $q->where('title', 'like', $search)
+                    ->orWhere('tags', 'like', $search)
+                    ->orWhere('location', 'like', $search)
+                    ->orWhere('job_types', 'like', $search);
+                });
+            })
+        ->latest('job_created_at')->paginate(20)
         ->withQueryString();
+        $data['input']=$input;
         return view('home.jobs',$data);
     }
     public function arbeitnowJobs()
