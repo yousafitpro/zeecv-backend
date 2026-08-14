@@ -969,13 +969,13 @@
                                 @endif
 
 
-@if(!empty($job->job_types))
-    <span class="job_container_outer_meta_item">
-        <i class="bi bi-briefcase"></i>
+                            @if(!empty($job->job_types))
+                                <span class="job_container_outer_meta_item">
+                                    <i class="bi bi-briefcase"></i>
 
-        {{ str_replace(',', ', ', $job->job_types) }}
-    </span>
-@endif
+                                    {{ str_replace(',', ', ', $job->job_types) }}
+                                </span>
+                            @endif
 
 
                             </div>
