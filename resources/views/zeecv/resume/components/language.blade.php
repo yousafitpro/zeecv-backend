@@ -2,7 +2,7 @@
             <div class="builder-card bg-white rounded shadow-sm mb-2 overflow-hidden">
               <div class="p-3 d-flex justify-content-between align-items-center border-bottom" data-toggle="collapse" data-target="#collapseLanguage" style="cursor: pointer;">
                 <div>
-                  <i class="fas fa-th mr-2 text-muted drag-handle"></i>
+                  <i class="fas fa-language mr-2 text-muted drag-handle"></i>
                   <strong class="h6 mb-0">Languages</strong>
                 </div>
                 <div class="toggle-icons-outer">

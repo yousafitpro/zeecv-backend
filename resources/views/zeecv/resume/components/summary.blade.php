@@ -2,7 +2,7 @@
             <div class="builder-card bg-white rounded shadow-sm mb-2">
               <div class="p-3 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseSummary" style="cursor: pointer;">
                 <div>
-                  <i class="fas fa-th mr-2 text-muted drag-handle"></i>
+                  <i class="fas fa-edit mr-2 text-muted drag-handle"></i>
                   <strong class="h6 mb-0">Summary</strong>
                 </div>
                 <div class="toggle-icons-outer">

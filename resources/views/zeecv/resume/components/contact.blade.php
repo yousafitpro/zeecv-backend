@@ -2,8 +2,8 @@
             <div class="builder-card bg-white rounded shadow-sm mb-2">
               <div class="p-3 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseContact" style="cursor: pointer;">
                 <div>
-                  <i class="fas fa-th mr-2 text-muted drag-handle"></i>
-                  <strong class="h6 mb-0">Contact</strong>
+                  <i class="fas fa-user mr-2 text-muted drag-handle"></i>
+                  <strong class="h6 mb-0">Contact Info</strong>
                 </div>
                 <div class="toggle-icons-outer">
                   {{-- <i class="fas fa-cog text-muted mr-3 action-icon"></i> --}}
