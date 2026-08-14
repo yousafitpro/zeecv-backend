@@ -59,7 +59,7 @@ class GoogleAuthController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Login successful.',
-            'redirect' => route('resume.create'),
+            'redirect' => $redirect_url,
         ]);
     }
 }
