@@ -656,3 +656,7 @@ Route::get('/generate-sitemap', function () {
         'message' => 'Sitemap generated successfully.',
     ]);
 });
+Route::get('/privacy-policy', function () {
+
+    return redirect(url('page-view/privacy-policy'));
+});
