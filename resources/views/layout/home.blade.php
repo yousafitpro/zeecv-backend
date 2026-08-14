@@ -10,6 +10,12 @@
     :root{
         --primary:#111827 !important
     }
+    .job_container__jobs_type_tag{
+        border:solid 2px var(--primary);
+        font-weight: bold;
+        padding: 5px 15px !important;
+        border-radius: 10px;
+    }
       /* Regular */
     @font-face {
         font-family: 'Plus Jakarta Sans';

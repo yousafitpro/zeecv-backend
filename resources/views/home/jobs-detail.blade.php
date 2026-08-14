@@ -768,7 +768,7 @@
 
                             @endif
                             @if(!empty($job->job_types))
-    <span class="job_container_outer_meta_item">
+    <span class="job_container_outer_meta_item job_container__jobs_type_tag">
         <i class="bi bi-briefcase"></i>
 
         {{ str_replace(',', ', ', $job->job_types) }}
