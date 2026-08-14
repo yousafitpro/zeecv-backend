@@ -1009,7 +1009,7 @@
                                 <div class="job_container_outer_description">
 
                                     {{ \Illuminate\Support\Str::limit(
-                                        strip_tags($job->description),
+                                        strip_tags(html_entity_decode($job->description)),
                                         260
                                     ) }}
 

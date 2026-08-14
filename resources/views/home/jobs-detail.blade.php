@@ -849,7 +849,8 @@
 
                     <div class="job_container_outer_description">
 
-                        {!! $job->description !!}
+                       {!! html_entity_decode($job->description) !!}
+
 
                     </div>
 
