@@ -48,16 +48,21 @@
   <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/favicon/favicon-16x16.png')}}">
   <link rel="manifest" href="{{asset('assets/favicon/site.webmanifest')}}">
   <link rel="stylesheet" href="{{asset('theme/css/bootstrap.min.css')}}">
+  
   <title>ZeeCV · AI CV Builder</title>
   <!-- Font Awesome (free icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
   @include('home.css.style')
 @include("layout.includes.css")
+
 <!-- Google tag (gtag.js) -->
 @include('home.google-tag')
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5874917464902670"
      crossorigin="anonymous"></script>
+
+
+</script>
 </head>
 <body>
 <div style="height: 100px"></div>
@@ -68,7 +73,7 @@
 @yield('content')
 @include('home.footer')
 
-
+@include('layout.includes.js')
 <!-- end container -->
 </div>
 </body>

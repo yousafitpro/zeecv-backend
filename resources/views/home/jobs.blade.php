@@ -815,6 +815,21 @@
                     <div class="row">
                     <div class="col-md-9">
                         <input class="form-control" value="{{ $input['search']??'' }}" name="search" placeholder="Search here...">
+                     
+                        <div class="row mb-2">
+                            <div class="col-md-3">
+                                <label>Location</label><br>
+                                <select class="form-control select2" name="location">
+                                    <option value="">--All--</option>
+                                    @foreach ($locations as $lo)
+                                      
+                                      <option value="{{ $lo }}" {{ $lo == ($input['location'] ?? '') ? 'selected' : '' }}>
+                                            {{ $lo }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-3">
                         <button class="btn btn-primary btn-block" style="background: #1d4ed8" type="submit">Search</button>
@@ -1228,5 +1243,11 @@
 
 
 </div>
-
+<script>
+    $(document).ready(function() {
+  
+     $('.select2').select2();
+  
+});
+</script>
 @endsection

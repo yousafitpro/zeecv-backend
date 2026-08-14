@@ -40,9 +40,25 @@ class JobsController extends Controller
                     ->orWhere('job_types', 'like', $search);
                 });
             })
+            ->when(!empty($input['location']), function ($query) use ($input) {
+                return $query->where(
+                    'location',
+                    'like',
+                    '%' . $input['location'] . '%'
+                );
+            })
         ->latest('job_created_at')->paginate(20)
         ->withQueryString();
         $data['input']=$input;
+        $data['locations'] = JobCareer::pluck('location')
+                            ->filter()
+                            ->flatMap(function ($locations) {
+                                return array_map('trim', explode(',', $locations));
+                            })
+                            ->filter()
+                            ->unique()
+                            ->values()
+                            ->toArray();
         return view('home.jobs',$data);
     }
     public function arbeitnowJobs()
