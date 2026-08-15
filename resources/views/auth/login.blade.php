@@ -17,7 +17,11 @@
         padding: 0px !important;
         min-height: 1000px;
     }
+
       }
+        .login .wrapper.wrapper-login .container-login, .login .wrapper.wrapper-login .container-signup{
+        padding-top: 20px !important;
+    }
 </style>
     <body class="login">
 

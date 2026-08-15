@@ -16,6 +16,9 @@
         min-height: 1000px;
     }
       }
+              .login .wrapper.wrapper-login .container-login, .login .wrapper.wrapper-login .container-signup{
+        padding-top: 20px !important;
+    }
 </style>
 
 <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
