@@ -91,10 +91,10 @@
         @include('zeecv.resume.components.template')
 
       </div>
-   <div class="col-lg-8 col-md-7 d-none d-md-block">
+   <div class="col-lg-8 col-md-7 d-none d-md-block" style="padding: 0px !important">
      <div class="resumePrintDiveOuter">
      <div class="resumePrintDiveInner">
-      <div id="CV_Preview_div" style="width: 100%;background:white;padding: 20px 30px"></div>
+      <div id="CV_Preview_div" style="width: 100%;background:transparent;"></div>
      </div>
      </div>
    </div>
