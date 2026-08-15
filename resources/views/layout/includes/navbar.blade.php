@@ -190,7 +190,282 @@
 
  }
 </style>
+<!-- ZeeCV Cookie Consent -->
+<div id="zeecv_cookie_consent" class="zeecv_cookie_consent">
+    <div class="zeecv_cookie_inner">
 
+        <div class="zeecv_cookie_text">
+            We use cookies to improve your experience, analyze traffic,
+            and provide better services.
+            <a href="{{ url('page-view/privacy-policy') }}" target="_blank">
+                Privacy Policy
+            </a>
+        </div>
+
+        <div class="zeecv_cookie_actions">
+            <button type="button"
+                    id="zeecv_cookie_reject"
+                    class="zeecv_cookie_btn zeecv_cookie_reject">
+                Reject
+            </button>
+
+            <button type="button"
+                    id="zeecv_cookie_accept"
+                    class="zeecv_cookie_btn zeecv_cookie_accept">
+                Accept
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<style>
+
+/* =========================================
+   Cookie Consent
+========================================= */
+
+.zeecv_cookie_consent {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 40px;
+
+    background: #0f172a;
+    color: #ffffff;
+
+    z-index: 999999;
+
+    display: none;
+
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);
+
+    font-family: Inter, Arial, sans-serif;
+}
+
+.zeecv_cookie_inner {
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+
+    margin: 0 auto;
+    padding: 0 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   Text
+========================================= */
+
+.zeecv_cookie_text {
+    font-size: 12px;
+    color: #cbd5e1;
+
+    line-height: 1.4;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.zeecv_cookie_text a {
+    color: #60a5fa;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.zeecv_cookie_text a:hover {
+    color: #93c5fd;
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   Actions
+========================================= */
+
+.zeecv_cookie_actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    flex-shrink: 0;
+}
+
+
+.zeecv_cookie_btn {
+    height: 28px;
+
+    padding: 0 13px;
+
+    border-radius: 5px;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+
+/* Reject */
+
+.zeecv_cookie_reject {
+    background: transparent;
+
+    border: 1px solid #475569;
+
+    color: #cbd5e1;
+}
+
+.zeecv_cookie_reject:hover {
+    background: #1e293b;
+    border-color: #64748b;
+    color: #ffffff;
+}
+
+
+/* Accept */
+
+.zeecv_cookie_accept {
+    background: #2563eb;
+
+    border: 1px solid #2563eb;
+
+    color: #ffffff;
+}
+
+.zeecv_cookie_accept:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+
+/* =========================================
+   Mobile
+========================================= */
+
+@media (max-width: 700px) {
+
+    .zeecv_cookie_consent {
+        height: auto;
+        min-height: 40px;
+    }
+
+    .zeecv_cookie_inner {
+        padding: 7px 12px;
+
+        gap: 10px;
+    }
+
+    .zeecv_cookie_text {
+        white-space: normal;
+
+        font-size: 11px;
+
+        line-height: 1.4;
+    }
+
+    .zeecv_cookie_actions {
+        gap: 5px;
+    }
+
+    .zeecv_cookie_btn {
+        height: 27px;
+
+        padding: 0 10px;
+
+        font-size: 11px;
+    }
+}
+
+</style>
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const cookieBanner = document.getElementById('zeecv_cookie_consent');
+
+    const acceptButton = document.getElementById('zeecv_cookie_accept');
+
+    const rejectButton = document.getElementById('zeecv_cookie_reject');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Check Existing Consent
+    |--------------------------------------------------------------------------
+    */
+
+    const consent = localStorage.getItem('zeecv_cookie_consent');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Show Cookie Banner
+    |--------------------------------------------------------------------------
+    */
+
+    if (consent === null) {
+
+        cookieBanner.style.display = 'block';
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Accept Cookies
+    |--------------------------------------------------------------------------
+    */
+
+    acceptButton.addEventListener('click', function () {
+
+        localStorage.setItem(
+            'zeecv_cookie_consent',
+            'accepted'
+        );
+
+        cookieBanner.style.display = 'none';
+
+    });
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Reject Cookies
+    |--------------------------------------------------------------------------
+    */
+
+    rejectButton.addEventListener('click', function () {
+
+        localStorage.setItem(
+            'zeecv_cookie_consent',
+            'rejected'
+        );
+
+        cookieBanner.style.display = 'none';
+
+    });
+
+});
+
+</script>
 <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
   <div class="container">
     <!-- Brand Logo -->
