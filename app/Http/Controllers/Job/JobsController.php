@@ -249,4 +249,60 @@ public function remotiveJobs($search=null)
         'message' => 'First 100 jobs successfully synced',
     ]);
 }
+public function adzunaJobs($search=null)
+{
+    $limit = 100;
+    $maxJobs = 100;
+
+
+
+        $res = Http::get(
+            'https://api.adzuna.com/v1/api/jobs/us/search/1',
+            [
+                'app_id' => '0b647b4f',
+                'app_key' => 'e53df415d6e4264f4d8f9f381fac7a30',
+                'results_per_page' => 50,
+                'what' => 'Laravel Developer',
+                'content-type' => 'application/json',
+            ]
+        );
+
+        if ($res->successful()) {
+
+            $jobs = $res->json('results', []);
+            foreach ($jobs as $item) {
+
+                JobCareer::updateOrCreate(
+                    [
+                        'slug' => Str::slug(
+                            ($item['title'] ?? 'job')
+                        ),
+                        'source' => 'adzuna',
+                    ],
+                    [
+                        'company_name' => $item['company']['display_name'] ?? null,
+                        'title' => $item['title'] ?? null,
+                        'currency' => $item['currency'] ?? null,
+                        'job_types' => $item['job_type'] ?? null,
+                        'description' => $item['description'] ?? null,
+
+                        'job_created_at' => !empty($item['created'])
+                            ? Carbon::parse($item['created'])
+                            : null,
+
+                        'url' => $item['redirect_url'] ?? null,
+                        'tags' => $item['category']['tag'] ?? null,
+
+                        'location' => is_array($item['location']['area'] ?? null)
+                                    ? implode(', ', $item['location']['area'])
+                                    : ($item['location']['area'] ?? ''),
+                    ]
+                );
+            }
+        }
+
+    return response()->json([
+        'message' => 'First 100 jobs successfully synced',
+    ]);
+}
 }
