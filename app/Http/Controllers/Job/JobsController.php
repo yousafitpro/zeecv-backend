@@ -23,7 +23,29 @@ class JobsController extends Controller
     }
     public function jobDetail($slug){
          $data['job']=JobCareer::where('slug',$slug)->first();
-         $data['random_jobs'] = JobCareer::inRandomOrder()->limit(4)->get();
+            $currentTags = is_array($data['job']->tags)
+                ? $data['job']->tags
+                : explode(',', $data['job']->tags);
+
+            $data['random_jobs'] = JobCareer::where('slug', '!=', $slug)
+                ->where(function ($query) use ($currentTags) {
+
+                    foreach ($currentTags as $tag) {
+
+                        $tag = trim($tag);
+
+                        if ($tag !== '') {
+
+                            $query->orWhere('tags', 'LIKE', '%' . $tag . '%')
+                                ->orWhere('title', 'LIKE', '%' . $tag . '%');
+
+                        }
+                    }
+
+                })
+                ->inRandomOrder()
+                ->limit(4)
+                ->get();
          return view('home.jobs-detail',$data);
     }
     public function index(Request $request)
