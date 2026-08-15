@@ -223,7 +223,8 @@
     </style>
 </head>
 <body class="zeecv_pdf_outer">
-    <div class="zeecv_pdf_outer">
+    <div class="zeecv_pdf_outer"style="padding: 10mm 5mm;
+            width: 180mm;">
         <div id="resumePrintDive" class="zeecv_pdf_outer resumePrintDiveInner">
 
             <!-- HEADER SECTION -->

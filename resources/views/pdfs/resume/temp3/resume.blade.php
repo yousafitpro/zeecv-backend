@@ -22,7 +22,7 @@
                 /* Adjusted max-width and margins for proper PDF edge clearance */
         .zeecv_pdf_outer {
             
-            width: 200mm;
+            
             margin: 0 auto;
             background-color: transparent !important;
             box-sizing: border-box;
@@ -30,6 +30,7 @@
             font-size: 8.5pt;
             line-height: 1.45;
             padding: 10mm 5mm;
+            width: 200mm;
         }
         .zeecv_pdf_outer::before {
             content: "";

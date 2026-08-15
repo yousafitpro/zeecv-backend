@@ -145,8 +145,9 @@
     </style>
 </head>
 <body>
-    <div class="zeecv_pdf_outer">
-        <div id="resumePrintDive" class="resumePrintDiveInner">
+    <div class="zeecv_pdf_outer" style="padding: 10mm 5mm;
+            width: 180mm;">
+        <div id="resumePrintDive" class="resumePrintDiveInner" >
 
             <!-- HEADER SECTION -->
             <table width="100%" cell-spacing="0" cell-padding="0">

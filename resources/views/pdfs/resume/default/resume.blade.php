@@ -12,10 +12,11 @@
 </head>
 <body>
     
-    <div id="resumePrintDive" class="resumePrintDiveInner">
+    <div id="resumePrintDive" class="resumePrintDiveInner" style="padding: 10mm 5mm;
+            width: 180mm;">
 
         <!-- HEADER SECTION TABLE -->
-        <table width="100%" style="margin-bottom: 15px;">
+        <table width="100%" style="margin-bottom: 15px; ">
             <tr>
                 <!-- Name & Desired Job Title -->
                 <td width="60%" style="vertical-align: middle;">
