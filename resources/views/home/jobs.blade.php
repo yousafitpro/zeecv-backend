@@ -918,13 +918,13 @@
                                     </h3>
 
 
-                                    @if(!empty($job->company))
+                                    @if(!empty($job->company_name))
 
                                         <div class="job_container_outer_company">
 
                                             <i class="bi bi-building"></i>
 
-                                            {{ $job->company }}
+                                            {{ $job->company_name }}
 
                                         </div>
 
