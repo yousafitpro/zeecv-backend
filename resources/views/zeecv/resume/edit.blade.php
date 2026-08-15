@@ -46,10 +46,10 @@
     @endif
     <div class="resume-edit-action-buttons">
       @if (session('is_app','no')!='yes')
-        <a  href="{{ route('resume.pdf.preview',request('id')) }}?resume={{ now() }}&resume_token={{ auth()->user()->login_token }}" target="_blank" class="btn btn-save btn-preview px-4 rounded-pill" >PDF Preview</a>
+        <a  onclick="resumePrintFunNewWindow('{{ route('resume.pdf.preview',request('id')) }}?resume={{ now() }}&resume_token={{ auth()->user()->login_token }}')" target="_blank" class="btn btn-save btn-preview px-4 rounded-pill" >PDF Preview</a>
       @endif
       
-    <a href="{{ route('resume.pdf',request('id')) }}?resume={{ now() }}&resume_token={{ auth()->user()->login_token }}" class="btn btn-save px-4 rounded-pill" >Download PDF</a>
+    <a onclick="resumePrintFunNewWindow('{{ route('resume.pdf',request('id')) }}?resume={{ now() }}&resume_token={{ auth()->user()->login_token }}')" class="btn btn-save px-4 rounded-pill" >Download PDF</a>
   
   </div>
   </header>
@@ -109,9 +109,10 @@ function resumePrintFun(url) {
 }
 
 function resumePrintFunNewWindow(url) {
-    const randomNumber = Math.floor(Math.random() * 1000000);
+const randomNumber = Math.floor(Math.random() * 1000000);
+const newUrl = url + '&resume_now=' + randomNumber;
 
-    window.location.href = url + '?resume=' + randomNumber;
+window.open(newUrl, '_blank', 'noopener,noreferrer');
 }
       $(document).ready(function(){
       LoadCVPreview()
