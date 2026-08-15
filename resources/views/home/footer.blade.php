@@ -1,4 +1,89 @@
+<button id="backToTopBtn" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+<script>
+    (function() {
+        const btn = document.getElementById('backToTopBtn');
+
+        // Show/hide button based on scroll position
+        function toggleButton() {
+            if (window.scrollY > 300) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        }
+
+        // Smooth scroll to top
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Event listeners
+        window.addEventListener('scroll', toggleButton);
+        btn.addEventListener('click', scrollToTop);
+
+        // Initial check in case page loads with scroll
+        toggleButton();
+    })();
+</script>
+<style>
+       /* ---------- FLOATING BACK-TO-TOP BUTTON ---------- */
+        #backToTopBtn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            border: none;
+            border-radius: 50%;
+            background: #3b82f6;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            z-index: 999;
+        }
+
+        #backToTopBtn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        #backToTopBtn:hover {
+            background: #2563eb;
+            transform: scale(1.08);
+            box-shadow: 0 10px 28px rgba(59, 130, 246, 0.6);
+        }
+
+        #backToTopBtn:active {
+            transform: scale(0.95);
+        }
+
+        /* subtle responsive touch */
+        @media (max-width: 640px) {
+            #backToTopBtn {
+                width: 48px;
+                height: 48px;
+                font-size: 1.4rem;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+        }
+</style>
 <footer class="zeecv_footer">
+    
     <div class="zeecv_footer_container">
 
         <!-- Main Footer -->
