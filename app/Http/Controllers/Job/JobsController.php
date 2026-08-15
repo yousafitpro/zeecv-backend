@@ -13,7 +13,7 @@ class JobsController extends Controller
     public function process()
     {
         //dadasd
-           $startOfLastWeek = Carbon::now()->startOfWeek();
+           $startOfLastWeek = Carbon::now()->subWeeks(2)->startOfWeek();
             $endOfLastWeek   = Carbon::now()->endOfWeek();
 
             return JobCareer::whereBetween('job_created_at', [
