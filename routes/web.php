@@ -643,6 +643,7 @@ Route::group([
      Route::get('/sync/himalayas',[JobsController::class,'himalayasJobs']);
      Route::get('/sync/remotive',[JobsController::class,'remotiveJobs']);
      Route::get('/sync/adzuna',[JobsController::class,'adzunaJobs']);
+     Route::get('/sync/remoteok',[JobsController::class,'remoteOKJobs']);
 
     });
 

@@ -249,6 +249,59 @@ public function remotiveJobs($search=null)
         'message' => 'First 100 jobs successfully synced',
     ]);
 }
+public function remoteOKJobs($search=null)
+{
+    $limit = 100;
+    $maxJobs = 100;
+
+
+
+        $res = Http::timeout(30)->get('https://remoteok.com/api', [
+            'limit' => $limit
+        ]);
+        if ($res->successful()) {
+
+            $jobs =$res->json();
+            foreach ($jobs as $index => $item) {
+                if ($index === 0) {
+                    continue;
+                }
+
+                JobCareer::updateOrCreate(
+                    [
+                        'slug' => Str::slug(
+                            ($item['position'] ?? 'job')
+                        ),
+                        'source' => 'remoteok',
+                    ],
+                    [
+                        'company_name' => $item['company'] ?? null,
+                        'title' => $item['position'] ?? null,
+                        'currency' => $item['currency'] ?? null,
+                        'job_types' => $item['job_type'] ?? null,
+                        'description' => $item['description'] ?? null,
+
+                        'job_created_at' => !empty($item['date'])
+                            ? Carbon::parse($item['date'])
+                            : null,
+
+                        'location' => $item['location'],
+
+                        'url' => $item['apply_url'] ?? null,
+
+                        'tags' => implode(
+                            ', ',
+                            $item['tags'] ?? []
+                        ),
+                    ]
+                );
+            }
+        }
+
+    return response()->json([
+        'message' => 'First 100 jobs successfully synced',
+    ]);
+}
 public function adzunaJobs($search=null)
 {
     $limit = 100;
