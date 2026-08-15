@@ -95,9 +95,9 @@
             <h2 style="font-size: 1.5rem; font-weight: 600; margin: 1.8rem 0 0.6rem 0; color: #0b1c33; border-bottom: 1px solid #e6edf4; padding-bottom: 0.3rem;">11. Changes to These Terms</h2>
             <p style="margin: 0.8rem 0; color: #1f2e44;">We may update these Terms from time to time. We will notify you of any material changes by posting the new Terms on this page with an updated "Last Updated" date. Your continued use of ZEECV.com after such changes constitutes your acceptance of the updated Terms.</p>
 
-            <!-- 12. Governing Law -->
+            {{-- <!-- 12. Governing Law -->
             <h2 style="font-size: 1.5rem; font-weight: 600; margin: 1.8rem 0 0.6rem 0; color: #0b1c33; border-bottom: 1px solid #e6edf4; padding-bottom: 0.3rem;">12. Governing Law and Dispute Resolution</h2>
-            <p style="margin: 0.8rem 0; color: #1f2e44;">These Terms and any disputes arising hereunder shall be governed by the laws of <strong>[Insert State/Country]</strong>, without regard to conflict of law principles. Any legal action shall be brought exclusively in the courts located in <strong>[Insert City, State/Country]</strong>, and you consent to the jurisdiction of such courts.</p>
+            <p style="margin: 0.8rem 0; color: #1f2e44;">These Terms and any disputes arising hereunder shall be governed by the laws of <strong>[Insert State/Country]</strong>, without regard to conflict of law principles. Any legal action shall be brought exclusively in the courts located in <strong>[Insert City, State/Country]</strong>, and you consent to the jurisdiction of such courts.</p> --}}
 
             <!-- 13. General Provisions -->
             <h2 style="font-size: 1.5rem; font-weight: 600; margin: 1.8rem 0 0.6rem 0; color: #0b1c33; border-bottom: 1px solid #e6edf4; padding-bottom: 0.3rem;">13. General Provisions</h2>
@@ -105,7 +105,7 @@
                 <li style="padding-left: 0.5rem; margin-bottom: 0.75rem;"><strong>Entire Agreement:</strong> These Terms constitute the entire agreement between you and ZEECV regarding the use of our Services.</li>
                 <li style="padding-left: 0.5rem; margin-bottom: 0.75rem;"><strong>Severability:</strong> If any provision is found to be invalid or unenforceable, the remaining provisions remain in full effect.</li>
                 <li style="padding-left: 0.5rem; margin-bottom: 0.75rem;"><strong>Waiver:</strong> Our failure to enforce any right or provision does not constitute a waiver of future enforcement.</li>
-                <li style="padding-left: 0.5rem; margin-bottom: 0.75rem;"><strong>Contact:</strong> If you have any questions about these Terms, please contact us at <strong>[Insert Contact Email]</strong>.</li>
+                {{-- <li style="padding-left: 0.5rem; margin-bottom: 0.75rem;"><strong>Contact:</strong> If you have any questions about these Terms, please contact us at <strong>[Insert Contact Email]</strong>.</li> --}}
             </ul>
 
             <hr style="border: 0; height: 1px; background: linear-gradient(to right, #dbe2ea, transparent); margin: 2rem 0 1.2rem 0;">
