@@ -1156,34 +1156,7 @@
                         @endif
 
 
-                        @if(!empty($job->source))
-
-                            <div class="job_container_outer_info_item">
-
-                                <div class="job_container_outer_info_icon">
-
-                                    <i class="bi bi-globe2"></i>
-
-                                </div>
-
-
-                                <div class="job_container_outer_info_content">
-
-                                    <span class="job_container_outer_info_label">
-                                        Source
-                                    </span>
-
-                                    <span class="job_container_outer_info_value">
-
-                                        {{ ucfirst($job->source) }}
-
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-                        @endif
+          
 
 
                     </div>
