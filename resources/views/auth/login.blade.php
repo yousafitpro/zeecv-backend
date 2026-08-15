@@ -37,6 +37,8 @@
 <br><br>
 {{--            <h3 class="text-center" style="margin-top: 6px">{{config('app.name')}}</h3>--}}
             <div class="login-form">
+                 <form action="{{url('login')}}" method="post" class="web-form">
+                    @csrf
                 <div class="form-group form-floating-label">
                     <input id="username" name="email" type="text" class="form-control input-border-bottom" required>
                     <label for="username" class="placeholder">Username</label>
@@ -59,7 +61,7 @@
                 <div class="form-action mb-3">
                     <button type="submit" class="btn btn-primary btn-rounded btn-login">Sign In</button>
                 </div>
-                        <form action="{{url('login')}}" method="post" class="web-form">
+                       
                  <div class="d-flex justify-content-center align-items-center">
                     <div >
                                <div id="g_id_onload"
