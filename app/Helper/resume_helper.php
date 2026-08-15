@@ -24,7 +24,7 @@ if ( ! function_exists('zeecv_templates')){
             'temp3'=>[
                 'color'=>'#c7885c',
                 'template'=>'temp3',
-                'thumbnail'=>asset('resume/templates/temp2.png'),
+                'thumbnail'=>asset('resume/templates/temp3.png'),
                 'name'=>'Template 3'
                 ],
             'marketer'=>[
