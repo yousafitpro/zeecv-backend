@@ -20,6 +20,143 @@
 @section('content')
 
 <style>
+    /* =========================================
+   RANDOM JOBS
+========================================= */
+
+.job_container_outer_random_jobs {
+    margin-top: 35px;
+}
+
+.job_container_outer_random_jobs_header {
+    margin-bottom: 18px;
+}
+
+.job_container_outer_random_jobs_title {
+    margin: 0 0 5px;
+    color: #111827;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.job_container_outer_random_jobs_subtitle {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.job_container_outer_random_jobs_grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.job_container_outer_random_job_card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all .2s ease;
+}
+
+.job_container_outer_random_job_card:hover {
+    border-color: #cbd5e1;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(15, 23, 42, .07);
+}
+
+.job_container_outer_random_job_top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.job_container_outer_random_job_logo {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    color: #334155;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.job_container_outer_random_job_content {
+    min-width: 0;
+}
+
+.job_container_outer_random_job_title {
+    margin: 0;
+    color: #111827;
+    font-size: 15px;
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+.job_container_outer_random_job_company {
+    margin-top: 5px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.job_container_outer_random_job_meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: auto;
+    padding-top: 15px;
+}
+
+.job_container_outer_random_job_meta_item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 8px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    color: #64748b;
+    font-size: 11px;
+}
+
+.job_container_outer_random_job_meta_item i {
+    font-size: 11px;
+}
+
+.job_container_outer_random_job_arrow {
+    margin-top: 15px;
+    padding-top: 13px;
+    border-top: 1px solid #f1f5f9;
+    color: #16a34a;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+@media (max-width: 991px) {
+    .job_container_outer_random_jobs_grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .job_container_outer_random_jobs_grid {
+        grid-template-columns: 1fr;
+    }
+
+    .job_container_outer_random_jobs_title {
+        font-size: 20px;
+    }
+}
 
     /* =========================================
        MAIN
@@ -1117,7 +1254,110 @@
         </div>
 
     </section>
+{{-- =========================================
+     RANDOM / RELATED JOBS
+========================================== --}}
 
+@if(!empty($random_jobs) && count($random_jobs) > 0)
+
+    <section class="job_container_outer_random_jobs">
+
+        <div class="container">
+
+            <div class="job_container_outer_random_jobs_header">
+
+                <h2 class="job_container_outer_random_jobs_title">
+                    More Jobs You May Like
+                </h2>
+
+                <p class="job_container_outer_random_jobs_subtitle">
+                    Explore more opportunities that might be a good fit for you.
+                </p>
+
+            </div>
+
+
+            <div class="job_container_outer_random_jobs_grid">
+
+                @foreach($random_jobs as $random_job)
+
+                    <a
+                        href="{{ route('home.jobs.single', $random_job->slug) }}"
+                        class="job_container_outer_random_job_card"
+                    >
+
+                        <div class="job_container_outer_random_job_top">
+
+                            <div class="job_container_outer_random_job_logo">
+                                {{ strtoupper(
+                                    substr(
+                                        $random_job->company ?? $random_job->title ?? 'J',
+                                        0,
+                                        1
+                                    )
+                                ) }}
+                            </div>
+
+                            <div class="job_container_outer_random_job_content">
+
+                                <h3 class="job_container_outer_random_job_title">
+                                    {{ \Illuminate\Support\Str::limit($random_job->title, 55) }}
+                                </h3>
+
+                                @if(!empty($random_job->company))
+                                    <div class="job_container_outer_random_job_company">
+                                        <i class="bi bi-building"></i>
+                                        {{ \Illuminate\Support\Str::limit($random_job->company, 35) }}
+                                    </div>
+                                @endif
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="job_container_outer_random_job_meta">
+
+                            @if(!empty($random_job->location))
+
+                                <span class="job_container_outer_random_job_meta_item">
+                                    <i class="bi bi-geo-alt"></i>
+                                    {{ \Illuminate\Support\Str::limit($random_job->location, 25) }}
+                                </span>
+
+                            @endif
+
+
+                            @if(!empty($random_job->job_types))
+
+                                <span class="job_container_outer_random_job_meta_item">
+                                    <i class="bi bi-briefcase"></i>
+                                    {{ \Illuminate\Support\Str::limit(str_replace(',', ', ', $random_job->job_types), 25) }}
+                                </span>
+
+                            @endif
+
+                        </div>
+
+
+                        <div class="job_container_outer_random_job_arrow">
+
+                            View Job
+                            <i class="bi bi-arrow-right"></i>
+
+                        </div>
+
+                    </a>
+
+                @endforeach
+
+            </div>
+
+        </div>
+
+    </section>
+
+@endif
 
 </div>
 

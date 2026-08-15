@@ -23,6 +23,7 @@ class JobsController extends Controller
     }
     public function jobDetail($slug){
          $data['job']=JobCareer::where('slug',$slug)->first();
+         $data['random_jobs'] = JobCareer::inRandomOrder()->limit(4)->get();
          return view('home.jobs-detail',$data);
     }
     public function index(Request $request)
