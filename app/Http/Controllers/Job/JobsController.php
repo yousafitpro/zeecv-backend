@@ -195,4 +195,58 @@ public function himalayasJobs()
         'message' => 'First 100 jobs successfully synced',
     ]);
 }
+public function remotiveJobs($search=null)
+{
+    $limit = 100;
+    $maxJobs = 100;
+
+
+
+        $res = Http::timeout(30)->get('https://remotive.com/api/remote-jobs', [
+            'limit' => $limit
+        ]);
+
+        if ($res->successful()) {
+
+            $jobs = $res->json('jobs', []);
+            foreach ($jobs as $item) {
+
+                JobCareer::updateOrCreate(
+                    [
+                        'slug' => Str::slug(
+                            ($item['title'] ?? 'job') . '-' .
+                            ($item['company_name'] ?? '')
+                        ),
+                        'source' => 'remotive',
+                    ],
+                    [
+                        'company_name' => $item['company_name'] ?? null,
+                        'title' => $item['title'] ?? null,
+                        'currency' => $item['currency'] ?? null,
+                        'job_types' => $item['job_type'] ?? null,
+                        'description' => $item['description'] ?? null,
+
+                        'job_created_at' => !empty($item['publication_date'])
+                            ? Carbon::parse($item['publication_date'])
+                            : null,
+
+                        'location' => !empty($item['locationRestrictions'])
+                            ? $item['locationRestrictions'][0]
+                            : null,
+
+                        'url' => $item['url'] ?? null,
+
+                        'tags' => implode(
+                            ', ',
+                            $item['tags'] ?? []
+                        ),
+                    ]
+                );
+            }
+        }
+
+    return response()->json([
+        'message' => 'First 100 jobs successfully synced',
+    ]);
+}
 }
