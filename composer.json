@@ -19,6 +19,7 @@
         "league/csv": "^9.8",
         "league/flysystem-aws-s3-v3": "3.29.0",
         "maatwebsite/excel": "^3.1",
+        "mews/purifier": "*",
         "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-sitemap": "^8.0",
         "stripe/stripe-php": "^10.5",
