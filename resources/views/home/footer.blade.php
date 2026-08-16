@@ -170,15 +170,16 @@
                         </a>
                     </li> --}}
 
-                    <li>
-                        <a href="{{ url('/page-view/google-adsense-policy') }}">
-                           Google AdSense Policy
-                        </a>
-                    </li>
+                   
 
                     <li>
                         <a href="{{ route('home.contact') }}">
                             Contact Us
+                        </a>
+                    </li>
+                     <li>
+                        <a href="{{ url('/page-view/google-adsense-policy') }}">
+                           Google AdSense Policy
                         </a>
                     </li>
                 </ul>
