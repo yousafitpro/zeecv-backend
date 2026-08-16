@@ -207,6 +207,18 @@
 @section('content')
 
 <style>
+    .job_search_btns button{
+        background: white !important;
+        outline: 2px solid var(--primary);
+        color:var(--primary);
+        font-weight: bold;
+    }
+    .job_search_btns a{
+        background: white !important;
+        outline: 2px solid var(--primary);
+        color:var(--primary);
+        font-weight: bold;
+    }
       #job_search_form {
         width: 100%;
         box-sizing: border-box;
@@ -1046,8 +1058,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <button class="btn btn-primary btn-block" style="background:var(--primary) !important" type="submit">Search</button>
+                    <div class="col-12 col-sm-6 col-md-2 job_search_btns" style="padding: 4px">
+                        <button class="btn btn-primary btn-block"  type="submit">Search</button>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-1  job_search_btns" style="padding: 4px">
+                        <a href="{{ route('home.jobs') }}" class="btn btn-primary btn-block"  type="submit">Reset</a>
                     </div>
                    </div>
                 </form>
