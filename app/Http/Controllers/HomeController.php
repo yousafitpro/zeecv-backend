@@ -21,6 +21,9 @@ class HomeController extends Controller
     public function contact(){
         return view('home.contact');
     }
+    public function postAJob(){
+        return view('home.post-a-job');
+    }
     public function contactPost(Request $request){
         $input=$request->all();
         return redirect('/')->with([
