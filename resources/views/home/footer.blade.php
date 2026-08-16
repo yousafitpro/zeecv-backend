@@ -176,11 +176,11 @@
                         </a>
                     </li> --}}
 
-                    {{-- <li>
-                        <a href="{{ url('/contact') }}">
+                    <li>
+                        <a href="{{ route('home.contact') }}">
                             Contact Us
                         </a>
-                    </li> --}}
+                    </li>
                 </ul>
             </div>
 
