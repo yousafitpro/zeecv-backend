@@ -1235,7 +1235,7 @@
 
     <section class="job_container_outer_random_jobs">
 
-        <div class="container">
+        <div class="container-fluid">
 
             <div class="job_container_outer_random_jobs_header">
 
