@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\App\AppGoogleRecaptchaController;
+use App\Models\ContactQuery;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,6 +28,23 @@ class HomeController extends Controller
     }
     public function contactPost(Request $request){
         $input=$request->all();
+        $score=(new AppGoogleRecaptchaController())->getScore($input['g-recaptcha-response']);
+        // dd($score,$input);
+        if($score<0.7)
+        {
+           return redirect()->back()->withInput()->with([
+                'toast' => [
+                    'heading' => 'Message',
+                    'message' => 'Invalid recaptcha',
+                    'type' => 'danger',
+                ]
+            ]);
+        }
+        ContactQuery::create([
+            'email'=>$input['email'],
+            'payload'=>json_encode($input),
+            'type'=>'contact'
+        ]);
         return redirect('/')->with([
                 'toast' => [
                     'heading' => 'Message',
@@ -36,6 +55,25 @@ class HomeController extends Controller
     }
     public function postAJobProcess(Request $request){
         $input=$request->all();
+        $input=$request->all();
+
+        $score=(new AppGoogleRecaptchaController())->getScore($input['g-recaptcha-response']);
+        if($score<0.7)
+        {
+           return redirect()->back()->withInput()->with([
+                'toast' => [
+                    'heading' => 'Message',
+                    'message' => 'Invalid recaptcha',
+                    'type' => 'danger',
+                ]
+            ]);
+        }
+        ContactQuery::create([
+            'email'=>$input['company_email'],
+            'payload'=>json_encode($input),
+            'type'=>'post-a-job'
+        ]);
+        
         return redirect('/')->with([
                 'toast' => [
                     'heading' => 'Message',

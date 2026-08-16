@@ -216,7 +216,7 @@
         }
     }
 </style>
-
+<script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 <div class="contact_us_outer_div">
 
     <div class="contact_us_wrapper">
@@ -401,7 +401,13 @@
                                 >{{ old('message') }}</textarea>
 
                             </div>
+ <div class="row">
+                    <div class="col-md-12">
+                        <div class="g-recaptcha" data-sitekey="{{config('myconfig.Recap.site_key')}}" data-callback="recaptcha_successfull_response" data-error-callback="data_error_callback" data-expired-callback="recaptcha_expired_callback"></div>
 
+                    </div>
+                </div>
+                <br>
                             <button
                                 type="submit"
                                 class="contact_us_submit"
@@ -423,5 +429,25 @@
     </div>
 
 </div>
+<script>
 
+    function recaptcha_successfull_response(data)
+    {
+
+    }
+    function recaptcha_expired_callback()
+    {
+
+
+
+    }
+    function reset_recaptcha()
+    {
+        grecaptcha.enterprise.reset();
+    }
+    function data_error_callback()
+    {
+
+    }
+</script>
 @endsection

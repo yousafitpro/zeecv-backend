@@ -250,7 +250,7 @@
     }
 </style>
 
-
+<script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 <div class="post_job_outer_div">
 
     <div class="post_job_wrapper">
@@ -739,7 +739,12 @@
                                     placeholder="https://company.com/careers/job or hr@company.com"
                                     required
                                 >
+                                               <div class="row">
+                    <div class="col-md-12">
+                        <div class="g-recaptcha" data-sitekey="{{config('myconfig.Recap.site_key')}}" data-callback="recaptcha_successfull_response" data-error-callback="data_error_callback" data-expired-callback="recaptcha_expired_callback"></div>
 
+                    </div>
+                </div>
                                 <div class="post_job_hint">
                                     Candidates will use this information to apply for the position.
                                 </div>
@@ -772,5 +777,25 @@
     </div>
 
 </div>
+<script>
 
+    function recaptcha_successfull_response(data)
+    {
+
+    }
+    function recaptcha_expired_callback()
+    {
+
+
+
+    }
+    function reset_recaptcha()
+    {
+        grecaptcha.enterprise.reset();
+    }
+    function data_error_callback()
+    {
+
+    }
+</script>
 @endsection
