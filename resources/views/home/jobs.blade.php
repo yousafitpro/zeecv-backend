@@ -220,17 +220,14 @@
         font-weight: bold;
     }
       #job_search_form {
+        
         width: 100%;
         box-sizing: border-box;
 
         padding: 20px;
 
         background: #ffffff;
-
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        border-left: 5px solid var(--primary);
     }
 
     #job_search_form label {
@@ -996,6 +993,7 @@
 
             .job_container_outer_section {
                 padding: 30px 0 60px;
+                
             }
 
             .job_container_outer_header_title {
