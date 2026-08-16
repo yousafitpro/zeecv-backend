@@ -207,6 +207,12 @@
                             Terms & Conditions
                         </a>
                     </li>
+
+                    <li>
+                        <a href="{{ url('/page-view/cookie-policy') }}">
+                            Cookie Policy
+                        </a>
+                    </li>
                 </ul>
             </div>
 
