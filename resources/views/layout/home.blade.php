@@ -82,7 +82,7 @@
 </script>
 </head>
 <body>
-<div style="height: 70px"></div>
+<div style="height: 100px"></div>
 <div class="container" id="main_content_container">
 
 @include('layout.includes.navbar')
