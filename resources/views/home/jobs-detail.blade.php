@@ -1298,7 +1298,7 @@
 
                                 <div class="job_container_outer_info_icon">
 
-                                    <i class="bi bi-geo-alt"></i>
+                                    <i class="fa fa-location"></i>
 
                                 </div>
 
@@ -1326,7 +1326,7 @@
 
                                 <div class="job_container_outer_info_icon">
 
-                                    <i class="bi bi-calendar3"></i>
+                                    <i class="fa fa-edit"></i>
 
                                 </div>
 
@@ -1365,7 +1365,7 @@
 
                         <div class="job_container_outer_resume_icon">
 
-                            <i class="bi bi-stars"></i>
+                             <i class="fa fa-circle"></i>
 
                         </div>
 
