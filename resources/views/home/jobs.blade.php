@@ -1059,7 +1059,7 @@
                     </div>
                    
                    </div>
-                   <div class="row mt-2">
+                   <div class="row mt-2 g-1">
                      <div class="col-md-8" >
                      </div>
                      <div class=" col-md-3 job_search_btns" >
@@ -1406,7 +1406,7 @@
 
                         <span class="job_container_outer_sidebar_icon">
 
-                            <i class="bi bi-stars"></i>
+                              <i class="fa fa-edit"></i>
 
                         </span>
 

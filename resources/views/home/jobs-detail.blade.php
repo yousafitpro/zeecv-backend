@@ -1365,7 +1365,7 @@
 
                         <div class="job_container_outer_resume_icon">
 
-                             <i class="fa fa-circle"></i>
+                             <i class="fa fa-edit"></i>
 
                         </div>
 
