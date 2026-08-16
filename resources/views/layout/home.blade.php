@@ -87,7 +87,9 @@
 
 @include('layout.includes.navbar')
 
+<div>
 @yield('content')
+</div>
 @include('home.footer')
 
 @include('layout.includes.js')
