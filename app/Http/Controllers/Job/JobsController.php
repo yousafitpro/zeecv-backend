@@ -59,6 +59,7 @@ class JobsController extends Controller
                 return $query->where(function ($q) use ($search) {
                     $q->where('title', 'like', $search)
                     ->orWhere('tags', 'like', $search)
+                    ->orWhere('company_name', 'like', $search)
                     ->orWhere('location', 'like', $search)
                     ->orWhere('job_types', 'like', $search);
                 });
