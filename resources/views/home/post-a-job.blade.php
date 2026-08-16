@@ -1,30 +1,30 @@
 @extends('layout.home')
 
 @section('meta_tags')
-    <title>Post a job | ZeeCV</title>
-    <meta name="description" content="Get in touch with ZeeCV. We're here to help with your resume, job search, and any questions you may have.">
+    <title>Post a Job | ZeeCV</title>
+    <meta name="description" content="Post your job on ZeeCV and connect with qualified candidates. Add your company and job details to reach the right talent.">
 @endsection
 
 @section('content')
 
 <style>
-    .contact_us_outer_div {
+    .post_job_outer_div {
         background: #f7f9fc;
         padding: 60px 15px;
         min-height: 70vh;
     }
 
-    .contact_us_outer_div .contact_us_wrapper {
-        max-width: 1100px;
+    .post_job_outer_div .post_job_wrapper {
+        max-width: 1150px;
         margin: 0 auto;
     }
 
-    .contact_us_outer_div .contact_us_header {
+    .post_job_outer_div .post_job_header {
         text-align: center;
         margin-bottom: 40px;
     }
 
-    .contact_us_outer_div .contact_us_badge {
+    .post_job_outer_div .post_job_badge {
         display: inline-block;
         background: rgba(13, 110, 253, 0.08);
         color: #0d6efd;
@@ -35,22 +35,22 @@
         margin-bottom: 12px;
     }
 
-    .contact_us_outer_div .contact_us_title {
+    .post_job_outer_div .post_job_title {
         font-size: 36px;
         font-weight: 700;
         color: #1f2937;
         margin-bottom: 10px;
     }
 
-    .contact_us_outer_div .contact_us_subtitle {
+    .post_job_outer_div .post_job_subtitle {
         color: #6b7280;
         font-size: 16px;
-        max-width: 650px;
+        max-width: 700px;
         margin: 0 auto;
         line-height: 1.7;
     }
 
-    .contact_us_outer_div .contact_us_card {
+    .post_job_outer_div .post_job_card {
         background: #ffffff;
         border-radius: 14px;
         overflow: hidden;
@@ -58,33 +58,39 @@
         border: 1px solid #edf0f5;
     }
 
-    .contact_us_outer_div .contact_us_info {
+    /*
+    |--------------------------------------------------------------------------
+    | Company Information
+    |--------------------------------------------------------------------------
+    */
+
+    .post_job_outer_div .post_job_company_info {
         background: #111827;
         color: #ffffff;
         height: 100%;
         padding: 40px 35px;
     }
 
-    .contact_us_outer_div .contact_us_info_title {
+    .post_job_outer_div .post_job_company_title {
         font-size: 25px;
         font-weight: 700;
         margin-bottom: 12px;
     }
 
-    .contact_us_outer_div .contact_us_info_text {
+    .post_job_outer_div .post_job_company_text {
         color: #cbd5e1;
         line-height: 1.7;
         font-size: 14px;
-        margin-bottom: 35px;
+        margin-bottom: 30px;
     }
 
-    .contact_us_outer_div .contact_us_info_item {
+    .post_job_outer_div .post_job_company_item {
         display: flex;
         align-items: flex-start;
-        margin-bottom: 25px;
+        margin-bottom: 23px;
     }
 
-    .contact_us_outer_div .contact_us_info_icon {
+    .post_job_outer_div .post_job_company_icon {
         width: 42px;
         height: 42px;
         min-width: 42px;
@@ -98,13 +104,13 @@
         font-size: 16px;
     }
 
-    .contact_us_outer_div .contact_us_info_item h6 {
+    .post_job_outer_div .post_job_company_item h6 {
         margin: 0 0 4px;
         font-size: 14px;
         font-weight: 600;
     }
 
-    .contact_us_outer_div .contact_us_info_item p {
+    .post_job_outer_div .post_job_company_item p {
         margin: 0;
         color: #cbd5e1;
         font-size: 13px;
@@ -112,27 +118,47 @@
         word-break: break-word;
     }
 
-    .contact_us_outer_div .contact_us_form {
+    /*
+    |--------------------------------------------------------------------------
+    | Form
+    |--------------------------------------------------------------------------
+    */
+
+    .post_job_outer_div .post_job_form {
         padding: 40px 35px;
     }
 
-    .contact_us_outer_div .contact_us_form_title {
+    .post_job_outer_div .post_job_form_title {
         font-size: 24px;
         font-weight: 700;
         color: #1f2937;
         margin-bottom: 25px;
     }
 
-    .contact_us_outer_div .contact_us_label {
+    .post_job_outer_div .post_job_section_title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #1f2937;
+        margin: 25px 0 18px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #edf0f5;
+    }
+
+    .post_job_outer_div .post_job_label {
         color: #374151;
         font-size: 13px;
         font-weight: 600;
         margin-bottom: 8px;
     }
 
-    .contact_us_outer_div .contact_us_input {
+    .post_job_outer_div .post_job_required {
+        color: #dc3545;
+    }
+
+    .post_job_outer_div .post_job_input,
+    .post_job_outer_div .post_job_select,
+    .post_job_outer_div .post_job_textarea {
         width: 100%;
-        height: 48px;
         border: 1px solid #dfe3e8;
         border-radius: 7px;
         padding: 0 14px;
@@ -143,30 +169,26 @@
         transition: all 0.2s ease;
     }
 
-    .contact_us_outer_div .contact_us_input:focus {
-        border-color: #0d6efd;
-        box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.08);
+    .post_job_outer_div .post_job_input,
+    .post_job_outer_div .post_job_select {
+        height: 48px;
     }
 
-    .contact_us_outer_div .contact_us_textarea {
-        width: 100%;
-        min-height: 145px;
-        resize: vertical;
-        border: 1px solid #dfe3e8;
-        border-radius: 7px;
+    .post_job_outer_div .post_job_textarea {
+        min-height: 120px;
         padding: 13px 14px;
-        font-size: 14px;
-        color: #1f2937;
-        outline: none;
-        transition: all 0.2s ease;
+        resize: vertical;
+        line-height: 1.6;
     }
 
-    .contact_us_outer_div .contact_us_textarea:focus {
+    .post_job_outer_div .post_job_input:focus,
+    .post_job_outer_div .post_job_select:focus,
+    .post_job_outer_div .post_job_textarea:focus {
         border-color: #0d6efd;
         box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.08);
     }
 
-    .contact_us_outer_div .contact_us_submit {
+    .post_job_outer_div .post_job_submit {
         height: 48px;
         padding: 0 28px;
         border: 0;
@@ -177,140 +199,219 @@
         font-weight: 600;
         cursor: pointer;
         transition: all 0.2s ease;
+        margin-top: 5px;
     }
 
-    .contact_us_outer_div .contact_us_submit:hover {
+    .post_job_outer_div .post_job_submit:hover {
         background: #0b5ed7;
         transform: translateY(-1px);
         box-shadow: 0 5px 15px rgba(13, 110, 253, 0.2);
     }
 
-    .contact_us_outer_div .contact_us_required {
-        color: #dc3545;
-    }
-
-    .contact_us_outer_div .contact_us_alert {
+    .post_job_outer_div .post_job_alert {
         border-radius: 7px;
         font-size: 14px;
+        margin-bottom: 20px;
     }
 
+    .post_job_outer_div .post_job_hint {
+        font-size: 11px;
+        color: #9ca3af;
+        margin-top: 5px;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Mobile
+    |--------------------------------------------------------------------------
+    */
+
     @media (max-width: 767px) {
-        .contact_us_outer_div {
+
+        .post_job_outer_div {
             padding: 40px 10px;
         }
 
-        .contact_us_outer_div .contact_us_title {
+        .post_job_outer_div .post_job_title {
             font-size: 28px;
         }
 
-        .contact_us_outer_div .contact_us_subtitle {
+        .post_job_outer_div .post_job_subtitle {
             font-size: 14px;
         }
 
-        .contact_us_outer_div .contact_us_info {
+        .post_job_outer_div .post_job_company_info {
             padding: 30px 25px;
         }
 
-        .contact_us_outer_div .contact_us_form {
+        .post_job_outer_div .post_job_form {
             padding: 30px 20px;
         }
     }
 </style>
 
-<div class="contact_us_outer_div">
 
-    <div class="contact_us_wrapper">
+<div class="post_job_outer_div">
+
+    <div class="post_job_wrapper">
 
         {{-- Header --}}
-        <div class="contact_us_header">
-            <span class="contact_us_badge">Get In Touch</span>
+        <div class="post_job_header">
 
-            <h1 class="contact_us_title">
-                Post a job
+            <span class="post_job_badge">
+                <i class="fas fa-briefcase mr-1"></i>
+                Hire Top Talent
+            </span>
+
+            <h1 class="post_job_title">
+                Post a Job
             </h1>
 
-            <p class="contact_us_subtitle">
-                Have a question, feedback, or need help with ZeeCV?
-                Send us a message and our team will get back to you as soon as possible.
+            <p class="post_job_subtitle">
+                Share your job opportunity with talented professionals.
+                Provide your company and job details to reach the right candidates.
             </p>
+
         </div>
 
-        {{-- Success Message --}}
+
+        {{-- Success --}}
         @if(session('success'))
-            <div class="alert alert-success contact_us_alert">
+
+            <div class="alert alert-success post_job_alert">
                 {{ session('success') }}
             </div>
+
         @endif
 
-        {{-- Error Message --}}
+
+        {{-- Errors --}}
         @if($errors->any())
-            <div class="alert alert-danger contact_us_alert">
+
+            <div class="alert alert-danger post_job_alert">
+
                 <ul class="mb-0 pl-3">
+
                     @foreach($errors->all() as $error)
+
                         <li>{{ $error }}</li>
+
                     @endforeach
+
                 </ul>
+
             </div>
+
         @endif
 
-        <div class="contact_us_card">
+
+        <div class="post_job_card">
 
             <div class="row no-gutters">
 
-                {{-- Contact Information --}}
+                {{-- LEFT SIDE --}}
                 <div class="col-lg-5">
 
-                    <div class="contact_us_info">
+                    <div class="post_job_company_info">
 
-                        <h2 class="contact_us_info_title">
-                            Let's talk
+                        <h2 class="post_job_company_title">
+                            Find the right talent
                         </h2>
 
-                        <p class="contact_us_info_text">
-                            Whether you have a question about our services,
-                            need assistance with your resume, or simply want
-                            to share your feedback, we'd love to hear from you.
+                        <p class="post_job_company_text">
+                            Post your vacancy on ZeeCV and give talented
+                            professionals the opportunity to discover your
+                            company and apply for your open position.
                         </p>
 
-                        <div class="contact_us_info_item">
 
-                            <div class="contact_us_info_icon">
+                        {{-- Company --}}
+                        <div class="post_job_company_item">
+
+                            <div class="post_job_company_icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+
+                            <div>
+
+                                <h6>
+                                    Company Information
+                                </h6>
+
+                                <p>
+                                    Add your company name and website so
+                                    candidates can learn more about your business.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        {{-- Job --}}
+                        <div class="post_job_company_item">
+
+                            <div class="post_job_company_icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+
+                            <div>
+
+                                <h6>
+                                    Reach Candidates
+                                </h6>
+
+                                <p>
+                                    Share your job requirements and attract
+                                    qualified candidates.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        {{-- Email --}}
+                        <div class="post_job_company_item">
+
+                            <div class="post_job_company_icon">
                                 <i class="fas fa-envelope"></i>
                             </div>
 
                             <div>
-                                <h6>Email</h6>
-                                <p>support@zeecv.com</p>
+
+                                <h6>
+                                    Contact Email
+                                </h6>
+
+                                <p>
+                                    Your email will be used for job-related
+                                    communication.
+                                </p>
+
                             </div>
 
                         </div>
 
-                        <div class="contact_us_info_item">
 
-                            <div class="contact_us_info_icon">
-                                <i class="fas fa-clock"></i>
+                        {{-- Free --}}
+                        <div class="post_job_company_item">
+
+                            <div class="post_job_company_icon">
+                                <i class="fas fa-check-circle"></i>
                             </div>
 
                             <div>
-                                <h6>Response Time</h6>
+
+                                <h6>
+                                    Easy Job Posting
+                                </h6>
+
                                 <p>
-                                    We usually respond within 24 hours.
+                                    Provide the details once and let candidates
+                                    discover your opportunity.
                                 </p>
-                            </div>
 
-                        </div>
-
-                        <div class="contact_us_info_item">
-
-                            <div class="contact_us_info_icon">
-                                <i class="fas fa-headset"></i>
-                            </div>
-
-                            <div>
-                                <h6>Support</h6>
-                                <p>
-                                    Our team is here to help you with any questions.
-                                </p>
                             </div>
 
                         </div>
@@ -319,50 +420,73 @@
 
                 </div>
 
-                {{-- Contact Form --}}
+
+                {{-- RIGHT SIDE --}}
                 <div class="col-lg-7">
 
-                    <div class="contact_us_form">
+                    <div class="post_job_form">
 
-                        <h2 class="contact_us_form_title">
-                            Send us a message
+                        <h2 class="post_job_form_title">
+                            Job & Company Details
                         </h2>
 
-                        <form method="POST" action="{{ route('home.contact_post') }}">
+
+                        <form
+                            method="POST"
+                            action="{{ route('home.post_a_job_process') }}"
+                        >
 
                             @csrf
 
+
+                            {{-- ============================= --}}
+                            {{-- COMPANY INFORMATION --}}
+                            {{-- ============================= --}}
+
+                            <div class="post_job_section_title">
+
+                                <i class="fas fa-building mr-2"></i>
+                                Company Information
+
+                            </div>
+
+
                             <div class="form-row">
 
+                                {{-- Company Name --}}
                                 <div class="form-group col-md-6">
 
-                                    <label class="contact_us_label">
-                                        Name <span class="contact_us_required">*</span>
+                                    <label class="post_job_label">
+                                        Company Name
+                                        <span class="post_job_required">*</span>
                                     </label>
 
                                     <input
                                         type="text"
-                                        name="name"
-                                        value="{{ old('name') }}"
-                                        class="contact_us_input"
-                                        placeholder="Enter your name"
+                                        name="company_name"
+                                        value="{{ old('company_name') }}"
+                                        class="post_job_input"
+                                        placeholder="e.g. ZeeCV"
                                         required
                                     >
 
                                 </div>
 
+
+                                {{-- Company Email --}}
                                 <div class="form-group col-md-6">
 
-                                    <label class="contact_us_label">
-                                        Email <span class="contact_us_required">*</span>
+                                    <label class="post_job_label">
+                                        Company Email
+                                        <span class="post_job_required">*</span>
                                     </label>
 
                                     <input
                                         type="email"
-                                        name="email"
-                                        value="{{ old('email') }}"
-                                        class="contact_us_input"
-                                        placeholder="Enter your email"
+                                        name="company_email"
+                                        value="{{ old('company_email') }}"
+                                        class="post_job_input"
+                                        placeholder="hr@company.com"
                                         required
                                     >
 
@@ -370,44 +494,269 @@
 
                             </div>
 
+
+                            <div class="form-row">
+
+                                {{-- Website --}}
+                                <div class="form-group col-md-6">
+
+                                    <label class="post_job_label">
+                                        Company Website
+                                    </label>
+
+                                    <input
+                                        type="url"
+                                        name="company_website"
+                                        value="{{ old('company_website') }}"
+                                        class="post_job_input"
+                                        placeholder="https://company.com"
+                                    >
+
+                                </div>
+
+
+                                {{-- Company Phone --}}
+                                <div class="form-group col-md-6">
+
+                                    <label class="post_job_label">
+                                        Contact Number
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        name="company_phone"
+                                        value="{{ old('company_phone') }}"
+                                        class="post_job_input"
+                                        placeholder="+92 300 1234567"
+                                    >
+
+                                </div>
+
+                            </div>
+
+
                             <div class="form-group">
 
-                                <label class="contact_us_label">
-                                    Subject <span class="contact_us_required">*</span>
+                                <label class="post_job_label">
+                                    Company Description
+                                </label>
+
+                                <textarea
+                                    name="company_description"
+                                    class="post_job_textarea"
+                                    placeholder="Tell candidates briefly about your company..."
+                                >{{ old('company_description') }}</textarea>
+
+                            </div>
+
+
+                            {{-- ============================= --}}
+                            {{-- JOB INFORMATION --}}
+                            {{-- ============================= --}}
+
+                            <div class="post_job_section_title">
+
+                                <i class="fas fa-briefcase mr-2"></i>
+                                Job Information
+
+                            </div>
+
+
+                            {{-- Job Title --}}
+                            <div class="form-group">
+
+                                <label class="post_job_label">
+                                    Job Title
+                                    <span class="post_job_required">*</span>
                                 </label>
 
                                 <input
                                     type="text"
-                                    name="subject"
-                                    value="{{ old('subject') }}"
-                                    class="contact_us_input"
-                                    placeholder="What is this about?"
+                                    name="job_title"
+                                    value="{{ old('job_title') }}"
+                                    class="post_job_input"
+                                    placeholder="e.g. Senior Laravel Developer"
                                     required
                                 >
 
                             </div>
 
-                            <div class="form-group">
 
-                                <label class="contact_us_label">
-                                    Message <span class="contact_us_required">*</span>
-                                </label>
+                            <div class="form-row">
 
-                                <textarea
-                                    name="message"
-                                    class="contact_us_textarea"
-                                    placeholder="Write your message here..."
-                                    required
-                                >{{ old('message') }}</textarea>
+                                {{-- Location --}}
+                                <div class="form-group col-md-6">
+
+                                    <label class="post_job_label">
+                                        Job Location
+                                        <span class="post_job_required">*</span>
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        name="location"
+                                        value="{{ old('location') }}"
+                                        class="post_job_input"
+                                        placeholder="e.g. Lahore, Pakistan"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                {{-- Job Type --}}
+                                <div class="form-group col-md-6">
+
+                                    <label class="post_job_label">
+                                        Job Type
+                                        <span class="post_job_required">*</span>
+                                    </label>
+
+                                    <select
+                                        name="job_type"
+                                        class="post_job_select"
+                                        required
+                                    >
+
+                                        <option value="">
+                                            Select job type
+                                        </option>
+
+                                        <option
+                                            value="Full Time"
+                                            {{ old('job_type') == 'Full Time' ? 'selected' : '' }}
+                                        >
+                                            Full Time
+                                        </option>
+
+                                        <option
+                                            value="Part Time"
+                                            {{ old('job_type') == 'Part Time' ? 'selected' : '' }}
+                                        >
+                                            Part Time
+                                        </option>
+
+                                        <option
+                                            value="Contract"
+                                            {{ old('job_type') == 'Contract' ? 'selected' : '' }}
+                                        >
+                                            Contract
+                                        </option>
+
+                                        <option
+                                            value="Freelance"
+                                            {{ old('job_type') == 'Freelance' ? 'selected' : '' }}
+                                        >
+                                            Freelance
+                                        </option>
+
+                                        <option
+                                            value="Internship"
+                                            {{ old('job_type') == 'Internship' ? 'selected' : '' }}
+                                        >
+                                            Internship
+                                        </option>
+
+                                    </select>
+
+                                </div>
 
                             </div>
 
+
+                            <div class="form-row">
+
+                                {{-- Salary --}}
+                                <div class="form-group col-md-6">
+
+                                    <label class="post_job_label">
+                                        Salary
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        name="salary"
+                                        value="{{ old('salary') }}"
+                                        class="post_job_input"
+                                        placeholder="e.g. $2,000 - $3,000 / month"
+                                    >
+
+                                </div>
+
+
+                                {{-- Experience --}}
+                                <div class="form-group col-md-6">
+
+                                    <label class="post_job_label">
+                                        Experience
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        name="experience"
+                                        value="{{ old('experience') }}"
+                                        class="post_job_input"
+                                        placeholder="e.g. 3+ years"
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            {{-- Job Description --}}
+                            <div class="form-group">
+
+                                <label class="post_job_label">
+                                    Job Description
+                                    <span class="post_job_required">*</span>
+                                </label>
+
+                                <textarea
+                                    name="job_description"
+                                    class="post_job_textarea"
+                                    style="min-height: 180px;"
+                                    placeholder="Describe the role, responsibilities, requirements and qualifications..."
+                                    required
+                                >{{ old('job_description') }}</textarea>
+
+                            </div>
+
+
+                            {{-- Apply URL --}}
+                            <div class="form-group">
+
+                                <label class="post_job_label">
+                                    Application URL / Email
+                                    <span class="post_job_required">*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="apply_url"
+                                    value="{{ old('apply_url') }}"
+                                    class="post_job_input"
+                                    placeholder="https://company.com/careers/job or hr@company.com"
+                                    required
+                                >
+
+                                <div class="post_job_hint">
+                                    Candidates will use this information to apply for the position.
+                                </div>
+
+                            </div>
+
+
+                            {{-- Submit --}}
                             <button
                                 type="submit"
-                                class="contact_us_submit"
+                                class="post_job_submit"
                             >
+
                                 <i class="fas fa-paper-plane mr-2"></i>
-                                Send Message
+
+                                Post Job
+
                             </button>
 
                         </form>

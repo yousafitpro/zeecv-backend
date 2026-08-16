@@ -34,6 +34,16 @@ class HomeController extends Controller
                 ]
             ]);
     }
+    public function postAJobProcess(Request $request){
+        $input=$request->all();
+        return redirect('/')->with([
+                'toast' => [
+                    'heading' => 'Message',
+                    'message' => 'Your query has been submitted successfully. We’ll get back to you within 24 hours.',
+                    'type' => 'success',
+                ]
+            ]);
+    }
     public function pricing(){
         return view('home.pricing');
     }
