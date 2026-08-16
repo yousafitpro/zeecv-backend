@@ -67,7 +67,7 @@
           content="en_US">
 
     <meta property="og:image"
-          content="{{ asset('images/zeecv-job-share.jpg') }}">
+          content="{{ asset('zeecv-job-share.jpg') }}">
 
     <meta property="og:image:width"
           content="1200">
