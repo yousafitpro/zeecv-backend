@@ -197,7 +197,7 @@
         <div class="zeecv_cookie_text">
             We use cookies to improve your experience, analyze traffic,
             and provide better services.
-            <a href="{{ url('page-view/privacy-policy') }}" target="_blank">
+            <a href="{{ url('page-view/cookie-policy') }}" target="_blank">
                 Privacy Policy
             </a>
         </div>
