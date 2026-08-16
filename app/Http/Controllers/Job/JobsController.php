@@ -102,7 +102,7 @@ class JobsController extends Controller
 
                 $job=JobCareer::updateOrCreate(
                     [
-                        'slug' => $item['slug'].'-zeecv-'.rand(34534,567676767).now()->timestamp,
+                        'slug' => $item['slug'],
                         'source' => 'arbeitnow',
                     ],
                     [
@@ -155,7 +155,7 @@ public function himalayasJobs()
                     'slug' => Str::slug(
                         ($item['title'] ?? 'job') . '-' .
                         ($item['companyName'] ?? '')
-                    ).'-zeecv-'.rand(34534,567676767).now()->timestamp,
+                    ),
                     'source' => 'himalayas',
                 ],
                 [
@@ -216,7 +216,7 @@ public function remotiveJobs($search=null)
                         'slug' => Str::slug(
                             ($item['title'] ?? 'job') . '-' .
                             ($item['company_name'] ?? '')
-                        ).'-zeecv-'.rand(34534,567676767).now()->timestamp,
+                        ),
                         'source' => 'remotive',
                     ],
                     [
@@ -271,7 +271,7 @@ public function remoteOKJobs($search=null)
                     [
                         'slug' => Str::slug(
                             ($item['position'] ?? 'job')
-                        ).'-zeecv-'.rand(34534,567676767).now()->timestamp,
+                        ),
                         'source' => 'remoteok',
                     ],
                     [
@@ -329,7 +329,7 @@ public function adzunaJobs($search=null)
                     [
                         'slug' => Str::slug(
                             ($item['title'] ?? 'job')
-                        ).'-zeecv-'.rand(34534,567676767).now()->timestamp,
+                        ),
                         'source' => 'adzuna',
                     ],
                     [
@@ -349,6 +349,52 @@ public function adzunaJobs($search=null)
                         'location' => is_array($item['location']['area'] ?? null)
                                     ? implode(', ', $item['location']['area'])
                                     : ($item['location']['area'] ?? ''),
+                    ]
+                );
+            }
+        }
+
+    return response()->json([
+        'message' => 'First 100 jobs successfully synced',
+    ]);
+}
+public function serpJobs($search=null)
+{
+    $limit = 100;
+    $maxJobs = 100;
+
+
+
+        $res = Http::get('https://serpapi.com/search.json?engine=google&q=jobs&location=Austin,+Texas,+United+States&google_domain=google.com&hl=en&gl=us&api_key=4c6e68cd316c6e2be168e58f39366495739c6034a0dc0188aa2f8179c65cd64a');
+
+        if ($res->successful()) {
+
+            $jobs = $res->json('jobs_results', [])['jobs'];
+            dd($jobs);
+            foreach ($jobs as $item) {
+
+                $job=JobCareer::updateOrCreate(
+                    [
+                        'slug' => Str::slug(
+                            ($item['title'] ?? 'job')
+                        ),
+                        'source' => 'serp',
+                    ],
+                    [
+                        'company_name' => $item['company_name'] ?? null,
+                        'title' => $item['title'] ?? null,
+                        'currency' => $item['currency'] ?? null,
+                        'job_types' => $item['job_type'] ?? null,
+                        'description' => $item['description'] ?? null,
+
+                        'job_created_at' => !empty($item['created'])
+                            ? Carbon::parse($item['created'])
+                            : null,
+
+                        'url' => $item['link'] ?? null,
+                        'tags' => $item['category']['tag'] ?? null,
+
+                        'location' =>$item['location'],
                     ]
                 );
             }

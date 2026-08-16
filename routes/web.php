@@ -644,6 +644,7 @@ Route::group([
      Route::get('/sync/remotive',[JobsController::class,'remotiveJobs']);
      Route::get('/sync/adzuna',[JobsController::class,'adzunaJobs']);
      Route::get('/sync/remoteok',[JobsController::class,'remoteOKJobs']);
+     Route::get('/sync/serp',[JobsController::class,'serpJobs']);
 
     });
 
