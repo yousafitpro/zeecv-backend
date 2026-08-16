@@ -484,11 +484,12 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav ml-auto align-items-lg-center">
   
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('home.about') }}">About</a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home.contact') }}">Post Job</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('home.about') }}">About</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home.jobs') }}">Jobs</a>
