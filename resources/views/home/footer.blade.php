@@ -192,7 +192,7 @@
 
                 <ul>
                     <li>
-                        <a href="{{ url('/about') }}">
+                        <a href="{{ url('resume-builder/about') }}">
                             About ZeeCV
                         </a>
                     </li>
