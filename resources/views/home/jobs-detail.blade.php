@@ -1402,7 +1402,7 @@
 
 
                     {{-- Source --}}
-
+{{-- 
                     @if(!empty($job->source))
 
                         <div class="job_container_outer_source">
@@ -1412,7 +1412,7 @@
 
                         </div>
 
-                    @endif
+                    @endif --}}
 
 
                 </aside>
