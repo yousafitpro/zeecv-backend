@@ -68,7 +68,6 @@
   <link rel="manifest" href="{{asset('assets/favicon/site.webmanifest')}}">
   <link rel="stylesheet" href="{{asset('theme/css/bootstrap.min.css')}}">
   
-  <title>ZeeCV · AI CV Builder</title>
   <!-- Font Awesome (free icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
