@@ -102,7 +102,7 @@ class JobsController extends Controller
 
                 $job=JobCareer::updateOrCreate(
                     [
-                        'slug' => $item['slug'],
+                        'slug' => $item['slug'].'-zeecv-1',
                         'source' => 'arbeitnow',
                     ],
                     [
@@ -154,7 +154,7 @@ public function himalayasJobs()
                 [
                     'slug' => Str::slug(
                         ($item['title'] ?? 'job') . '-' .
-                        ($item['companyName'] ?? '')
+                        ($item['companyName'] ?? '').'-zeecv-2'
                     ),
                     'source' => 'himalayas',
                 ],
@@ -215,7 +215,7 @@ public function remotiveJobs($search=null)
                     [
                         'slug' => Str::slug(
                             ($item['title'] ?? 'job') . '-' .
-                            ($item['company_name'] ?? '')
+                            ($item['company_name'] ?? '').'-zeecv-3'
                         ),
                         'source' => 'remotive',
                     ],
@@ -270,7 +270,7 @@ public function remoteOKJobs($search=null)
                 $job=JobCareer::updateOrCreate(
                     [
                         'slug' => Str::slug(
-                            ($item['position'] ?? 'job')
+                            ($item['position'] ?? 'job').'-zeecv-4'
                         ),
                         'source' => 'remoteok',
                     ],
@@ -328,7 +328,7 @@ public function adzunaJobs($search=null)
                 $job=JobCareer::updateOrCreate(
                     [
                         'slug' => Str::slug(
-                            ($item['title'] ?? 'job')
+                            ($item['title'] ?? 'job').'-zeecv-5'
                         ),
                         'source' => 'adzuna',
                     ],
