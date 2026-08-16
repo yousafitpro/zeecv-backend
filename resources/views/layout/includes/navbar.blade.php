@@ -488,12 +488,13 @@ document.addEventListener('DOMContentLoaded', function () {
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home.post_a_job') }}">Post a job</a>
         </li>
+                <li class="nav-item">
+          <a class="nav-link" href="{{ route('home.jobs') }}">Jobs</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home.about') }}">About</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('home.jobs') }}">Jobs</a>
-        </li>
+
 
         <li class="nav-item">
           <a class="nav-link" href="{{ route('pages.page.blogs.list') }}">Blog</a>
