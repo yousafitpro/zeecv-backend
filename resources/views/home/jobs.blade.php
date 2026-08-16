@@ -1133,7 +1133,7 @@
                                     </h3>
 
 
-                                    @if(!empty($job->company_name))
+                                    @if(!empty($job->company_name) && $job->company_name!='name')
 
                                         <div class="job_container_outer_company">
 
