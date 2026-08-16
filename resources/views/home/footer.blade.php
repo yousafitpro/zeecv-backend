@@ -155,7 +155,7 @@
 
             <!-- Resources -->
             <div class="zeecv_footer_column">
-                <h4>Resources</h4>
+                <h4>Links</h4>
 
                 <ul>
                     <li>
@@ -170,11 +170,11 @@
                         </a>
                     </li> --}}
 
-                    {{-- <li>
-                        <a href="{{ url('/faq') }}">
-                            FAQs
+                    <li>
+                        <a href="{{ url('/page-view/google-adsense-policy') }}">
+                           Google AdSense Policy
                         </a>
-                    </li> --}}
+                    </li>
 
                     <li>
                         <a href="{{ route('home.contact') }}">
