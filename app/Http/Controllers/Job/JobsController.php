@@ -19,7 +19,7 @@ class JobsController extends Controller
             return JobCareer::whereBetween('job_created_at', [
                 $startOfLastWeek,
                 $endOfLastWeek
-            ])->where('source','himalayas');
+            ]);
     }
     public function jobDetail($slug){
          $data['job']=JobCareer::where('slug',$slug)->first();
