@@ -100,7 +100,7 @@ class JobsController extends Controller
 
             foreach ($result['data'] ?? [] as $item) {
 
-                JobCareer::updateOrCreate(
+                $job=JobCareer::updateOrCreate(
                     [
                         'slug' => $item['slug'],
                         'source' => 'arbeitnow',
@@ -123,6 +123,8 @@ class JobsController extends Controller
                         'remote' => !empty($item['remote']) ? 1 : 0,
                     ]
                 );
+                $job->slug=$job->slug.'zeecv-'.unique_encrypt($job->id);
+                $job->save();
             }
         }
 
@@ -150,7 +152,7 @@ public function himalayasJobs()
 
         foreach ($jobs as $item) {
 
-            JobCareer::updateOrCreate(
+            $job=JobCareer::updateOrCreate(
                 [
                     'slug' => Str::slug(
                         ($item['title'] ?? 'job') . '-' .
@@ -183,6 +185,8 @@ public function himalayasJobs()
                     ),
                 ]
             );
+            $job->slug=$job->slug.'zeecv-'.unique_encrypt($job->id);
+            $job->save();
         }
 
         // Stop if API returns fewer than 20 jobs
@@ -211,7 +215,7 @@ public function remotiveJobs($search=null)
             $jobs = $res->json('jobs', []);
             foreach ($jobs as $item) {
 
-                JobCareer::updateOrCreate(
+                $job=JobCareer::updateOrCreate(
                     [
                         'slug' => Str::slug(
                             ($item['title'] ?? 'job') . '-' .
@@ -242,6 +246,8 @@ public function remotiveJobs($search=null)
                         ),
                     ]
                 );
+                $job->slug=$job->slug.'zeecv-'.unique_encrypt($job->id);
+                $job->save();
             }
         }
 
@@ -267,7 +273,7 @@ public function remoteOKJobs($search=null)
                     continue;
                 }
 
-                JobCareer::updateOrCreate(
+                $job=JobCareer::updateOrCreate(
                     [
                         'slug' => Str::slug(
                             ($item['position'] ?? 'job')
@@ -295,6 +301,8 @@ public function remoteOKJobs($search=null)
                         ),
                     ]
                 );
+                $job->slug=$job->slug.'zeecv-'.unique_encrypt($job->id);
+                $job->save();
             }
         }
 
@@ -325,7 +333,7 @@ public function adzunaJobs($search=null)
             $jobs = $res->json('results', []);
             foreach ($jobs as $item) {
 
-                JobCareer::updateOrCreate(
+                $job=JobCareer::updateOrCreate(
                     [
                         'slug' => Str::slug(
                             ($item['title'] ?? 'job')
@@ -351,6 +359,8 @@ public function adzunaJobs($search=null)
                                     : ($item['location']['area'] ?? ''),
                     ]
                 );
+                $job->slug=$job->slug.'zeecv-'.unique_encrypt($job->id);
+                $job->save();
             }
         }
 
