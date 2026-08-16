@@ -40,7 +40,7 @@
             height: 56px;
             border: none;
             border-radius: 50%;
-            background: #3b82f6;
+            background: linear-gradient(135deg, #5d6d8f 0%, #1d4ed8 100%);
             color: white;
             font-size: 1.8rem;
             box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
