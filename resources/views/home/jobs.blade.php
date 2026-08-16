@@ -1053,9 +1053,9 @@
                 </form>
         <div class="container" style="padding-left:0px;padding-right:0px;">
 
-
+<br>
             {{-- Header --}}
-
+{{-- 
             <div class="job_container_outer_header">
 
                 <div>
@@ -1077,7 +1077,7 @@
 
                 </div>
 
-            </div>
+            </div> --}}
 
 
             {{-- Main Layout --}}
@@ -1175,9 +1175,9 @@
 
                                         <i class="bi bi-clock"></i>
 
-                                        {{ \Carbon\Carbon::parse(
+                                      {{ \Carbon\Carbon::parse(
                                             $job->job_created_at
-                                        )->diffForHumans() }}
+                                        )->format('M d, Y') }}
 
                                     </span>
 
@@ -1319,10 +1319,10 @@
 @if($list->hasPages())
     <div class="job_container_outer_pagination">
 
-        <div class="job_container_outer_pagination_info">
+        {{-- <div class="job_container_outer_pagination_info">
             Showing {{ $list->firstItem() }}–{{ $list->lastItem() }}
             of {{ $list->total() }} jobs
-        </div>
+        </div> --}}
 
         <div class="job_container_outer_pagination_links">
 
