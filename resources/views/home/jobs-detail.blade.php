@@ -2,17 +2,213 @@
 
 @section('meta_tags')
 
-    <title>{{ $job->title }} | ZeeCV Jobs</title>
+    @php
+        $jobTitle = trim($job->title ?? 'Job Opportunity');
+
+        $company = trim($job->company_name ?? '');
+
+        $location = trim($job->location ?? '');
+
+        $description = strip_tags(
+            $job->description
+            ?? 'Find the latest job opportunity on ZeeCV.'
+        );
+
+        $description = \Illuminate\Support\Str::limit(
+            preg_replace('/\s+/', ' ', $description),
+            155,
+            '...'
+        );
+
+        $jobUrl = url()->current();
+
+
+
+        $publishedDate = !empty($job->job_created_at)
+            ? \Carbon\Carbon::parse($job->job_created_at)
+                ->toIso8601String()
+            : null;
+    @endphp
+
+
+    <!-- =====================================================
+         BASIC SEO
+    ====================================================== -->
+
+    <title>
+        {{ $jobTitle }}
+        @if($company)
+            at {{ $company }}
+        @endif
+        | ZeeCV Jobs
+    </title>
 
     <meta name="description"
-          content="ZeeCV Job - Details {{ \Illuminate\Support\Str::limit(strip_tags($job->description ?? 'Find the latest job opportunity on ZeeCV.'), 155) }}">
+          content="{{ $description }}">
 
-    <meta name="robots" content="index, follow">
+    <meta name="robots"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
-    @if(!empty($job->job_created_at))
+    <meta name="googlebot"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+
+    <!-- =====================================================
+         CANONICAL
+    ====================================================== -->
+
+    <link rel="canonical"
+          href="{{ $jobUrl }}">
+
+
+    <!-- =====================================================
+         OPEN GRAPH
+    ====================================================== -->
+
+    <meta property="og:type"
+          content="website">
+
+    <meta property="og:title"
+          content="{{ $jobTitle }}@if($company) at {{ $company }}@endif | ZeeCV Jobs">
+
+    <meta property="og:description"
+          content="{{ $description }}">
+
+    <meta property="og:url"
+          content="{{ $jobUrl }}">
+
+    <meta property="og:site_name"
+          content="ZeeCV">
+
+    <meta property="og:locale"
+          content="en_US">
+
+
+
+    <meta property="og:image:alt"
+          content="{{ $jobTitle }} - ZeeCV Jobs">
+
+    <meta property="og:image:width"
+          content="1200">
+
+    <meta property="og:image:height"
+          content="630">
+
+
+    <!-- =====================================================
+         ARTICLE / JOB DATE
+    ====================================================== -->
+
+    @if($publishedDate)
+
         <meta property="article:published_time"
-              content="{{ \Carbon\Carbon::parse($job->job_created_at)->toIso8601String() }}">
+              content="{{ $publishedDate }}">
+
+        <meta property="article:modified_time"
+              content="{{ $publishedDate }}">
+
     @endif
+
+
+    <!-- =====================================================
+         TWITTER / X
+    ====================================================== -->
+
+    <meta name="twitter:card"
+          content="summary_large_image">
+
+    <meta name="twitter:title"
+          content="{{ $jobTitle }}@if($company) at {{ $company }}@endif | ZeeCV Jobs">
+
+    <meta name="twitter:description"
+          content="{{ $description }}">
+
+
+
+    <meta name="twitter:image:alt"
+          content="{{ $jobTitle }} - ZeeCV Jobs">
+
+
+    <!-- =====================================================
+         JOB POSTING STRUCTURED DATA
+    ====================================================== -->
+
+@php
+    $jobPosting = [
+        '@context' => 'https://schema.org',
+        '@type' => 'JobPosting',
+        'title' => $jobTitle,
+        'description' => strip_tags($job->description ?? ''),
+        'url' => $jobUrl,
+
+        'identifier' => [
+            '@type' => 'PropertyValue',
+            'name' => 'ZeeCV',
+            'value' => (string) $job->id,
+        ],
+    ];
+
+    if ($publishedDate) {
+        $jobPosting['datePosted'] = $publishedDate;
+    }
+
+    if (!empty($job->job_type)) {
+        $jobPosting['employmentType'] = $job->job_type;
+    }
+
+    if ($company) {
+        $jobPosting['hiringOrganization'] = [
+            '@type' => 'Organization',
+            'name' => $company,
+        ];
+    }
+
+    if ($location) {
+        $jobPosting['jobLocation'] = [
+            '@type' => 'Place',
+            'address' => [
+                '@type' => 'PostalAddress',
+                'addressLocality' => $location,
+            ],
+        ];
+    }
+@endphp
+
+<script type="application/ld+json">
+{!! json_encode($jobPosting, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+</script>
+
+
+    <!-- =====================================================
+         BREADCRUMB STRUCTURED DATA
+    ====================================================== -->
+
+   <script type="application/ld+json">
+{!! json_encode([
+    '@context' => 'https://schema.org',
+    '@type' => 'BreadcrumbList',
+    'itemListElement' => [
+        [
+            '@type' => 'ListItem',
+            'position' => 1,
+            'name' => 'Home',
+            'item' => url('/'),
+        ],
+        [
+            '@type' => 'ListItem',
+            'position' => 2,
+            'name' => 'Jobs',
+            'item' => url('/resume-builder/jobs'),
+        ],
+        [
+            '@type' => 'ListItem',
+            'position' => 3,
+            'name' => $jobTitle,
+            'item' => $jobUrl,
+        ],
+    ],
+], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+</script>
 
 @endsection
 

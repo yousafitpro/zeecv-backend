@@ -2,13 +2,205 @@
 
 @section('meta_tags')
 
+    <!-- =====================================================
+         BASIC SEO
+    ====================================================== -->
+
     <title>Latest Jobs - Find Your Next Career Opportunity | ZeeCV</title>
 
     <meta name="description"
-          content="Explore the latest job opportunities from trusted sources. Find jobs that match your skills and career goals with ZeeCV.">
+          content="Explore the latest job opportunities from trusted companies and job sources. Find jobs that match your skills, experience, location, and career goals with ZeeCV.">
 
-    <meta name="robots" content="index, follow">
+    <meta name="keywords"
+          content="latest jobs, jobs, job search, job opportunities, careers, employment, remote jobs, full time jobs, part time jobs, software jobs, jobs in Pakistan, international jobs, ZeeCV">
 
+    <meta name="robots"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <meta name="googlebot"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <meta name="bingbot"
+          content="index, follow">
+
+    <meta name="author"
+          content="ZeeCV">
+
+    <meta name="publisher"
+          content="ZeeCV">
+
+    <meta name="language"
+          content="English">
+
+    <meta name="revisit-after"
+          content="1 day">
+
+
+    <!-- =====================================================
+         CANONICAL
+    ====================================================== -->
+
+    <link rel="canonical"
+          href="{{ url()->current() }}">
+
+
+    <!-- =====================================================
+         OPEN GRAPH / FACEBOOK / LINKEDIN
+    ====================================================== -->
+
+    <meta property="og:type"
+          content="website">
+
+    <meta property="og:title"
+          content="Latest Jobs - Find Your Next Career Opportunity | ZeeCV">
+
+    <meta property="og:description"
+          content="Explore the latest job opportunities from trusted companies and job sources. Find your next career opportunity with ZeeCV.">
+
+    <meta property="og:url"
+          content="{{ url()->current() }}">
+
+    <meta property="og:site_name"
+          content="ZeeCV">
+
+    <meta property="og:locale"
+          content="en_US">
+
+    <meta property="og:image"
+          content="{{ asset('images/zeecv-job-share.jpg') }}">
+
+    <meta property="og:image:width"
+          content="1200">
+
+    <meta property="og:image:height"
+          content="630">
+
+    <meta property="og:image:alt"
+          content="Latest Jobs - ZeeCV">
+
+
+    <!-- =====================================================
+         TWITTER / X
+    ====================================================== -->
+
+    <meta name="twitter:card"
+          content="summary_large_image">
+
+    <meta name="twitter:title"
+          content="Latest Jobs - Find Your Next Career Opportunity | ZeeCV">
+
+    <meta name="twitter:description"
+          content="Discover the latest job opportunities and find your next career move with ZeeCV.">
+
+    <meta name="twitter:image"
+          content="{{ asset('images/zeecv-job-share.jpg') }}">
+
+    <meta name="twitter:image:alt"
+          content="Latest Jobs - ZeeCV">
+
+
+    <!-- =====================================================
+         MOBILE / BROWSER
+    ====================================================== -->
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#ffffff">
+
+    <meta name="format-detection"
+          content="telephone=no">
+
+
+    <!-- =====================================================
+         FAVICON
+    ====================================================== -->
+
+    <link rel="icon"
+          type="image/png"
+          href="{{ asset('favicon.png') }}">
+
+    <link rel="apple-touch-icon"
+          href="{{ asset('favicon.png') }}">
+
+
+    <!-- =====================================================
+         STRUCTURED DATA - WEBSITE
+    ====================================================== -->
+
+@php
+    $websiteSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'WebSite',
+        'name' => 'ZeeCV',
+        'url' => url('/'),
+        'description' => 'Find the latest job opportunities and create professional resumes with ZeeCV.',
+        'potentialAction' => [
+            '@type' => 'SearchAction',
+            'target' => url('/resume-builder/jobs') . '?search={search_term_string}',
+            'query-input' => 'required name=search_term_string',
+        ],
+    ];
+@endphp
+
+<script type="application/ld+json">
+{!! json_encode($websiteSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+</script>
+
+
+    <!-- =====================================================
+         STRUCTURED DATA - JOB LISTING PAGE
+    ====================================================== -->
+
+@php
+    $collectionSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'CollectionPage',
+        'name' => 'Latest Jobs',
+        'url' => url()->current(),
+        'description' => 'Explore the latest job opportunities from trusted companies and job sources.',
+        'isPartOf' => [
+            '@type' => 'WebSite',
+            'name' => 'ZeeCV',
+            'url' => url('/'),
+        ],
+    ];
+@endphp
+
+<script type="application/ld+json">
+{!! json_encode($collectionSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+</script>
+
+
+    <!-- =====================================================
+         BREADCRUMB
+    ====================================================== -->
+
+@php
+    $breadcrumbSchema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            [
+                '@type' => 'ListItem',
+                'position' => 1,
+                'name' => 'Home',
+                'item' => url('/'),
+            ],
+            [
+                '@type' => 'ListItem',
+                'position' => 2,
+                'name' => 'Jobs',
+                'item' => url('/resume-builder/jobs'),
+            ],
+        ],
+    ];
+@endphp
+
+<script type="application/ld+json">
+{!! json_encode($breadcrumbSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+</script>
 @endsection
 
 
