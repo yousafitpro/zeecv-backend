@@ -210,7 +210,7 @@
     .job_search_btns button{
         background: white !important;
         outline:none !important;
-        border: 3px solid var(--primary) !important;
+        border: 2px solid var(--primary) !important;
         color:var(--primary);
         font-weight: bold;
         border-radius: 0px !important;
@@ -218,10 +218,18 @@
     .job_search_btns a{
         background: white !important;
         outline: none !important;
-        border: 3px solid var(--primary) !important;
+        border: 2px solid var(--primary) !important;
         color:var(--primary);
         font-weight: bold;
         border-radius: 0px !important;
+    }
+    .job_search_btns button:hover{
+         background: var(--primary) !important;
+         border:none !important;
+    }
+    .job_search_btns a:hover{
+         background: var(--primary) !important;
+         border:none !important;
     }
       #job_search_form {
         
