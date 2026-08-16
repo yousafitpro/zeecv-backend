@@ -6,7 +6,7 @@
          BASIC SEO
     ====================================================== -->
 
-    <title>Latest Jobs - Find Your Next Career Opportunity | ZeeCV</title>
+    <title>Latest Jobs - Find Your Next Career Opportunity | ZeeCV   </title>
 
     <meta name="description"
           content="Explore the latest job opportunities from trusted companies and job sources. Find jobs that match your skills, experience, location, and career goals with ZeeCV.">
