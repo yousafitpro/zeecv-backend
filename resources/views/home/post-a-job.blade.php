@@ -597,7 +597,7 @@
                                         name="location"
                                         value="{{ old('location') }}"
                                         class="post_job_input"
-                                        placeholder="e.g. Lahore, Pakistan"
+                                        placeholder="e.g. London, United Kingdom"
                                         required
                                     >
 
