@@ -54,7 +54,7 @@
   }
 
   .btn-nav-primary {
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    background: linear-gradient(135deg, #5d6d8f 0%, #1d4ed8 100%);
     color: #ffffff !important;
     font-weight: 600;
     font-size: 1rem;
