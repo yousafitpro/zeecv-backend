@@ -370,8 +370,8 @@
 
     .job_container_outer_hero {
         background: #ffffff;
-        border-bottom: 1px solid #e5e7eb;
         padding: 55px 0;
+        border-left: 5px solid var(--primary)
     }
 
     .job_container_outer_hero_inner {
@@ -420,6 +420,7 @@
         align-items: flex-start;
 
         gap: 20px;
+        
     }
 
 
@@ -447,6 +448,7 @@
 
     .job_container_outer_hero_content {
         min-width: 0;
+        
     }
 
 
@@ -504,19 +506,21 @@
     }
 
 
-    .job_container_outer_tag {
-        padding: 6px 11px;
+.job_container_outer_tag {
+    background: rgba(30, 41, 59, 0.70);
+    border: 1px solid #334155;
+    color: white;
 
-        background: #f8fafc;
+    padding: 5px 10px;
+    border-radius: 20px;
 
-        border: 1px solid #e2e8f0;
-        border-radius: 6px;
+    font-size: 10px;
+    font-weight: 500;
 
-        color: #475569;
-
-        font-size: 12px;
-        font-weight: 500;
-    }
+    display: inline-block;
+    line-height: 1.3;
+    transition: all 0.2s ease;
+}
 
 
     /* =========================================
@@ -949,6 +953,7 @@
 
         .job_container_outer_hero {
             padding: 35px 0;
+            border-left: none;
         }
 
         .job_container_outer_hero_job {
@@ -1094,8 +1099,8 @@
                                     <i class="bi bi-clock"></i>
 
                                     {{ \Carbon\Carbon::parse(
-                                        $job->job_created_at
-                                    )->diffForHumans() }}
+                                            $job->job_created_at
+                                        )->format('M d, Y') }}
 
                                 </span>
 

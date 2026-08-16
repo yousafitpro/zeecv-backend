@@ -613,20 +613,21 @@
         }
 
 
-        .job_container_outer_tag {
-            background: #f8fafc;
+.job_container_outer_tag {
+    background: rgba(30, 41, 59, 0.70);
+    border: 1px solid #334155;
+    color: white;
 
-            border: 1px solid #e2e8f0;
+    padding: 5px 10px;
+    border-radius: 20px;
 
-            color: #475569;
+    font-size: 10px;
+    font-weight: 500;
 
-            padding: 5px 10px;
-
-            border-radius: 6px;
-
-            font-size: 12px;
-            font-weight: 500;
-        }
+    display: inline-block;
+    line-height: 1.3;
+    transition: all 0.2s ease;
+}
 
 
         /* =========================================
