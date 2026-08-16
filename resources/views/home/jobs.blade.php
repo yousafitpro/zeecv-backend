@@ -207,6 +207,29 @@
 @section('content')
 
 <style>
+      #job_search_form {
+        width: 100%;
+        box-sizing: border-box;
+
+        padding: 20px;
+
+        background: #ffffff;
+
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    #job_search_form label {
+
+    margin-top: 4px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    color: #374151;
+}
     .job_container_outer_pagination {
         display: flex;
         align-items: center;
@@ -1002,7 +1025,7 @@
     ========================================== --}}
 
     <section class="job_container_outer_section" style="background: transparent">
-        <form action="{{ route('home.jobs') }}" method="post">
+        <form action="{{ route('home.jobs') }}" id="job_search_form" method="post">
             @csrf
                     <div class="row">
                     <div class="col-md-9">
