@@ -213,7 +213,7 @@
         border: 2px solid var(--primary) !important;
         color:var(--primary);
         font-weight: bold;
-        border-radius: 0px !important;
+        border-radius: 5px !important;
     }
     .job_search_btns a{
         background: white !important;
@@ -221,7 +221,7 @@
         border: 2px solid var(--primary) !important;
         color:var(--primary);
         font-weight: bold;
-        border-radius: 0px !important;
+         border-radius: 5px !important;
     }
     .job_search_btns button:hover{
          background: var(--primary) !important;
