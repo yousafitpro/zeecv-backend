@@ -364,6 +364,9 @@ public function openwebJobs($search=null)
         'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in UK',
         'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in DE',
         'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in US',
+        'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in IT',
+        'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in AE',
+        'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in PK',
     ];
 
 
