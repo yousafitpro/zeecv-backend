@@ -1,4 +1,17 @@
 <?php
+if (!function_exists('reset_description')) {
+    function reset_description($description)
+    {
+        $texts = [
+            'Originally posted on',
+            'Himalayas',
+            'on Arbeitnow',
+            'English Speaking Jobs in United Kingdom'
+        ];
+
+        return str_replace($texts, '', $description);
+    }
+}
 if ( ! function_exists('zeecv_templates')){
     function zeecv_templates()
     {

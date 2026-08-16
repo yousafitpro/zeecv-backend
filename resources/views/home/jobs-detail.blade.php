@@ -1189,7 +1189,7 @@
 
                     <div class="job_container_outer_description">
 
-                       {!! clean(html_entity_decode($job->description)) !!}
+                       {!! reset_description(clean(html_entity_decode($job->description))) !!}
 
 
                     </div>
