@@ -50,6 +50,12 @@
     body {
         font-family: 'Plus Jakarta Sans', sans-serif;
     }
+    @media (max-width: 767px) {
+    #main_content_container {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+}
   </style>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -76,7 +82,7 @@
 </head>
 <body>
 <div style="height: 100px"></div>
-<div class="container">
+<div class="container" id="main_content_container">
 
 @include('layout.includes.navbar')
 
