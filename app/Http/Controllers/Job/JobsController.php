@@ -123,7 +123,7 @@ class JobsController extends Controller
                         'remote' => !empty($item['remote']) ? 1 : 0,
                     ]
                 );
-                $job->slug=$job->slug.'zeecv-'.unique_encrypt($job->id);
+                $job->slug=$job->slug.'-zeecv-'.unique_encrypt($job->id);
                 $job->save();
             }
         }
@@ -185,7 +185,7 @@ public function himalayasJobs()
                     ),
                 ]
             );
-            $job->slug=$job->slug.'zeecv-'.unique_encrypt($job->id);
+            $job->slug=$job->slug.'-zeecv-'.unique_encrypt($job->id);
             $job->save();
         }
 
@@ -246,7 +246,7 @@ public function remotiveJobs($search=null)
                         ),
                     ]
                 );
-                $job->slug=$job->slug.'zeecv-'.unique_encrypt($job->id);
+                $job->slug=$job->slug.'-zeecv-'.unique_encrypt($job->id);
                 $job->save();
             }
         }
@@ -301,7 +301,7 @@ public function remoteOKJobs($search=null)
                         ),
                     ]
                 );
-                $job->slug=$job->slug.'zeecv-'.unique_encrypt($job->id);
+                $job->slug=$job->slug.'-zeecv-'.unique_encrypt($job->id);
                 $job->save();
             }
         }
@@ -359,7 +359,7 @@ public function adzunaJobs($search=null)
                                     : ($item['location']['area'] ?? ''),
                     ]
                 );
-                $job->slug=$job->slug.'zeecv-'.unique_encrypt($job->id);
+                $job->slug=$job->slug.'-zeecv-'.unique_encrypt($job->id);
                 $job->save();
             }
         }
