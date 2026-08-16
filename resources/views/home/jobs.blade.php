@@ -295,7 +295,9 @@
     }
 
     @media (max-width: 600px) {
-
+         #job_search_form{
+            border-left: none;
+         }
         .job_container_outer_pagination {
             flex-direction: column;
             align-items: center;
@@ -1061,10 +1063,10 @@
                    <div class="row mt-2 g-1">
                      <div class="col-md-8" >
                      </div>
-                     <div class=" col-md-3 job_search_btns" >
+                     <div class=" col-md-3 mt-2 job_search_btns" >
                         <button class="btn btn-primary btn-block"  type="submit">Search</button>
                     </div>
-                    <div class="col-md-1  job_search_btns" >
+                    <div class="col-md-1 mt-2 job_search_btns" >
                         <a href="{{ route('home.jobs') }}" class="btn btn-primary btn-block"  type="submit">Reset</a>
                     </div>
                    </div>
