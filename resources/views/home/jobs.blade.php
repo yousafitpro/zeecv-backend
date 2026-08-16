@@ -209,14 +209,14 @@
 <style>
     .job_search_btns button{
         background: white !important;
-        outline: 2px solid var(--primary) !important;
+        outline:none !important;
         border: 2px solid var(--primary) !important;
         color:var(--primary);
         font-weight: bold;
     }
     .job_search_btns a{
         background: white !important;
-        outline: 2px solid var(--primary) !important;
+        outline: none !important;
         border: 2px solid var(--primary) !important;
         color:var(--primary);
         font-weight: bold;
