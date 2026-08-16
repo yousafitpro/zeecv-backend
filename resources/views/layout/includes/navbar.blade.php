@@ -488,6 +488,9 @@ document.addEventListener('DOMContentLoaded', function () {
           <a class="nav-link" href="{{ route('home.about') }}">About</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{{ route('home.contact') }}">Post Job</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{ route('home.jobs') }}">Jobs</a>
         </li>
 
@@ -549,7 +552,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <a href="{{ url('login') }}" class="btn-nav-outline w-100">Log in</a>
         </li>
         <li class="nav-item my-2 my-lg-0 ml-lg-2">
-          <a href="{{ url('signup') }}" class="btn-nav-primary w-100">Create Resume</a>
+          <a href="{{ url('signup') }}" class="btn-nav-primary w-100">Signup</a>
         </li>
       </ul>
     </div>
