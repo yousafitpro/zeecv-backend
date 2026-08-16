@@ -102,7 +102,7 @@ class JobsController extends Controller
 
                 $job=JobCareer::updateOrCreate(
                     [
-                        'slug' => $item['slug'].'-zeecv-'.unique_encrypt($job->id),
+                        'slug' => $item['slug'].'-zeecv-'.rand(34534,567676767).now()->timestamp,
                         'source' => 'arbeitnow',
                     ],
                     [
@@ -123,8 +123,6 @@ class JobsController extends Controller
                         'remote' => !empty($item['remote']) ? 1 : 0,
                     ]
                 );
-                $job->slug=$job->slug.'-zeecv-'.unique_encrypt($job->id);
-                $job->save();
             }
         }
 
@@ -157,7 +155,7 @@ public function himalayasJobs()
                     'slug' => Str::slug(
                         ($item['title'] ?? 'job') . '-' .
                         ($item['companyName'] ?? '')
-                    ).'-zeecv-'.unique_encrypt($job->id),
+                    ).'-zeecv-'.rand(34534,567676767).now()->timestamp,
                     'source' => 'himalayas',
                 ],
                 [
@@ -218,7 +216,7 @@ public function remotiveJobs($search=null)
                         'slug' => Str::slug(
                             ($item['title'] ?? 'job') . '-' .
                             ($item['company_name'] ?? '')
-                        ).'-zeecv-'.unique_encrypt($job->id),
+                        ).'-zeecv-'.rand(34534,567676767).now()->timestamp,
                         'source' => 'remotive',
                     ],
                     [
@@ -273,7 +271,7 @@ public function remoteOKJobs($search=null)
                     [
                         'slug' => Str::slug(
                             ($item['position'] ?? 'job')
-                        ).'-zeecv-'.unique_encrypt($job->id),
+                        ).'-zeecv-'.rand(34534,567676767).now()->timestamp,
                         'source' => 'remoteok',
                     ],
                     [
@@ -331,7 +329,7 @@ public function adzunaJobs($search=null)
                     [
                         'slug' => Str::slug(
                             ($item['title'] ?? 'job')
-                        ).'-zeecv-'.unique_encrypt($job->id),
+                        ).'-zeecv-'.rand(34534,567676767).now()->timestamp,
                         'source' => 'adzuna',
                     ],
                     [
