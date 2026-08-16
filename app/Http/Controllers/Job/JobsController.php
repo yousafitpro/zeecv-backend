@@ -358,46 +358,47 @@ public function adzunaJobs($search=null)
         'message' => 'First 100 jobs successfully synced',
     ]);
 }
-public function serpJobs($search=null)
+public function openwebJobs($search=null)
 {
-    $limit = 100;
-    $maxJobs = 100;
+    $urls=[
+        'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in UK',
+        'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in DE',
+        'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in US',
+    ];
 
 
 
-        $res = Http::get('https://serpapi.com/search.json?engine=google&q=jobs&location=Austin,+Texas,+United+States&google_domain=google.com&hl=en&gl=us&api_key=4c6e68cd316c6e2be168e58f39366495739c6034a0dc0188aa2f8179c65cd64a');
-
+        foreach($urls as $url){
+            $res = Http::withHeader('x-api-key','ak_ei1rwelcczvlrvyxe9cvhnukd7ny3kwcs0qn0hsbbu330yx')->get($url);
         if ($res->successful()) {
 
-            $jobs = $res->json('jobs_results', [])['jobs'];
-            dd($jobs);
+            $jobs = $res->json('data', [])['jobs'];
             foreach ($jobs as $item) {
 
                 $job=JobCareer::updateOrCreate(
                     [
                         'slug' => Str::slug(
-                            ($item['title'] ?? 'job')
+                            ($item['job_title'] ?? 'job').($item['job_uid'] ?? 'job').'zeecv-6'
                         ),
-                        'source' => 'serp',
+                        'source' => 'openwebninja',
                     ],
                     [
-                        'company_name' => $item['company_name'] ?? null,
-                        'title' => $item['title'] ?? null,
-                        'currency' => $item['currency'] ?? null,
-                        'job_types' => $item['job_type'] ?? null,
-                        'description' => $item['description'] ?? null,
+                        'company_name' => $item['employer_name'] ?? null,
+                        'title' => $item['job_title'] ?? null,
+                        'job_types' => implode(', ', $item['job_employment_types'] ?? []),
+                        'description' => $item['job_description'] ?? null,
 
-                        'job_created_at' => !empty($item['created'])
-                            ? Carbon::parse($item['created'])
+                        'job_created_at' => !empty($item['job_posted_at_timestamp'])
+                            ? Carbon::parse($item['job_posted_at_timestamp'])
                             : null,
 
-                        'url' => $item['link'] ?? null,
-                        'tags' => $item['category']['tag'] ?? null,
+                        'url' => $item['job_apply_link'] ?? null,
 
-                        'location' =>$item['location'],
+                        'location' =>$item['job_location'],
                     ]
                 );
             }
+        }
         }
 
     return response()->json([
