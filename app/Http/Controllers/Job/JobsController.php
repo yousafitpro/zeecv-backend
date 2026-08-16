@@ -102,7 +102,7 @@ class JobsController extends Controller
 
                 $job=JobCareer::updateOrCreate(
                     [
-                        'slug' => $item['slug'],
+                        'slug' => $item['slug'].'-zeecv-'.unique_encrypt($job->id),
                         'source' => 'arbeitnow',
                     ],
                     [
@@ -157,7 +157,7 @@ public function himalayasJobs()
                     'slug' => Str::slug(
                         ($item['title'] ?? 'job') . '-' .
                         ($item['companyName'] ?? '')
-                    ),
+                    ).'-zeecv-'.unique_encrypt($job->id),
                     'source' => 'himalayas',
                 ],
                 [
@@ -185,8 +185,6 @@ public function himalayasJobs()
                     ),
                 ]
             );
-            $job->slug=$job->slug.'-zeecv-'.unique_encrypt($job->id);
-            $job->save();
         }
 
         // Stop if API returns fewer than 20 jobs
@@ -220,7 +218,7 @@ public function remotiveJobs($search=null)
                         'slug' => Str::slug(
                             ($item['title'] ?? 'job') . '-' .
                             ($item['company_name'] ?? '')
-                        ),
+                        ).'-zeecv-'.unique_encrypt($job->id),
                         'source' => 'remotive',
                     ],
                     [
@@ -246,8 +244,6 @@ public function remotiveJobs($search=null)
                         ),
                     ]
                 );
-                $job->slug=$job->slug.'-zeecv-'.unique_encrypt($job->id);
-                $job->save();
             }
         }
 
@@ -277,7 +273,7 @@ public function remoteOKJobs($search=null)
                     [
                         'slug' => Str::slug(
                             ($item['position'] ?? 'job')
-                        ),
+                        ).'-zeecv-'.unique_encrypt($job->id),
                         'source' => 'remoteok',
                     ],
                     [
@@ -301,8 +297,6 @@ public function remoteOKJobs($search=null)
                         ),
                     ]
                 );
-                $job->slug=$job->slug.'-zeecv-'.unique_encrypt($job->id);
-                $job->save();
             }
         }
 
@@ -337,7 +331,7 @@ public function adzunaJobs($search=null)
                     [
                         'slug' => Str::slug(
                             ($item['title'] ?? 'job')
-                        ),
+                        ).'-zeecv-'.unique_encrypt($job->id),
                         'source' => 'adzuna',
                     ],
                     [
@@ -359,8 +353,6 @@ public function adzunaJobs($search=null)
                                     : ($item['location']['area'] ?? ''),
                     ]
                 );
-                $job->slug=$job->slug.'-zeecv-'.unique_encrypt($job->id);
-                $job->save();
             }
         }
 
