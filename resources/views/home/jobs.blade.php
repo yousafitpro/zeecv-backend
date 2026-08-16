@@ -1040,13 +1040,13 @@
         <form action="{{ route('home.jobs') }}" id="job_search_form" method="post">
             @csrf
                     <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-8">
+                        <label>Search</label><br>
                         <input class="form-control" value="{{ $input['search']??'' }}" name="search" placeholder="Search here...">
-                     
-                        <div class="row mb-2">
-                            <div class="col-md-3">
+                    </div>
+                    <div class="col-md-4" >
                                 <label>Location</label><br>
-                                <select class="form-control select2" name="location">
+                                <select class="form-control select2" name="location" style="max-width: 350px">
                                     <option value="">--All--</option>
                                     @foreach ($locations as $lo)
                                       
@@ -1055,13 +1055,17 @@
                                         </option>
                                     @endforeach
                                 </select>
-                            </div>
-                        </div>
+                         
                     </div>
-                    <div class="col-12 col-sm-6 col-md-2 job_search_btns" style="padding: 4px">
+                   
+                   </div>
+                   <div class="row mt-2">
+                     <div class="col-md-8" >
+                     </div>
+                     <div class=" col-md-3 job_search_btns" >
                         <button class="btn btn-primary btn-block"  type="submit">Search</button>
                     </div>
-                    <div class="col-12 col-sm-6 col-md-1  job_search_btns" style="padding: 4px">
+                    <div class="col-md-1  job_search_btns" >
                         <a href="{{ route('home.jobs') }}" class="btn btn-primary btn-block"  type="submit">Reset</a>
                     </div>
                    </div>
