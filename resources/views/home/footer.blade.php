@@ -164,11 +164,11 @@
                         </a>
                     </li>
 
-                    {{-- <li>
-                        <a href="{{ url('/resume-tips') }}">
-                            Resume Tips
+                    <li>
+                        <a href="{{ route('home.about') }}">
+                            About
                         </a>
-                    </li> --}}
+                    </li>
 
                    
 
