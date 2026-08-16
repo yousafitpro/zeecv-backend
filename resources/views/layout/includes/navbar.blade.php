@@ -486,7 +486,7 @@ document.addEventListener('DOMContentLoaded', function () {
   
         
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('home.contact') }}">Post Job</a>
+          <a class="nav-link" href="{{ route('home.contact') }}">Post a job</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home.about') }}">About</a>
