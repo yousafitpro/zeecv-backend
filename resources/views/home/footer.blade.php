@@ -159,7 +159,7 @@
 
                 <ul>
                     <li>
-                        <a href="{{ url('/jobs') }}">
+                        <a href="{{ route('home.jobs') }}">
                             Career Blog
                         </a>
                     </li>
