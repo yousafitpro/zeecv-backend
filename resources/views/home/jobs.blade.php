@@ -706,7 +706,7 @@
 
         .job_container_outer_sidebar {
             position: sticky;
-            top: 25px;
+            top: 100px;
         }
 
 
