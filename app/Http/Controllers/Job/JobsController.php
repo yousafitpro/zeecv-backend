@@ -16,25 +16,24 @@ class JobsController extends Controller
         // dd(time_now());
         //dadasd
         $startDate = Carbon::now()->subWeeks(2);
-        $endDate   = Carbon::now();
+        $endDate   = Carbon::now()->addDay();
 
-        return JobCareer::query();
-                // ->whereBetween('job_created_at', [
-                //         $startDate,
-                //         $endDate
-                //     ]);
-        //     ->where(function ($query) {
-        //         $query->where('published', 1)
-        //             ->orWhereNull('published');
-        //     })
-        //     ->where(function ($query) {
-        //         $query->where('status', 'approved')
-        //             ->orWhereNull('status');
-        //     })
-        // ->where(function ($query) {
-        //     $query->where('expiry_date', '>=', today())
-        //         ->orWhereNull('expiry_date');
-        // });
+        return JobCareer::whereBetween('job_created_at', [
+                $startDate,
+                $endDate
+            ])
+            ->where(function ($query) {
+                $query->where('published', 1)
+                    ->orWhereNull('published');
+            })
+            ->where(function ($query) {
+                $query->where('status', 'approved')
+                    ->orWhereNull('status');
+            })
+        ->where(function ($query) {
+            $query->where('expiry_date', '>=', today())
+                ->orWhereNull('expiry_date');
+        });
     }
     public function jobDetail($slug){
          $data['job']=JobCareer::where('slug',$slug)->first();
