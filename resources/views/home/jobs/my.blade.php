@@ -846,7 +846,7 @@
     ========================================== --}}
 
     <section class="job_container_outer_section" style="background: transparent">
-        <form action="{{ route('home.jobs') }}" id="job_search_form" method="post">
+        <form action="{{ route('jobs.my') }}" id="job_search_form" method="post">
             @csrf
                     <div class="row">
                     <div class="col-md-8">
@@ -1065,17 +1065,17 @@
 
 
                                 <div class="job_container_outer_tags">
+                                            <span class="job_container_outer_tag">
 
+                                               {{ $job->source }}
+
+                                            </span>
                                             <span class="job_container_outer_tag">
 
                                                People Applied
 
                                             </span>
-                                            <span class="job_container_outer_tag">
-
-                                               {{ $job->company_name }}
-
-                                            </span>
+                                            
 
                                 </div>
 

@@ -101,6 +101,7 @@ class JobsController extends Controller
                     ->orWhere('tags', 'like', $search)
                     ->orWhere('company_name', 'like', $search)
                     ->orWhere('location', 'like', $search)
+                    ->orWhere('source', 'like', $search)
                     ->orWhere('job_types', 'like', $search);
                 });
             })

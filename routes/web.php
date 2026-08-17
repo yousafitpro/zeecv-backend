@@ -672,6 +672,6 @@ Route::get('/privacy-policy', function () {
      ->name('jobs.')
      ->middleware('auth')
      ->group(function(){
-     Route::get('/my',[JobsController::class,'my'])->name('my');
+     Route::any('/my',[JobsController::class,'my'])->name('my');
 
     });
