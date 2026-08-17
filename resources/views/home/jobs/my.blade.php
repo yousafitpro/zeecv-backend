@@ -886,7 +886,7 @@
                         <button class="btn btn-primary btn-block btn-sm"  type="submit">Search</button>
                     </div>
                     <div class="col-md-2 mt-2 job_search_btns" >
-                        <a href="{{ route('home.jobs') }}" class="btn btn-primary btn-sm btn-block"  type="submit">Reset</a>
+                        <a href="{{ route('jobs.my') }}" class="btn btn-primary btn-sm btn-block"  type="submit">Reset</a>
                     </div>
                    </div>
                    
