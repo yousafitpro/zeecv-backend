@@ -1261,7 +1261,7 @@
                     </div>
 
 
-                    <div class="job_container_outer_sidebar_info">
+                    {{-- <div class="job_container_outer_sidebar_info">
 
                         <h4 class="job_container_outer_sidebar_info_title">
 
@@ -1278,7 +1278,7 @@
 
                         </p>
 
-                    </div>
+                    </div> --}}
 
 
                 </aside>
