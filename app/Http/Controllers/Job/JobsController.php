@@ -108,6 +108,7 @@ class JobsController extends Controller
     }
     public function update(Request $request,$id)
     {
+          $user=auth()->user();
           $input=$request->all();
           $job=JobCareer::find(unique_decrypt($id));
           $job->update(
@@ -116,7 +117,7 @@ class JobsController extends Controller
                 'location'=>$input['location'],
                 'url'=>$input['url'],
                'expiry_date' => Carbon::parse($input['expiry_date'])->format('Y-m-d'),
-                'slug'=>Str::slug($input['title']),
+                'slug'=>Str::slug($input['title']).$user->name.'-zeecv-'.unique_encrypt($user->id),
                 'tags'=>$input['tags'],
                 'description'=>$input['description'],
                 'job_types'=>$input['job_types'],
@@ -138,11 +139,12 @@ class JobsController extends Controller
     }
     public function new(Request $request)
     {
+          $user=auth()->user();
           $input=$request->all();
           $job=JobCareer::create([
             'title'=>$input['title'],
             'user_id'=>auth_user_id(),
-            'slug'=>Str::slug($input['title']),
+            'slug'=>Str::slug($input['title']).$user->name.'-zeecv-'.unique_encrypt($user->id),
             'status'=>'pending',
             'type'=>'internal',
             'job_created_at'=>now(),
