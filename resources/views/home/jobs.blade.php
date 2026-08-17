@@ -1136,14 +1136,18 @@
 
 
                                 <div class="job_container_outer_logo">
-
-                                    {{ strtoupper(
+                                @if (!empty($job->user))
+                                <img src="{{$job->user->avatar()}}" style="width: 100%">
+                                @else
+                                {{ strtoupper(
                                         substr(
                                             $job->company ?? $job->title ?? 'J',
                                             0,
                                             1
                                         )
                                     ) }}
+                                @endif
+                                    
 
                                 </div>
 

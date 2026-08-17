@@ -62,6 +62,37 @@ class JobsController extends Controller
                 ->get();
          return view('home.jobs-detail',$data);
     }
+    public function jobApplyProcess(Request $request,$slug){
+        $input=$request->all();
+        dd($input);
+    }
+    public function jobApply($slug){
+         $data['job']=JobCareer::where('slug',$slug)->first();
+            $currentTags = is_array($data['job']->tags)
+                ? $data['job']->tags
+                : explode(',', $data['job']->tags);
+
+            $data['random_jobs'] = JobCareer::where('slug', '!=', $slug)
+                ->where(function ($query) use ($currentTags) {
+
+                    foreach ($currentTags as $tag) {
+
+                        $tag = trim($tag);
+
+                        if ($tag !== '') {
+
+                            $query->orWhere('tags', 'LIKE', '%' . $tag . '%')
+                                ->orWhere('title', 'LIKE', '%' . $tag . '%');
+
+                        }
+                    }
+
+                })
+                ->inRandomOrder()
+                ->limit(4)
+                ->get();
+         return view('home.jobs-apply',$data);
+    }
     public function index(Request $request)
     {
         $input=$request->all();
@@ -85,6 +116,7 @@ class JobsController extends Controller
                     $query->orWhere('location', 'like', '%' . $input['location'] . '%');
                 }
             })
+        ->with(['user'])
         ->inRandomOrder()
         ->paginate(20)
         ->withQueryString();

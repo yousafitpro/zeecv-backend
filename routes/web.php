@@ -602,6 +602,8 @@ Route::prefix('resume-builder')
        Route::post('/contact-post', [HomeController::class,'contactPost'])->name('home.contact_post');
        Route::post('/post-a-job-process', [HomeController::class,'postAJobProcess'])->name('home.post_a_job_process');
        Route::get('/jobs/{slug}', [JobsController::class,'jobDetail'])->name('home.jobs.single');
+       Route::get('/jobs/apply/{slug}', [JobsController::class,'jobApply'])->name('home.jobs.apply');
+       Route::get('/jobs/apply-process/{slug}', [JobsController::class,'jobApplyProcess'])->name('home.jobs.applyProcess');
     });
 
 Route::group([

@@ -1182,29 +1182,234 @@
                      JOB DESCRIPTION
                 ====================================== --}}
 
-                <main class="job_container_outer_content">
+<main class="job_container_outer_content">
 
+    <div class="apply_outer_div">
 
-                    <div class="job_container_outer_content_header">
+        <div class="apply_outer_div_header">
+            <h3>Apply for this Job</h3>
+            <p>Please complete the form below to submit your application.</p>
+        </div>
 
-                        <h2 class="job_container_outer_content_header_title">
+        <form action="{{ route('home.jobs.applyProcess', ['slug' => request('slug')]) }}"
+              method="POST"
+              enctype="multipart/form-data">
 
-                            Job Description
+            @csrf
 
-                        </h2>
+            <div class="row">
 
+                {{-- City --}}
+                <div class="col-md-6">
+                    <div class="apply_outer_div_group">
+                        <label for="city">City <span>*</span></label>
+                        <input type="text"
+                               name="city"
+                               id="city"
+                               class="form-control"
+                               placeholder="Enter your city"
+                               value="{{ old('city') }}"
+                               required>
                     </div>
+                </div>
 
-
-                    <div class="job_container_outer_description">
-
-                       {!! reset_description(clean(html_entity_decode($job->description))) !!}
-
-
+                {{-- Country --}}
+                <div class="col-md-6">
+                    <div class="apply_outer_div_group">
+                        <label for="country">Country <span>*</span></label>
+                        <input type="text"
+                               name="country"
+                               id="country"
+                               class="form-control"
+                               placeholder="Enter your country"
+                               value="{{ old('country') }}"
+                               required>
                     </div>
+                </div>
 
+                {{-- Address --}}
+                <div class="col-md-12">
+                    <div class="apply_outer_div_group">
+                        <label for="address">Address <span>*</span></label>
+                        <input type="text"
+                               name="address"
+                               id="address"
+                               class="form-control"
+                               placeholder="Enter your address"
+                               value="{{ old('address') }}"
+                               required>
+                    </div>
+                </div>
 
-                </main>
+                {{-- Cover Letter --}}
+                <div class="col-md-12">
+                    <div class="apply_outer_div_group">
+                        <label for="cover_letter">Cover Letter <span>*</span></label>
+                        <textarea name="cover_letter"
+                                  id="cover_letter"
+                                  rows="7"
+                                  class="form-control"
+                                  placeholder="Write your cover letter..."
+                                  required>{{ old('cover_letter') }}</textarea>
+                    </div>
+                </div>
+
+                {{-- Resume --}}
+                <div class="col-md-12">
+                    <div class="apply_outer_div_group">
+                        <label for="resume">Resume <span>*</span></label>
+
+                        <div class="apply_outer_div_resume">
+                            <input type="file"
+                                   name="resume"
+                                   id="resume"
+                                   class="form-control-file"
+                                   accept=".pdf,.doc,.docx"
+                                   required>
+
+                            <small>
+                                Accepted formats: PDF, DOC, DOCX
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Submit --}}
+                <div class="col-md-12">
+                    <div class="apply_outer_div_submit">
+                        <button type="submit" class="btn">
+                            Submit Application
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+<style>
+    .apply_outer_div {
+        padding: 30px;
+        margin-bottom: 30px;
+    }
+
+    .apply_outer_div_header {
+        margin-bottom: 25px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid #eef0f3;
+    }
+
+    .apply_outer_div_header h3 {
+        margin: 0 0 6px;
+        font-size: 22px;
+        font-weight: 700;
+        color: #1e293b;
+    }
+
+    .apply_outer_div_header p {
+        margin: 0;
+        color: #64748b;
+        font-size: 14px;
+    }
+
+    .apply_outer_div_group {
+        margin-bottom: 20px;
+    }
+
+    .apply_outer_div_group label {
+        display: block;
+        margin-bottom: 7px;
+        color: #334155;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .apply_outer_div_group label span {
+        color: #dc3545;
+    }
+
+    .apply_outer_div_group .form-control {
+        height: 44px;
+        border: 1px solid #dce1e7;
+        border-radius: 6px;
+        font-size: 14px;
+        color: #334155;
+        box-shadow: none;
+        transition: all 0.2s ease;
+    }
+
+    .apply_outer_div_group textarea.form-control {
+        height: auto;
+        min-height: 150px;
+        resize: vertical;
+        padding-top: 12px;
+    }
+
+    .apply_outer_div_group .form-control:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+    }
+
+    .apply_outer_div_resume {
+        padding: 16px;
+        background: #f8fafc;
+        border: 1px dashed #cbd5e1;
+        border-radius: 7px;
+    }
+
+    .apply_outer_div_resume .form-control-file {
+        font-size: 14px;
+        color: #475569;
+    }
+
+    .apply_outer_div_resume small {
+        display: block;
+        margin-top: 7px;
+        color: #94a3b8;
+        font-size: 12px;
+    }
+
+    .apply_outer_div_submit {
+        margin-top: 5px;
+    }
+
+    .apply_outer_div_submit .btn {
+        background: #2563eb;
+        color: #ffffff;
+        border: none;
+        border-radius: 6px;
+        padding: 11px 25px;
+        font-size: 14px;
+        font-weight: 600;
+        min-width: 160px;
+        transition: all 0.2s ease;
+    }
+
+    .apply_outer_div_submit .btn:hover {
+        background: #1d4ed8;
+        transform: translateY(-1px);
+        box-shadow: 0 5px 12px rgba(37, 99, 235, 0.18);
+    }
+
+    @media (max-width: 767px) {
+        .apply_outer_div {
+            padding: 20px 15px;
+            margin-top: 15px;
+        }
+
+        .apply_outer_div_header h3 {
+            font-size: 20px;
+        }
+
+        .apply_outer_div_submit .btn {
+            width: 100%;
+        }
+    }
+</style>
 
 
                 {{-- =====================================
@@ -1213,74 +1418,6 @@
 
                 <aside class="job_container_outer_sidebar">
 
-
-                    {{-- Apply --}}
-
-                    <div class="job_container_outer_apply">
-
-
-                        @if($job->type=='internal')
-                            @if(!empty($job->url))
-                            <a
-                                href="{{ $job->url }}"
-                                target="_blank"
-                                rel="nofollow noopener"
-                                class="job_container_outer_apply_button"
-                            >
-
-                                Apply for this Job
-
-                                <i class="bi bi-box-arrow-up-right"></i>
-
-                            </a>
-                            @else
-                                                        <a
-                                href="{{ route('home.jobs.apply',request('slug')) }}"
-                                rel="nofollow noopener"
-                                class="job_container_outer_apply_button"
-                            >
-
-                                Apply for this Job
-
-                                <i class="bi bi-box-arrow-up-right"></i>
-
-                            </a>
-                            @endif
-                        @elseif(!empty($job->url))
-
-                            <a
-                                href="{{ $job->url }}"
-                                target="_blank"
-                                rel="nofollow noopener"
-                                class="job_container_outer_apply_button"
-                            >
-
-                                Apply for this Job
-
-                                <i class="bi bi-box-arrow-up-right"></i>
-
-                            </a>
-
-                        @else
-
-                            <a
-                                href="#"
-                                class="job_container_outer_apply_button"
-                            >
-
-                                Apply for this Job
-
-                                <i class="bi bi-arrow-right"></i>
-
-                            </a>
-
-                        @endif
-
-
-                      
-
-
-                    </div>
 
 
                     {{-- Job Information --}}
@@ -1454,110 +1591,7 @@
         </div>
 
     </section>
-{{-- =========================================
-     RANDOM / RELATED JOBS
-========================================== --}}
 
-@if(!empty($random_jobs) && count($random_jobs) > 0)
-
-    <section class="job_container_outer_random_jobs">
-
-        <div class="container-fluid">
-
-            <div class="job_container_outer_random_jobs_header">
-
-                <h2 class="job_container_outer_random_jobs_title">
-                    More Jobs You May Like
-                </h2>
-
-                <p class="job_container_outer_random_jobs_subtitle">
-                    Explore more opportunities that might be a good fit for you.
-                </p>
-
-            </div>
-
-
-            <div class="job_container_outer_random_jobs_grid">
-
-                @foreach($random_jobs as $random_job)
-
-                    <a
-                        href="{{ route('home.jobs.single', $random_job->slug) }}"
-                        class="job_container_outer_random_job_card"
-                    >
-
-                        <div class="job_container_outer_random_job_top">
-
-                            <div class="job_container_outer_random_job_logo">
-                                {{ strtoupper(
-                                    substr(
-                                        $random_job->company ?? $random_job->title ?? 'J',
-                                        0,
-                                        1
-                                    )
-                                ) }}
-                            </div>
-
-                            <div class="job_container_outer_random_job_content">
-
-                                <h3 class="job_container_outer_random_job_title">
-                                    {{ \Illuminate\Support\Str::limit($random_job->title, 55) }}
-                                </h3>
-
-                                @if(!empty($random_job->company))
-                                    <div class="job_container_outer_random_job_company">
-                                        <i class="bi bi-building"></i>
-                                        {{ \Illuminate\Support\Str::limit($random_job->company, 35) }}
-                                    </div>
-                                @endif
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="job_container_outer_random_job_meta">
-
-                            @if(!empty($random_job->location))
-
-                                <span class="job_container_outer_random_job_meta_item">
-                                    <i class="bi bi-geo-alt"></i>
-                                    {{ \Illuminate\Support\Str::limit($random_job->location, 25) }}
-                                </span>
-
-                            @endif
-
-
-                            @if(!empty($random_job->job_types))
-
-                                <span class="job_container_outer_random_job_meta_item">
-                                    <i class="bi bi-briefcase"></i>
-                                    {{ \Illuminate\Support\Str::limit(str_replace(',', ', ', $random_job->job_types), 25) }}
-                                </span>
-
-                            @endif
-
-                        </div>
-
-
-                        <div class="job_container_outer_random_job_arrow">
-
-                            View Job
-                            <i class="bi bi-arrow-right"></i>
-
-                        </div>
-
-                    </a>
-
-                @endforeach
-
-            </div>
-
-        </div>
-
-    </section>
-
-@endif
 
 </div>
 
