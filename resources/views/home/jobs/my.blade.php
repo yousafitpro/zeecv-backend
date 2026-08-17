@@ -1055,15 +1055,6 @@
                                 </div>
 
                             @endif
-
-
-                            {{-- Tags --}}
-
-                            @if(!empty($job->tags))
-
-                                
-
-
                                 <div class="job_container_outer_tags">
                                             <span class="job_container_outer_tag">
 
@@ -1078,8 +1069,6 @@
                                             
 
                                 </div>
-
-                            @endif
                         </article>
 
 
