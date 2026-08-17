@@ -1061,30 +1061,16 @@
 
                             @if(!empty($job->tags))
 
-                                @php
-
-                                    $tags = is_array($job->tags)
-                                        ? $job->tags
-                                        : explode(',', $job->tags);
-
-                                @endphp
+                                
 
 
                                 <div class="job_container_outer_tags">
 
-                                    @foreach(array_slice($tags, 0, 4) as $tag)
-
-                                        @if(trim($tag) !== '')
-
                                             <span class="job_container_outer_tag">
 
-                                                {{ trim($tag) }}
+                                               People Applied
 
                                             </span>
-
-                                        @endif
-
-                                    @endforeach
 
                                 </div>
 
