@@ -18,10 +18,11 @@ class JobsController extends Controller
         $startDate = Carbon::now()->subWeeks(2);
         $endDate   = Carbon::now();
 
-        return JobCareer::whereBetween('job_created_at', [
-                $startDate,
-                $endDate
-            ]);
+        return JobCareer::query();
+                // ->whereBetween('job_created_at', [
+                //         $startDate,
+                //         $endDate
+                //     ]);
         //     ->where(function ($query) {
         //         $query->where('published', 1)
         //             ->orWhereNull('published');
