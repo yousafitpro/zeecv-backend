@@ -84,6 +84,27 @@
                     </div>
                 </li>
                 @endif
+                @if(is_has_permission('jobs.sidebar_menu'))
+                <li class="nav-item {{ request()->routeIs('jobs.*') ? 'active' : '' }} {{ request()->routeIs('jobs.*') ? 'submenu' : '' }}" >
+                    <a data-toggle="collapse" href="#jobs" class="collapsed" aria-expanded="false">
+                        <i class="fas fa-layer-group"></i>
+                        <p>Jobs</p>
+                        <span class="caret" style="zoom: 1.6"></span>
+                    </a>
+                    <div class="collapse {{ request()->routeIs('jobs.*') ? 'show' : '' }}" id="jobs" style="">
+
+                        <ul class="nav nav-collapse">
+                            @if(is_has_permission('jobs.my'))
+                            <li class="{{ request()->routeIs('jobs.my') ? 'active' : '' }}">
+                                <a href="{{route('jobs.my')}}">
+                                    <span class="sub-item">Posted Jobs</span>
+                                </a>
+                            </li>
+                            @endif
+                        </ul>
+                    </div>
+                </li>
+                @endif
             @if(is_has_permission('pmm.merchants.view'))
                <li class="nav-item {{ request()->routeIs('pmm.merchants.*') ? 'active' : '' }}">
                     <a href="{{route('pmm.merchants.view')}}">

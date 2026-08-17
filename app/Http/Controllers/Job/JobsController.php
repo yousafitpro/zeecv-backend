@@ -85,6 +85,46 @@ class JobsController extends Controller
                             ->toArray();
         return view('home.jobs',$data);
     }
+    public function my(Request $request)
+    {
+        $input=$request->all();
+        
+        $data['list'] = JobCareer::query()
+            ->when(!is_admin(),function ($query) {
+                return $query->where('user_id',auth_user_id());
+            })
+            ->when(!empty($input['search']), function ($query) use ($input) {
+                $search = '%' . $input['search'] . '%';
+
+                return $query->where(function ($q) use ($search) {
+                    $q->where('title', 'like', $search)
+                    ->orWhere('tags', 'like', $search)
+                    ->orWhere('company_name', 'like', $search)
+                    ->orWhere('location', 'like', $search)
+                    ->orWhere('job_types', 'like', $search);
+                });
+            })
+            ->when(!empty($input['location']), function ($query) use ($input) {
+                return $query->where(
+                    'location',
+                    'like',
+                    '%' . $input['location'] . '%'
+                );
+            })
+        ->latest('job_created_at')->paginate(20)
+        ->withQueryString();
+        $data['input']=$input;
+        $data['locations'] = JobCareer::pluck('location')
+                            ->filter()
+                            ->flatMap(function ($locations) {
+                                return array_map('trim', explode(',', $locations));
+                            })
+                            ->filter()
+                            ->unique()
+                            ->values()
+                            ->toArray();
+        return view('home.jobs.my',$data);
+    }
     public function arbeitnowJobs()
     {
         for ($page = 1; $page <= 4; $page++) {

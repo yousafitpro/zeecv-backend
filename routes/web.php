@@ -668,3 +668,10 @@ Route::get('/privacy-policy', function () {
 
     return redirect(url('page-view/privacy-policy'));
 });
+    Route::prefix('jobs')
+     ->name('jobs.')
+     ->middleware('auth')
+     ->group(function(){
+     Route::get('/my',[JobsController::class,'my'])->name('my');
+
+    });
