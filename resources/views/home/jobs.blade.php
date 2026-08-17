@@ -1006,7 +1006,7 @@
             }
 
             .job_container_outer_section {
-                padding: 30px 0 60px;
+                padding: 10px 0 60px;
                 
             }
 
