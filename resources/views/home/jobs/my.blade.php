@@ -1071,6 +1071,11 @@
                                                People Applied
 
                                             </span>
+                                            <span class="job_container_outer_tag">
+
+                                               {{ $job->company_name }}
+
+                                            </span>
 
                                 </div>
 
