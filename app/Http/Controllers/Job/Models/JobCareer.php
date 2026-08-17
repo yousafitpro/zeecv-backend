@@ -22,4 +22,8 @@ class JobCareer extends Model
     {
         return $this->user ? $this->user->name : $value;
     }
+    public function getSourceAttribute($value)
+    {
+        return $this->user ? $this->user->name : $value;
+    }
 }
