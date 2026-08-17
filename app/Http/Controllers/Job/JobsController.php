@@ -117,7 +117,7 @@ class JobsController extends Controller
                 'location'=>$input['location'],
                 'url'=>$input['url'],
                'expiry_date' => Carbon::parse($input['expiry_date'])->format('Y-m-d'),
-                'slug'=>Str::slug($input['title']).$user->name.'-zeecv-'.unique_encrypt($user->id),
+                'slug'=>Str::slug($input['title']).'-'.$user->name.'-zeecv-'.unique_encrypt($user->id),
                 'tags'=>$input['tags'],
                 'description'=>$input['description'],
                 'job_types'=>$input['job_types'],
@@ -144,7 +144,7 @@ class JobsController extends Controller
           $job=JobCareer::create([
             'title'=>$input['title'],
             'user_id'=>auth_user_id(),
-            'slug'=>Str::slug($input['title']).$user->name.'-zeecv-'.unique_encrypt($user->id),
+            'slug'=>Str::slug($input['title']).'-'.$user->name.'-zeecv-'.unique_encrypt($user->id),
             'status'=>'pending',
             'type'=>'internal',
             'job_created_at'=>now(),
