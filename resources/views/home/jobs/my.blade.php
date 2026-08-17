@@ -962,7 +962,7 @@
                                     <h3 class="job_container_outer_title">
 
                                         <a
-                                            href="{{ route('home.jobs.single' , $job->slug) }}"
+                                            href="{{ route('jobs.edit' , unique_encrypt($job->id)) }}"
                                             class="job_container_outer_title_link"
                                         >
 
@@ -988,7 +988,7 @@
 
                                 </div>
                                 <a
-                                    href="{{ route('home.jobs.single',$job->slug) }}"
+                                    href="{{ route('jobs.edit' , unique_encrypt($job->id)) }}"
                                     class="job_container_outer_button">
                                     <i class="fa fa-edit"></i>
                                 </a>

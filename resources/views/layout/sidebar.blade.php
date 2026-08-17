@@ -94,7 +94,7 @@
                     <div class="collapse {{ request()->routeIs('jobs.*') ? 'show' : '' }}" id="jobs" style="">
 
                         <ul class="nav nav-collapse">
-                            @if(is_has_permission('jobs.my'))
+                            @if(is_has_permission('jobs.my.view'))
                             <li class="{{ request()->routeIs('jobs.my') ? 'active' : '' }}">
                                 <a href="{{route('jobs.my')}}">
                                     <span class="sub-item">Posted Jobs</span>

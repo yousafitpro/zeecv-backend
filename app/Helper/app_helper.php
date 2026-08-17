@@ -166,7 +166,6 @@ if ( ! function_exists('is_has_permission')){
             $md_permissions=[$permissions];
             $operator='and';
         }
-
         if(my_has_permission($md_permissions,$operator))
         {
             $has_permission=true;
@@ -193,10 +192,10 @@ if ( ! function_exists('set_user_permissions')){
     function set_user_permissions($user_id=null,$group=null,$force_query=null)
     {
         $permissions=cache_get('user_'.$user_id.'_permissions');
-        if($permissions && empty($force_query))
-        {
-            return $permissions;
-        }
+        // if($permissions && empty($force_query))
+        // {
+        //     return $permissions;
+        // }
         $my_roles=\App\Models\MyRole\MyUserRole::where('user_id',$user_id)->pluck('my_role_id');
         $permissions=\App\Models\MyRole\MyRolePermissions::where(function($query)use($my_roles,$user_id){
             $query->whereIn('my_role_permissions.my_role_id',$my_roles)

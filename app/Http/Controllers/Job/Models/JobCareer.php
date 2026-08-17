@@ -18,5 +18,8 @@ class JobCareer extends Model
     {
         return $this->belongsTo(User::class,'user_id');
     }
-
+    public function getCompanyNameAttribute($value)
+    {
+        return $this->user ? $this->user->name : $value;
+    }
 }

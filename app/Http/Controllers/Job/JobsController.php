@@ -115,7 +115,6 @@ class JobsController extends Controller
                 'title'=>$input['title'],
                 'location'=>$input['location'],
                 'url'=>$input['url'],
-                'status'=>$input['status'],
                'expiry_date' => Carbon::parse($input['expiry_date'])->format('Y-m-d'),
                 'slug'=>Str::slug($input['title']),
                 'tags'=>$input['tags'],
@@ -125,6 +124,10 @@ class JobsController extends Controller
                 'published'=>$input['published']??0,
             ]
           );
+          if(is_admin()){
+            $job->status=$input['status'];
+            $job->save();
+          }
         return redirect()->back()->with([
                 'toast' => [
                     'heading' => 'Message',
@@ -138,8 +141,10 @@ class JobsController extends Controller
           $input=$request->all();
           $job=JobCareer::create([
             'title'=>$input['title'],
+            'user_id'=>auth_user_id(),
             'slug'=>Str::slug($input['title']),
             'status'=>'pending',
+            'type'=>'internal',
             'job_created_at'=>now(),
             'published'=>0
           ]);
