@@ -34,7 +34,7 @@
         padding: 20px;
 
         background: #ffffff;
-        border-left: 5px solid var(--primary);
+        /* border-left: 5px solid var(--primary); */
     }
 
     #job_search_form label {
@@ -185,7 +185,7 @@
         ========================================= */
 
         .job_container_outer_section {
-            padding: 45px 0 80px;
+            padding: 0px 0 80px;
         }
 
 
@@ -464,14 +464,14 @@
         }
 
 
+        .job_container_outer_button i{
+            color: #ffffff !important;
+        }
         .job_container_outer_button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
 
             gap: 8px;
 
-            padding: 10px 16px;
+            padding: 4px 10px;
 
             border-radius: 8px;
 
@@ -479,12 +479,13 @@
 
             color: #ffffff !important;
 
-            font-size: 13px;
+            font-size: 10px;
             font-weight: 600;
 
             text-decoration: none;
 
             transition: all .2s ease;
+            float: right;
         }
 
 
@@ -869,15 +870,7 @@
                    </div>
                    <div class="row mt-2 g-1">
                      <div class="col-md-7" >
-                     </div>
-                     <div class=" col-md-3 mt-2 job_search_btns" >
-                        <button class="btn btn-primary btn-block btn-sm"  type="submit">Search</button>
-                    </div>
-                    <div class="col-md-2 mt-2 job_search_btns" >
-                        <a href="{{ route('home.jobs') }}" class="btn btn-primary btn-sm btn-block"  type="submit">Reset</a>
-                    </div>
-                   </div>
-                   <p>
+                        <p>
 
                         Showing
                         {{ $list->firstItem() ?? 0 }}
@@ -888,6 +881,15 @@
                         jobs
 
                     </p>
+                     </div>
+                     <div class=" col-md-3 mt-2 job_search_btns" >
+                        <button class="btn btn-primary btn-block btn-sm"  type="submit">Search</button>
+                    </div>
+                    <div class="col-md-2 mt-2 job_search_btns" >
+                        <a href="{{ route('home.jobs') }}" class="btn btn-primary btn-sm btn-block"  type="submit">Reset</a>
+                    </div>
+                   </div>
+                   
                 </form>
         <div class="container" style="padding-left:0px;padding-right:0px;">
 
@@ -985,6 +987,11 @@
 
 
                                 </div>
+                                <a
+                                    href="{{ route('home.jobs.single',$job->slug) }}"
+                                    class="job_container_outer_button">
+                                    <i class="fa fa-edit"></i>
+                                </a>
 
                             </div>
 
@@ -1042,7 +1049,7 @@
 
                                     {{ \Illuminate\Support\Str::limit(
                                         strip_tags(html_entity_decode($job->description)),
-                                        260
+                                        180
                                     ) }}
 
                                 </div>
@@ -1065,7 +1072,7 @@
 
                                 <div class="job_container_outer_tags">
 
-                                    @foreach(array_slice($tags, 0, 6) as $tag)
+                                    @foreach(array_slice($tags, 0, 4) as $tag)
 
                                         @if(trim($tag) !== '')
 
@@ -1082,37 +1089,6 @@
                                 </div>
 
                             @endif
-
-
-                            {{-- Footer --}}
-
-                            <div class="job_container_outer_footer">
-
-
-                                <span class="job_container_outer_status">
-
-                                    <i class="bi bi-check-circle"></i>
-
-                                    Open Position
-
-                                </span>
-
-
-                                <a
-                                    href="{{ route('home.jobs.single',$job->slug) }}"
-                                    class="job_container_outer_button"
-                                >
-
-                                    View Job
-
-                                    <i class="bi bi-arrow-right"></i>
-
-                                </a>
-
-
-                            </div>
-
-
                         </article>
 
 
