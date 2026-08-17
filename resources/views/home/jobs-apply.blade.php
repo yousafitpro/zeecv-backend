@@ -666,7 +666,7 @@
 
     .job_container_outer_sidebar {
         position: sticky;
-        top: 25px;
+        top: 100px;
     }
 
 
@@ -735,7 +735,7 @@
     ========================================= */
 
     .job_container_outer_info {
-        margin-top: 15px;
+        /* margin-top: 15px; */
 
         background: #ffffff;
 
@@ -1068,8 +1068,9 @@
 
 
                         <h1 class="job_container_outer_title">
-
+                         <a href="{{ route('home.jobs.single',request('slug')) }}" style="color: var(--primary)">
                             {{ $job->title }}
+                         </a>
 
                         </h1>
 
