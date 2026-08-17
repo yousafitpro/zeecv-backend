@@ -21,19 +21,19 @@ class JobsController extends Controller
         return JobCareer::whereBetween('job_created_at', [
                 $startDate,
                 $endDate
-            ])
-            ->where(function ($query) {
-                $query->where('published', 1)
-                    ->orWhereNull('published');
-            })
-            ->where(function ($query) {
-                $query->where('status', 'approved')
-                    ->orWhereNull('status');
-            })
-        ->where(function ($query) {
-            $query->where('expiry_date', '>=', today())
-                ->orWhereNull('expiry_date');
-        });
+            ]);
+        //     ->where(function ($query) {
+        //         $query->where('published', 1)
+        //             ->orWhereNull('published');
+        //     })
+        //     ->where(function ($query) {
+        //         $query->where('status', 'approved')
+        //             ->orWhereNull('status');
+        //     })
+        // ->where(function ($query) {
+        //     $query->where('expiry_date', '>=', today())
+        //         ->orWhereNull('expiry_date');
+        // });
     }
     public function jobDetail($slug){
          $data['job']=JobCareer::where('slug',$slug)->first();
@@ -73,11 +73,11 @@ class JobsController extends Controller
                     $search = '%' . $input['search'] . '%';
 
                     $query->where(function ($q) use ($search) {
-                        $q->where('title', 'like', $search);
-                            // ->orWhere('tags', 'like', $search)
-                            // ->orWhere('company_name', 'like', $search)
-                            // ->orWhere('location', 'like', $search)
-                            // ->orWhere('job_types', 'like', $search);
+                        $q->where('title', 'like', $search)
+                            ->orWhere('tags', 'like', $search)
+                            ->orWhere('company_name', 'like', $search)
+                            ->orWhere('location', 'like', $search)
+                            ->orWhere('job_types', 'like', $search);
                     });
                 }
 
