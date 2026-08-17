@@ -1025,9 +1025,16 @@
                     <span class="job_container_outer_breadcrumb_separator">
                         /
                     </span>
+                    <a href="{{ route('home.jobs.single',request('slug')) }}">
+                       {{ \Illuminate\Support\Str::limit($job->title, 60) }}
+                    </a>
+
+                    <span class="job_container_outer_breadcrumb_separator">
+                        /
+                    </span>
 
                     <span>
-                        {{ \Illuminate\Support\Str::limit($job->title, 60) }}
+                        Apply
                     </span>
 
                 </div>
