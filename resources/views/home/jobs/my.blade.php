@@ -992,6 +992,12 @@
                                     class="job_container_outer_button">
                                     <i class="fa fa-edit"></i>
                                 </a>
+                                <a
+                                    href="{{ route('home.jobs.single' , $job->slug) }}"
+                                    target="_blank"
+                                    class="job_container_outer_button">
+                                    <i class="fa fa-share"></i>
+                                </a>
 
                             </div>
 
