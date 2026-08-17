@@ -69,17 +69,17 @@ class JobsController extends Controller
         $data['list'] = $this->process()
             ->where(function ($query) use ($input) {
 
-                // if (!empty($input['search'])) {
-                //     $search = '%' . $input['search'] . '%';
+                if (!empty($input['search'])) {
+                    $search = '%' . $input['search'] . '%';
 
-                //     $query->where(function ($q) use ($search) {
-                //         $q->where('title', 'like', $search)
-                //             ->orWhere('tags', 'like', $search)
-                //             ->orWhere('company_name', 'like', $search)
-                //             ->orWhere('location', 'like', $search)
-                //             ->orWhere('job_types', 'like', $search);
-                //     });
-                // }
+                    $query->where(function ($q) use ($search) {
+                        $q->where('title', 'like', $search);
+                            // ->orWhere('tags', 'like', $search)
+                            // ->orWhere('company_name', 'like', $search)
+                            // ->orWhere('location', 'like', $search)
+                            // ->orWhere('job_types', 'like', $search);
+                    });
+                }
 
                 if (!empty($input['location'])) {
                     $query->orWhere('location', 'like', '%' . $input['location'] . '%');
