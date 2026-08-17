@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Job;
 
+use App\Http\Controllers\App\AppGoogleRecaptchaController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Job\Models\JobApplication;
 use App\Http\Controllers\Job\Models\JobCareer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -63,8 +65,42 @@ class JobsController extends Controller
          return view('home.jobs-detail',$data);
     }
     public function jobApplyProcess(Request $request,$slug){
+
+        $job=JobCareer::where('slug',$slug)->first();
         $input=$request->all();
-        dd($input);
+        $score=(new AppGoogleRecaptchaController())->getScore($input['g-recaptcha-response']);
+        if($score<0.7)
+        {
+           return redirect()->back()->withInput()->with([
+                'toast' => [
+                    'heading' => 'Message',
+                    'message' => 'Invalid recaptcha',
+                    'type' => 'danger',
+                ]
+            ]);
+        }
+        $app=JobApplication::create(
+            [
+                'job_id'=>$job->id,
+                'city'=>$input['city'],
+                'country'=>$input['country'],
+                'address'=>$input['address'],
+                'cover_letter'=>$input['cover_letter'],
+            ]
+        );
+        $resume = $request->file('resume');
+            if ($resume) {
+                    $data['resume']=fun_save_file($resume,'zeecv/resume/uploads');
+                    $app->resume_file_id=$data['resume']->id;
+                    $app->save();
+                }
+        return redirect()->route('home.jobs')->with([
+                'toast' => [
+                    'heading' => 'Message',
+                    'message' => 'Application successfully submitted',
+                    'type' => 'success',
+                ]
+            ]);
     }
     public function jobApply($slug){
          $data['job']=JobCareer::where('slug',$slug)->first();

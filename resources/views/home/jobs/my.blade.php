@@ -1067,11 +1067,14 @@
                                                {{ $job->source }}
 
                                             </span>
-                                            <span class="job_container_outer_tag">
+                                            @if (count($job->applications)>0)
+                                              <span class="job_container_outer_tag">
 
-                                               People Applied
+                                               People Applied ({{ count($job->applications) }})
 
-                                            </span>
+                                            </span>  
+                                            @endif
+                                            
                                             
 
                                 </div>
