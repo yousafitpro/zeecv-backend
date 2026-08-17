@@ -672,9 +672,13 @@ Route::get('/privacy-policy', function () {
      ->name('jobs.')
      ->middleware('auth')
      ->group(function(){
-     Route::any('/my',[JobsController::class,'my'])->name('my');
-     Route::post('/new',[JobsController::class,'new'])->name('new');
-     Route::get('/edit/{id}',[JobsController::class,'edit'])->name('edit');
-     Route::post('/update/{id}',[JobsController::class,'update'])->name('update');
-
+     Route::any('/my',[JobsController::class,'my'])->name('my')->middleware('basic.permission:jobs.my.view');
+     Route::post('/new',[JobsController::class,'new'])->name('new')->middleware('basic.permission:jobs.my.add');
+     Route::get('/edit/{id}',[JobsController::class,'edit'])->name('edit')->middleware('basic.permission:jobs.my.update');
+     Route::post('/update/{id}',[JobsController::class,'update'])->name('update')->middleware('basic.permission:jobs.my.update');
+     // questionair
+    Route::any('/questionnaire',[JobsController::class,'my'])->name('questionnaire')->middleware('basic.permission:jobs.my.update');
+     Route::get('/questionnaire',[JobsController::class,'list'])->name('questionnaire.list')->middleware('basic.permission:jobs.my.update');
+     Route::post('/questionnaire',[JobsController::class,'new'])->name('questionnaire.new')->middleware('basic.permission:jobs.my.update');
+     Route::get('/questionnaire/delete/{id}',[JobsController::class,'delete'])->name('questionnaire.delete')->middleware('basic.permission:jobs.my.update');
     });
