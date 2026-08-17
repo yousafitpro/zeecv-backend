@@ -460,7 +460,7 @@
                                     name="expiry_date"
                                     id="expiry_date"
                                     class="job_update_input"
-                                    value="{{ old('expiry_date', $job->expiry_date ?? '') }}"
+                                    value="{{ old('expiry_date', !empty($job->expiry_date) ? \Carbon\Carbon::parse($job->expiry_date)->format('Y-m-d') : '') }}"
                                 >
                             </div>
                         </div>
@@ -547,6 +547,23 @@
                             <span class="job_update_slider"></span>
                         </label>
 
+                    </div>
+                    <div class="row">
+                        @if (is_admin())
+                           <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="status" class="job_update_label">
+                                Approval Status
+                                </label>
+
+                                <select id="status" name="status" class="form-control">
+                                    <option value="pending" {{ $job->status=='pending'?'selected':'' }}>Pending</option>
+                                    <option value="rejected" {{ $job->status=='rejected'?'selected':'' }}>Rejected</option>
+                                    <option value="approved" {{ $job->status=='approved'?'selected':'' }}>Approved</option>
+                                </select>
+                            </div>
+                        </div> 
+                        @endif
                     </div>
 
                 </div>

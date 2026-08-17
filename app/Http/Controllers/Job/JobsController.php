@@ -26,6 +26,10 @@ class JobsController extends Controller
                 $query->where('published', 1)
                     ->orWhereNull('published');
             })
+            ->where(function ($query) {
+                $query->where('status', 'approved')
+                    ->orWhereNull('status');
+            })
         ->where(function ($query) {
             $query->where('expiry_date', '>=', today())
                 ->orWhereNull('expiry_date');
@@ -108,9 +112,11 @@ class JobsController extends Controller
           $job=JobCareer::find(unique_decrypt($id));
           $job->update(
             [
+                'title'=>$input['title'],
                 'location'=>$input['location'],
                 'url'=>$input['url'],
-                'expiry_date'=>$input['expiry_date'],
+                'status'=>$input['status'],
+               'expiry_date' => Carbon::parse($input['expiry_date'])->format('Y-m-d'),
                 'slug'=>Str::slug($input['title']),
                 'tags'=>$input['tags'],
                 'description'=>$input['description'],
