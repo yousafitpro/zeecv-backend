@@ -1203,7 +1203,7 @@
 
 
                         <a
-                            href="{{ url('/signup') }}"
+                            href="javascript:void" data-toggle="modal" data-target="#jobModal"
                             class="job_container_outer_sidebar_button"
                         >
 
@@ -1255,4 +1255,53 @@
   
 });
 </script>
+<!-- Modal -->
+<div class="modal fade" id="jobModal" tabindex="-1" aria-labelledby="jobModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <form action="{{ route('jobs.new') }}" method="POST">
+                @csrf
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="jobModalLabel">
+                        Add New Job
+                    </h5>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label for="job_title" class="form-label">
+                            Job Title
+                        </label>
+
+                        <input type="text"
+                               name="title"
+                               id="job_title"
+                               class="form-control"
+                               placeholder="e.g. Laravel Developer"
+                               required>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal">
+                        Cancel
+                    </button>
+
+                    <button type="submit" class="btn btn-primary">
+                        Contiue
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
 @endsection

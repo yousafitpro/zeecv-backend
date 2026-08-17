@@ -6,20 +6,30 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Job\Models\JobCareer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 class JobsController extends Controller
 {
     public function process()
     {
+        // dd(time_now());
         //dadasd
-           $startOfLastWeek = Carbon::now()->subWeeks(2)->startOfWeek();
-            $endOfLastWeek   = Carbon::now()->endOfWeek();
+        $startDate = Carbon::now()->subWeeks(2);
+        $endDate   = Carbon::now();
 
-            return JobCareer::whereBetween('job_created_at', [
-                $startOfLastWeek,
-                $endOfLastWeek
-            ]);
+        return JobCareer::whereBetween('job_created_at', [
+                $startDate,
+                $endDate
+            ])
+            ->where(function ($query) {
+                $query->where('published', 1)
+                    ->orWhereNull('published');
+            })
+        ->where(function ($query) {
+            $query->where('expiry_date', '>=', today())
+                ->orWhereNull('expiry_date');
+        });
     }
     public function jobDetail($slug){
          $data['job']=JobCareer::where('slug',$slug)->first();
@@ -84,6 +94,49 @@ class JobsController extends Controller
                             ->values()
                             ->toArray();
         return view('home.jobs',$data);
+    }
+    public function edit(Request $request,$id)
+    {
+          $input=$request->all();
+          $data['job']=JobCareer::find(unique_decrypt($id));
+          return view('home.jobs.edit',$data);
+    }
+    public function update(Request $request,$id)
+    {
+          $input=$request->all();
+          $job=JobCareer::find(unique_decrypt($id));
+          $job->update(
+            [
+                'location'=>$input['location'],
+                'url'=>$input['url'],
+                'expiry_date'=>$input['expiry_date'],
+                'slug'=>Str::slug($input['title']),
+                'tags'=>$input['tags'],
+                'description'=>$input['description'],
+                'job_types'=>$input['job_types'],
+                'remote'=>$input['remote']??0,
+                'published'=>$input['published']??0,
+            ]
+          );
+        return redirect()->back()->with([
+                'toast' => [
+                    'heading' => 'Message',
+                    'message' => 'Job successfully updated',
+                    'type' => 'success',
+                ]
+            ]);
+    }
+    public function new(Request $request)
+    {
+          $input=$request->all();
+          $job=JobCareer::create([
+            'title'=>$input['title'],
+            'slug'=>Str::slug($input['title']),
+            'status'=>'pending',
+            'job_created_at'=>now(),
+            'published'=>0
+          ]);
+          return redirect()->route('jobs.edit',unique_encrypt($job->id));
     }
     public function my(Request $request)
     {

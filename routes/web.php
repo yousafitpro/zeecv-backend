@@ -673,5 +673,8 @@ Route::get('/privacy-policy', function () {
      ->middleware('auth')
      ->group(function(){
      Route::any('/my',[JobsController::class,'my'])->name('my');
+     Route::post('/new',[JobsController::class,'new'])->name('new');
+     Route::get('/edit/{id}',[JobsController::class,'edit'])->name('edit');
+     Route::post('/update/{id}',[JobsController::class,'update'])->name('update');
 
     });
