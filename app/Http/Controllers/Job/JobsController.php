@@ -67,23 +67,23 @@ class JobsController extends Controller
         $input=$request->all();
         
         $data['list'] = $this->process()
-            ->when(!empty($input['search']), function ($query) use ($input) {
-                $search = '%' . $input['search'] . '%';
+            ->where(function ($query) use ($input) {
 
-                return $query->where(function ($q) use ($search) {
-                    $q->where('title', 'like', $search)
-                    ->orWhere('tags', 'like', $search)
-                    ->orWhere('company_name', 'like', $search)
-                    ->orWhere('location', 'like', $search)
-                    ->orWhere('job_types', 'like', $search);
-                });
-            })
-            ->when(!empty($input['location']), function ($query) use ($input) {
-                return $query->where(
-                    'location',
-                    'like',
-                    '%' . $input['location'] . '%'
-                );
+                if (!empty($input['search'])) {
+                    $search = '%' . $input['search'] . '%';
+
+                    $query->where(function ($q) use ($search) {
+                        $q->where('title', 'like', $search)
+                            ->orWhere('tags', 'like', $search)
+                            ->orWhere('company_name', 'like', $search)
+                            ->orWhere('location', 'like', $search)
+                            ->orWhere('job_types', 'like', $search);
+                    });
+                }
+
+                if (!empty($input['location'])) {
+                    $query->orWhere('location', 'like', '%' . $input['location'] . '%');
+                }
             })
         ->inRandomOrder()
         ->paginate(20)
