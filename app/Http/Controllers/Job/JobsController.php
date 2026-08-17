@@ -81,7 +81,8 @@ class JobsController extends Controller
                     '%' . $input['location'] . '%'
                 );
             })
-        ->latest('job_created_at')->paginate(20)
+        ->inRandomOrder()
+        ->paginate(20)
         ->withQueryString();
         $data['input']=$input;
         $data['locations'] = JobCareer::pluck('location')
