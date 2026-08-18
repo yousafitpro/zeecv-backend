@@ -173,6 +173,7 @@
                                 <a
                                     href="{{ route('home.jobs.single',$job->slug) }}"
                                     class="job_container_outer_button"
+                                    target="_blank"
                                 >
 
                                     View Job
