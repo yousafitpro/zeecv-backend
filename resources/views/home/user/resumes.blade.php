@@ -586,9 +586,9 @@
                                     <div>
 
                                         <div class="resume-name">
-
+                                          @if (!empty(auth()->user()->uploadedresume))
                                             {{ auth()->user()->uploadedresume->attachment->original_name }}
-
+                                          @endif
                                         </div>
 
                                         <div class="resume-id">
