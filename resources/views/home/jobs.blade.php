@@ -1050,7 +1050,7 @@
     ========================================== --}}
 
     <section class="job_container_outer_section" style="background: transparent">
-        <form action="{{ route('home.jobs') }}" id="job_search_form" method="post">
+        <form action="{{ route('home.jobs.ajax') }}" id="job_search_form" method="post">
             @csrf
                     <div class="row">
                     <div class="col-md-8">
@@ -1121,291 +1121,10 @@
                      JOB LIST
                 ====================================== --}}
 
-                <div class="job_container_outer_list">
+                <div class="job_container_outer_list" id="job_container_outer_list">
 
 
-                    @forelse($list as $job)
-
-
-                        <article class="job_container_outer_card">
-
-
-                            {{-- Card Top --}}
-
-                            <div class="job_container_outer_card_top">
-
-
-                                <div class="job_container_outer_logo">
-                                @if (!empty($job->user))
-                                <img src="{{$job->user->avatar()}}" style="width: 100%">
-                                @else
-                                {{ strtoupper(
-                                        substr(
-                                            $job->company ?? $job->title ?? 'J',
-                                            0,
-                                            1
-                                        )
-                                    ) }}
-                                @endif
-                                    
-
-                                </div>
-
-
-                                <div class="job_container_outer_main">
-
-
-                                    <h3 class="job_container_outer_title">
-
-                                        <a
-                                            href="{{ route('home.jobs.single' , $job->slug) }}"
-                                            class="job_container_outer_title_link"
-                                        >
-
-                                            {{ $job->title }}
-
-                                        </a>
-
-                                    </h3>
-
-
-                                    @if(!empty($job->company_name) && $job->company_name!='name')
-
-                                        <div class="job_container_outer_company">
-
-                                            <i class="bi bi-building"></i>
-
-                                            {{ $job->company_name }}
-
-                                        </div>
-
-                                    @endif
-
-
-                                </div>
-
-                            </div>
-
-
-                            {{-- Metadata --}}
-
-                            <div class="job_container_outer_meta">
-
-
-                                @if(!empty($job->location))
-
-                                    <span class="job_container_outer_meta_item">
-
-                                        <i class="bi bi-geo-alt"></i>
-
-                                        {{ $job->location }}
-
-                                    </span>
-
-                                @endif
-
-
-                                @if(!empty($job->job_created_at))
-
-                                    <span class="job_container_outer_meta_item">
-
-                                        <i class="bi bi-clock"></i>
-
-                                      {{ \Carbon\Carbon::parse(
-                                            $job->job_created_at
-                                        )->format('M d, Y') }}
-
-                                    </span>
-
-                                @endif
-
-
-                            @if(!empty($job->job_types))
-                                <span class="job_container_outer_meta_item job_container__jobs_type_tag">
-                                    <i class="bi bi-briefcase"></i>
-
-                                    {{ str_replace(',', ', ', $job->job_types) }}
-                                </span>
-                            @endif
-
-
-                            </div>
-
-
-                            {{-- Description --}}
-
-                            @if(!empty($job->description))
-
-                                <div class="job_container_outer_description">
-
-                                    {{ \Illuminate\Support\Str::limit(
-                                        strip_tags(html_entity_decode($job->description)),
-                                        260
-                                    ) }}
-
-                                </div>
-
-                            @endif
-
-
-                            {{-- Tags --}}
-
-                            @if(!empty($job->tags))
-
-                                @php
-
-                                    $tags = is_array($job->tags)
-                                        ? $job->tags
-                                        : explode(',', $job->tags);
-
-                                @endphp
-
-
-                                <div class="job_container_outer_tags">
-
-                                    @foreach(array_slice($tags, 0, 6) as $tag)
-
-                                        @if(trim($tag) !== '')
-
-                                            <span class="job_container_outer_tag">
-
-                                                {{ trim($tag) }}
-
-                                            </span>
-
-                                        @endif
-
-                                    @endforeach
-
-                                </div>
-
-                            @endif
-
-
-                            {{-- Footer --}}
-
-                            <div class="job_container_outer_footer">
-
-
-                                <span class="job_container_outer_status">
-
-                                    <i class="bi bi-check-circle"></i>
-
-                                    Open Position
-
-                                </span>
-
-
-                                <a
-                                    href="{{ route('home.jobs.single',$job->slug) }}"
-                                    class="job_container_outer_button"
-                                >
-
-                                    View Job
-
-                                    <i class="bi bi-arrow-right"></i>
-
-                                </a>
-
-
-                            </div>
-
-
-                        </article>
-
-
-                    @empty
-
-
-                        <div class="job_container_outer_empty">
-
-
-                            <div class="job_container_outer_empty_icon">
-
-                                <i class="bi bi-briefcase"></i>
-
-                            </div>
-
-
-                            <h3 class="job_container_outer_empty_title">
-
-                                No jobs found
-
-                            </h3>
-
-
-                            <p class="job_container_outer_empty_description">
-
-                                We couldn't find any job opportunities
-                                at the moment. Please check again soon.
-
-                            </p>
-
-
-                        </div>
-
-
-                    @endforelse
-
-
-                    {{-- =================================
-                         PAGINATION
-                    ================================== --}}
-
-@if($list->hasPages())
-    <div class="job_container_outer_pagination">
-
-        {{-- <div class="job_container_outer_pagination_info">
-            Showing {{ $list->firstItem() }}–{{ $list->lastItem() }}
-            of {{ $list->total() }} jobs
-        </div> --}}
-
-        <div class="job_container_outer_pagination_links">
-
-            {{-- Previous --}}
-            @if($list->onFirstPage())
-                <span class="job_container_outer_page disabled">
-                    ‹
-                </span>
-            @else
-                <a href="{{ $list->previousPageUrl() }}" class="job_container_outer_page">
-                    ‹
-                </a>
-            @endif
-
-            {{-- Pages --}}
-            @foreach($list->getUrlRange(
-                max(1, $list->currentPage() - 2),
-                min($list->lastPage(), $list->currentPage() + 2)
-            ) as $page => $url)
-
-                @if($page == $list->currentPage())
-                    <span class="job_container_outer_page active">
-                        {{ $page }}
-                    </span>
-                @else
-                    <a href="{{ $url }}" class="job_container_outer_page">
-                        {{ $page }}
-                    </a>
-                @endif
-
-            @endforeach
-
-            {{-- Next --}}
-            @if($list->hasMorePages())
-                <a href="{{ $list->nextPageUrl() }}" class="job_container_outer_page">
-                    ›
-                </a>
-            @else
-                <span class="job_container_outer_page disabled">
-                    ›
-                </span>
-            @endif
-
-        </div>
-
-    </div>
-@endif
+   
 
 
                 </div>
@@ -1497,4 +1216,185 @@
   
 });
 </script>
+<script>
+$(document).ready(function() {
+     
+    // =============================================
+    // JOB SEARCH FORM AJAX SUBMISSION
+    // =============================================
+    
+    $('#job_search_form').on('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        var formData = $(this).serialize();
+        var actionUrl = $(this).attr('action');
+        
+        // Show loading state
+        $('#job_container_outer_list').html(`
+            <div class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-3 text-muted">Searching for jobs...</p>
+            </div>
+        `);
+        
+        // Make AJAX request
+        $.ajax({
+            url: actionUrl,
+            type: 'GET',
+            data: formData,
+            dataType: 'html',
+            success: function(response) {
+                // Replace the content with the response
+                $('#job_container_outer_list').html(response);
+                
+                // Scroll to results
+                // $('html, body').animate({
+                //     scrollTop: $('#job_container_outer_list').offset().top - 100
+                // }, 500);
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', error);
+                
+                // Show error message
+                $('#job_container_outer_list').html(`
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Error!</strong> Failed to load search results. Please try again.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                `);
+            }
+        });
+    });
+    
+    // =============================================
+    // FILTER BUTTON CLICK (Alternative)
+    // =============================================
+    
+    $('.filter-btn, .search-btn').on('click', function() {
+        $('#job_search_form').submit();
+    });
+    
+    // =============================================
+    // AUTO-SUBMIT ON SELECT CHANGE (Optional)
+    // =============================================
+    
+    $('.auto-submit').on('change', function() {
+        $('#job_search_form').submit();
+    });
+
+     $('#job_search_form').submit()
+})
+
+</script>
+
+<style>
+/* Loading spinner animation */
+.spinner-border {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    vertical-align: text-bottom;
+    border: 0.25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+}
+
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+}
+
+.text-primary {
+    color: #2563eb !important;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Alert styles */
+.alert {
+    position: relative;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
+}
+
+.alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+
+.alert-dismissible {
+    padding-right: 3.75rem;
+}
+
+.alert-dismissible .btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    padding: 1.25rem 1rem;
+    background: transparent;
+    border: 0;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.btn-close {
+    box-sizing: content-box;
+    width: 1em;
+    height: 1em;
+    padding: 0.25em 0.25em;
+    color: #000;
+    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+    border: 0;
+    border-radius: 0.375rem;
+    opacity: 0.5;
+}
+
+/* Load more loader */
+#load-more-loader {
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Smooth transition for job items */
+.job-item {
+    transition: opacity 0.3s ease;
+}
+
+.job-item.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .spinner-border {
+        width: 2rem;
+        height: 2rem;
+    }
+}
+</style>
 @endsection

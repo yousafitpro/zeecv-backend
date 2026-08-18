@@ -175,6 +175,35 @@ class JobsController extends Controller
                             ->toArray();
         return view('home.jobs',$data);
     }
+    public function indexAjax(Request $request)
+    {
+        $input=$request->all();
+        
+        $data['list'] = $this->process()
+            ->where(function ($query) use ($input) {
+
+                if (!empty($input['search'])) {
+                    $search = '%' . $input['search'] . '%';
+
+                    $query->where(function ($q) use ($search) {
+                        $q->where('title', 'like', $search)
+                            ->orWhere('tags', 'like', $search)
+                            ->orWhere('company_name', 'like', $search)
+                            ->orWhere('location', 'like', $search)
+                            ->orWhere('job_types', 'like', $search);
+                    });
+                }
+
+                if (!empty($input['location'])) {
+                    $query->orWhere('location', 'like', '%' . $input['location'] . '%');
+                }
+            })
+        ->with(['user'])
+        ->inRandomOrder()
+        ->paginate(20)
+        ->withQueryString();
+         return view('home.ajax.jobs-list',$data);
+    }
     public function edit(Request $request,$id)
     {
           $input=$request->all();
