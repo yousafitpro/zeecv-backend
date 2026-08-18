@@ -80,10 +80,23 @@ class JobsController extends Controller
         //         ]
         //     ]);
         // }
+        $todayApplications = JobApplication::where('user_id',auth_user_id())
+        ->whereDate('created_at', Carbon::today())
+        ->count();
+        if($todayApplications>1){
+            return redirect()->back()->with([
+                'toast' => [
+                    'heading' => 'Message',
+                    'message' => 'limmit reached for today',
+                    'type' => 'danger',
+                ]
+            ]);
+        }
         $app=JobApplication::create(
             [
                 'job_id'=>$job->id,
                 'cover_letter'=>$input['cover_letter']??'',
+                'user_id'=>auth_user_id(),
                 'resume_reference'=>$input['selected_resume_id']
             ]
         );
