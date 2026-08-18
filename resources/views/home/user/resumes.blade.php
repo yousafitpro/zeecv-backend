@@ -395,7 +395,7 @@
 
                                         <div class="resume-name">
 
-                                            {{ $resume->contact->first_name.' '.$resume->contact->last_name }}
+                                            {{ $resume->contact->desired_job_title }}
 
                                         </div>
 
