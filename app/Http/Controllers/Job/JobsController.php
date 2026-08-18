@@ -479,7 +479,7 @@ public function queryProcess(Request $request)
 public function himalayasJobs()
 {
     $limit = 20;
-    $maxJobs = 100;
+    $maxJobs = 500;
 
     for ($offset = 0; $offset < $maxJobs; $offset += $limit) {
 
