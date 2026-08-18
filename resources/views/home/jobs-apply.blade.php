@@ -982,7 +982,7 @@
         }
 
         .job_container_outer_section {
-            padding: 25px 0 60px;
+            padding: 0px 0 60px;
         }
 
         .job_container_outer_description {
