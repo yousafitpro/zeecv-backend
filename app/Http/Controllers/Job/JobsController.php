@@ -83,7 +83,7 @@ class JobsController extends Controller
         $todayApplications = JobApplication::where('user_id',auth_user_id())
         ->whereDate('created_at', Carbon::today())
         ->count();
-        dd($todayApplications);
+        // dd($todayApplications);
         if($todayApplications>29){
             return redirect()->back()->with([
                 'toast' => [
