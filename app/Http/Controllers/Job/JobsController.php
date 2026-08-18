@@ -84,7 +84,7 @@ class JobsController extends Controller
         ->whereDate('created_at', Carbon::today())
         ->count();
         dd($todayApplications);
-        if($todayApplications>1){
+        if($todayApplications>29){
             return redirect()->back()->with([
                 'toast' => [
                     'heading' => 'Message',
