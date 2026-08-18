@@ -64,6 +64,7 @@
         box-sizing: border-box;
 
         padding: 20px;
+        padding-bottom: 0px;
 
         background: #ffffff;
         /* border-left: 5px solid var(--primary); */
