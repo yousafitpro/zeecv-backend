@@ -317,12 +317,7 @@
                 </p>
             </div>
 
-            <a href="{{ route('resume.create') }}"
-               class="create-resume-btn">
-                <i class="fa fa-plus mr-1"></i>
-                Create New Resume
-            </a>
-
+        
         </div>
 
 
