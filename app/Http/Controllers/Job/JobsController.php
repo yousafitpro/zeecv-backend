@@ -704,48 +704,67 @@ public function adzunaJobs($search=null)
 }
 public function openwebJobs($search=null)
 {
-    $urls=[
-        'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in UK',
-        'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in DE',
-        'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in US',
-        'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in IT',
-        'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in AE',
-        'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in PK',
+    $accounts=[
+        0=>[
+            'api_key'=>'ak_jl55kgqqh3aua8dh60n74v7p0pq7r9tuqwm7sborcxc8jj5',
+            'urls'=>[
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in France&country=fr',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Netherlands&country=nl',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Sweden&country=se',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Spain&country=es',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Poland&country=pl',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Switzerland&country=ch',
+            ]
+        ],
+        1=>[
+            'api_key'=>'ak_ei1rwelcczvlrvyxe9cvhnukd7ny3kwcs0qn0hsbbu330yx',
+            'urls'=>[
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in United Kingdom&country=gb',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Germany&country=de',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in United States&country=us',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Italy&country=it',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in United Arab Emirates&country=ae',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Pakistan&country=pk',
+            ]
+        ]
     ];
 
 
 
-        foreach($urls as $url){
-            $res = Http::withHeader('x-api-key','ak_ei1rwelcczvlrvyxe9cvhnukd7ny3kwcs0qn0hsbbu330yx')->get($url);
-        if ($res->successful()) {
+        foreach($accounts as $ac){
+                foreach($ac['urls'] as $url){
+                $res = Http::withHeader('x-api-key',$ac['api_key'])->get($url);
+                dump($url,$res->successful());
+                if ($res->successful()) {
 
-            $jobs = $res->json('data', [])['jobs'];
-            foreach ($jobs as $item) {
+                    $jobs = $res->json('data', [])['jobs'];
+                    foreach ($jobs as $item) {
 
-                $job=JobCareer::updateOrCreate(
-                    [
-                        'slug' => Str::slug(
-                            ($item['job_title'] ?? 'job').($item['job_uid'] ?? 'job').'zeecv-6'
-                        ),
-                        'source' => 'openwebninja',
-                    ],
-                    [
-                        'company_name' => $item['employer_name'] ?? null,
-                        'title' => $item['job_title'] ?? null,
-                        'job_types' => implode(', ', $item['job_employment_types'] ?? []),
-                        'description' => $item['job_description'] ?? null,
+                        $job=JobCareer::updateOrCreate(
+                            [
+                                'slug' => Str::slug(
+                                    ($item['job_title'] ?? 'job').($item['job_uid'] ?? 'job').'zeecv-6'
+                                ),
+                                'source' => 'openwebninja',
+                            ],
+                            [
+                                'company_name' => $item['employer_name'] ?? null,
+                                'title' => $item['job_title'] ?? null,
+                                'job_types' => implode(', ', $item['job_employment_types'] ?? []),
+                                'description' => $item['job_description'] ?? null,
 
-                        'job_created_at' => !empty($item['job_posted_at_timestamp'])
-                            ? Carbon::parse($item['job_posted_at_timestamp'])
-                            : null,
+                                'job_created_at' => !empty($item['job_posted_at_timestamp'])
+                                    ? Carbon::parse($item['job_posted_at_timestamp'])
+                                    : null,
 
-                        'url' => $item['job_apply_link'] ?? null,
+                                'url' => $item['job_apply_link'] ?? null,
 
-                        'location' =>$item['job_location'],
-                    ]
-                );
-            }
-        }
+                                'location' =>$item['job_location'],
+                            ]
+                        );
+                    }
+                }
+                }
         }
 
     return response()->json([
