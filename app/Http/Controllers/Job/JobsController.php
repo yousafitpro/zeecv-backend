@@ -6,6 +6,7 @@ use App\Http\Controllers\App\AppGoogleRecaptchaController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Job\Models\JobApplication;
 use App\Http\Controllers\Job\Models\JobCareer;
+use App\Http\Controllers\Job\Models\UploadedResume;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -86,13 +87,18 @@ class JobsController extends Controller
                 'country'=>$input['country'],
                 'address'=>$input['address'],
                 'cover_letter'=>$input['cover_letter'],
+                'resume_reference'=>$input['selected_resume_id']
             ]
         );
-        $resume = $request->file('resume');
-            if ($resume) {
-                    $data['resume']=fun_save_file($resume,'zeecv/resume/uploads');
-                    $app->resume_file_id=$data['resume']->id;
-                    $app->save();
+        $item=UploadedResume::updateOrCreate([
+            'user_id'=>auth_user_id()
+        ]
+        );
+        $resume = $request->file('resume_file');
+        if ($resume) {
+                    $data['resume']=fun_save_file($resume,'zeecv/uploaded-resumes');
+                    $item->resume_file_id=$data['resume']->id;
+                    $item->save();
                 }
         return redirect()->route('home.jobs')->with([
                 'toast' => [
@@ -104,6 +110,10 @@ class JobsController extends Controller
     }
     public function jobApply($slug){
          $data['job']=JobCareer::where('slug',$slug)->first();
+         if(!auth()->check())
+          {
+              return redirect('signup');
+          }
             $currentTags = is_array($data['job']->tags)
                 ? $data['job']->tags
                 : explode(',', $data['job']->tags);

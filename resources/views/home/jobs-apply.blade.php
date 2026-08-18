@@ -997,315 +997,159 @@
 
     }
 
-</style>
-<script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+    /* =========================================
+       RESUME TABLE STYLES
+    ========================================= */
+
+    .resumes-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 8px;
+        margin-top: 10px;
+    }
+
+    .resumes-table thead th {
+        padding: 10px 15px;
+        background: #f8fafc;
+        color: #475569;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid #e2e8f0;
+        text-align: left;
+    }
+
+    .resumes-table tbody td {
+        padding: 12px 15px;
+        background: white;
+        border-bottom: 1px solid #f1f5f9;
+        vertical-align: middle;
+    }
+
+    .resumes-table tbody tr {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 8px;
+    }
+
+    .resumes-table tbody tr:hover {
+        background: #f8fafc;
+    }
+
+    .resumes-table tbody tr.selected {
+        background: #f0fdf4 !important;
+        border-left: 4px solid #22c55e;
+    }
+
+    .resumes-table tbody tr.selected td {
+        background: #f0fdf4 !important;
+    }
+
+    .resume-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .resume-icon img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #e2e8f0;
+    }
+
+    .resume-name {
+        font-weight: 600;
+        color: #1e293b;
+        font-size: 14px;
+    }
+
+    .resume-id {
+        font-size: 12px;
+        color: #94a3b8;
+        margin-top: 2px;
+    }
+
+    .resume-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        background: #dcfce7;
+        color: #166534;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .resume-status-dot {
+        width: 6px;
+        height: 6px;
+        background: #22c55e;
+        border-radius: 50%;
+        display: inline-block;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+    }
+
+    .resume-date {
+        color: #64748b;
+        font-size: 13px;
+    }
+
+    .resume-date i {
+        margin-right: 4px;
+        color: #94a3b8;
+    }
+
+    .resume-select-radio {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        accent-color: #22c55e;
+    }
+
+    .resume-select-label {
+        display: inline-block;
+        padding: 4px 12px;
+        background: #f1f5f9;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        font-size: 12px;
+        color: #64748b;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .resume-select-label:hover {
+        background: #e2e8f0;
+    }
+
+    .resume-select-radio:checked + .resume-select-label {
+        background: #22c55e;
+        color: white;
+        border-color: #22c55e;
+    }
+
+    .section-divider {
+        margin: 25px 0 15px;
+        padding: 10px 0;
+        /* border-top: 2px solid #e2e8f0;
+        border-bottom: 2px solid #e2e8f0;
+        background: #f8fafc; */
+        text-align: left;
+        font-weight: 600;
+        color: #475569;
+        font-size: 14px;
+    }
 
-<div class="job_container_outer" style="background: transparent">
-
-
-    {{-- =========================================
-         HERO
-    ========================================== --}}
-
-    <section class="job_container_outer_hero">
-
-        <div class="container">
-
-            <div class="job_container_outer_hero_inner">
-
-
-                {{-- Breadcrumb --}}
-
-                <div class="job_container_outer_breadcrumb">
-
-                    <a href="{{ route('home.jobs') }}">
-                        Jobs
-                    </a>
-
-                    <span class="job_container_outer_breadcrumb_separator">
-                        /
-                    </span>
-                    <a href="{{ route('home.jobs.single',request('slug')) }}">
-                       {{ \Illuminate\Support\Str::limit($job->title, 60) }}
-                    </a>
-
-                    <span class="job_container_outer_breadcrumb_separator">
-                        /
-                    </span>
-
-                    <span>
-                        Apply
-                    </span>
-
-                </div>
-
-
-                {{-- Job Header --}}
-
-                <div class="job_container_outer_hero_job">
-
-
-                    {{-- Company Logo --}}
-
-                    <div class="job_container_outer_logo">
-
-                       @if (!empty($job->user))
-                                <img src="{{$job->user->avatar()}}" style="width: 100%">
-                                @else
-                                {{ strtoupper(
-                                        substr(
-                                            $job->company ?? $job->title ?? 'J',
-                                            0,
-                                            1
-                                        )
-                                    ) }}
-                                @endif
-
-                    </div>
-
-
-                    <div class="job_container_outer_hero_content">
-
-
-                        <h1 class="job_container_outer_title">
-                         <a href="{{ route('home.jobs.single',request('slug')) }}" style="color: var(--primary)">
-                            {{ $job->title }}
-                         </a>
-
-                        </h1>
-
-
-                        <div class="job_container_outer_company">
-
-
-                            @if(!empty($job->company))
-
-                                <span class="job_container_outer_company_item">
-
-                                    <i class="bi bi-building"></i>
-
-                                    {{ $job->company }}
-
-                                </span>
-
-                            @endif
-
-
-                            @if(!empty($job->location))
-
-                                <span class="job_container_outer_company_item">
-
-                                    <i class="bi bi-geo-alt"></i>
-
-                                    {{ $job->location }}
-
-                                </span>
-
-                            @endif
-
-
-                            @if(!empty($job->job_created_at))
-
-                                <span class="job_container_outer_company_item">
-
-                                    <i class="bi bi-clock"></i>
-
-                                    {{ \Carbon\Carbon::parse(
-                                            $job->job_created_at
-                                        )->format('M d, Y') }}
-
-                                </span>
-
-                            @endif
-                            @if(!empty($job->job_types))
-    <span class="job_container_outer_meta_item job_container__jobs_type_tag">
-        <i class="bi bi-briefcase"></i>
-
-        {{ str_replace(',', ', ', $job->job_types) }}
-    </span>
-@endif
-
-
-                        </div>
-
-
-                        {{-- Tags --}}
-
-                        @if(!empty($job->tags))
-
-                            @php
-
-                                $tags = is_array($job->tags)
-                                    ? $job->tags
-                                    : explode(',', $job->tags);
-
-                            @endphp
-
-
-                            <div class="job_container_outer_tags">
-
-                                @foreach($tags as $tag)
-
-                                    @if(trim($tag) !== '')
-
-                                        <span class="job_container_outer_tag">
-
-                                            {{ trim($tag) }}
-
-                                        </span>
-
-                                    @endif
-
-                                @endforeach
-
-                            </div>
-
-                        @endif
-
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    {{-- =========================================
-         CONTENT
-    ========================================== --}}
-
-    <section class="job_container_outer_section">
-
-        <div class="container" style="padding-left: 0px;padding-right: 0px">
-
-
-            <div class="job_container_outer_layout">
-
-
-                {{-- =====================================
-                     JOB DESCRIPTION
-                ====================================== --}}
-
-<main class="job_container_outer_content">
-
-    <div class="apply_outer_div">
-
-        <div class="apply_outer_div_header">
-            <h3>Apply for this Job</h3>
-            <p>Please complete the form below to submit your application.</p>
-        </div>
-
-        <form action="{{ route('home.jobs.applyProcess', ['slug' => request('slug')]) }}"
-              method="POST"
-              enctype="multipart/form-data">
-
-            @csrf
-
-            <div class="row">
-
-                {{-- City --}}
-                <div class="col-md-6">
-                    <div class="apply_outer_div_group">
-                        <label for="city">City <span>*</span></label>
-                        <input type="text"
-                               name="city"
-                               id="city"
-                               class="form-control"
-                               placeholder="Enter your city"
-                               value="{{ old('city') }}"
-                               required>
-                    </div>
-                </div>
-
-                {{-- Country --}}
-                <div class="col-md-6">
-                    <div class="apply_outer_div_group">
-                        <label for="country">Country <span>*</span></label>
-                        <input type="text"
-                               name="country"
-                               id="country"
-                               class="form-control"
-                               placeholder="Enter your country"
-                               value="{{ old('country') }}"
-                               required>
-                    </div>
-                </div>
-
-                {{-- Address --}}
-                <div class="col-md-12">
-                    <div class="apply_outer_div_group">
-                        <label for="address">Address <span>*</span></label>
-                        <input type="text"
-                               name="address"
-                               id="address"
-                               class="form-control"
-                               placeholder="Enter your address"
-                               value="{{ old('address') }}"
-                               required>
-                    </div>
-                </div>
-
-                {{-- Cover Letter --}}
-                <div class="col-md-12">
-                    <div class="apply_outer_div_group">
-                        <label for="cover_letter">Cover Letter <span>*</span></label>
-                        <textarea name="cover_letter"
-                                  id="cover_letter"
-                                  rows="7"
-                                  class="form-control"
-                                  placeholder="Write your cover letter..."
-                                  required>{{ old('cover_letter') }}</textarea>
-                    </div>
-                </div>
-
-                {{-- Resume --}}
-                <div class="col-md-12">
-                    <div class="apply_outer_div_group">
-                        <label for="resume">Resume <span>*</span></label>
-
-                        <div class="apply_outer_div_resume">
-                            <input type="file"
-                                   name="resume"
-                                   id="resume"
-                                   class="form-control-file"
-                                   accept=".pdf,.doc,.docx"
-                                   required>
-
-                            <small>
-                                Accepted formats: PDF, DOC, DOCX
-                            </small>
-                        </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-12">
-                        <div class="g-recaptcha" data-sitekey="{{config('myconfig.Recap.site_key')}}" data-callback="recaptcha_successfull_response" data-error-callback="data_error_callback" data-expired-callback="recaptcha_expired_callback"></div>
-
-                    </div>
-                </div>
-                </div>
-
-                {{-- Submit --}}
-                <div class="col-md-12">
-                    <div class="apply_outer_div_submit">
-                        <button type="submit" class="btn">
-                            Submit Application
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-        </form>
-
-    </div>
-
-</main>
-
-<style>
     .apply_outer_div {
         padding: 30px;
         margin-bottom: 30px;
@@ -1354,6 +1198,8 @@
         color: #334155;
         box-shadow: none;
         transition: all 0.2s ease;
+        width: 100%;
+        padding: 0 12px;
     }
 
     .apply_outer_div_group textarea.form-control {
@@ -1366,29 +1212,11 @@
     .apply_outer_div_group .form-control:focus {
         border-color: #2563eb;
         box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
-    }
-
-    .apply_outer_div_resume {
-        padding: 16px;
-        background: #f8fafc;
-        border: 1px dashed #cbd5e1;
-        border-radius: 7px;
-    }
-
-    .apply_outer_div_resume .form-control-file {
-        font-size: 14px;
-        color: #475569;
-    }
-
-    .apply_outer_div_resume small {
-        display: block;
-        margin-top: 7px;
-        color: #94a3b8;
-        font-size: 12px;
+        outline: none;
     }
 
     .apply_outer_div_submit {
-        margin-top: 5px;
+        margin-top: 15px;
     }
 
     .apply_outer_div_submit .btn {
@@ -1396,17 +1224,80 @@
         color: #ffffff;
         border: none;
         border-radius: 6px;
-        padding: 11px 25px;
-        font-size: 14px;
+        padding: 12px 30px;
+        font-size: 15px;
         font-weight: 600;
-        min-width: 160px;
+        min-width: 180px;
         transition: all 0.2s ease;
+        cursor: pointer;
     }
 
-    .apply_outer_div_submit .btn:hover {
+    .apply_outer_div_submit .btn:hover:not(:disabled) {
         background: #1d4ed8;
         transform: translateY(-1px);
         box-shadow: 0 5px 12px rgba(37, 99, 235, 0.18);
+    }
+
+    .apply_outer_div_submit .btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .apply_outer_div_submit .btn-success {
+        background: var(--primary) !important;
+    }
+
+    .apply_outer_div_submit .btn-success:hover:not(:disabled) {
+        background: var(--primary) !important;
+    }
+
+    .selected-resume-label {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 15px;
+        background: #f0fdf4;
+        border: 1px solid var(--primary);
+        border-radius: 6px;
+        color: #166534;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .upload-resume-btn {
+        padding: 6px 14px;
+        background: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .upload-resume-btn:hover {
+        background: #1d4ed8;
+    }
+
+    .btn-sm {
+        padding: 5px 12px;
+        font-size: 12px;
+    }
+
+    .btn-primary {
+        background: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background: #1d4ed8;
+    }
+
+    .text-muted {
+        color: #94a3b8 !important;
     }
 
     @media (max-width: 767px) {
@@ -1422,9 +1313,282 @@
         .apply_outer_div_submit .btn {
             width: 100%;
         }
+
+        .resumes-table {
+            font-size: 13px;
+        }
+
+        .resumes-table thead th,
+        .resumes-table tbody td {
+            padding: 8px 10px;
+        }
+
+        .resume-info {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .resume-icon img {
+            width: 32px;
+            height: 32px;
+        }
     }
 </style>
 
+<script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+
+<div class="job_container_outer" style="background: transparent">
+
+    {{-- =========================================
+         CONTENT
+    ========================================== --}}
+
+    <section class="job_container_outer_section">
+
+        <div class="container" style="padding-left: 0px;padding-right: 0px">
+
+            <div class="job_container_outer_layout">
+
+                {{-- =====================================
+                     JOB DESCRIPTION
+                ====================================== --}}
+
+                <main class="job_container_outer_content">
+
+                    <div class="apply_outer_div">
+
+                        <div class="apply_outer_div_header">
+                            <h3>Apply for this Job</h3>
+                            <p>Please complete the form below to submit your application.</p>
+                        </div>
+
+                        <form action="{{ route('home.jobs.applyProcess', ['slug' => request('slug')]) }}"
+                              method="POST"
+                              enctype="multipart/form-data"
+                              id="applyForm">
+
+                            @csrf
+
+                            <div class="row">
+
+                                {{-- City --}}
+                                <div class="col-md-6">
+                                    <div class="apply_outer_div_group">
+                                        <label for="city">City <span>*</span></label>
+                                        <input type="text"
+                                               name="city"
+                                               id="city"
+                                               class="form-control"
+                                               placeholder="Enter your city"
+                                               value="{{ old('city') }}"
+                                               required>
+                                    </div>
+                                </div>
+
+                                {{-- Country --}}
+                                <div class="col-md-6">
+                                    <div class="apply_outer_div_group">
+                                        <label for="country">Country <span>*</span></label>
+                                        <input type="text"
+                                               name="country"
+                                               id="country"
+                                               class="form-control"
+                                               placeholder="Enter your country"
+                                               value="{{ old('country') }}"
+                                               required>
+                                    </div>
+                                </div>
+
+                                {{-- Address --}}
+                                <div class="col-md-12">
+                                    <div class="apply_outer_div_group">
+                                        <label for="address">Address <span>*</span></label>
+                                        <input type="text"
+                                               name="address"
+                                               id="address"
+                                               class="form-control"
+                                               placeholder="Enter your address"
+                                               value="{{ old('address') }}"
+                                               required>
+                                    </div>
+                                </div>
+
+                                {{-- Cover Letter --}}
+                                <div class="col-md-12">
+                                    <div class="apply_outer_div_group">
+                                        <label for="cover_letter">Cover Letter <span>*</span></label>
+                                        <textarea name="cover_letter"
+                                                  id="cover_letter"
+                                                  rows="7"
+                                                  class="form-control"
+                                                  placeholder="Write your cover letter..."
+                                                  required>{{ old('cover_letter') }}</textarea>
+                                    </div>
+                                </div>
+
+                                {{-- Hidden input for selected resume ID --}}
+                                <input type="hidden" name="selected_resume_id" id="selected_resume_id" value="">
+
+                                {{-- Resume Selection --}}
+                                <div class="col-md-12">
+                                    <div class="apply_outer_div_group">
+                                        <label>Select Your Resume <span>*</span></label>
+                                        <p class="text-muted" style="font-size: 13px; margin-bottom: 15px;">
+                                            Choose one of your saved resumes or upload a new one.
+                                        </p>
+
+                                        {{-- Saved Resumes --}}
+                                        @if(auth()->user()->resumes->count() > 0)
+                                            <div class="section-divider">Resume Builder</div>
+                                            <table class="resumes-table">
+                                          
+                                                <tbody>
+                                                    @foreach(auth()->user()->resumes as $resume)
+                                                        <tr class="resume-row" data-resume-id="{{ $resume->id }}">
+                                                            <td>
+                                                                <div class="resume-info">
+                                                                    <div class="resume-icon">
+                                                                        <img src="{{ auth()->user()->avatar() }}" alt="Profile">
+                                                                    </div>
+                                                                    <div>
+                                                                        <div class="resume-name">
+                                                                            {{ $resume->contact->desired_job_title }}
+                                                                        </div>
+                                                                        <div class="resume-id">
+                                                                            Resume #{{ unique_encrypt($resume->id) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <span class="resume-status">
+                                                                    <span class="resume-status-dot"></span>
+                                                                    Active
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                @if(isset($resume->created_at))
+                                                                    <span class="resume-date">
+                                                                        <i class="fa fa-calendar-o"></i>
+                                                                        {{ $resume->created_at->format('M d, Y') }}
+                                                                    </span>
+                                                                @else
+                                                                    <span class="text-muted">—</span>
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                                <label class="resume-select-label" for="resume_{{ $resume->id }}">
+                                                                    <input type="radio"
+                                                                           name="resume_selection"
+                                                                           id="resume_{{ $resume->id }}"
+                                                                           class="resume-select-radio"
+                                                                           value="{{ $resume->id }}">
+                                                                    Select
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        @endif
+
+                                        {{-- Uploaded Resume --}}
+                                        <div class="section-divider" style="margin-top: 20px;">Uploaded Resume</div>
+                                        <table class="resumes-table">
+                                            <tbody>
+                                                <tr class="resume-row" data-resume-id="uploaded">
+                                                    <td>
+                                                        <div class="resume-info">
+                                                            <div class="resume-icon">
+                                                                <img src="{{ auth()->user()->avatar() }}" alt="Profile">
+                                                            </div>
+                                                            <div>
+                                                                <div class="resume-name" id="uploaded_resume_name">
+                                                                    @if (!empty(auth()->user()->uploadedresume))
+                                                                        {{ auth()->user()->uploadedresume->attachment->original_name }}
+                                                                    @else
+                                                                        <span class="text-muted">No uploaded resume</span>
+                                                                    @endif
+                                                                </div>
+                                                                <div class="resume-id">
+                                                                    Custom / Uploaded Resume
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="resume-status" id="uploaded_resume_status">
+                                                            <span class="resume-status-dot"></span>
+                                                            @if (!empty(auth()->user()->uploadedresume))
+                                                                Ready
+                                                            @else
+                                                                Not Uploaded
+                                                            @endif
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-sm btn-primary" id="upload_resume_btn">
+                                                            <i class="fa fa-upload"></i> Choose File
+                                                        </button>
+                                                        <input type="file"
+                                                               name="resume_file"
+                                                               id="resume_file"
+                                                               accept=".pdf,.doc,.docx"
+                                                               style="display: none;">
+                                                        <div id="uploaded_file_name" style="margin-top: 5px; font-size: 12px; color: #64748b;"></div>
+                                                    </td>
+                                                    <td>
+                                                        <label class="resume-select-label" for="resume_uploaded">
+                                                            <input type="radio"
+                                                                   name="resume_selection"
+                                                                   id="resume_uploaded"
+                                                                   class="resume-select-radio"
+                                                                   value="uploaded"
+                                                                   @if(empty(auth()->user()->uploadedresume)) disabled @endif>
+                                                            Select
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        {{-- Selected resume display --}}
+                                        <div id="selectedResumeDisplay" style="margin-top: 15px;"></div>
+                                    </div>
+                                </div>
+
+                                {{-- reCAPTCHA --}}
+                                <div class="col-md-12">
+                                    <div class="apply_outer_div_group">
+                                        <div class="g-recaptcha" 
+                                             data-sitekey="{{config('myconfig.Recap.site_key')}}" 
+                                             data-callback="recaptcha_successfull_response" 
+                                             data-error-callback="data_error_callback" 
+                                             data-expired-callback="recaptcha_expired_callback">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- Submit --}}
+                                <div class="col-md-12">
+                                    <div class="apply_outer_div_submit">
+                                        <button type="submit" class="btn" id="submitBtn" disabled>
+                                            Submit Application
+                                        </button>
+                                        <p class="text-muted small" style="margin-top: 10px;">
+                                            <i class="fa fa-info-circle"></i> Please select a resume to enable submission
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </main>
 
                 {{-- =====================================
                      SIDEBAR
@@ -1432,173 +1596,67 @@
 
                 <aside class="job_container_outer_sidebar">
 
-
-
                     {{-- Job Information --}}
-
                     <div class="job_container_outer_info">
 
-
-                        <h3 class="job_container_outer_info_title">
-
+                        <h3 class="job_container_outer_info_title" style="margin-bottom:0px;">
                             Job Information
-
                         </h3>
 
-
-                        @if(!empty($job->company))
-
-                            <div class="job_container_outer_info_item">
-
-                                <div class="job_container_outer_info_icon">
-
-                                    <i class="bi bi-building"></i>
-
-                                </div>
-
-
-                                <div class="job_container_outer_info_content">
-
-                                    <span class="job_container_outer_info_label">
-                                        Company
-                                    </span>
-
-                                    <span class="job_container_outer_info_value">
-                                        {{ $job->company }}
-                                    </span>
-
-                                </div>
-
+                        <div class="job_container_outer_info_item">
+                            <div class="job_container_outer_info_content">
+                                <span class="job_container_outer_info_value">
+                                    <a href="{{ route('home.jobs.single',request('slug')) }}" style="color: var(--primary)">
+                                        {{ $job->title }}
+                                    </a>
+                                </span>
                             </div>
-
-                        @endif
-
+                        </div>
 
                         @if(!empty($job->location))
-
                             <div class="job_container_outer_info_item">
-
                                 <div class="job_container_outer_info_icon">
-
                                     <i class="fa fa-location"></i>
-
                                 </div>
-
-
                                 <div class="job_container_outer_info_content">
-
-                                    <span class="job_container_outer_info_label">
-                                        Location
-                                    </span>
-
-                                    <span class="job_container_outer_info_value">
-                                        {{ $job->location }}
-                                    </span>
-
+                                    <span class="job_container_outer_info_label">Location</span>
+                                    <span class="job_container_outer_info_value">{{ $job->location }}</span>
                                 </div>
-
                             </div>
-
                         @endif
-
 
                         @if(!empty($job->job_created_at))
-
                             <div class="job_container_outer_info_item">
-
                                 <div class="job_container_outer_info_icon">
-
                                     <i class="fa fa-edit"></i>
-
                                 </div>
-
-
                                 <div class="job_container_outer_info_content">
-
-                                    <span class="job_container_outer_info_label">
-                                        Posted
-                                    </span>
-
+                                    <span class="job_container_outer_info_label">Posted</span>
                                     <span class="job_container_outer_info_value">
-
-                                        {{ \Carbon\Carbon::parse(
-                                            $job->job_created_at
-                                        )->format('M d, Y') }}
-
+                                        {{ \Carbon\Carbon::parse($job->job_created_at)->format('M d, Y') }}
                                     </span>
-
                                 </div>
-
                             </div>
-
                         @endif
 
-
-          
-
-
                     </div>
-
 
                     {{-- Resume CTA --}}
-
                     <div class="job_container_outer_resume">
-
-
                         <div class="job_container_outer_resume_icon">
-
-                             <i class="fa fa-edit"></i>
-
+                            <i class="fa fa-edit"></i>
                         </div>
-
-
-                        <h3 class="job_container_outer_resume_title">
-
-                            Stand Out From Other Candidates
-
-                        </h3>
-
-
+                        <h3 class="job_container_outer_resume_title">Stand Out From Other Candidates</h3>
                         <p class="job_container_outer_resume_description">
-
-                            Create a professional, ATS-friendly resume
-                            that helps you make a stronger impression
-                            on employers.
-
+                            Create a professional, ATS-friendly resume that helps you make a stronger impression on employers.
                         </p>
-
-
-                        <a
-                            href="{{ url('/signup') }}"
-                            class="job_container_outer_resume_button"
-                        >
-
+                        <a href="{{ url('/signup') }}" class="job_container_outer_resume_button">
                             Create Your Resume
-
                             <i class="bi bi-arrow-right"></i>
-
                         </a>
-
-
                     </div>
 
-
-                    {{-- Source --}}
-{{-- 
-                    @if(!empty($job->source))
-
-                        <div class="job_container_outer_source">
-
-                            This job opportunity was sourced from
-                            <strong>{{ ucfirst($job->source) }}</strong>.
-
-                        </div>
-
-                    @endif --}}
-
-
                 </aside>
-
 
             </div>
 
@@ -1606,27 +1664,152 @@
 
     </section>
 
-
 </div>
+
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('applyForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const selectedResumeInput = document.getElementById('selected_resume_id');
+        const resumeRadios = document.querySelectorAll('.resume-select-radio');
+        const selectedDisplay = document.getElementById('selectedResumeDisplay');
+        const uploadBtn = document.getElementById('upload_resume_btn');
+        const fileInput = document.getElementById('resume_file');
+        const uploadedFileName = document.getElementById('uploaded_file_name');
 
-    function recaptcha_successfull_response(data)
-    {
+        // Handle resume selection via radio buttons
+        resumeRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                const resumeId = this.value;
+                selectedResumeInput.value = resumeId;
+                
+                // Update UI
+                const row = this.closest('.resume-row');
+                document.querySelectorAll('.resume-row').forEach(r => {
+                    r.classList.remove('selected');
+                });
+                if (row) {
+                    row.classList.add('selected');
+                }
 
-    }
-    function recaptcha_expired_callback()
-    {
+                // Show selected resume info
+                let displayText = '';
+                if (resumeId === 'uploaded') {
+                    const uploadedRow = document.querySelector('.resume-row[data-resume-id="uploaded"]');
+                    const nameEl = uploadedRow ? uploadedRow.querySelector('.resume-name') : null;
+                    const name = nameEl ? nameEl.textContent.trim() : 'Uploaded Resume';
+                    displayText = 'Selected: <strong>' + name + '</strong> (Uploaded Resume)';
+                } else {
+                    const selectedRow = document.querySelector('.resume-row[data-resume-id="' + resumeId + '"]');
+                    const nameEl = selectedRow ? selectedRow.querySelector('.resume-name') : null;
+                    const name = nameEl ? nameEl.textContent.trim() : 'Resume #' + resumeId;
+                    displayText = 'Selected: <strong>' + name + '</strong> (Saved Resume)';
+                }
+                selectedDisplay.innerHTML = '<div class="selected-resume-label"><i class="fa fa-check-circle" style="color: #22c55e;"></i> ' + displayText + '</div>';
 
+                // Enable submit button
+                submitBtn.disabled = false;
+                submitBtn.classList.add('btn-success');
+                submitBtn.textContent = 'Submit Application';
+            });
+        });
 
+        // Handle file upload
+        if (uploadBtn && fileInput) {
+            uploadBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                fileInput.click();
+            });
 
-    }
-    function reset_recaptcha()
-    {
-        grecaptcha.enterprise.reset();
-    }
-    function data_error_callback()
-    {
+            fileInput.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    const file = this.files[0];
+                    const uploadedRow = document.querySelector('.resume-row[data-resume-id="uploaded"]');
+                    const nameEl = document.getElementById('uploaded_resume_name');
+                    const statusEl = document.getElementById('uploaded_resume_status');
+                    
+                    // Update the uploaded resume name
+                    if (nameEl) {
+                        nameEl.textContent = file.name;
+                        nameEl.style.color = '#1e293b';
+                    }
+                    
+                    // Update status
+                    if (statusEl) {
+                        statusEl.innerHTML = '<span class="resume-status-dot"></span> Ready';
+                    }
 
-    }
+                    // Show file name below upload button
+                    if (uploadedFileName) {
+                        uploadedFileName.innerHTML = '<i class="fa fa-file-pdf-o"></i> ' + file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)';
+                    }
+
+                    // Enable the radio button for uploaded resume
+                    const radio = document.getElementById('resume_uploaded');
+                    if (radio) {
+                        radio.disabled = false;
+                        radio.checked = true;
+                        radio.dispatchEvent(new Event('change'));
+                    }
+                }
+            });
+        }
+
+        // Form validation before submit
+        form.addEventListener('submit', function(e) {
+            const selectedId = selectedResumeInput.value;
+            
+            if (!selectedId) {
+                e.preventDefault();
+                alert('Please select a resume before submitting your application.');
+                return false;
+            }
+
+            // If uploaded resume is selected, check if file is uploaded
+            if (selectedId === 'uploaded') {
+                // Check if file input has a file OR if there's an existing uploaded resume
+                const fileInput = document.getElementById('resume_file');
+                const hasNewFile = fileInput && fileInput.files.length > 0;
+                const hasExistingResume = !document.getElementById('uploaded_resume_name').textContent.includes('No uploaded resume');
+                
+                if (!hasNewFile && !hasExistingResume) {
+                    e.preventDefault();
+                    alert('Please upload a resume file before submitting.');
+                    return false;
+                }
+            }
+
+            // Disable submit button to prevent double submission
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+        });
+
+        // reCAPTCHA callbacks
+        window.recaptcha_successfull_response = function(data) {
+            // reCAPTCHA verified, check if resume is selected
+            if (selectedResumeInput.value) {
+                submitBtn.disabled = false;
+                submitBtn.classList.add('btn-success');
+                submitBtn.textContent = 'Submit Application';
+            }
+        };
+
+        window.recaptcha_expired_callback = function() {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submit Application';
+        };
+
+        window.data_error_callback = function() {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submit Application';
+        };
+
+        window.reset_recaptcha = function() {
+            if (typeof grecaptcha !== 'undefined' && grecaptcha.enterprise) {
+                grecaptcha.enterprise.reset();
+            }
+        };
+    });
 </script>
+
 @endsection
