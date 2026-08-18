@@ -83,10 +83,7 @@ class JobsController extends Controller
         $app=JobApplication::create(
             [
                 'job_id'=>$job->id,
-                'city'=>$input['city'],
-                'country'=>$input['country'],
-                'address'=>$input['address'],
-                'cover_letter'=>$input['cover_letter'],
+                'cover_letter'=>$input['cover_letter']??'',
                 'resume_reference'=>$input['selected_resume_id']
             ]
         );

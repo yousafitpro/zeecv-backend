@@ -1376,13 +1376,13 @@
                                 {{-- Cover Letter --}}
                                 <div class="col-md-12">
                                     <div class="apply_outer_div_group">
-                                        <label for="cover_letter">Cover Letter <span>*</span></label>
+                                        <label for="cover_letter">Cover Letter</label>
                                         <textarea name="cover_letter"
                                                   id="cover_letter"
                                                   rows="7"
                                                   class="form-control"
                                                   placeholder="Write your cover letter..."
-                                                  required>{{ old('cover_letter') }}</textarea>
+                                                  >{{ old('cover_letter') }}</textarea>
                                     </div>
                                 </div>
 
