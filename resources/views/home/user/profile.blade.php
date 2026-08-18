@@ -525,7 +525,7 @@
                                     name="name"
                                     value="{{ $record->name }}"
                                     class="profile-input"
-                                    readonly
+                                    
                                     required
                                 >
 
