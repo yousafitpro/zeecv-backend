@@ -167,30 +167,73 @@ class JobsController extends Controller
                             ->toArray();
         return view('home.jobs',$data);
     }
-    public function queryProcess(Request $request){
-        $input=$request->all();
-          return $this->process()
-            ->where(function ($query) use ($input) {
+public function queryProcess(Request $request)
+{
+    $input = $request->all();
 
-                if (!empty($input['search'])) {
-                    $search = '%' . $input['search'] . '%';
-
-                    $query->where(function ($q) use ($search) {
-                        $q->where('title', 'like', $search)
-                            ->orWhere('tags', 'like', $search)
-                            ->orWhere('company_name', 'like', $search)
-                            ->orWhere('location', 'like', $search)
-                            ->orWhere('job_types', 'like', $search);
-                    });
-                }
-
-                if (!empty($input['location'])) {
-                    $query->orWhere('location', 'like', '%' . $input['location'] . '%');
-                }
-            })
+    $query = $this->process()
         ->with(['user']);
-        
+
+    if (!empty($input['search'])) {
+
+        $keywords = preg_split('/\s+/', trim($input['search']));
+
+        $query->where(function ($q) use ($keywords) {
+
+            foreach ($keywords as $keyword) {
+
+                $term = '%' . $keyword . '%';
+
+                $q->orWhere(function ($subQuery) use ($term) {
+                    $subQuery->where('title', 'like', $term)
+                        ->orWhere('tags', 'like', $term)
+                        ->orWhere('company_name', 'like', $term)
+                        ->orWhere('location', 'like', $term)
+                        ->orWhere('job_types', 'like', $term);
+                });
+            }
+        });
+
+        /*
+        |--------------------------------------------------------------------------
+        | Relevance Ranking
+        |--------------------------------------------------------------------------
+        */
+
+        $search = trim($input['search']);
+        $searchTerm = '%' . $search . '%';
+
+        $score = "
+            (
+                CASE
+                    WHEN title LIKE " . \DB::getPdo()->quote($searchTerm) . "
+                        THEN 100
+                    WHEN tags LIKE " . \DB::getPdo()->quote($searchTerm) . "
+                        THEN 80
+                    WHEN company_name LIKE " . \DB::getPdo()->quote($searchTerm) . "
+                        THEN 70
+                    WHEN location LIKE " . \DB::getPdo()->quote($searchTerm) . "
+                        THEN 60
+                    WHEN job_types LIKE " . \DB::getPdo()->quote($searchTerm) . "
+                        THEN 50
+                    ELSE 10
+                END
+            )
+        ";
+
+        $query->orderByRaw($score . ' DESC');
     }
+
+    if (!empty($input['location'])) {
+        $query->where(
+            'location',
+            'like',
+            '%' . $input['location'] . '%'
+        );
+    }
+
+    return $query;
+}
     public function indexAjax(Request $request)
     {
         $input=$request->all();
