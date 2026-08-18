@@ -253,6 +253,10 @@
 
     .form-group {
         position: relative;
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
     }
 
     .form-group .input-icon {
