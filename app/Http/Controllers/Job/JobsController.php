@@ -655,20 +655,20 @@ public function adzunaJobs($search=null)
 
 
 
-        $res = Http::get(
-            'https://api.adzuna.com/v1/api/jobs/us/search/1',
+        for($i=1; $i<=10; $i++){
+            $res = Http::get(
+            'https://api.adzuna.com/v1/api/jobs/us/search/'.$i,
             [
                 'app_id' => '0b647b4f',
                 'app_key' => 'e53df415d6e4264f4d8f9f381fac7a30',
-                'results_per_page' => 50,
-                'what' => 'Laravel Developer',
+                'results_per_page' => 100,
                 'content-type' => 'application/json',
             ]
         );
-
         if ($res->successful()) {
 
             $jobs = $res->json('results', []);
+            // dd($jobs);
             foreach ($jobs as $item) {
 
                 $job=JobCareer::updateOrCreate(
@@ -698,6 +698,7 @@ public function adzunaJobs($search=null)
                     ]
                 );
             }
+        }
         }
 
     return response()->json([
