@@ -1,0 +1,69 @@
+<?php
+
+namespace App\Http\Controllers\Job;
+
+use App\Http\Controllers\App\AppGoogleRecaptchaController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\Job\Models\JobApplication;
+use App\Http\Controllers\Job\Models\JobCareer;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
+class JobUserController extends Controller
+{
+   public function index()
+   {
+     $data['record']=auth()->user();
+     $data['url']= url('profile');
+     return view('home.user.profile',$data);
+   }
+       public function updateProfile(Request $request)
+    {
+
+
+        $user = auth()->user();
+        $data = $request->only('name', 'phone', 'city', 'address', 'zipcode', 'about');
+        $image = $request->file('avatar');
+
+        if ($image) {
+            $data['avatar'] =$saved_file=fun_save_file($image,'uploads')->id;
+        }
+
+
+        $user->update($data);
+
+        $changes = $user->getChanges();
+        $changes=array_keys($changes);
+        $message='Profile has been updated with ';
+        $c='';
+        foreach ($changes as $v =>$it)
+        {
+            if($it!='updated_at')
+            {
+                $c=$c.','.$it;
+            }
+
+        }
+        $message=$message.$c;
+
+
+
+        if ($request->expectsJson)
+        {
+            return response()->json(['message'=>'Profile Updated']);
+        }
+
+         return redirect()
+             ->back()
+             ->with([
+                 'toast' => [
+                     'heading' => 'Message',
+                     'message' => 'profile is updated',
+                     'type' => 'success',
+                 ]
+             ]);
+
+    }
+}

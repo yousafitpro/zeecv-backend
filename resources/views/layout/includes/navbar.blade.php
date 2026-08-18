@@ -644,12 +644,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
            
 
-              <a class="dropdown-item" href="">
+              <a class="dropdown-item" href="{{ route('home.user.profile') }}">
                 <i class="fas fa-user-circle"></i>
                 My Profile
               </a>
 
-              <a class="dropdown-item" href="">
+              {{-- <a class="dropdown-item" href="">
                 <i class="fas fa-briefcase"></i>
                 My Jobs
               </a>
@@ -657,13 +657,7 @@ document.addEventListener('DOMContentLoaded', function () {
               <a class="dropdown-item" href="">
                 <i class="fas fa-file-alt"></i>
                 My Resumes
-              </a>
-
-              <a class="dropdown-item" href="">
-                <i class="fas fa-cog"></i>
-                Settings
-              </a>
-
+              </a> --}}
               <div class="dropdown-divider"></div>
 
               <a class="dropdown-item text-danger" href="{{url('logout')}}" 

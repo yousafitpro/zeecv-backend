@@ -87,7 +87,6 @@ class ProfileController extends Controller
         $changes=array_keys($changes);
         $message='Profile has been updated with ';
         $c='';
-///asdsadasd
         foreach ($changes as $v =>$it)
         {
             if($it!='updated_at')

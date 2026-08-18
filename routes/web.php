@@ -27,6 +27,7 @@ use App\Http\Controllers\UppSellController;
 use App\Http\Controllers\GLSShipmentController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\Job\JobsController;
+use App\Http\Controllers\Job\JobUserController;
 use App\Http\Controllers\PMM\Lookup\AddressController;
 use App\Http\Controllers\PMM\Lookup\GlsProfile;
 use App\Http\Controllers\Resume\CertificateController;
@@ -596,6 +597,8 @@ Route::prefix('resume-builder')
        Route::get('/pricing', [HomeController::class,'pricing'])->name('home.pricing');
        Route::get('/templates', [HomeController::class,'templates'])->name('home.templates');
        Route::any('/jobs', [JobsController::class,'index'])->name('home.jobs');
+       Route::any('/user', [JobUserController::class,'index'])->name('home.user.profile');
+       Route::any('/user/update', [JobUserController::class,'updateProfile'])->name('home.user.profile.update');
        Route::get('/about', [HomeController::class,'about'])->name('home.about');
        Route::get('/contact', [HomeController::class,'contact'])->name('home.contact');
        Route::get('/post-a-job', [HomeController::class,'postAJob'])->name('home.post_a_job');
