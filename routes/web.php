@@ -44,7 +44,7 @@ use Illuminate\Support\Facades\Artisan;
 //adasdasdassdssasd
     Route::get('login', [LoginController::class, 'index'])->name('login');
     Route::post('login', [LoginController::class, 'postLogin']);
-    Route::get('logout', [LoginController::class, 'logout']);
+    Route::any('logout', [LoginController::class, 'logout']);
     Route::resource('register', RegisterController::class);
     Route::get('verify-email/{code}', [RegisterController::class, 'verify']);
 

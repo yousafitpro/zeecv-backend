@@ -102,6 +102,7 @@
   .user-avatar-wrapper:hover {
     border-color: #2563eb;
     background: rgba(37, 99, 235, 0.05);
+    text-decoration: none;
   }
 
   .user-avatar {
@@ -641,7 +642,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="user-email">{{ auth()->user()->email ?? '' }}</div>
               </div>
 
-              <div class="dropdown-divider"></div>
+           
 
               <a class="dropdown-item" href="">
                 <i class="fas fa-user-circle"></i>
@@ -665,13 +666,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
               <div class="dropdown-divider"></div>
 
-              <a class="dropdown-item text-danger" href="" 
+              <a class="dropdown-item text-danger" href="{{url('logout')}}" 
                  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i>
                 Logout
               </a>
 
-              <form id="logout-form" action="" method="POST" style="display: none;">
+              <form id="logout-form" action="{{url('logout')}}" method="POST" style="display: none;">
                 @csrf
               </form>
             </div>
