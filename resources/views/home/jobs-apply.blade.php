@@ -1372,47 +1372,6 @@
 
                             <div class="row">
 
-                                {{-- City --}}
-                                <div class="col-md-6">
-                                    <div class="apply_outer_div_group">
-                                        <label for="city">City <span>*</span></label>
-                                        <input type="text"
-                                               name="city"
-                                               id="city"
-                                               class="form-control"
-                                               placeholder="Enter your city"
-                                               value="{{ old('city') }}"
-                                               required>
-                                    </div>
-                                </div>
-
-                                {{-- Country --}}
-                                <div class="col-md-6">
-                                    <div class="apply_outer_div_group">
-                                        <label for="country">Country <span>*</span></label>
-                                        <input type="text"
-                                               name="country"
-                                               id="country"
-                                               class="form-control"
-                                               placeholder="Enter your country"
-                                               value="{{ old('country') }}"
-                                               required>
-                                    </div>
-                                </div>
-
-                                {{-- Address --}}
-                                <div class="col-md-12">
-                                    <div class="apply_outer_div_group">
-                                        <label for="address">Address <span>*</span></label>
-                                        <input type="text"
-                                               name="address"
-                                               id="address"
-                                               class="form-control"
-                                               placeholder="Enter your address"
-                                               value="{{ old('address') }}"
-                                               required>
-                                    </div>
-                                </div>
 
                                 {{-- Cover Letter --}}
                                 <div class="col-md-12">

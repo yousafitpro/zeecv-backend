@@ -596,7 +596,7 @@
                             <!-- City / Zip -->
                             <div class="row">
 
-                                <div class="col-md-7">
+                                <div class="col-md-6">
 
                                     <div class="profile-form-group">
 
@@ -617,7 +617,8 @@
                                 </div>
 
 
-                                <div class="col-md-5">
+
+                                <div class="col-md-3">
 
                                     <div class="profile-form-group">
 
@@ -631,6 +632,25 @@
                                             value="{{ $record->zipcode }}"
                                             class="profile-input"
                                             placeholder="ZIP code"
+                                        >
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3">
+
+                                    <div class="profile-form-group">
+
+                                        <label class="profile-label">
+                                            Country
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            name="country"
+                                            value="{{ $record->country }}"
+                                            class="profile-input"
+                                            placeholder="Country"
                                         >
 
                                     </div>
