@@ -83,11 +83,12 @@ class JobsController extends Controller
         $todayApplications = JobApplication::where('user_id',auth_user_id())
         ->whereDate('created_at', Carbon::today())
         ->count();
+        dd($todayApplications);
         if($todayApplications>1){
             return redirect()->back()->with([
                 'toast' => [
                     'heading' => 'Message',
-                    'message' => 'limmit reached for today',
+                    'message' => 'You have reached your limit for today.',
                     'type' => 'danger',
                 ]
             ]);
