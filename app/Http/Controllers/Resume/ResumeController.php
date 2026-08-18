@@ -66,8 +66,7 @@ class ResumeController extends Controller
                 ]
             ]);
       }
-       $res= Resume::create([
-        'status'=>'In Progress',
+       $res= Resume::updateOrCreate([
         'user_id'=>auth_user_id()
        ]);
        $data['contact']=Contact::create(

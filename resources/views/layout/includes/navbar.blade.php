@@ -620,6 +620,9 @@ document.addEventListener('DOMContentLoaded', function () {
         </li>
           @endif
         @if(auth()->check())
+           <li class="nav-item">
+          <a class="nav-link" href="{{ route('resume.create') }}">Resume Builder</a>
+        </li>
           <!-- =============================================
                USER DROPDOWN (LOGGED IN)
           ============================================== -->

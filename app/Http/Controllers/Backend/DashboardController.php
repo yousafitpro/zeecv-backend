@@ -37,16 +37,9 @@ class DashboardController extends Controller
     }
 
     public function userDasboard(Request $request){
-        $user=auth()->user();
-        $resumes=Resume::where('user_id',$user->id)->get();
-        if(count($resumes)>0){
-           $resu=$resumes->first();
-           $redirect_url=route('resume.edit',unique_encrypt($resu->id));
-         
-        }else{
-            $redirect_url=route('resume.create');
-        }
-        return redirect($redirect_url);
+
+
+        return redirect()->route('home.jobs');
     }
 public function getMonthlyProductStats(Request $request)
 {

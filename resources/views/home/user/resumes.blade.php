@@ -527,12 +527,19 @@
                     </div>
 
                     <div class="empty-title">
-                        No Resumes Yet
+                        No Resume Created with Resume Builder
                     </div>
 
                     <div class="empty-text">
-                        You haven't created any resumes with the Resume Builder yet.
+                        You haven't created a resume using our Resume Builder yet.
+                        Create a professional resume in just a few simple steps.
                     </div>
+
+                    <a href="{{ route('resume.create') }}"
+                    class="create-resume-btn">
+                        <i class="fa fa-plus mr-1"></i>
+                        Create Resume
+                    </a>
 
                 </div>
 
@@ -683,7 +690,7 @@
                                        target="_blank"
                                        title="Download PDF">
 
-                                        <i class="fa fa-download"></i>
+                                        <i class="fa fa-eye"></i>
 
                                     </a>
                                     @endif
