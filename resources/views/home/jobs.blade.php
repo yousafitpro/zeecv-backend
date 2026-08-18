@@ -227,9 +227,28 @@
          background: var(--primary) !important;
          border:none !important;
     }
+    .job_search_btns button:active{
+         background: var(--primary) !important;
+         border:none !important;
+    }
+    .job_search_btns button:focus{
+         background: var(--primary) !important;
+         border:none !important;
+         color: white !important;
+    }
     .job_search_btns a:hover{
          background: var(--primary) !important;
          border:none !important;
+    }
+    .job_search_btns a:active{
+         background: var(--primary) !important;
+         border:none !important;
+         color: white !important;
+    }
+    .job_search_btns a:focus{
+         background: var(--primary) !important;
+         border:none !important;
+         color: white !important;
     }
       #job_search_form {
         
