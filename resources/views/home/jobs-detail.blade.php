@@ -1224,7 +1224,6 @@
                             @if(!empty($job->url))
                             <a
                                 href="{{ $job->url }}"
-                                target="_blank"
                                 rel="nofollow noopener"
                                 class="job_container_outer_apply_button"
                             >
@@ -1251,7 +1250,6 @@
 
                             <a
                                 href="{{ $job->url }}"
-                                target="_blank"
                                 rel="nofollow noopener"
                                 class="job_container_outer_apply_button"
                             >
