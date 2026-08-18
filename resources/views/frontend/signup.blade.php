@@ -257,8 +257,8 @@
 
     .form-group .input-icon {
         position: absolute;
-        left: 14px;
-        top: 50%;
+        left: 30px;
+        top: 45%;
         transform: translateY(-50%);
         color: #94a3b8;
         font-size: 15px;
@@ -491,11 +491,11 @@
     /* Google Sign-In override */
     #g_id_onload,
     .g_id_signin {
-        width: 100% !important;
+        /* width: 100% !important; */
     }
 
     .g_id_signin > div {
-        width: 100% !important;
+        /* width: 100% !important; */
     }
 
     /* =============================================
@@ -599,7 +599,8 @@
 
     @media (max-width: 480px) {
         .signup-page {
-            padding: 16px;
+            padding: 0px;
+            border-radius: 0px;
         }
 
         .signup-brand {
@@ -638,6 +639,9 @@
         .captcha-wrapper {
             transform: scale(0.8);
         }
+        .signup-card{
+            border-radius: 0px;
+        }
     }
 
     /* =============================================
@@ -648,6 +652,25 @@
     .mt-2 { margin-top: 8px; }
     .mb-1 { margin-bottom: 4px; }
     .gap-1 { gap: 4px; }
+
+
+        /* Google Sign-In Wrapper */
+.g_id_signin-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.g_id_signin-wrapper > div {
+    /* width: 100% !important; */
+    max-width: 400px;
+}
+
+.g_id_signin iframe {
+    width: 100% !important;
+    min-width: 100% !important;
+}
 </style>
 
 <div class="signup-page">
@@ -799,19 +822,22 @@
                 </div>
 
                 <!-- Google Sign-In -->
+<!-- Google Sign-In -->
                 <div class="social-login">
                     <div id="g_id_onload"
-                         data-client_id="{{ config('services.google.client_id') }}"
-                         data-callback="handleGoogleResponse">
+                        data-client_id="{{ config('services.google.client_id') }}"
+                        data-callback="handleGoogleResponse">
                     </div>
-                    <div class="g_id_signin"
-                         data-type="standard"
-                         data-size="large"
-                         data-theme="outline"
-                         data-text="signin_with"
-                         data-shape="rectangular"
-                         data-logo_alignment="left"
-                         data-width="100%">
+                    <div class="g_id_signin-wrapper">
+                        <div class="g_id_signin"
+                            data-type="standard"
+                            data-size="large"
+                            data-theme="outline"
+                            data-text="signin_with"
+                            data-shape="rectangular"
+                            data-logo_alignment="left"
+                            data-width="100%">
+                        </div>
                     </div>
                 </div>
 
