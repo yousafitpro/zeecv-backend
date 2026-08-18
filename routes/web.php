@@ -26,6 +26,7 @@ use App\Http\Controllers\PMM\CruncyController;
 use App\Http\Controllers\UppSellController;
 use App\Http\Controllers\GLSShipmentController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\Job\JobProcessingController;
 use App\Http\Controllers\Job\JobsController;
 use App\Http\Controllers\Job\JobUserController;
 use App\Http\Controllers\PMM\Lookup\AddressController;
@@ -676,7 +677,7 @@ Route::get('/privacy-policy', function () {
 
     return redirect(url('page-view/privacy-policy'));
 });
-    Route::prefix('jobs')
+Route::prefix('jobs')
      ->name('jobs.')
      ->middleware('auth')
      ->group(function(){
@@ -690,3 +691,7 @@ Route::get('/privacy-policy', function () {
      Route::post('/questionnaire',[JobsController::class,'new'])->name('questionnaire.new')->middleware('basic.permission:jobs.my.update');
      Route::get('/questionnaire/delete/{id}',[JobsController::class,'delete'])->name('questionnaire.delete')->middleware('basic.permission:jobs.my.update');
     });
+Route::prefix('job/processing')
+     ->group(function(){
+     Route::any('/set-remote-1',[JobProcessingController::class,'setRemoteOne']);
+     });
