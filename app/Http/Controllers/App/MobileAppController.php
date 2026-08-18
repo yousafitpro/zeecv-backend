@@ -34,7 +34,7 @@ class MobileAppController extends Controller
       $user=User::where('login_token',$token)->first();
       Session::put('is_app','yes');
        if($user){
-      //   auth()->login($user);
+        auth()->login($user);
       //   $resumes=Resume::where('user_id',$user->id)->get();
       //   if(count($resumes)>0){
       //      $resu=$resumes->first();
