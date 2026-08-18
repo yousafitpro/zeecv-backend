@@ -12,6 +12,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 class JobsController extends Controller
 {
@@ -703,12 +704,12 @@ public function adzunaJobs($search=null)
         'message' => 'First 100 jobs successfully synced',
     ]);
 }
-public function openwebJobs($search=null)
+public function openwebJobs($search = null)
 {
-    $accounts=[
-        0=>[
-            'api_key'=>'ak_tgflp5gm90k27c6zsiosvhkoac5hgxu1grl7kih25w7xcw8',
-            'urls'=>[
+    $accounts = [
+        0 => [
+            'api_key' => env('OPENWEBNINJA_API_KEY_1'),
+            'urls' => [
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Portugal&country=pt',
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Czech Republic&country=cz',
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Romania&country=ro',
@@ -717,9 +718,10 @@ public function openwebJobs($search=null)
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Luxembourg&country=lu',
             ]
         ],
-        1=>[
-            'api_key'=>'ak_o3amgxkq6wv2f7p23c2uppmsyahtgph5snn469jsh6cxvnt',
-            'urls'=>[
+
+        1 => [
+            'api_key' => env('OPENWEBNINJA_API_KEY_2'),
+            'urls' => [
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Norway&country=no',
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Denmark&country=dk',
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Finland&country=fi',
@@ -728,9 +730,10 @@ public function openwebJobs($search=null)
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Ireland&country=ie',
             ]
         ],
-        2=>[
-            'api_key'=>'ak_jl55kgqqh3aua8dh60n74v7p0pq7r9tuqwm7sborcxc8jj5',
-            'urls'=>[
+
+        2 => [
+            'api_key' => env('OPENWEBNINJA_API_KEY_3'),
+            'urls' => [
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in France&country=fr',
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Netherlands&country=nl',
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Sweden&country=se',
@@ -739,9 +742,10 @@ public function openwebJobs($search=null)
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Switzerland&country=ch',
             ]
         ],
-        3=>[
-            'api_key'=>'ak_ei1rwelcczvlrvyxe9cvhnukd7ny3kwcs0qn0hsbbu330yx',
-            'urls'=>[
+
+        3 => [
+            'api_key' => env('OPENWEBNINJA_API_KEY_4'),
+            'urls' => [
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in United Kingdom&country=gb',
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Germany&country=de',
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in United States&country=us',
@@ -749,51 +753,92 @@ public function openwebJobs($search=null)
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in United Arab Emirates&country=ae',
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Pakistan&country=pk',
             ]
-        ]
+        ],
     ];
 
+    $total = 0;
+    $failed = 0;
 
+    foreach ($accounts as $account) {
 
-        foreach($accounts as $ac){
-                try{
-                    foreach($ac['urls'] as $url){
-                $res = Http::withHeader('x-api-key',$ac['api_key'])->get($url);
-                //dd($url,$res->successful());
-                if ($res->successful()) {
-                    // dd($url,$res->json('data', [])['jobs']);
-                    $jobs = $res->json('data', [])['jobs'];
-                    foreach ($jobs as $item) {
+        foreach ($account['urls'] as $url) {
 
-                        $job=JobCareer::updateOrCreate(
-                            [
-                                'slug' => Str::slug(
-                                    ($item['job_title'] ?? 'job').($item['job_uid'] ?? 'job').'zeecv-6'
-                                ),
-                                'source' => 'openwebninja',
-                            ],
-                            [
-                                'company_name' => $item['employer_name'] ?? null,
-                                'title' => $item['job_title'] ?? null,
-                                'job_types' => implode(', ', $item['job_employment_types'] ?? []),
-                                'description' => $item['job_description'] ?? null,
+            try {
 
-                                'job_created_at' => !empty($item['job_posted_at_timestamp'])
-                                    ? Carbon::parse($item['job_posted_at_timestamp'])
-                                    : null,
+                $res = Http::timeout(30)
+                    ->withHeader('x-api-key', $account['api_key'])
+                    ->get($url);
 
-                                'url' => $item['job_apply_link'] ?? null,
+                if (!$res->successful()) {
+                    $failed++;
+                    continue;
+                }
 
-                                'location' =>$item['job_location'],
-                            ]
-                        );
+                $jobs = $res->json('data.jobs', []);
+
+                if (!is_array($jobs)) {
+                    continue;
+                }
+
+                foreach ($jobs as $item) {
+
+                    $jobUid = $item['job_uid'] ?? null;
+
+                    if (!$jobUid) {
+                        continue;
                     }
+
+                    JobCareer::updateOrCreate(
+                        [
+                            'slug' => Str::slug(
+                                ($item['job_title'] ?? 'job')
+                                . '-' . $jobUid
+                                . '-zeecv-6'
+                            ),
+                            'source' => 'openwebninja',
+                        ],
+                        [
+                            'company_name' => $item['employer_name'] ?? null,
+
+                            'title' => $item['job_title'] ?? null,
+
+                            'job_types' => !empty($item['job_employment_types'])
+                                ? implode(', ', $item['job_employment_types'])
+                                : null,
+
+                            'description' => $item['job_description'] ?? null,
+
+                            'job_created_at' => !empty($item['job_posted_at_timestamp'])
+                                ? Carbon::createFromTimestamp(
+                                    $item['job_posted_at_timestamp']
+                                )
+                                : null,
+
+                            'url' => $item['job_apply_link'] ?? null,
+
+                            'location' => $item['job_location'] ?? null,
+                        ]
+                    );
+
+                    $total++;
                 }
-                }
-                }catch(Exception $e){}
+
+            } catch (\Throwable $e) {
+
+                $failed++;
+
+                // Log::error('OpenWebNinja Job Sync Error', [
+                //     'url' => $url,
+                //     'error' => $e->getMessage(),
+                // ]);
+            }
         }
+    }
 
     return response()->json([
-        'message' => 'First 100 jobs successfully synced',
+        'message' => 'Jobs successfully synced',
+        'synced' => $total,
+        'failed_requests' => $failed,
     ]);
 }
 }
