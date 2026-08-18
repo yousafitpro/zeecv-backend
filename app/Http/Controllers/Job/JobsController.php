@@ -318,30 +318,87 @@ public function queryProcess(Request $request)
     {
         $input=$request->all();
         
-        $data['list'] = JobCareer::query()
+        $query = JobCareer::query()
             ->when(!is_admin(),function ($query) {
                 return $query->where('user_id',auth_user_id());
-            })
-            ->when(!empty($input['search']), function ($query) use ($input) {
-                $search = '%' . $input['search'] . '%';
+            });
+            if (!empty($input['search'])) {
 
-                return $query->where(function ($q) use ($search) {
-                    $q->where('title', 'like', $search)
-                    ->orWhere('tags', 'like', $search)
-                    ->orWhere('company_name', 'like', $search)
-                    ->orWhere('location', 'like', $search)
-                    ->orWhere('source', 'like', $search)
-                    ->orWhere('job_types', 'like', $search);
-                });
-            })
-            ->when(!empty($input['location']), function ($query) use ($input) {
-                return $query->where(
-                    'location',
-                    'like',
-                    '%' . $input['location'] . '%'
-                );
-            })
-        ->latest('job_created_at')->paginate(20)
+            $keywords = preg_split('/\s+/', trim($input['search']));
+
+            $query->where(function ($q) use ($keywords) {
+
+                foreach ($keywords as $keyword) {
+
+                    $term = '%' . $keyword . '%';
+
+                    $q->orWhere(function ($subQuery) use ($term) {
+                        $subQuery->where('title', 'like', $term)
+                            ->orWhere('tags', 'like', $term)
+                            ->orWhere('company_name', 'like', $term)
+                            ->orWhere('location', 'like', $term)
+                            ->orWhere('job_types', 'like', $term);
+                    });
+                }
+            });
+
+            /*
+            |--------------------------------------------------------------------------
+            | Relevance Ranking
+            |--------------------------------------------------------------------------
+            */
+
+            $search = trim($input['search']);
+            $searchTerm = '%' . $search . '%';
+
+            $score = "
+                (
+                    CASE
+                        WHEN title LIKE " . \DB::getPdo()->quote($searchTerm) . "
+                            THEN 100
+                        WHEN tags LIKE " . \DB::getPdo()->quote($searchTerm) . "
+                            THEN 80
+                        WHEN company_name LIKE " . \DB::getPdo()->quote($searchTerm) . "
+                            THEN 70
+                        WHEN location LIKE " . \DB::getPdo()->quote($searchTerm) . "
+                            THEN 60
+                        WHEN job_types LIKE " . \DB::getPdo()->quote($searchTerm) . "
+                            THEN 50
+                        ELSE 10
+                    END
+                )
+            ";
+
+            $query->orderByRaw($score . ' DESC');
+        }
+
+        if (!empty($input['location'])) {
+            $query->where(
+                'location',
+                'like',
+                '%' . $input['location'] . '%'
+            );
+        }
+        if (isset($input['is_remote'])) {
+            $query->where('remote', 1);
+        }
+        if (isset($input['is_part_time'])) {
+            $query->where('is_part_time', 1);
+        }
+        if (isset($input['is_permanent'])) {
+            $query->where('is_permanent', 1);
+        }
+        if (isset($input['is_internship'])) {
+            $query->where('is_internship', 1);
+        }
+        if (isset($input['is_full_time'])) {
+            $query->where('is_full_time', 1);
+        }
+        if (isset($input['is_contract'])) {
+            $query->where('is_contract', 1);
+        }
+            
+        $data['list']=$query->latest('job_created_at')->paginate(20)
         ->withQueryString();
         $data['input']=$input;
         $data['locations'] = JobCareer::pluck('location')

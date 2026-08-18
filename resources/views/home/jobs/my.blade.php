@@ -2,6 +2,38 @@
 @section('content')
 
 <style>
+    
+    .search_is_remote {
+        display: inline-flex;
+        align-items: center;
+        margin-top: 8px;
+        padding: 5px 10px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        color: #475569;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .search_is_remote:hover {
+        background: #f1f5f9;
+        border-color: #cbd5e1;
+    }
+
+    .search_is_remote input {
+        margin: 0 7px 0 0;
+        cursor: pointer;
+        accent-color: #4f46e5;
+    }
+
+    .search_is_remote:has(input:checked) {
+        color: #4f46e5;
+        background: #eef2ff;
+        border-color: #c7d2fe;
+    }
     .job_search_btns button{
         background: white !important;
         outline:none !important;
@@ -870,6 +902,61 @@
                    </div>
                    <div class="row mt-2 g-1">
                      <div class="col-md-7" >
+                         <label class="search_is_remote">
+                            <input
+                                type="checkbox"
+                                name="is_remote"
+                                value="1"
+                                {{ !empty($input['is_remote']) ? 'checked' : '' }}
+                            >
+                            Remote
+                        </label>
+                        <label class="search_is_remote">
+                            <input
+                                type="checkbox"
+                                name="is_permanent"
+                                value="1"
+                                {{ !empty($input['is_permanent']) ? 'checked' : '' }}
+                            >
+                            Permanent
+                        </label>
+                        <label class="search_is_remote">
+                            <input
+                                type="checkbox"
+                                name="is_contract"
+                                value="1"
+                                {{ !empty($input['is_contract']) ? 'checked' : '' }}
+                            >
+                            Contract
+                        </label>
+                        <label class="search_is_remote">
+                            <input
+                                type="checkbox"
+                                name="is_part_time"
+                                value="1"
+                                {{ !empty($input['is_part_time']) ? 'checked' : '' }}
+                            >
+                            Part Time
+                        </label>
+                        <label class="search_is_remote">
+                            <input
+                                type="checkbox"
+                                name="is_full_time"
+                                value="1"
+                                {{ !empty($input['is_full_time']) ? 'checked' : '' }}
+                            >
+                            Full Time
+                        </label>
+                        
+                        <label class="search_is_remote">
+                            <input
+                                type="checkbox"
+                                name="is_internship"
+                                value="1"
+                                {{ !empty($input['is_internship']) ? 'checked' : '' }}
+                            >
+                           Internship
+                        </label>
                         <p>
 
                         Showing
