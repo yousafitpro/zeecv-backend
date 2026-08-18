@@ -11,7 +11,6 @@
     ========================================================= */
 
     #profile_update_div {
-        background: #f5f7fa;
         min-height: calc(100vh - 70px);
         padding: 35px 15px 50px;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -55,11 +54,7 @@
 
     #profile_update_div .profile-summary-top {
         height: 85px;
-        background: linear-gradient(
-            135deg,
-            #f1f5f9 0%,
-            #f8fafc 100%
-        );
+        background: linear-gradient(90deg, #2993da 0%, #7358FF 50%, #B351FF 100%);
         border-bottom: 1px solid #e5e7eb;
     }
 
