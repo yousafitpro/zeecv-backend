@@ -390,7 +390,7 @@
         ========================================= */
 
         .job_container_outer_section {
-            padding: 45px 0 80px;
+            padding: 20px 0 80px;
         }
 
 
