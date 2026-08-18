@@ -1336,7 +1336,7 @@
     }
 </style>
 
-<script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+{{-- <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script> --}}
 
 <div class="job_container_outer" style="background: transparent">
 
@@ -1518,7 +1518,7 @@
                                 </div>
 
                                 {{-- reCAPTCHA --}}
-                                <div class="col-md-12">
+                                {{-- <div class="col-md-12">
                                     <div class="apply_outer_div_group">
                                         <div class="g-recaptcha" 
                                              data-sitekey="{{config('myconfig.Recap.site_key')}}" 
@@ -1527,7 +1527,7 @@
                                              data-expired-callback="recaptcha_expired_callback">
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 {{-- Submit --}}
                                 <div class="col-md-12">

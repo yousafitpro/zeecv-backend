@@ -69,17 +69,17 @@ class JobsController extends Controller
 
         $job=JobCareer::where('slug',$slug)->first();
         $input=$request->all();
-        $score=(new AppGoogleRecaptchaController())->getScore($input['g-recaptcha-response']);
-        if($score<0.7)
-        {
-           return redirect()->back()->withInput()->with([
-                'toast' => [
-                    'heading' => 'Message',
-                    'message' => 'Invalid recaptcha',
-                    'type' => 'danger',
-                ]
-            ]);
-        }
+        // $score=(new AppGoogleRecaptchaController())->getScore($input['g-recaptcha-response']);
+        // if($score<0.7)
+        // {
+        //    return redirect()->back()->withInput()->with([
+        //         'toast' => [
+        //             'heading' => 'Message',
+        //             'message' => 'Invalid recaptcha',
+        //             'type' => 'danger',
+        //         ]
+        //     ]);
+        // }
         $app=JobApplication::create(
             [
                 'job_id'=>$job->id,
