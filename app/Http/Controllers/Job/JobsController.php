@@ -432,7 +432,7 @@ public function queryProcess(Request $request)
     }
     public function arbeitnowJobs()
     {
-        for ($page = 1; $page <= 4; $page++) {
+        for ($page = 1; $page <= 10; $page++) {
 
             $res = Http::get('https://www.arbeitnow.com/api/job-board-api', [
                 'page' => $page,
