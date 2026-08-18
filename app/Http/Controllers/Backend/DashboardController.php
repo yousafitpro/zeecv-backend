@@ -37,8 +37,16 @@ class DashboardController extends Controller
     }
 
     public function userDasboard(Request $request){
-        $data['resumes']=Resume::where('user_id',auth_user_id())->get();
-        return view('zeecv.dashboard',$data);
+        $user=auth()->user();
+        $resumes=Resume::where('user_id',$user->id)->get();
+        if(count($resumes)>0){
+           $resu=$resumes->first();
+           $redirect_url=route('resume.edit',unique_encrypt($resu->id));
+         
+        }else{
+            $redirect_url=route('resume.create');
+        }
+        return redirect($redirect_url);
     }
 public function getMonthlyProductStats(Request $request)
 {
