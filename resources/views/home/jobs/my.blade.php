@@ -899,6 +899,21 @@
                                 </select>
                          
                     </div>
+                     @if (is_admin())
+                         <div class="col-md-4" >
+                                <label>Source</label><br>
+                                <select class="form-control select2" name="source" style="max-width: 350px">
+                                    <option value="">--All--</option>
+                                    @foreach ($sources as $so)
+                                      
+                                      <option value="{{ $so }}" {{ $so == ($input['source'] ?? '') ? 'selected' : '' }}>
+                                            {{ $so }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                         
+                    </div>
+                     @endif
                    
                    </div>
                    <div class="row mt-2 g-1">

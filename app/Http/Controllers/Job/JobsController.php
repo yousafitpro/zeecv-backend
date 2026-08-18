@@ -379,6 +379,13 @@ public function queryProcess(Request $request)
                 '%' . $input['location'] . '%'
             );
         }
+        if (!empty($input['source'])) {
+            $query->where(
+                'source',
+                'like',
+                '%' . $input['source'] . '%'
+            );
+        }
         if (isset($input['is_remote'])) {
             $query->where('remote', 1);
         }
@@ -405,6 +412,15 @@ public function queryProcess(Request $request)
                             ->filter()
                             ->flatMap(function ($locations) {
                                 return array_map('trim', explode(',', $locations));
+                            })
+                            ->filter()
+                            ->unique()
+                            ->values()
+                            ->toArray();
+        $data['sources'] = JobCareer::pluck('source')
+                            ->filter()
+                            ->flatMap(function ($sources) {
+                                return array_map('trim', explode(',', $sources));
                             })
                             ->filter()
                             ->unique()
