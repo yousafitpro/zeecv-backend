@@ -1505,7 +1505,7 @@
                                                             </div>
                                                             <div>
                                                                 <div class="resume-name" id="uploaded_resume_name">
-                                                                    @if (!empty(auth()->user()->uploadedresume))
+                                                                    @if (!empty(auth()->user()->uploadedresume) && !empty(auth()->user()->uploadedresume->attachment))
                                                                         {{ auth()->user()->uploadedresume->attachment->original_name }}
                                                                     @else
                                                                         <span class="text-muted">No uploaded resume</span>
