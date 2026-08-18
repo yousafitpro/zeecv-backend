@@ -676,6 +676,7 @@
                                         <i class="fa fa-check"></i>
 
                                     </button>
+                                    @if (!empty(auth()->user()->uploadedresume))
                                      {{-- Download --}}
                                     <a href="{{ auth()->user()->uploadedresume->attachment->file_url }}"
                                        class="resume-action download"
@@ -685,6 +686,7 @@
                                         <i class="fa fa-download"></i>
 
                                     </a>
+                                    @endif
                                 </div>
 
                             </td>
