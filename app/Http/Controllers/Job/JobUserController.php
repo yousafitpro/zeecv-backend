@@ -6,6 +6,7 @@ use App\Http\Controllers\App\AppGoogleRecaptchaController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Job\Models\JobApplication;
 use App\Http\Controllers\Job\Models\JobCareer;
+use App\Http\Controllers\Job\Models\UploadedResume;
 use App\Http\Controllers\Resume\ResumeController;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -20,9 +21,30 @@ class JobUserController extends Controller
      $data['url']= url('profile');
      return view('home.user.profile',$data);
    }
+    public function customResumeUpload(Request $request){
+        $input=$request->all();
+        $item=UploadedResume::updateOrCreate([
+            'user_id'=>auth_user_id()
+        ]
+        );
+        $resume = $request->file('resume');
+            if ($resume) {
+                    $data['resume']=fun_save_file($resume,'zeecv/uploaded-resumes');
+                    $item->resume_file_id=$data['resume']->id;
+                    $item->save();
+                }
+        return redirect()->back()->with([
+                'toast' => [
+                    'heading' => 'Message',
+                    'message' => 'Resume Updated successfully',
+                    'type' => 'success',
+                ]
+            ]);
+    }
     public function resumes(Request $request)
     {
         $data['resumes']=(new ResumeController())->process()->get();
+        $data['custom_resumes']=(new ResumeController())->process()->get();
         return view('home.user.resumes',$data);
     }
     public function updateProfile(Request $request)

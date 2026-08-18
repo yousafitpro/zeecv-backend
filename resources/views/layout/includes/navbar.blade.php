@@ -22,7 +22,7 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
     color: #475569 !important;
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 20px !important;
     padding: 0.5rem 1rem !important;
     transition: color 0.2s ease, transform 0.2s ease;
   }
@@ -581,7 +581,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <li class="nav-item">
           <a class="nav-link" href="{{ route('pages.page.blogs.list') }}">Blog</a>
         </li>
-        @endif
+      
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="resumeDropdown" role="button" 
@@ -618,7 +618,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </a>
           </div>
         </li>
-
+          @endif
         @if(auth()->check())
           <!-- =============================================
                USER DROPDOWN (LOGGED IN)

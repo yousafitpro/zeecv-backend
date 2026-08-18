@@ -40,25 +40,6 @@
         font-size: 14px;
     }
 
-    #resumes_outer_div .create-resume-btn {
-        background: #2563eb;
-        border: 1px solid #2563eb;
-        color: #fff;
-        padding: 10px 18px;
-        border-radius: 7px;
-        font-size: 14px;
-        font-weight: 600;
-        white-space: nowrap;
-        transition: all .2s ease;
-    }
-
-    #resumes_outer_div .create-resume-btn:hover {
-        background: #1d4ed8;
-        border-color: #1d4ed8;
-        color: #fff;
-        text-decoration: none;
-    }
-
     /* Main Container */
     #resumes_outer_div .resumes-container {
         background: #fff;
@@ -112,7 +93,7 @@
         border-bottom: 0;
     }
 
-    /* Resume Name */
+    /* Resume Info */
     #resumes_outer_div .resume-info {
         display: flex;
         align-items: center;
@@ -131,6 +112,14 @@
         justify-content: center;
         font-size: 18px;
         margin-right: 13px;
+        overflow: hidden;
+    }
+
+    #resumes_outer_div .resume-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
     }
 
     #resumes_outer_div .resume-name {
@@ -155,6 +144,7 @@
         color: #059669;
         font-size: 12px;
         font-weight: 600;
+        white-space: nowrap;
     }
 
     #resumes_outer_div .resume-status-dot {
@@ -165,10 +155,11 @@
         margin-right: 6px;
     }
 
-    /* Date */
+    /* Date / File Info */
     #resumes_outer_div .resume-date {
         color: #475569;
         font-size: 13px;
+        white-space: nowrap;
     }
 
     #resumes_outer_div .resume-date i {
@@ -197,6 +188,7 @@
         color: #64748b;
         font-size: 14px;
         transition: all .2s ease;
+        cursor: pointer;
     }
 
     #resumes_outer_div .resume-action:hover {
@@ -224,10 +216,62 @@
         background: #ecfdf5;
     }
 
-    #resumes_outer_div .resume-action.delete:hover {
-        color: #dc2626;
-        border-color: #fecaca;
-        background: #fef2f2;
+    /* Upload Button */
+    #resumes_outer_div .upload-resume-btn {
+        border: 1px solid #2563eb;
+        background: #2563eb;
+        color: #fff;
+        padding: 8px 15px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all .2s ease;
+        white-space: nowrap;
+    }
+
+    #resumes_outer_div .upload-resume-btn:hover {
+        background: #1d4ed8;
+        border-color: #1d4ed8;
+    }
+
+    #resumes_outer_div .upload-resume-btn:disabled {
+        opacity: .6;
+        cursor: not-allowed;
+    }
+
+    #resumes_outer_div .upload-resume-btn i {
+        margin-right: 5px;
+    }
+
+    /* Upload Submit */
+    #resumes_outer_div .resume-action.upload-submit {
+        color: #059669;
+        border-color: #a7f3d0;
+        background: #ecfdf5;
+    }
+
+    #resumes_outer_div .resume-action.upload-submit:hover {
+        background: #d1fae5;
+        border-color: #6ee7b7;
+        color: #047857;
+    }
+
+    #resumes_outer_div .resume-action.upload-submit:disabled {
+        opacity: .6;
+        cursor: not-allowed;
+    }
+
+    /* Uploaded Resume Heading */
+    #resumes_outer_div .resumes-upload-section {
+        margin-top: 25px;
+    }
+
+    #resumes_outer_div .resumes-upload-title {
+        font-size: 19px;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 0 0 10px;
     }
 
     /* Empty */
@@ -285,20 +329,20 @@
             font-size: 24px;
         }
 
-        #resumes_outer_div .create-resume-btn {
-            width: 100%;
-            text-align: center;
-        }
-
         #resumes_outer_div .resumes-container {
             overflow-x: auto;
         }
 
         #resumes_outer_div .resumes-table {
-            min-width: 800px;
+            min-width: 850px;
+        }
+
+        #resumes_outer_div .resumes-upload-title {
+            font-size: 18px;
         }
     }
 </style>
+
 
 <div id="resumes_outer_div">
 
@@ -308,155 +352,174 @@
         <div class="resumes-header">
 
             <div>
+
                 <h1 class="resumes-title">
-                    My Resumes
+                    My Resumes (Resume Builder)
                 </h1>
 
                 <p class="resumes-subtitle">
                     Manage, edit and download your professional resumes.
                 </p>
+
             </div>
 
-        
         </div>
 
 
-        {{-- Resumes --}}
+        {{-- Resume Builder Resumes --}}
         <div class="resumes-container">
 
             @if(isset($resumes) && count($resumes) > 0)
 
                 <table class="resumes-table">
 
-
                     <tbody>
 
-                        @foreach($resumes as $resume)
+                    @foreach($resumes as $resume)
 
-                            <tr>
+                        <tr>
 
-                                {{-- Resume --}}
-                                <td>
+                            {{-- Resume --}}
+                            <td>
 
-                                    <div class="resume-info">
+                                <div class="resume-info">
 
-                                        <div class="resume-icon">
-                                            <img style="width: 100%;" src="{{ auth()->user()->avatar() }}">
+                                    <div class="resume-icon">
+
+                                        <img src="{{ auth()->user()->avatar() }}"
+                                             alt="Profile">
+
+                                    </div>
+
+                                    <div>
+
+                                        <div class="resume-name">
+
+                                            {{ $resume->contact->first_name.' '.$resume->contact->last_name }}
+
                                         </div>
 
-                                        <div>
+                                        <div class="resume-id">
 
-                                            <div class="resume-name">
-                                                {{ $resume->contact->first_name.' '.$resume->contact->last_name }}
-                                            </div>
-
-                                            <div class="resume-id">
-                                                Resume #{{ unique_encrypt($resume->id) }}
-                                            </div>
+                                            Resume #{{ unique_encrypt($resume->id) }}
 
                                         </div>
 
                                     </div>
 
-                                </td>
+                                </div>
+
+                            </td>
 
 
-                                {{-- Status --}}
-                                <td>
+                            {{-- Status --}}
+                            <td>
 
-                                    <span class="resume-status">
-                                        <span class="resume-status-dot"></span>
-                                        Active
+                                <span class="resume-status">
+
+                                    <span class="resume-status-dot"></span>
+
+                                    Active
+
+                                </span>
+
+                            </td>
+
+
+                            {{-- Created --}}
+                            <td>
+
+                                @if(isset($resume->created_at))
+
+                                    <span class="resume-date">
+
+                                        <i class="fa fa-calendar-o"></i>
+
+                                        {{ $resume->created_at->format('M d, Y') }}
+
                                     </span>
 
-                                </td>
+                                @else
+
+                                    <span class="text-muted">—</span>
+
+                                @endif
+
+                            </td>
 
 
-                                {{-- Created --}}
-                                <td>
+                            {{-- Updated --}}
+                            <td>
 
-                                    @if(isset($resume->created_at))
-                                        <span class="resume-date">
-                                            <i class="fa fa-calendar-o"></i>
-                                            {{ $resume->created_at->format('M d, Y') }}
-                                        </span>
-                                    @else
-                                        <span class="text-muted">—</span>
-                                    @endif
+                                @if(isset($resume->updated_at))
 
-                                </td>
+                                    <span class="resume-date">
 
+                                        <i class="fa fa-clock-o"></i>
 
-                                {{-- Updated --}}
-                                <td>
+                                        {{ $resume->updated_at->format('M d, Y') }}
 
-                                    @if(isset($resume->updated_at))
-                                        <span class="resume-date">
-                                            <i class="fa fa-clock-o"></i>
-                                            {{ $resume->updated_at->format('M d, Y') }}
-                                        </span>
-                                    @else
-                                        <span class="text-muted">—</span>
-                                    @endif
+                                    </span>
 
-                                </td>
+                                @else
+
+                                    <span class="text-muted">—</span>
+
+                                @endif
+
+                            </td>
 
 
-                                {{-- Actions --}}
-                                <td>
+                            {{-- Actions --}}
+                            <td>
 
-                                    <div class="resume-actions">
+                                <div class="resume-actions">
 
-                                        {{-- Edit --}}
-                                        <a href="{{ route('resume.edit', unique_encrypt($resume->id)) }}"
-                                           class="resume-action edit"
-                                           title="Edit Resume">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
+                                    {{-- Edit --}}
+                                    <a href="{{ route('resume.edit', unique_encrypt($resume->id)) }}"
+                                       class="resume-action edit"
+                                       title="Edit Resume">
 
-                                        {{-- Preview --}}
-                                        <a href="{{ route('resume.pdf.preview', unique_encrypt($resume->id)) }}"
-                                           target="_blank"
-                                           class="resume-action preview"
-                                           title="Preview Resume">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
+                                        <i class="fa fa-pencil"></i>
 
-                                        {{-- Download --}}
-                                        <a href="{{ route('resume.pdf',unique_encrypt($resume->id)) }}"
-                                           class="resume-action download"
-                                           title="Download PDF">
-                                            <i class="fa fa-download"></i>
-                                        </a>
+                                    </a>
 
-                                       
 
-                                    </div>
+                                    {{-- Preview --}}
+                                    <a href="{{ route('resume.pdf.preview', unique_encrypt($resume->id)) }}"
+                                       target="_blank"
+                                       class="resume-action preview"
+                                       title="Preview Resume">
 
-                                </td>
+                                        <i class="fa fa-eye"></i>
 
-                            </tr>
+                                    </a>
 
-                        @endforeach
+
+                                    {{-- Download --}}
+                                    <a href="{{ route('resume.pdf', unique_encrypt($resume->id)) }}"
+                                       class="resume-action download"
+                                       title="Download PDF">
+
+                                        <i class="fa fa-download"></i>
+
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    @endforeach
 
                     </tbody>
 
                 </table>
 
-
-                {{-- Pagination --}}
-                @if(method_exists($resumes, 'links'))
-
-                    <div class="resumes-pagination">
-                        {{ $resumes->links() }}
-                    </div>
-
-                @endif
-
-
             @else
 
-                {{-- Empty State --}}
+                {{-- Empty Resume Builder --}}
                 <div class="empty-state">
 
                     <div class="empty-icon">
@@ -468,14 +531,8 @@
                     </div>
 
                     <div class="empty-text">
-                        Create your first professional resume and start applying for jobs.
+                        You haven't created any resumes with the Resume Builder yet.
                     </div>
-
-                    <a href="{{ route('resume.create') }}"
-                       class="create-resume-btn">
-                        <i class="fa fa-plus mr-1"></i>
-                        Create Your First Resume
-                    </a>
 
                 </div>
 
@@ -483,8 +540,271 @@
 
         </div>
 
+
+        {{-- Uploaded Resumes --}}
+        <div class="resumes-upload-section">
+
+            <h4 class="resumes-upload-title">
+                Uploaded Resumes
+            </h4>
+
+
+            <div class="resumes-container">
+
+                <form action="{{ route('home.user.resume.custom.upload') }}"
+                      method="POST"
+                      enctype="multipart/form-data"
+                      id="custom_resume_upload_form">
+
+                    @csrf
+
+                    {{-- Hidden File Input --}}
+                    <input type="file"
+                           name="resume"
+                           id="custom_resume_file"
+                           accept=".pdf,.doc,.docx"
+                           style="display: none;">
+
+                    <table class="resumes-table">
+
+                        <tbody>
+
+                        <tr>
+
+                            {{-- Resume --}}
+                            <td>
+
+                                <div class="resume-info">
+
+                                    <div class="resume-icon">
+
+                                        <img src="{{ auth()->user()->avatar() }}"
+                                             alt="Profile">
+
+                                    </div>
+
+                                    <div>
+
+                                        <div class="resume-name">
+
+                                            {{ auth()->user()->uploadedresume->attachment->original_name }}
+
+                                        </div>
+
+                                        <div class="resume-id">
+
+                                            Custom / Uploaded Resume
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            {{-- Status --}}
+                            <td>
+
+                                <span class="resume-status">
+
+                                    <span class="resume-status-dot"></span>
+
+                                    Ready
+
+                                </span>
+
+                            </td>
+
+
+                            {{-- Selected File --}}
+                            <td>
+                              @if (empty(auth()->user()->uploadedresume))
+                              <span id="selected_resume_name"
+                                      class="resume-date">
+
+                                    <i class="fa fa-file-o"></i>
+
+                                    No file selected
+
+                                </span>
+                              @else
+                              {{ auth()->user()->uploadedresume->attachment->original_name }}
+                              @endif
+                                
+
+                            </td>
+
+
+                            {{-- Supported Files --}}
+                            <td>
+
+                                <span class="resume-date">
+
+                                    PDF, DOC, DOCX
+
+                                </span>
+
+                            </td>
+
+
+                            {{-- Actions --}}
+                            <td>
+
+                                <div class="resume-actions">
+
+                                    {{-- Select File --}}
+                                    <button type="button"
+                                            class="upload-resume-btn"
+                                            id="upload_resume_btn">
+
+                                        <i class="fa fa-upload"></i>
+
+                                        Upload Resume
+
+                                    </button>
+
+
+                                    {{-- Submit --}}
+                                    <button type="submit"
+                                            class="resume-action upload-submit"
+                                            id="upload_resume_submit"
+                                            title="Submit Resume"
+                                            style="display: none;">
+
+                                        <i class="fa fa-check"></i>
+
+                                    </button>
+                                     {{-- Download --}}
+                                    <a href="{{ auth()->user()->uploadedresume->attachment->file_url }}"
+                                       class="resume-action download"
+                                       target="_blank"
+                                       title="Download PDF">
+
+                                        <i class="fa fa-download"></i>
+
+                                    </a>
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </form>
+
+            </div>
+
+        </div>
+
     </div>
 
 </div>
+
+
+<script>
+    $(document).ready(function () {
+
+        /*
+         * Open file selector
+         */
+        $('#upload_resume_btn').on('click', function () {
+
+            $('#custom_resume_file').click();
+
+        });
+
+
+        /*
+         * File selected
+         */
+        $('#custom_resume_file').on('change', function () {
+
+            if (this.files && this.files.length > 0) {
+
+                let file = this.files[0];
+
+                /*
+                 * Validate file size
+                 * 10 MB maximum
+                 */
+                let maxSize = 10 * 1024 * 1024;
+
+                if (file.size > maxSize) {
+
+                    alert('Maximum file size allowed is 10 MB.');
+
+                    $(this).val('');
+
+                    $('#selected_resume_name').html(
+                        '<i class="fa fa-file-o"></i> No file selected'
+                    );
+
+                    $('#upload_resume_submit').hide();
+
+                    return;
+
+                }
+
+
+                /*
+                 * Display selected filename
+                 */
+                $('#selected_resume_name').html(
+                    '<i class="fa fa-file-o"></i> ' + file.name
+                );
+
+
+                /*
+                 * Change upload button text
+                 */
+                $('#upload_resume_btn').html(
+                    '<i class="fa fa-check"></i> File Selected'
+                );
+
+
+                /*
+                 * Show submit button
+                 */
+                $('#upload_resume_submit').show();
+
+            }
+
+        });
+
+
+        /*
+         * Submit form
+         */
+        $('#custom_resume_upload_form').on('submit', function () {
+
+            if (!$('#custom_resume_file').val()) {
+
+                alert('Please select a resume first.');
+
+                return false;
+
+            }
+
+
+            /*
+             * Disable buttons while uploading
+             */
+            $('#upload_resume_submit')
+                .html('<i class="fa fa-spinner fa-spin"></i>')
+                .prop('disabled', true);
+
+
+            $('#upload_resume_btn')
+                .prop('disabled', true);
+
+        });
+
+    });
+</script>
 
 @endsection

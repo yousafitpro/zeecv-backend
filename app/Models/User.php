@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Job\Models\UploadedResume;
 use App\Models\App\AppFile;
 use App\Models\Connect\CustomDomain;
 use App\Models\Merchant\merchantCompany;
@@ -86,6 +87,10 @@ class User extends Authenticatable implements JWTSubject
     public function company()
     {
         return $this->hasOne(merchantCompany::class);
+    }
+    public function uploadedresume()
+    {
+        return $this->hasOne(UploadedResume::class);
     }
     public function primaryaddress()
     {
