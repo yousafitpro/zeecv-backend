@@ -573,12 +573,15 @@ document.addEventListener('DOMContentLoaded', function () {
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home.jobs') }}">Jobs</a>
         </li>
+        @if(!auth()->check())
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home.about') }}">About</a>
         </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="{{ route('pages.page.blogs.list') }}">Blog</a>
         </li>
+        @endif
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="resumeDropdown" role="button" 
@@ -653,11 +656,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 <i class="fas fa-briefcase"></i>
                 My Jobs
               </a>
+              --}}
 
-              <a class="dropdown-item" href="">
+              <a class="dropdown-item" href="{{ route('home.user.resumes') }}">
                 <i class="fas fa-file-alt"></i>
                 My Resumes
-              </a> --}}
+              </a> 
               <div class="dropdown-divider"></div>
 
               <a class="dropdown-item text-danger" href="{{url('logout')}}" 

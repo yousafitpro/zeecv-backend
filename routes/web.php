@@ -599,6 +599,7 @@ Route::prefix('resume-builder')
        Route::any('/jobs', [JobsController::class,'index'])->name('home.jobs');
        Route::any('/user', [JobUserController::class,'index'])->name('home.user.profile');
        Route::any('/user/update', [JobUserController::class,'updateProfile'])->name('home.user.profile.update');
+       Route::any('/user/resumes', [JobUserController::class,'resumes'])->name('home.user.resumes');
        Route::get('/about', [HomeController::class,'about'])->name('home.about');
        Route::get('/contact', [HomeController::class,'contact'])->name('home.contact');
        Route::get('/post-a-job', [HomeController::class,'postAJob'])->name('home.post_a_job');

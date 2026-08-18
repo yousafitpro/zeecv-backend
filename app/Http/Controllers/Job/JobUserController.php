@@ -6,6 +6,7 @@ use App\Http\Controllers\App\AppGoogleRecaptchaController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Job\Models\JobApplication;
 use App\Http\Controllers\Job\Models\JobCareer;
+use App\Http\Controllers\Resume\ResumeController;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -19,7 +20,12 @@ class JobUserController extends Controller
      $data['url']= url('profile');
      return view('home.user.profile',$data);
    }
-       public function updateProfile(Request $request)
+    public function resumes(Request $request)
+    {
+        $data['resumes']=(new ResumeController())->process()->get();
+        return view('home.user.resumes',$data);
+    }
+    public function updateProfile(Request $request)
     {
 
 
