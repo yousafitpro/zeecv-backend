@@ -154,29 +154,7 @@ class JobsController extends Controller
     {
         $input=$request->all();
         
-        $data['list'] = $this->process()
-            ->where(function ($query) use ($input) {
-
-                if (!empty($input['search'])) {
-                    $search = '%' . $input['search'] . '%';
-
-                    $query->where(function ($q) use ($search) {
-                        $q->where('title', 'like', $search)
-                            ->orWhere('tags', 'like', $search)
-                            ->orWhere('company_name', 'like', $search)
-                            ->orWhere('location', 'like', $search)
-                            ->orWhere('job_types', 'like', $search);
-                    });
-                }
-
-                if (!empty($input['location'])) {
-                    $query->orWhere('location', 'like', '%' . $input['location'] . '%');
-                }
-            })
-        ->with(['user'])
-        ->inRandomOrder()
-        ->paginate(20)
-        ->withQueryString();
+        $data['list'] = [];
         $data['input']=$input;
         $data['locations'] = JobCareer::pluck('location')
                             ->filter()
@@ -189,11 +167,9 @@ class JobsController extends Controller
                             ->toArray();
         return view('home.jobs',$data);
     }
-    public function indexAjax(Request $request)
-    {
+    public function queryProcess(Request $request){
         $input=$request->all();
-        
-        $data['list'] = $this->process()
+          return $this->process()
             ->where(function ($query) use ($input) {
 
                 if (!empty($input['search'])) {
@@ -212,7 +188,14 @@ class JobsController extends Controller
                     $query->orWhere('location', 'like', '%' . $input['location'] . '%');
                 }
             })
-        ->with(['user'])
+        ->with(['user']);
+        
+    }
+    public function indexAjax(Request $request)
+    {
+        $input=$request->all();
+        
+        $data['list'] =$this->queryProcess($request)
         ->inRandomOrder()
         ->paginate(20)
         ->withQueryString();
