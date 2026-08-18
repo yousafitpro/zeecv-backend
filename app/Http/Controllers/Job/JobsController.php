@@ -8,6 +8,7 @@ use App\Http\Controllers\Job\Models\JobApplication;
 use App\Http\Controllers\Job\Models\JobCareer;
 use App\Http\Controllers\Job\Models\UploadedResume;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
@@ -706,6 +707,28 @@ public function openwebJobs($search=null)
 {
     $accounts=[
         0=>[
+            'api_key'=>'ak_tgflp5gm90k27c6zsiosvhkoac5hgxu1grl7kih25w7xcw8',
+            'urls'=>[
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Portugal&country=pt',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Czech Republic&country=cz',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Romania&country=ro',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Hungary&country=hu',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Greece&country=gr',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Luxembourg&country=lu',
+            ]
+        ],
+        1=>[
+            'api_key'=>'ak_o3amgxkq6wv2f7p23c2uppmsyahtgph5snn469jsh6cxvnt',
+            'urls'=>[
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Norway&country=no',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Denmark&country=dk',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Finland&country=fi',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Belgium&country=be',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Austria&country=at',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Ireland&country=ie',
+            ]
+        ],
+        2=>[
             'api_key'=>'ak_jl55kgqqh3aua8dh60n74v7p0pq7r9tuqwm7sborcxc8jj5',
             'urls'=>[
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in France&country=fr',
@@ -716,7 +739,7 @@ public function openwebJobs($search=null)
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Switzerland&country=ch',
             ]
         ],
-        1=>[
+        3=>[
             'api_key'=>'ak_ei1rwelcczvlrvyxe9cvhnukd7ny3kwcs0qn0hsbbu330yx',
             'urls'=>[
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in United Kingdom&country=gb',
@@ -732,11 +755,12 @@ public function openwebJobs($search=null)
 
 
         foreach($accounts as $ac){
-                foreach($ac['urls'] as $url){
+                try{
+                    foreach($ac['urls'] as $url){
                 $res = Http::withHeader('x-api-key',$ac['api_key'])->get($url);
-                dump($url,$res->successful());
+                //dd($url,$res->successful());
                 if ($res->successful()) {
-
+                    // dd($url,$res->json('data', [])['jobs']);
                     $jobs = $res->json('data', [])['jobs'];
                     foreach ($jobs as $item) {
 
@@ -765,6 +789,7 @@ public function openwebJobs($search=null)
                     }
                 }
                 }
+                }catch(Exception $e){}
         }
 
     return response()->json([
