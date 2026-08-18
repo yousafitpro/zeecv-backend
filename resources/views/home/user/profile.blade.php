@@ -439,7 +439,7 @@
                     <div class="profile-card-header">
 
                         <div class="profile-card-header-icon">
-                            <i class="ti-user"></i>
+                             <i class="fa fa-user"></i>
                         </div>
 
                         <div>
@@ -485,7 +485,7 @@
                                     <div class="profile-upload-content">
 
                                         <div class="profile-upload-icon">
-                                            <i class="ti-camera"></i>
+                                            <i class="fa fa-upload"></i>
                                         </div>
 
                                         <div>
@@ -686,7 +686,7 @@
                     <div class="profile-card-header">
 
                         <div class="profile-card-header-icon">
-                            <i class="ti-lock"></i>
+                            <i class="fa fa-lock"></i>
                         </div>
 
                         <div>
@@ -794,7 +794,7 @@
                     <div class="profile-card-header">
 
                         <div class="profile-card-header-icon">
-                            <i class="ti-settings"></i>
+                             <i class="fa fa-info"></i>
                         </div>
 
                         <div>
