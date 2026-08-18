@@ -1147,15 +1147,61 @@
                    <div class="row mt-2 g-1">
                      <div class="col-md-8" >
                         
-        <label class="search_is_remote">
-            <input
-                type="checkbox"
-                name="is_remote"
-                value="1"
-                {{ !empty($input['is_remote']) ? 'checked' : '' }}
-            >
-            Remote jobs only
-        </label>
+                        <label class="search_is_remote">
+                            <input
+                                type="checkbox"
+                                name="is_remote"
+                                value="1"
+                                {{ !empty($input['is_remote']) ? 'checked' : '' }}
+                            >
+                            Remote
+                        </label>
+                        <label class="search_is_remote">
+                            <input
+                                type="checkbox"
+                                name="is_permanent"
+                                value="1"
+                                {{ !empty($input['is_permanent']) ? 'checked' : '' }}
+                            >
+                            Permanent
+                        </label>
+                        <label class="search_is_remote">
+                            <input
+                                type="checkbox"
+                                name="is_contract"
+                                value="1"
+                                {{ !empty($input['is_contract']) ? 'checked' : '' }}
+                            >
+                            Contract
+                        </label>
+                        <label class="search_is_remote">
+                            <input
+                                type="checkbox"
+                                name="is_part_time"
+                                value="1"
+                                {{ !empty($input['is_part_time']) ? 'checked' : '' }}
+                            >
+                            Part Time
+                        </label>
+                        <label class="search_is_remote">
+                            <input
+                                type="checkbox"
+                                name="is_full_time"
+                                value="1"
+                                {{ !empty($input['is_full_time']) ? 'checked' : '' }}
+                            >
+                            Full Time
+                        </label>
+                        
+                        <label class="search_is_remote">
+                            <input
+                                type="checkbox"
+                                name="is_internship"
+                                value="1"
+                                {{ !empty($input['is_internship']) ? 'checked' : '' }}
+                            >
+                           Internship
+                        </label>
                      </div>
                      <div class=" col-md-3 mt-2 job_search_btns" >
                         <button class="btn btn-primary btn-block"  type="submit">Search</button>

@@ -234,6 +234,21 @@ public function queryProcess(Request $request)
     if (isset($input['is_remote'])) {
         $query->where('remote', 1);
     }
+    if (isset($input['is_part_time'])) {
+        $query->where('is_part_time', 1);
+    }
+    if (isset($input['is_permanent'])) {
+        $query->where('is_permanent', 1);
+    }
+    if (isset($input['is_internship'])) {
+        $query->where('is_internship', 1);
+    }
+    if (isset($input['is_full_time'])) {
+        $query->where('is_full_time', 1);
+    }
+    if (isset($input['is_contract'])) {
+        $query->where('is_contract', 1);
+    }
 
     return $query;
 }
