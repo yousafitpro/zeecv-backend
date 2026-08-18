@@ -231,6 +231,9 @@ public function queryProcess(Request $request)
             '%' . $input['location'] . '%'
         );
     }
+    if (isset($input['is_remote'])) {
+        $query->where('remote', 1);
+    }
 
     return $query;
 }

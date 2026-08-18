@@ -1072,10 +1072,63 @@
         <form action="{{ route('home.jobs.ajax') }}" id="job_search_form" method="post">
             @csrf
                     <div class="row">
-                    <div class="col-md-8">
-                        <label>Search</label><br>
-                        <input class="form-control" value="{{ $input['search']??'' }}" name="search" placeholder="Search here...">
-                    </div>
+                    <style>
+    .search-box-wrapper {
+        width: 100%;
+    }
+
+    .search-box-wrapper .form-control {
+        height: 44px;
+    }
+
+    .search_is_remote {
+        display: inline-flex;
+        align-items: center;
+        margin-top: 8px;
+        padding: 5px 10px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        color: #475569;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .search_is_remote:hover {
+        background: #f1f5f9;
+        border-color: #cbd5e1;
+    }
+
+    .search_is_remote input {
+        margin: 0 7px 0 0;
+        cursor: pointer;
+        accent-color: #4f46e5;
+    }
+
+    .search_is_remote:has(input:checked) {
+        color: #4f46e5;
+        background: #eef2ff;
+        border-color: #c7d2fe;
+    }
+</style>
+
+<div class="col-md-8">
+    <label>Search</label>
+
+    <div class="search-box-wrapper">
+
+        <input
+            class="form-control"
+            value="{{ $input['search'] ?? '' }}"
+            name="search"
+            placeholder="Search jobs, skills, companies..."
+        >
+
+
+    </div>
+</div>
                     <div class="col-md-4" >
                                 <label>Location</label><br>
                                 <select class="form-control select2" name="location" style="max-width: 350px">
@@ -1093,6 +1146,16 @@
                    </div>
                    <div class="row mt-2 g-1">
                      <div class="col-md-8" >
+                        
+        <label class="search_is_remote">
+            <input
+                type="checkbox"
+                name="is_remote"
+                value="1"
+                {{ !empty($input['is_remote']) ? 'checked' : '' }}
+            >
+            Remote jobs only
+        </label>
                      </div>
                      <div class=" col-md-3 mt-2 job_search_btns" >
                         <button class="btn btn-primary btn-block"  type="submit">Search</button>
