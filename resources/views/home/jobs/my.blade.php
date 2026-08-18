@@ -959,6 +959,7 @@
                            Internship
                         </label>
                         <p>
+                            <br>
 
                         Showing
                         {{ $list->firstItem() ?? 0 }}
