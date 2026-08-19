@@ -22,10 +22,10 @@ class JobCareer extends Model
     {
         return $this->user ? $this->user->name : $value;
     }
-    public function getDescriptionAttribute($value)
-    {
-        return reset_description($this->description);
-    }
+    // public function getDescriptionAttribute()
+    // {
+    //     return reset_description($this->description);
+    // }
     public function getSourceAttribute($value)
     {
         return $this->user ? $this->user->name : $value;
