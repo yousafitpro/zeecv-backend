@@ -168,9 +168,6 @@
         $jobPosting['datePosted'] = $publishedDate;
     }
 
-    if (!empty($job_type)) {
-        $jobPosting['employmentType'] = $job_type;
-    }
 
     if ($company) {
         $jobPosting['hiringOrganization'] = [

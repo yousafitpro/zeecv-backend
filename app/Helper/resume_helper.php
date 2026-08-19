@@ -6,6 +6,8 @@ if (!function_exists('reset_description')) {
             'Originally posted on',
             'Himalayas',
             'on Arbeitnow',
+            'jobs in',
+            'Arbeitnow',
             'English Speaking Jobs in United Kingdom'
         ];
 
