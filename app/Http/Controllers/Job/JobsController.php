@@ -752,7 +752,7 @@ public function openwebJobs($search = null)
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in United States&country=us',
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Italy&country=it',
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in United Arab Emirates&country=ae',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Pakistan&country=pk',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Canada&country=ca',
             ]
         ],
     ];
