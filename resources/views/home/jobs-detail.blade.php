@@ -11,7 +11,9 @@
         $job_type = !empty($job->job_types)
             ? trim(explode(',', $job->job_types)[0])
             : null;
-
+        $job_valid_through=$job->expiry_date
+            ? \Carbon\Carbon::parse($job->expiry_date)->format('Y-m-d')
+            : null;
         $job_type = match (strtolower($job_type ?? '')) {
             'full time', 'full-time' => 'FULL_TIME',
             'part time', 'part-time' => 'PART_TIME',
@@ -150,6 +152,7 @@
         '@context' => 'https://schema.org',
         '@type' => 'JobPosting',
         'employmentType'=>$job_type,
+        'validThrough'=>$job_valid_through,
         'title' => $jobTitle,
         'description' => strip_tags($job->description ?? ''),
         'url' => $jobUrl,
