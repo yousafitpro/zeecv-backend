@@ -8,6 +8,18 @@
         $company = trim($job->company_name ?? '');
 
         $location = trim($job->location ?? '');
+        $job_type = !empty($job->job_types)
+            ? trim(explode(',', $job->job_types)[0])
+            : null;
+
+        $job_type = match (strtolower($job_type ?? '')) {
+            'full time', 'full-time' => 'FULL_TIME',
+            'part time', 'part-time' => 'PART_TIME',
+            'contract', 'contractor' => 'CONTRACTOR',
+            'temporary' => 'TEMPORARY',
+            'intern', 'internship' => 'INTERN',
+            default => null,
+        };
 
         $description = strip_tags(
             $job->description
@@ -137,6 +149,7 @@
     $jobPosting = [
         '@context' => 'https://schema.org',
         '@type' => 'JobPosting',
+        'employmentType'=>$job_type,
         'title' => $jobTitle,
         'description' => strip_tags($job->description ?? ''),
         'url' => $jobUrl,
@@ -152,8 +165,8 @@
         $jobPosting['datePosted'] = $publishedDate;
     }
 
-    if (!empty($job->job_type)) {
-        $jobPosting['employmentType'] = $job->job_type;
+    if (!empty($job_type)) {
+        $jobPosting['employmentType'] = $job_type;
     }
 
     if ($company) {
