@@ -1204,10 +1204,10 @@
                         </label>
                      </div>
                      <div class=" col-md-3 mt-2 job_search_btns" >
-                        <button class="btn btn-primary btn-block"  type="submit">Search</button>
+                        <button class="btn btn-primary btn-block btn-sm"  type="submit">Search</button>
                     </div>
                     <div class="col-md-1 mt-2 job_search_btns" >
-                        <a href="{{ route('home.jobs') }}" class="btn btn-primary btn-block"  type="submit">Reset</a>
+                        <a href="{{ route('home.jobs') }}" class="btn btn-primary btn-sm btn-block"  type="submit">Reset</a>
                     </div>
                    </div>
                 </form>
