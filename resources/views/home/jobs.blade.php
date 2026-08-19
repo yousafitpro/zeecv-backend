@@ -1085,12 +1085,12 @@
         display: inline-flex;
         align-items: center;
         margin-top: 8px;
-        padding: 5px 10px;
-        background: #f8fafc;
+        padding: 3px 6px;
+        background: white;
         border: 1px solid #e2e8f0;
-        border-radius: 6px;
+        border-radius: 15px;
         color: #475569;
-        font-size: 13px;
+        font-size: 10px !important;
         font-weight: 500;
         cursor: pointer;
         transition: all 0.2s ease;
@@ -1105,6 +1105,7 @@
         margin: 0 7px 0 0;
         cursor: pointer;
         accent-color: #4f46e5;
+        width: 8px;
     }
 
     .search_is_remote:has(input:checked) {
