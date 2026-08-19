@@ -8,7 +8,7 @@ if (!function_exists('reset_description')) {
             'on Arbeitnow',
             'jobs in',
             'Arbeitnow',
-            'English Speaking Jobs in United Kingdom'
+            'Find more'
         ];
 
         return str_replace($texts, '', $description);
