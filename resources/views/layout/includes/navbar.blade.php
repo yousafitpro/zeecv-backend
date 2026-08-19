@@ -8,7 +8,7 @@
   }
 
   .brand-logo {
-    max-height: 60px;
+    max-height: 50px;
     width: auto;
     transition: transform 0.2s ease;
   }
