@@ -755,15 +755,27 @@ public function openwebJobs($search = null)
                 'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Canada&country=ca',
             ]
         ],
+        4 => [
+            'api_key' => env('OPENWEBNINJA_API_KEY_5'),
+            'urls' => [
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Slovakia&country=sk',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Slovenia&country=si',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Croatia&country=hr',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Bulgaria&country=bg',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Estonia&country=ee',
+                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Pakistan&country=pk',
+            ]
+        ],
     ];
 
     $total = 0;
     $failed = 0;
+    $filtered_urls=[];
 
     foreach ($accounts as $account) {
 
         foreach ($account['urls'] as $url) {
-
+              $filtered_urls[]=$url;
             try {
 
                 $res = Http::timeout(30)
@@ -839,6 +851,7 @@ public function openwebJobs($search = null)
     return response()->json([
         'message' => 'Jobs successfully synced',
         'synced' => $total,
+        'filtered_urls'=>$filtered_urls,
         'failed_requests' => $failed,
     ]);
 }
