@@ -80,7 +80,9 @@
 </script>
 </head>
 <body>
+@if(request('app','no')=='no')
 <div style="height: 100px"></div>
+@endif
 <div class="container" id="main_content_container">
 
 @if(request('app','no')=='no')
