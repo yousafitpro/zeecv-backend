@@ -62,4 +62,54 @@ class GoogleAuthController extends Controller
             'redirect' => $redirect_url,
         ]);
     }
+    public function appSignup(Request $request)
+    {
+        $input=$request->all();
+        // $request->validate([
+        //     'credential' => 'required|string',
+        // ]);
+
+        // $client = new GoogleClient([
+        //     'client_id' => config('services.google.client_id'),
+        // ]);
+        // $payload = $client->verifyIdToken($request->credential);
+
+        // if (!$payload) {
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => 'Invalid Google token.',
+        //     ], 401);
+        // }
+
+        // $googleId = $payload['sub'];
+        $email = $input['email'];
+        $name = $input['name'] ?? '';
+        $password = $input['password'] ?? '';
+
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+            $user = User::create([
+                'name' => $name,
+                'email' => $email,
+                'type'=>'User',
+                'password' => $password,
+            ]);
+        }
+
+        // Auth::login($user, true);
+        // $redirect_url=route('home.jobs');
+        // $resumes=Resume::where('user_id',$user->id)->get();
+        // if(count($resumes)>0){
+        //    $resu=$resumes->first();
+        //    $redirect_url=route('resume.edit',unique_encrypt($resu->id));
+         
+        // }else{
+        //     $redirect_url=route('resume.create');
+        // }
+        return response()->json([
+            'success' => true,
+            'message' => 'Login successful.'
+        ]);
+    }
 }
