@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\App\MobileAppController;
 use App\Http\Controllers\Controller;
 use App\Models\Resume\Resume;
 use App\Models\User;
@@ -107,6 +108,21 @@ class GoogleAuthController extends Controller
         // }else{
         //     $redirect_url=route('resume.create');
         // }
+
+
+       
+        $user=User::where('email',$request->email)->first();
+        $token = auth('api')->login($user);
+        return response()->json([
+            'success' => true,
+            'token' => $token,
+            'loginToken'=>(new MobileAppController())->generateLoginTokenProcess($user),
+            'name' => $user->name,
+            'email' => $user->email,
+            'id' => $user->id,
+            'token_type' => 'bearer',
+            'expires_in' => auth('api')->factory()->getTTL() * 60,
+        ]);
         return response()->json([
             'success' => true,
             'message' => 'Login successful.'
