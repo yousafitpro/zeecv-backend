@@ -83,8 +83,9 @@
 <div style="height: 100px"></div>
 <div class="container" id="main_content_container">
 
+@if(request('app','no')=='yes')
 @include('layout.includes.navbar')
-
+@endif
 <div>
 @yield('content')
 </div>
