@@ -22,9 +22,9 @@ class WebAuthController extends Controller
     }
     public function reset_email_send(Request $request)
     {
+   
 
-
-        if (!User::where('email',$request->email)->exists())
+        if (!User::where('email',$request->email)->exists() && !is_api())
         {
 
             return redirect(url('login'))
@@ -58,6 +58,9 @@ class WebAuthController extends Controller
         //             ]
         //         ]);
         // }
+        if(is_api()){
+            return response()->json(['success'=>true,'message'=>'Mail Sent! Check your Inbox to reset password']);
+        }
         return redirect(url('login'))
             ->with([
                 'toast' => [

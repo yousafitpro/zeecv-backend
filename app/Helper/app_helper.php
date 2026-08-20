@@ -242,7 +242,21 @@ if ( ! function_exists('request_type')){
         {
             $type='api';
         }
+        if(request("request-type") && request("request-type")=='api')
+        {
+            $type='api';
+        }
         return $type;
+    }
+}
+if ( ! function_exists('is_api')){
+    function is_api()
+    {
+        if(request_type()=='api'){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
 if ( ! function_exists('root_user_id')){
