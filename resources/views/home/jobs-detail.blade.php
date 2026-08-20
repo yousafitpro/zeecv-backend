@@ -67,13 +67,6 @@
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
 
-    <!-- =====================================================
-         CANONICAL
-    ====================================================== -->
-
-    <link rel="canonical"
-          href="{{ $jobUrl }}">
-
 
     <!-- =====================================================
          OPEN GRAPH
