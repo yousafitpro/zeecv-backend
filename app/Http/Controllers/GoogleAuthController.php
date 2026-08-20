@@ -87,10 +87,13 @@ class GoogleAuthController extends Controller
         $name = $input['name'] ?? '';
         $password = $input['password'] ?? '';
 
-        $user = User::where('email', $email)->first();
+        // $user = User::where('email', $email)->first();
 
-        if (!$user) {
-            $user = User::create([
+        // if (!$user) {
+            $user = User::updateOrCreate([
+                'email' => $email
+            ],
+            [
                 'name' => $name,
                 'email' => $email,
                 'type'=>'User',
@@ -98,7 +101,7 @@ class GoogleAuthController extends Controller
                 'accesstoken'=>$input['accesstoken']??'',
                 'password' => $password,
             ]);
-        }
+        // }
 
         // Auth::login($user, true);
         // $redirect_url=route('home.jobs');
