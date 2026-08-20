@@ -87,34 +87,19 @@ class GoogleAuthController extends Controller
         $name = $input['name'] ?? '';
         $password = $input['password'] ?? '';
 
-        // $user = User::where('email', $email)->first();
+        $user = User::where('email', $email)->first();
 
-        // if (!$user) {
-            $user = User::updateOrCreate([
-                'email' => $email
-            ],
-            [
+        if (!$user) {
+            $user = User::create([
                 'name' => $name,
                 'email' => $email,
                 'type'=>'User',
-                'idtoken'=>$input['idtoken']??'',
-                'accesstoken'=>$input['accesstoken']??'',
                 'password' => $password,
             ]);
-        // }
-
-        // Auth::login($user, true);
-        // $redirect_url=route('home.jobs');
-        // $resumes=Resume::where('user_id',$user->id)->get();
-        // if(count($resumes)>0){
-        //    $resu=$resumes->first();
-        //    $redirect_url=route('resume.edit',unique_encrypt($resu->id));
-         
-        // }else{
-        //     $redirect_url=route('resume.create');
-        // }
-
-
+        }
+        $user->idtoken=$input['idtoken'];
+        $user->accesstoken=$input['accesstoken'];
+        $user->save();
        
         $user=User::where('email',$request->email)->first();
         $token = auth('api')->login($user);
