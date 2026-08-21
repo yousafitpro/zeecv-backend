@@ -33,7 +33,7 @@ class JobResource extends JsonResource
             'company_name'  => $this->company_name,
             'title'  => $this->title,
             'remote'  => $this->remote,
-            'url'  => $this->url,
+            'url'  => $url,
             'tags'  => $this->tags,
             'job_types'  => $this->job_types,
             'location'  => $this->location,
