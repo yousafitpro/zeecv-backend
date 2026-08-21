@@ -91,7 +91,9 @@
 <div>
 @yield('content')
 </div>
+@if(request('app','no')=='no')
 @include('home.footer')
+@endif
 
 @include('layout.includes.js')
 <!-- end container -->
