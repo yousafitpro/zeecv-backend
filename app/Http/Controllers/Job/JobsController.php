@@ -285,6 +285,9 @@ public function queryProcess(Request $request)
         
          
     }
+    public function deleteAccount(Request $request){
+       return response()->json(['message'=>'Account successfully deleted']);
+    }
     public function myJobs(Request $request)
     {
         $input=$request->all();
