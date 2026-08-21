@@ -20,6 +20,11 @@ class JobResource extends JsonResource
     }
     public function toArray(Request $request): array
     {
+
+        $url=$this->url;
+        if($this->type=='inernal' && empty($url)){
+            $url=route('home.jobs.apply',$this->slug).'?token='.auth()->user()->login_token;
+        }
         
         return array_merge([
             'id'        => unique_encrypt($this->id),
