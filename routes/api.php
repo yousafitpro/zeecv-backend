@@ -34,6 +34,14 @@ Route::group([
 
     Route::post("forgot-password",[WebAuthController::class,'reset_email_send']);
     Route::post("google/register",[GoogleAuthController::class,'appSignup']);
-    Route::post("jobs",[JobsController::class,'indexAjax']);
+  
 
+
+Route::group([
+        'middleware' => 'api',
+        'prefix' => 'auth'
+
+    ], function ($router) {
+  Route::post("jobs",[JobsController::class,'indexAjax']);
+    });
 });
