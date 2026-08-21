@@ -278,6 +278,25 @@ public function queryProcess(Request $request)
         
          
     }
+    public function myJobs(Request $request)
+    {
+        $input=$request->all();
+        
+        $data['list'] =$this->queryProcess($request)
+        ->where('id','777777777777777777777777')
+        ->inRandomOrder();
+    
+        if(!is_ma()){
+            $data['list']=$data['list']->paginate(20)
+        ->withQueryString();
+        return view('home.ajax.jobs-list',$data);
+        }else{
+          $data['list']= JobResource::collection($data['list']->take(20)->get()); 
+          return response()->json($data);
+        }
+        
+         
+    }
     public function edit(Request $request,$id)
     {
           $input=$request->all();
