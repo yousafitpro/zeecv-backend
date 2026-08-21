@@ -47,7 +47,7 @@ class JobsController extends Controller
                 ? $data['job']->tags
                 : explode(',', $data['job']->tags);
 
-            $data['random_jobs'] = JobCareer::where('slug', '!=', $slug)
+            $data['random_jobs'] = JobResource::collection(JobCareer::where('slug', '!=', $slug)
                 ->where(function ($query) use ($currentTags) {
 
                     foreach ($currentTags as $tag) {
@@ -65,7 +65,10 @@ class JobsController extends Controller
                 })
                 ->inRandomOrder()
                 ->limit(4)
-                ->get();
+                ->get());
+        if(is_ma()){
+            return response()->json($data);
+        }
          return view('home.jobs-detail',$data);
     }
     public function jobApplyProcess(Request $request,$slug){
