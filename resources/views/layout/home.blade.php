@@ -80,18 +80,18 @@
 </script>
 </head>
 <body>
-@if(request('is_app','no')=='no')
+@if(session('is_app','no')=='no')
 <div style="height: 100px"></div>
 @endif
 <div class="container" id="main_content_container">
 
-@if(request('is_app','no')=='no')
+@if(session('is_app','no')=='no')
 @include('layout.includes.navbar')
 @endif
 <div>
 @yield('content')
 </div>
-@if(request('is_app','no')=='no')
+@if(session('is_app','no')=='no')
 @include('home.footer')
 @endif
 
