@@ -38,8 +38,7 @@ Route::group([
 
 
 Route::group([
-        'middleware' => 'api',
-        'prefix' => 'auth'
+        'middleware' => 'auth:api',
 
     ], function ($router) {
   Route::post("jobs",[JobsController::class,'indexAjax']);
