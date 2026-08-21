@@ -67,6 +67,8 @@ class JobsController extends Controller
                 ->limit(4)
                 ->get());
         if(is_ma()){
+            $data['job']=new JobResource($data['job']);
+            unset($data['random_jobs']);
             return response()->json($data);
         }
          return view('home.jobs-detail',$data);

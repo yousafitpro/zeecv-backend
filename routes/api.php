@@ -42,6 +42,6 @@ Route::group([
 
     ], function ($router) {
   Route::post("jobs",[JobsController::class,'indexAjax']);
-  Route::post("jobs/{slug}",[JobsController::class,'jobDetail']);
+  Route::any("jobs/{slug}",[JobsController::class,'jobDetail']);
     });
 });
