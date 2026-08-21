@@ -22,7 +22,7 @@ class JobResource extends JsonResource
     {
 
         $url=$this->url;
-        if($this->type=='inernal' && empty($url)){
+        if($this->type=='internal' && empty($url)){
             $url=route('home.jobs.apply',$this->slug).'?token='.auth()->user()->login_token;
         }
         
