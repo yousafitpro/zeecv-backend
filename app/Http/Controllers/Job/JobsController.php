@@ -283,7 +283,6 @@ public function queryProcess(Request $request)
         $input=$request->all();
         
         $data['list'] =$this->queryProcess($request)
-        ->where('id','777777777777777777777777')
         ->inRandomOrder();
     
         if(!is_ma()){
