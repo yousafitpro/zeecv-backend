@@ -8,12 +8,14 @@ use App\Http\Controllers\Job\Models\JobApplication;
 use App\Http\Controllers\Job\Models\JobCareer;
 use App\Http\Controllers\Job\Models\UploadedResume;
 use App\Http\Controllers\Job\Resources\JobResource;
+use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 class JobsController extends Controller
 {
@@ -128,6 +130,11 @@ class JobsController extends Controller
             ]);
     }
     public function jobApply($slug){
+            $user=User::where('login_token',request('token'))->first();
+            Session::put('is_app','yes');
+            if($user){
+                auth()->login($user);
+            }
          $data['job']=JobCareer::where('slug',$slug)->first();
          if(!auth()->check())
           {
