@@ -276,7 +276,7 @@ public function queryProcess(Request $request)
     
         if(!is_ma()){
             $data['list']=$data['list']->paginate(20)
-        ->withQueryString();
+        ->withQueryString()->setPath(route('home.jobs'));;
         return view('home.ajax.jobs-list',$data);
         }else{
           $data['list']= JobResource::collection($data['list']->take(20)->get()); 
