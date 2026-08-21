@@ -242,17 +242,17 @@ if ( ! function_exists('request_type')){
         {
             $type='api';
         }
-        if(request("request-type") && request("request-type")=='api')
+        if(request("request-type") && request("request-type")=='mobile-app')
         {
-            $type='api';
+            $type='mobile-app';
         }
         return $type;
     }
 }
-if ( ! function_exists('is_api')){
-    function is_api()
+if ( ! function_exists('is_ma')){
+    function is_ma()
     {
-        if(request_type()=='api'){
+        if(request_type()=='mobile-app'){
             return true;
         }else{
             return false;

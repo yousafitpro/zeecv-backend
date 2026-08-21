@@ -259,10 +259,18 @@ public function queryProcess(Request $request)
         $input=$request->all();
         
         $data['list'] =$this->queryProcess($request)
-        ->inRandomOrder()
-        ->paginate(20)
+        ->inRandomOrder();
+    
+        if(!is_ma()){
+            $data['list']=$data['list']->paginate(20)
         ->withQueryString();
-         return view('home.ajax.jobs-list',$data);
+        return view('home.ajax.jobs-list',$data);
+        }else{
+          $data['list']=$data['list']->get() ; 
+          return response()->json($data);
+        }
+        
+         
     }
     public function edit(Request $request,$id)
     {

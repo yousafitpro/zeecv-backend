@@ -3,10 +3,12 @@
 use App\Http\Controllers\App\MobileAppController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\Job\JobsController;
 use App\Http\Controllers\WebAuthController;
 
-Route::group([], function ($router) {
-app()->request->merge(['request-type' => 'api']);
+Route::group([
+    'middleware' => 'mobile.app',
+], function ($router) {
     Route::group([
 
         'middleware' => 'api',
@@ -32,5 +34,6 @@ app()->request->merge(['request-type' => 'api']);
 
     Route::post("forgot-password",[WebAuthController::class,'reset_email_send']);
     Route::post("google/register",[GoogleAuthController::class,'appSignup']);
+    Route::post("jobs",[JobsController::class,'indexAjax']);
 
 });
