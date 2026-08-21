@@ -266,7 +266,7 @@ public function queryProcess(Request $request)
         ->withQueryString();
         return view('home.ajax.jobs-list',$data);
         }else{
-          $data['list']=$data['list']->get() ; 
+          $data['list']=$data['list']->take(10)->get() ; 
           return response()->json($data);
         }
         
