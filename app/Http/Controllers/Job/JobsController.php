@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Job\Models\JobApplication;
 use App\Http\Controllers\Job\Models\JobCareer;
 use App\Http\Controllers\Job\Models\UploadedResume;
+use App\Http\Controllers\Job\Resources\JobResource;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -266,7 +267,7 @@ public function queryProcess(Request $request)
         ->withQueryString();
         return view('home.ajax.jobs-list',$data);
         }else{
-          $data['list']=$data['list']->take(20)->get() ; 
+          $data['list']= JobResource::collection($data['list']->take(20)->get()); 
           return response()->json($data);
         }
         
