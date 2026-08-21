@@ -1552,7 +1552,7 @@
                 {{-- =====================================
                      SIDEBAR
                 ====================================== --}}
-
+                  @if(session('is_app','no')=='no')
                 <aside class="job_container_outer_sidebar">
 
                     {{-- Job Information --}}
@@ -1616,6 +1616,7 @@
                     </div>
 
                 </aside>
+                @endif
 
             </div>
 
