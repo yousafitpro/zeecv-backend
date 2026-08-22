@@ -92,7 +92,7 @@
             <!-- Brand -->
             <div class="zeecv_footer_brand">
                 <a href="{{ url('/') }}" class="zeecv_footer_logo">
-                    <span class="zeecv_logo_mark">Z</span>
+                     <img style="width:35px;border-radius:5px;" src="{{ asset('logo-search.png') }}" alt="ZeeCV">
                     <span>ZeeCV</span>
                 </a>
 
