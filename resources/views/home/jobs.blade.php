@@ -1343,7 +1343,7 @@
     function FunSubmitSearchForm(){
         setTimeout(() => {
           $('#job_search_form').submit()  
-        }, 200);
+        }, 100);
     }
 $(document).ready(function() {
      
