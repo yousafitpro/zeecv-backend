@@ -97,20 +97,19 @@ class Handler extends ExceptionHandler
 
     }
     public function render($request, Throwable $exception)
-{
-    if(isset($exception->message) && $exception->message=='Unauthenticated.')
-    {
-       return redirect($exception->redirectTo);
-    }
-    if ($exception instanceof AuthenticationException) {
-        return redirect(url('login'));
-    }
-    /*Log exception somewhere or do whatever you want but prevent
-    default laravel render by commenting render below */
-  return parent::render($request,$exception);
-    return response()->json([
-        'error' => 'biller_communication_error',
-        'message' => 'Non-response - Biller Communication Error'
-    ], 500);
-}
+        {
+            if ($exception instanceof AuthenticationException) {
+
+                if ($request->expectsJson() || $request->is('api/*')) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Unauthenticated.',
+                    ], 401);
+                }
+
+                return redirect(url('login'));
+            }
+
+            return parent::render($request, $exception);
+        }
 }
