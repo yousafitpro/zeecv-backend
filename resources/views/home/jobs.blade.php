@@ -1078,7 +1078,7 @@
         display: inline-flex;
         align-items: center;
         margin-top: 8px;
-        padding: 3px 6px;
+        padding: 3px 8px;
         background: white;
         border: 1px solid #e2e8f0;
         border-radius: 15px;
@@ -1103,8 +1103,8 @@
     }
 
     .search_is_remote:has(input:checked) {
-        color: #4f46e5;
-        background: #eef2ff;
+        color: white !important;
+        background: var(--primary);
         border-color: #c7d2fe;
     }
 </style>
