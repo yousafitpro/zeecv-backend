@@ -1142,7 +1142,7 @@
                    <div class="row mt-2 g-1">
                      <div class="col-md-8" >
                         
-                        <label class="search_is_remote">
+                        <label class="search_is_remote" onclick="FunSubmitSearchForm()">
                             <input
                                 type="checkbox"
                                 name="is_remote"
@@ -1151,7 +1151,7 @@
                             >
                             Remote
                         </label>
-                        <label class="search_is_remote">
+                        <label class="search_is_remote" onclick="FunSubmitSearchForm()">
                             <input
                                 type="checkbox"
                                 name="is_permanent"
@@ -1160,7 +1160,7 @@
                             >
                             Permanent
                         </label>
-                        <label class="search_is_remote">
+                        <label class="search_is_remote" onclick="FunSubmitSearchForm()">
                             <input
                                 type="checkbox"
                                 name="is_contract"
@@ -1169,7 +1169,7 @@
                             >
                             Contract
                         </label>
-                        <label class="search_is_remote">
+                        <label class="search_is_remote" onclick="FunSubmitSearchForm()">
                             <input
                                 type="checkbox"
                                 name="is_part_time"
@@ -1178,7 +1178,7 @@
                             >
                             Part Time
                         </label>
-                        <label class="search_is_remote">
+                        <label class="search_is_remote" onclick="FunSubmitSearchForm()">
                             <input
                                 type="checkbox"
                                 name="is_full_time"
@@ -1188,7 +1188,7 @@
                             Full Time
                         </label>
                         
-                        <label class="search_is_remote">
+                        <label class="search_is_remote" onclick="FunSubmitSearchForm()">
                             <input
                                 type="checkbox"
                                 name="is_internship"
@@ -1340,12 +1340,17 @@
 });
 </script>
 <script>
+    function FunSubmitSearchForm(){
+        setTimeout(() => {
+          $('#job_search_form').submit()  
+        }, 200);
+    }
 $(document).ready(function() {
      
     // =============================================
     // JOB SEARCH FORM AJAX SUBMISSION
     // =============================================
-    
+     
     $('#job_search_form').on('submit', function(e) {
         e.preventDefault();
         
