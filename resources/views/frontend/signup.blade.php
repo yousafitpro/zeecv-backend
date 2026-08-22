@@ -686,7 +686,7 @@
         <div class="signup-brand">
             <div class="brand-header">
                 <div class="brand-logo">
-                    <img src="{{ asset('app-icons/logo.png') }}" alt="ZeeCV">
+                    <img src="{{ asset('logo-search.png') }}" alt="ZeeCV">
                     <span>Zee<span class="highlight">CV</span></span>
                 </div>
                 <div class="brand-tagline">
