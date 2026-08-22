@@ -1095,10 +1095,11 @@
     }
 
     .search_is_remote input {
+        display: none;
         margin: 0 7px 0 0;
         cursor: pointer;
         accent-color: #4f46e5;
-        width: 8px;
+        width: 0px;
     }
 
     .search_is_remote:has(input:checked) {
