@@ -305,6 +305,9 @@ public function queryProcess(Request $request)
                     }
                 });
             })
+            ->when(empty($skills), function ($query) use ($skills) {
+                $query->where('user_id','99999999999999999999999999999999999');
+            })
             ->orderBy('id','desc');
     
         if(!is_ma()){
