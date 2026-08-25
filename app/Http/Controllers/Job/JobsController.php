@@ -312,7 +312,12 @@ public function queryProcess(Request $request)
         ->withQueryString();
         return view('home.ajax.jobs-list',$data);
         }else{
-          $data['list']= JobResource::collection($data['list']->take(50)->get()); 
+            if(empty($skills)){
+             $data['list']=[];
+            }else{
+                $data['list']= JobResource::collection($data['list']->take(50)->get());
+            }
+           
           return response()->json($data);
         }
         
