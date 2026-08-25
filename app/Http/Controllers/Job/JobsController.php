@@ -313,6 +313,7 @@ public function queryProcess(Request $request)
         return view('home.ajax.jobs-list',$data);
         }else{
             if(empty($skills)){
+                //adsd
              $data['list']=[];
             }else{
                 $data['list']= JobResource::collection($data['list']->take(50)->get());
