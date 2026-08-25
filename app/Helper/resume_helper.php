@@ -23,6 +23,9 @@ if (!function_exists('reset_description')) {
             'Himalayas',
             'on Arbeitnow',
             'jobs in',
+            'arbeitnow',
+            'www.',
+            '.com',
             'Arbeitnow',
             'Find more'
         ];
