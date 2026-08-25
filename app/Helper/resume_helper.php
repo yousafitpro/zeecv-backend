@@ -1,4 +1,20 @@
 <?php
+
+use App\Models\Resume\Resume;
+
+if (!function_exists('my_resume')) {
+    function my_resume($user_id=null)
+    {
+        if(empty($user_id) && auth()->check()){
+           $user_id=auth()->user()->id;
+        }
+        if(empty($user_id)){
+            return null;
+        }
+        $resume=Resume::where('user_id',$user_id)->first();
+        return $resume;
+    }
+}
 if (!function_exists('reset_description')) {
     function reset_description($description)
     {

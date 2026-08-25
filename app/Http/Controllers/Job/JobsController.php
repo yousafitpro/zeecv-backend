@@ -8,6 +8,7 @@ use App\Http\Controllers\Job\Models\JobApplication;
 use App\Http\Controllers\Job\Models\JobCareer;
 use App\Http\Controllers\Job\Models\UploadedResume;
 use App\Http\Controllers\Job\Resources\JobResource;
+use App\Models\Resume\Skill;
 use App\Models\User;
 use Carbon\Carbon;
 use Exception;
@@ -291,16 +292,27 @@ public function queryProcess(Request $request)
     public function myJobs(Request $request)
     {
         $input=$request->all();
-        
-        $data['list'] =$this->queryProcess($request)
-        ->inRandomOrder();
+        $skills=[];
+        $resume=my_resume();
+        if(!empty($resume)){
+            $skills=Skill::where('resume_id',$resume->id)->pluck('skill');
+        }
+        $data['list'] = JobCareer::query()
+            ->when(!empty($skills), function ($query) use ($skills) {
+                $query->where(function ($q) use ($skills) {
+                    foreach ($skills as $skill) {
+                        $q->orWhere('tags', 'like', '%' . $skill . '%');
+                    }
+                });
+            })
+            ->orderBy('id','desc');
     
         if(!is_ma()){
             $data['list']=$data['list']->paginate(20)
         ->withQueryString();
         return view('home.ajax.jobs-list',$data);
         }else{
-          $data['list']= JobResource::collection($data['list']->take(20)->get()); 
+          $data['list']= JobResource::collection($data['list']->take(50)->get()); 
           return response()->json($data);
         }
         
