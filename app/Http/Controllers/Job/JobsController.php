@@ -297,7 +297,6 @@ public function queryProcess(Request $request)
         if(!empty($resume)){
             $skills=Skill::where('resume_id',$resume->id)->pluck('skill')->toArray();
         }
-        dd($skills);
         $data['list'] = JobCareer::query()
             ->when(!empty($skills), function ($query) use ($skills) {
                 $query->where(function ($q) use ($skills) {
