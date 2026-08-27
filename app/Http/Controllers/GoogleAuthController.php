@@ -94,6 +94,7 @@ class GoogleAuthController extends Controller
                 'name' => $name,
                 'email' => $email,
                 'type'=>'User',
+                'signup_type'=>'google',
                 'password' => $password,
             ]);
         }
