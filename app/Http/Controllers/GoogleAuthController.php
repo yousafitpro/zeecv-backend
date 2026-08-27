@@ -42,6 +42,7 @@ class GoogleAuthController extends Controller
             $user = User::create([
                 'name' => $name,
                 'email' => $email,
+                'signup_type'=>'google',
                 'type'=>'User',
                 'password' => bcrypt(Str::random(32)),
             ]);
