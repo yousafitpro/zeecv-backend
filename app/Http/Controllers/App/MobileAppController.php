@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Resume\ResumeController;
 use App\Models\Alert;
 use App\Models\Resume\Resume;
 use App\Models\User;
@@ -45,6 +46,11 @@ class MobileAppController extends Controller
         }
       }
       return response()->json(['message'=>"unauthorized"]);
+    }
+    public function previewResume(Request $request,$token){
+      $user=User::where('login_token',$token)->first();
+      $resume=Resume::where(['user_id'=>$user->id])->first();
+       return (new ResumeController())->pdfPreview($request,unique_encrypt($resume->id));
     }
     public function downloadResume($token)
     {

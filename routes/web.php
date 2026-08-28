@@ -619,6 +619,7 @@ Route::group([
 
     Route::get('login-using-token/{token}', [MobileAppController::class,'loginUsingToken']);
     Route::get('resume/download-pdf/{token}', [MobileAppController::class,'downloadResume']);
+    Route::get('resume/preview/{token}', [MobileAppController::class,'previewResume']);
 
 });
 Route::group([
