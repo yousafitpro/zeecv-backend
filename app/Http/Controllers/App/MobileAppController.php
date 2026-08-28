@@ -59,7 +59,8 @@ class MobileAppController extends Controller
       $request->merge([
         'resume_id'=>unique_encrypt($resume->id)
       ]);
-       return (new ResumeController())->preview($request);
+      //  return (new ResumeController())->preview($request);
+       return (new ResumeController())->pdfPreview($request,unique_encrypt($resume->id));
     }
     public function downloadResume($token)
     {
