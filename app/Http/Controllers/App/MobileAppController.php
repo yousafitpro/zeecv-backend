@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 class MobileAppController extends Controller
 {
     public function generateLoginTokenProcess($user){
@@ -45,5 +45,27 @@ class MobileAppController extends Controller
         }
       }
       return response()->json(['message'=>"unauthorized"]);
+    }
+    public function downloadResume($token)
+    {
+      $user=User::where('login_token',$token)->first();
+      $data['cv']=Resume::where([
+               // 'user_id'=>auth_user_id(),
+               'user_id'=>$user->id
+               ])
+            ->with([
+               'experiences',
+               'summary'
+            ])->first();
+      $template=!empty($data['cv']->template->template)?$data['cv']->template->template:'default';  
+      $pdf = Pdf::loadView('pdfs.resume.'.$template.'.resume', $data);
+      $pdf->setOptions([
+         'isHtml5ParserEnabled' => true,
+         'isRemoteEnabled' => true,
+         'defaultPaperSize' => 'a4',  // Add this line
+      ]);
+      //   dd($data['cv']);
+      // return $pdf->stream('resume.pdf');
+      return $pdf->download($data['cv']->contact->desired_job_title.'.pdf');
     }
 }
