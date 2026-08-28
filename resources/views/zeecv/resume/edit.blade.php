@@ -41,16 +41,14 @@
     <a href="{{ route('home.jobs') }}" class="btn btn-link text-secondary text-decoration-none p-0">
       <i class="fas fa-arrow-left mr-2"></i>Jobs
     </a>
-    @else
-    <div>Edit Resume</div>
     @endif
     <div class="resume-edit-action-buttons">
       @if (session('is_app','no')!='yes')
         <a  onclick="resumePrintFunNewWindow('{{ route('resume.pdf.preview',request('id')) }}?resume={{ now() }}&resume_token={{ auth()->user()->login_token }}')" target="_blank" class="btn btn-save btn-preview px-4 rounded-pill" >PDF Preview</a>
-      @endif
+      
       
     <a onclick="resumePrintFunNewWindow('{{ route('resume.pdf',request('id')) }}?resume={{ now() }}&resume_token={{ auth()->user()->login_token }}')" class="btn btn-save px-4 rounded-pill" >Download PDF</a>
-  
+  @endif
   </div>
   </header>
 
