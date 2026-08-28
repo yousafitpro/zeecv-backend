@@ -56,7 +56,7 @@ class MobileAppController extends Controller
         auth()->login($user);
       }
       $resume=Resume::where(['user_id'=>$user->id])->first();
-       return (new ResumeController())->preview($request,unique_encrypt($resume->id));
+       return (new ResumeController())->preview($request);
     }
     public function downloadResume($token)
     {
