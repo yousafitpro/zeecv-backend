@@ -48,6 +48,8 @@ class MobileAppController extends Controller
       return response()->json(['message'=>"unauthorized"]);
     }
     public function previewResume(Request $request,$token){
+
+      return view('raw.empty');
       $user=User::where('login_token',$token)->first();
       $resume=Resume::where(['user_id'=>$user->id])->first();
        return (new ResumeController())->pdfPreview($request,unique_encrypt($resume->id));
