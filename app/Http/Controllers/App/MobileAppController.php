@@ -51,8 +51,12 @@ class MobileAppController extends Controller
 
       // return view('raw.empty');
       $user=User::where('login_token',$token)->first();
+      Session::put('is_app','yes');
+      if($user){
+        auth()->login($user);
+      }
       $resume=Resume::where(['user_id'=>$user->id])->first();
-       return (new ResumeController())->pdfPreview($request,unique_encrypt($resume->id));
+       return (new ResumeController())->preview($request,unique_encrypt($resume->id));
     }
     public function downloadResume($token)
     {
