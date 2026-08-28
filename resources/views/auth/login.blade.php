@@ -780,7 +780,7 @@
                 </div>
 
                 <!-- Google Sign-In -->
-                <div class="social-login">
+                <div class="social-login" style="margin-top: -20px;">
                     <div id="g_id_onload"
                         data-client_id="{{ config('services.google.client_id') }}"
                         data-callback="handleGoogleResponse">
