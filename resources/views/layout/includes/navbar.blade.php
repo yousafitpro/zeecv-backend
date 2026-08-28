@@ -20,7 +20,7 @@
   /* Nav Links Styling */
   .custom-navbar .nav-link {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    color: #475569 !important;
+    color: #475569 ;
     font-weight: 500;
     font-size: 20px !important;
     padding: 0.5rem 1rem !important;
@@ -354,7 +354,14 @@
     }
   }
 
+  .btn-edit-resume i{
+    margin-top: -5px;
+  }
+
   @media (max-width: 480px) {
+    .btn-edit-resume{
+      margin-bottom: 10px;
+    }
     .custom-navbar {
       padding: 0.5rem 0;
     }
@@ -376,6 +383,11 @@
     .user-name {
       font-size: 14px;
     }
+  }
+    .btn-edit-resume{
+    background: rgba(20, 78, 161, 0.5);
+    border-radius: 20px !important;
+    color: white !important;
   }
 </style>
 
@@ -621,7 +633,7 @@ document.addEventListener('DOMContentLoaded', function () {
           @endif
         @if(auth()->check())
            <li class="nav-item">
-          <a class="nav-link" href="{{ route('resume.create') }}">Resume Builder</a>
+          <a class="nav-link btn-edit-resume" href="{{ route('resume.create') }}"> <i class="fa fa-edit"></i> Edit Resume</a>
         </li>
           <!-- =============================================
                USER DROPDOWN (LOGGED IN)

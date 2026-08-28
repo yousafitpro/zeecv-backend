@@ -680,7 +680,23 @@
                     <p>Sign in to access your AI-powered resume builder and find your dream job.</p>
                 </div>
             </div>
-
+<div class="social-login" style="margin-top: -20px;">
+                    <div id="g_id_onload"
+                        data-client_id="{{ config('services.google.client_id') }}"
+                        data-callback="handleGoogleResponse">
+                    </div>
+                    <div class="g_id_signin-wrapper">
+                        <div class="g_id_signin"
+                            data-type="standard"
+                            data-size="large"
+                            data-theme="outline"
+                            data-text="signin_with"
+                            data-shape="rectangular"
+                            data-logo_alignment="left"
+                            data-width="100%">
+                        </div>
+                    </div>
+                </div>
             <div class="brand-features">
                 <div class="feature-item">
                     <i class="fas fa-robot"></i>
