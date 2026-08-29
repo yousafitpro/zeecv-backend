@@ -39,6 +39,8 @@ class JobResource extends JsonResource
             'location'  => $this->location,
             'job_created_at'  => $this->job_created_at,
             'description'  => $this->description,
+            'isApplied'  => $this->appliedjob->exists(),
+            'isSaved'  => $this->savedjob->exists(),
             'type'  => $this->type??'external',
         ]);
     }
