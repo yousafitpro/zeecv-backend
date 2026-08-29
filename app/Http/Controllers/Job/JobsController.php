@@ -360,6 +360,10 @@ public function dashboardAjax(Request $request)
     $data['applied_count']=JobCareerApply::where('user_id',$user_id)->count();
     $data['saved_count']=JobCareerSaved::where('user_id',$user_id)->count();
     $data['myjobs_count']=$this->myJobsProcess($request)->count();
+    $data['user_full_name']=auth()->user()->first_name.' '.auth()->user()->last_name;
+    $firstName = auth()->user()->first_name ?? '';
+    $lastName = auth()->user()->last_name ?? '';
+    $data['user_name_two'] = strtoupper(substr($firstName, 0, 1) . substr($lastName, 0, 1));
     $data['interviews_count']=0;
     $data['recent_activities']=[];
     foreach(JobCareerApply::where('user_id',$user_id)->take(3)->with(['job'])->get() as $job){
@@ -422,7 +426,11 @@ public function dashboardAjax(Request $request)
     }
     public function myJobs(Request $request)
     {
-        
+               $skills=[];
+        $resume=my_resume();
+        if(!empty($resume)){
+            $skills=Skill::where('resume_id',$resume->id)->pluck('skill')->toArray();
+        }
         $data['list']=$this->myJobsProcess($request);
         if(!is_ma()){
             $data['list']=$data['list']->paginate(20)
