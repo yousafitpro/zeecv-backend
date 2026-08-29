@@ -270,32 +270,89 @@ public function queryProcess(Request $request)
 
     return $query;
 }
-    public function applyAjax(Request $request){
-        $input=$request->all();
-        $job=JobCareer::where('slug',$input['job_id'])->first();
-        JobCareerApply::updateOrCreate([
-                    'job_id' =>$job->id,
-                    'user_id' => auth_user_id(),
-                ],
-                [
-                    'status' => 'applied',
-                    'updated_at' => now(),
-                ]);
-        return response()->json(['success'=>true,'message'=>'successfully Applied']);
+public function applyAjax(Request $request)
+{
+    $job = JobCareer::where('slug', $request->job_id)->first();
+
+    if (!$job) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Job not found',
+        ], 404);
     }
-    public function saveAjax(Request $request){
-        $input=$request->all();
-        $job=JobCareer::where('slug',$input['job_id'])->first();
-        JobCareerSaved::updateOrCreate([
-                    'job_id' => $job->id,
-                    'user_id' => auth_user_id(),
-                ],
-                [
-                    'status' => 'applied',
-                    'updated_at' => now(),
-                ]);
-        return response()->json(['success'=>true,'message'=>'successfully saved']);
+
+    $userId = auth_user_id();
+
+    $ja = JobCareerApply::where([
+        'job_id'  => $job->id,
+        'user_id' => $userId,
+    ])->first();
+
+    if (!$ja) {
+        JobCareerApply::create([
+            'job_id'     => $job->id,
+            'user_id'    => $userId,
+            'status'     => 'applied',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'applied' => true,
+            'message' => 'Successfully Applied',
+        ]);
     }
+
+    $ja->delete();
+
+    return response()->json([
+        'success' => true,
+        'applied' => false,
+        'message' => 'Application removed',
+    ]);
+}
+public function saveAjax(Request $request)
+{
+    $job = JobCareer::where('slug', $request->job_id)->first();
+
+    if (!$job) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Job not found',
+        ], 404);
+    }
+
+    $userId = auth_user_id();
+
+    $saved = JobCareerSaved::where([
+        'job_id'  => $job->id,
+        'user_id' => $userId,
+    ])->first();
+
+    if (!$saved) {
+
+        JobCareerSaved::create([
+            'job_id'  => $job->id,
+            'user_id' => $userId,
+            'status'  => 'saved',
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'saved'   => true,
+            'message' => 'Successfully saved',
+        ]);
+    }
+
+    $saved->delete();
+
+    return response()->json([
+        'success' => true,
+        'saved'   => false,
+        'message' => 'Job removed from saved',
+    ]);
+}
     public function indexAjax(Request $request)
     {
         $input=$request->all();
