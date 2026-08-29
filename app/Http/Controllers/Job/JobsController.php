@@ -300,8 +300,7 @@ public function queryProcess(Request $request)
     {
         $input=$request->all();
         
-        $data['list'] =$this->queryProcess($request)
-        ->inRandomOrder();
+        $data['list'] =$this->queryProcess($request);
     
         if(!is_ma()){
             $data['list']=$data['list']->paginate(20)
