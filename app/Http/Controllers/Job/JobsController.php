@@ -6,6 +6,8 @@ use App\Http\Controllers\App\AppGoogleRecaptchaController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Job\Models\JobApplication;
 use App\Http\Controllers\Job\Models\JobCareer;
+use App\Http\Controllers\Job\Models\JobCareerApply;
+use App\Http\Controllers\Job\Models\JobCareerSaved;
 use App\Http\Controllers\Job\Models\UploadedResume;
 use App\Http\Controllers\Job\Resources\JobResource;
 use App\Models\Resume\Skill;
@@ -268,6 +270,30 @@ public function queryProcess(Request $request)
 
     return $query;
 }
+    public function applyAjax(Request $request){
+        $input=$request->all();
+        JobCareerApply::updateOrCreate([
+                    'job_id' => $input['job_id'],
+                    'user_id' => auth_user_id(),
+                ],
+                [
+                    'status' => 'applied',
+                    'updated_at' => now(),
+                ]);
+        return response()->json(['success'=>true,'message'=>'successfully Applied']);
+    }
+    public function saveAjax(Request $request){
+        $input=$request->all();
+        JobCareerSaved::updateOrCreate([
+                    'job_id' => $input['job_id'],
+                    'user_id' => auth_user_id(),
+                ],
+                [
+                    'status' => 'applied',
+                    'updated_at' => now(),
+                ]);
+        return response()->json(['success'=>true,'message'=>'successfully saved']);
+    }
     public function indexAjax(Request $request)
     {
         $input=$request->all();
