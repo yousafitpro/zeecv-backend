@@ -356,14 +356,49 @@ public function saveAjax(Request $request)
 }
 public function dashboardAjax(Request $request)
 {
+        // Get user data
+    $user = auth()->user();
     $user_id=auth_user_id();
     $data['applied_count']=JobCareerApply::where('user_id',$user_id)->count();
     $data['saved_count']=JobCareerSaved::where('user_id',$user_id)->count();
     $data['myjobs_count']=$this->myJobsProcess($request)->count();
-    $data['user_full_name']=auth()->user()->first_name.' '.auth()->user()->last_name;
-    $firstName = auth()->user()->first_name ?? '';
-    $lastName = auth()->user()->last_name ?? '';
-    $data['user_name_two'] = strtoupper(substr($firstName, 0, 1) . substr($lastName, 0, 1));
+
+
+    // Get full name with fallback
+    $firstName = $user->first_name ?? '';
+    $lastName = $user->last_name ?? '';
+    $userName = $user->name ?? '';
+
+    // Set user_full_name with fallback
+    if (!empty($firstName) && !empty($lastName)) {
+        $data['user_full_name'] = $firstName . ' ' . $lastName;
+    } elseif (!empty($firstName)) {
+        $data['user_full_name'] = $firstName;
+    } elseif (!empty($lastName)) {
+        $data['user_full_name'] = $lastName;
+    } elseif (!empty($userName)) {
+        $data['user_full_name'] = $userName;
+    } else {
+        $data['user_full_name'] = 'User';
+    }
+
+    // Set user_name_two (initials) with fallback
+    if (!empty($firstName) && !empty($lastName)) {
+        // Both first and last names exist - take first char from each
+        $data['user_name_two'] = strtoupper(substr($firstName, 0, 1) . substr($lastName, 0, 1));
+    } elseif (!empty($firstName)) {
+        // Only first name exists - take first 2 chars
+        $data['user_name_two'] = strtoupper(substr($firstName, 0, 2));
+    } elseif (!empty($lastName)) {
+        // Only last name exists - take first 2 chars
+        $data['user_name_two'] = strtoupper(substr($lastName, 0, 2));
+    } elseif (!empty($userName)) {
+        // Fallback to name field - take first 2 chars
+        $data['user_name_two'] = strtoupper(substr($userName, 0, 2));
+    } else {
+        // Default fallback
+        $data['user_name_two'] = 'U';
+    }
     $data['interviews_count']=0;
     $data['recent_activities']=[];
     foreach(JobCareerApply::where('user_id',$user_id)->take(3)->with(['job'])->get() as $job){
