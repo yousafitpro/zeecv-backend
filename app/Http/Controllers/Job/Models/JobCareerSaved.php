@@ -18,20 +18,8 @@ class JobCareerSaved extends Model
     {
         return $this->belongsTo(User::class,'user_id');
     }
-    public function getCompanyNameAttribute($value)
+    public function job()
     {
-        return $this->user ? $this->user->name : $value;
-    }
-    public function getDescriptionAttribute($value)
-    {
-        return reset_description($value);
-    }
-    public function getSourceAttribute($value)
-    {
-        return $this->user ? $this->user->name : $value;
-    }
-    public function applications()
-    {
-        return $this->hasMany(JobApplication::class,'job_id');
+        return $this->belongsTo(JobCareer::class,'job_id');
     }
 }

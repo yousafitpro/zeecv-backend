@@ -325,32 +325,62 @@ public function saveAjax(Request $request)
 
     $userId = auth_user_id();
 
-    $saved = JobCareerSaved::where([
+    $ja = JobCareerSaved::where([
         'job_id'  => $job->id,
         'user_id' => $userId,
     ])->first();
 
-    if (!$saved) {
-
+    if (!$ja) {
         JobCareerSaved::create([
-            'job_id'  => $job->id,
-            'user_id' => $userId,
-            'status'  => 'saved',
+            'job_id'     => $job->id,
+            'user_id'    => $userId,
+            'status'     => 'applied',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         return response()->json([
             'success' => true,
-            'saved'   => true,
+            'applied' => true,
             'message' => 'Successfully saved',
         ]);
     }
 
-    $saved->delete();
+    $ja->delete();
 
     return response()->json([
         'success' => true,
-        'saved'   => false,
-        'message' => 'Job removed from saved',
+        'applied' => false,
+        'message' => 'Application removed',
+    ]);
+}
+public function dashboardAjax(Request $request)
+{
+    $user_id=auth_user_id();
+    $data['applied_count']=JobCareerApply::where('user_id',$user_id)->count();
+    $data['saved_count']=JobCareerSaved::where('user_id',$user_id)->count();
+    $data['myjobs_count']=$this->myJobsProcess($request)->count();
+    $data['interviews_count']=0;
+    $data['recent_activities']=[];
+    foreach(JobCareerApply::where('user_id',$user_id)->take(3)->with(['job'])->get() as $job){
+        $data['recent_activities'][]=[
+            'title'=>$job->job->title,
+            'created'=>$job->created_at,
+            'type'=>'apply',
+        ];
+    }
+    foreach(JobCareerSaved::where('user_id',$user_id)->take(3)->with(['job'])->get() as $job){
+        $data['recent_activities'][]=[
+            'title'=>$job->job->title,
+            'created'=>$job->created_at,
+            'type'=>'save',
+        ];
+    }
+    
+    
+    return response()->json([
+        'success' => true,
+        'data'   => $data
     ]);
 }
     public function indexAjax(Request $request)
@@ -373,15 +403,14 @@ public function saveAjax(Request $request)
     public function deleteAccount(Request $request){
        return response()->json(['message'=>'Account successfully deleted']);
     }
-    public function myJobs(Request $request)
-    {
-        $input=$request->all();
+    public function myJobsProcess(Request $request){
+         $input=$request->all();
         $skills=[];
         $resume=my_resume();
         if(!empty($resume)){
             $skills=Skill::where('resume_id',$resume->id)->pluck('skill')->toArray();
         }
-        $data['list'] = JobCareer::query()
+        return JobCareer::query()
             ->when(!empty($skills), function ($query) use ($skills) {
                 $query->where(function ($q) use ($skills) {
                     foreach ($skills as $skill) {
@@ -390,7 +419,11 @@ public function saveAjax(Request $request)
                 });
             })
             ->orderBy('id','desc');
-    
+    }
+    public function myJobs(Request $request)
+    {
+        
+        $data['list']=$this->myJobsProcess($request);
         if(!is_ma()){
             $data['list']=$data['list']->paginate(20)
         ->withQueryString();
