@@ -43,6 +43,7 @@ Route::group([
     ], function ($router) {
   Route::post("jobs",[JobsController::class,'indexAjax']);
   Route::post("jobs/apply",[JobsController::class,'applyAjax']);
+  Route::post("jobs/save",[JobsController::class,'saveAjax']);
   Route::post("myjobs",[JobsController::class,'myJobs']);
   Route::delete("delete-account",[JobsController::class,'deleteAccount']);
   Route::any("jobs/{slug}",[JobsController::class,'jobDetail']);
