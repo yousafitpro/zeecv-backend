@@ -368,7 +368,7 @@ public function dashboardAjax(Request $request)
             $skills=Skill::where('resume_id',$resume->id)->pluck('skill')->toArray();
         }
         if(empty($skills)){
-            $data['myjobs_count']=[];
+            $data['myjobs_count']=0;
         }else{
           $data['myjobs_count']=$this->myJobsProcess($request)->count();
         }
