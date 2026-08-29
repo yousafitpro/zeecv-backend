@@ -272,8 +272,9 @@ public function queryProcess(Request $request)
 }
     public function applyAjax(Request $request){
         $input=$request->all();
+        $job=JobCareer::where('slug',$input['job_id'])->first();
         JobCareerApply::updateOrCreate([
-                    'job_id' => $input['job_id'],
+                    'job_id' =>$job->id,
                     'user_id' => auth_user_id(),
                 ],
                 [
@@ -284,8 +285,9 @@ public function queryProcess(Request $request)
     }
     public function saveAjax(Request $request){
         $input=$request->all();
+        $job=JobCareer::where('slug',$input['job_id'])->first();
         JobCareerSaved::updateOrCreate([
-                    'job_id' => $input['job_id'],
+                    'job_id' => $job->id,
                     'user_id' => auth_user_id(),
                 ],
                 [
