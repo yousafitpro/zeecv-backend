@@ -20,12 +20,12 @@ class JobCareer extends Model
     }
     public function appliedjob()
     {
-        return $this->belongsTo(JobCareerApply::class, 'job_id')
+        return $this->hasOne(JobCareerApply::class, 'job_id')
             ->where('user_id', auth_user_id());
     }
     public function savedjob()
     {
-        return $this->belongsTo(JobCareerSaved::class, 'job_id')
+        return $this->hasOne(JobCareerSaved::class, 'job_id')
             ->where('user_id', auth_user_id());
     }
     public function getCompanyNameAttribute($value)
