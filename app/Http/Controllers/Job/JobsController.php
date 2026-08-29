@@ -361,7 +361,19 @@ public function dashboardAjax(Request $request)
     $user_id=auth_user_id();
     $data['applied_count']=JobCareerApply::where('user_id',$user_id)->count();
     $data['saved_count']=JobCareerSaved::where('user_id',$user_id)->count();
-    $data['myjobs_count']=$this->myJobsProcess($request)->count();
+
+            $skills=[];
+        $resume=my_resume();
+        if(!empty($resume)){
+            $skills=Skill::where('resume_id',$resume->id)->pluck('skill')->toArray();
+        }
+        if(empty($skills)){
+            $data['myjobs_count']=[];
+        }else{
+          $data['myjobs_count']=$this->myJobsProcess($request)->count();
+        }
+    
+
 
 
     // Get full name with fallback
