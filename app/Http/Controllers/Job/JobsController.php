@@ -462,6 +462,12 @@ public function dashboardAjax(Request $request)
             $skills=Skill::where('resume_id',$resume->id)->pluck('skill')->toArray();
         }
         return JobCareer::query()
+             ->when(!empty($input['type']) && $input['type'] == 'Applied', function($q) {
+                return $q->whereHas('appliedJob');
+            })
+            ->when(!empty($input['type']) && $input['type'] == 'Saved', function($q) {
+                return $q->whereHas('savedjob');
+            })
             ->when(!empty($skills), function ($query) use ($skills) {
                 $query->where(function ($q) use ($skills) {
                     foreach ($skills as $skill) {
