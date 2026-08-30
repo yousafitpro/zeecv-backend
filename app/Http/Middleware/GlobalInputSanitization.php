@@ -147,7 +147,7 @@ class GlobalInputSanitization
                 break;
             case 'title':
                 // Allow letters, numbers, spaces, and basic punctuation
-                $value = preg_replace('/[^a-zA-Z0-9\s\-\.\,\!\?\&\'\(\)]/', '', $value);
+                $value = preg_replace('/[^a-zA-Z0-9\s\-\.\,\!\?\'\(\)]/', '', $value);
                 $value = substr($value, 0, 200);
                 break;
         }
