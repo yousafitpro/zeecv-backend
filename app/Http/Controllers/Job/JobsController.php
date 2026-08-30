@@ -492,7 +492,7 @@ public function dashboardAjax(Request $request)
             ->when((empty($skills) && $input['type'] == 'My Jobs'), function ($query) {
                 $query->where('title','cvcvcvcv');
             })
-            ->orderBy('id','desc');
+            ->orderBy('job_created_at', 'desc');
     }
     public function myJobs(Request $request)
     {
