@@ -413,14 +413,14 @@ public function dashboardAjax(Request $request)
     }
     $data['interviews_count']=0;
     $data['recent_activities']=[];
-    foreach(JobCareerApply::where('user_id',$user_id)->take(3)->with(['job'])->get() as $job){
+    foreach(JobCareerApply::where('user_id',$user_id)->latest()->take(3)->with(['job'])->get() as $job){
         $data['recent_activities'][]=[
             'title'=>$job->job->title,
             'created'=>$job->created_at,
             'type'=>'apply',
         ];
     }
-    foreach(JobCareerSaved::where('user_id',$user_id)->take(3)->with(['job'])->get() as $job){
+    foreach(JobCareerSaved::where('user_id',$user_id)->latest()->take(3)->with(['job'])->get() as $job){
         $data['recent_activities'][]=[
             'title'=>$job->job->title,
             'created'=>$job->created_at,
