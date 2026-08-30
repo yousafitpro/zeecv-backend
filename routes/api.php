@@ -36,7 +36,7 @@ Route::group([
     Route::post("google/register",[GoogleAuthController::class,'appSignup']);
   
 
-Route::post("jobs/dashboard",[JobsController::class,'dashboardAjax']);
+  Route::post("jobs/version",[JobsController::class,'version']);
 Route::group([
         'middleware' => 'auth:api',
 
@@ -44,7 +44,8 @@ Route::group([
   Route::post("jobs",[JobsController::class,'indexAjax']);
   Route::post("jobs/apply",[JobsController::class,'applyAjax']);
   Route::post("jobs/save",[JobsController::class,'saveAjax']);
-  Route::post("jobs/version",[JobsController::class,'version']);
+  Route::post("jobs/dashboard",[JobsController::class,'dashboardAjax']);
+
   Route::post("myjobs",[JobsController::class,'myJobs']);
   Route::delete("delete-account",[JobsController::class,'deleteAccount']);
   Route::any("jobs/{slug}",[JobsController::class,'jobDetail']);
