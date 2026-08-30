@@ -356,7 +356,8 @@ public function saveAjax(Request $request)
 }
 public function version(Request $request){
     return response()->json([
-        'version'=>'2.0.3'
+        'version'=>'2.0.3',
+        'link'=>'https://zeecv.com'
     ]);
 }
 public function dashboardAjax(Request $request)
