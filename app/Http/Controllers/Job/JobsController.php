@@ -435,6 +435,9 @@ public function dashboardAjax(Request $request)
             'type'=>'save',
         ];
     }
+    usort($data['recent_activities'], function($a, $b) {
+            return $b['created'] <=> $a['created'];
+        });
     
     
     return response()->json([
