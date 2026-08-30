@@ -354,6 +354,11 @@ public function saveAjax(Request $request)
         'message' => 'Application removed',
     ]);
 }
+public function version(Request $request){
+    return response()->json([
+        'version'=>'2.0.3'
+    ]);
+}
 public function dashboardAjax(Request $request)
 {
         // Get user data
