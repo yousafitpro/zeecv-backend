@@ -304,7 +304,7 @@ public function applyAjax(Request $request)
         ]);
     }
 
-    $ja->delete();
+  
 
     return response()->json([
         'success' => true,
@@ -438,7 +438,7 @@ public function dashboardAjax(Request $request)
     {
         $input=$request->all();
         
-        $data['list'] =$this->queryProcess($request);
+        $data['list'] =$this->queryProcess($request)->orderBy('desc','job_created_at');
     
         if(!is_ma()){
             $data['list']=$data['list']->paginate(20)
