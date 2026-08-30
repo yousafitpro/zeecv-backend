@@ -356,7 +356,7 @@ public function saveAjax(Request $request)
 }
 public function version(Request $request){
     return response()->json([
-        'version'=>'2.0.3',
+        'download'=>true,
         'link'=>'https://zeecv.com'
     ]);
 }
