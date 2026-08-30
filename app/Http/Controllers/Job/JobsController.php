@@ -358,7 +358,7 @@ public function version(Request $request){
     return response()->json([
         'appVersion'=>$request->appVersion,
         'message'=>'You need to download the app to continue. Downloading the app is required.',
-        'download'=>true,
+        'download'=>false,
         'link'=>'https://zeecv.com'
     ]);
 }
