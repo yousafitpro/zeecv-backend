@@ -456,46 +456,44 @@ public function dashboardAjax(Request $request)
     }
     public function myJobsProcess(Request $request){
          $input=$request->all();
+         if(empty($input['type'])){
+            $input['type']='My Jobs';
+         }
         $skills=[];
         $resume=my_resume();
         if(!empty($resume)){
             $skills=Skill::where('resume_id',$resume->id)->pluck('skill')->toArray();
         }
         return JobCareer::query()
-             ->when(!empty($input['type']) && $input['type'] == 'Applied', function($q) {
+             ->when($input['type'] == 'Applied', function($q) {
                 return $q->whereHas('appliedJob');
             })
-            ->when(!empty($input['type']) && $input['type'] == 'Saved', function($q) {
+            ->when($input['type'] == 'Saved', function($q) {
                 return $q->whereHas('savedjob');
             })
-            ->when(!empty($skills), function ($query) use ($skills) {
+            ->when((!empty($skills) && $input['type'] == 'My Jobs'), function ($query) use ($skills) {
                 $query->where(function ($q) use ($skills) {
                     foreach ($skills as $skill) {
                         $q->orWhere('tags', 'like', '%' . $skill . '%');
                     }
                 });
             })
+            ->when((empty($skills) && $input['type'] == 'My Jobs'), function ($query) {
+                $query->where('title','cvcvcvcv');
+            })
             ->orderBy('id','desc');
     }
     public function myJobs(Request $request)
     {
-               $skills=[];
-        $resume=my_resume();
-        if(!empty($resume)){
-            $skills=Skill::where('resume_id',$resume->id)->pluck('skill')->toArray();
-        }
+
         $data['list']=$this->myJobsProcess($request);
         if(!is_ma()){
             $data['list']=$data['list']->paginate(20)
         ->withQueryString();
         return view('home.ajax.jobs-list',$data);
         }else{
-            if(empty($skills)){
-                //adsd
-             $data['list']=[];
-            }else{
                 $data['list']= JobResource::collection($data['list']->take(50)->get());
-            }
+            
            
           return response()->json($data);
         }
