@@ -357,6 +357,7 @@ public function saveAjax(Request $request)
 public function version(Request $request){
     return response()->json([
         'appVersion'=>$request->appVersion,
+        'message'=>'You need to download the app Download is required',
         'download'=>true,
         'link'=>'https://zeecv.com'
     ]);
