@@ -1,6 +1,7 @@
 @extends('layout.home')
 
 @section('meta_tags')
+<title>ZeeCV - AI Resume Builder & Job Board | Free CV Maker & Job Search</title>
 <meta name="description" content="ZeeCV is an AI-powered resume builder and job board where thousands of companies post jobs. Build a standout CV and apply to your dream role — 100% free.">
 @endsection
 
