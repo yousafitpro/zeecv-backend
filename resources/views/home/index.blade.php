@@ -2,7 +2,7 @@
 
 @section('meta_tags')
 <title>ZeeCV - AI Resume Builder & Job Board | Free</title>
-<meta name="description" content="ZeeCV is an AI-powered resume builder and job board where thousands of companies post jobs. Build a standout CV and apply to your dream role — 100% free.">
+<meta name="description" content="ZeeCV helps you build a professional CV with AI and find jobs from top companies. Create your resume and apply for free today.">
 @endsection
 
 @section('content')
