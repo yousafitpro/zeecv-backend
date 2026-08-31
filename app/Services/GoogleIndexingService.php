@@ -65,7 +65,7 @@ class GoogleIndexingService
 
             // 3. Send request
             $response = $this->indexing->urlNotifications->publish($notification);
-
+dd($url,$type,$job_id);
             // 4. Increment usage
             $this->incrementUsage();
             JobCareer::where('id',$job_id)->update([

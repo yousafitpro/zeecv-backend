@@ -67,7 +67,6 @@ class GoogleIndexingController extends Controller
         }
 
         $result = $this->indexingService->submitUrl($job->getGoogleIndexingUrl(), 'URL_UPDATED',$id);
-        dd($result);
 
         return response()->json($result);
     }
