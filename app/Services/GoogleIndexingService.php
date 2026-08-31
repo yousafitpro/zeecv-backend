@@ -68,6 +68,8 @@ class GoogleIndexingService
             $response = $this->indexing->urlNotifications->publish($notification);
             // 4. Increment usage
             // $this->incrementUsage();
+
+            dd($response);
             JobCareer::where('id',$job_id)->update([
                             'sent_for_indexing_google'=>1,
                             'sent_at_for_indexing_google'=>Carbon::now()
