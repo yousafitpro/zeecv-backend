@@ -178,7 +178,7 @@
                                     @endif
                                     @if(!empty($item->resume))
                                 
-                                    <span class="badge badge-info ml-1">Resume</span>
+                                    <a target="_blank" href="{{ route('resume.edit',unique_encrypt($item->resume->id)) }}" class="badge badge-info ml-1">Resume</a>
                                     @endif
                                     @if(!empty($item->contact))
                                   
