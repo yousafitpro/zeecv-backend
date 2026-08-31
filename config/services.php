@@ -34,6 +34,8 @@ return [
     ],
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
+        'indexing_quota' => env('GOOGLE_INDEXING_QUOTA', 200),
+        'service_account_json' => env('GOOGLE_SERVICE_ACCOUNT_JSON', storage_path('app/google-service-account.json')),
     ],
     'Stripe' =>[
         'sk_key'=>env('Stripe_secret_key', 'none'),

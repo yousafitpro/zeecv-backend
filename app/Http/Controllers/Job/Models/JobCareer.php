@@ -28,6 +28,10 @@ class JobCareer extends Model
         return $this->hasOne(JobCareerSaved::class, 'job_id')
             ->where('user_id', auth_user_id());
     }
+     public function getGoogleIndexingUrl(): string
+    {
+        return route('jobs.show', $this->id); // or url("/jobs/{$this->id}")
+    }
     public function getCompanyNameAttribute($value)
     {
         return $this->user ? $this->user->name : $value;
