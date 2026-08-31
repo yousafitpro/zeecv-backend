@@ -51,3 +51,7 @@ Route::group([
   Route::any("jobs/{slug}",[JobsController::class,'jobDetail']);
     });
 });
+
+ Route::any("google-console/webhook",function(){
+    return response()->json(['message'=>"successfully received"]);
+ });
