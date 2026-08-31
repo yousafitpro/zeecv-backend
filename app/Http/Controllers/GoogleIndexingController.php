@@ -22,6 +22,7 @@ class GoogleIndexingController extends Controller
         $todaySent = JobCareer::where('sent_for_indexing_google', 1)
         ->whereDate('updated_at', Carbon::today())  // or 'sent_at' if you have that column
         ->count();
+        dd($todaySent);
         // Define batch size and time window (e.g., last 48 hours)
         $limit = 5;
         $hours = 1; // change as needed
@@ -67,7 +68,6 @@ class GoogleIndexingController extends Controller
         }
 
         $result = $this->indexingService->submitUrl($job->getGoogleIndexingUrl(), 'URL_UPDATED',$id);
-dd($result);
         return response()->json($result);
     }
 
