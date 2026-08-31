@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Controllers\Job\Models\JobCareer;
 use Google\Client;
 use Google\Service\Indexing;
 use Google\Service\Indexing\UrlNotification;
@@ -45,7 +46,7 @@ class GoogleIndexingService
      * @param string $type 'URL_UPDATED' or 'URL_DELETED'
      * @return array ['success' => bool, 'message' => string, 'remaining_quota' => int|null]
      */
-    public function submitUrl(string $url, string $type = 'URL_UPDATED'): array
+    public function submitUrl(string $url, string $type = 'URL_UPDATED',$job_id): array
     {
         try {
             // 1. Check quota
@@ -67,13 +68,16 @@ class GoogleIndexingService
 
             // 4. Increment usage
             $this->incrementUsage();
-
+            JobCareer::where('id',$job_id)->update([
+                            'sent_for_indexing_google'=>1
+                        ]);
             return [
                 'success' => true,
                 'message' => 'URL successfully submitted to Google.',
                 'remaining_quota' => $this->getRemainingQuota(),
                 'response' => $response,
             ];
+            
         } catch (Exception $e) {
             Log::error('Google Indexing API error: ' . $e->getMessage(), ['url' => $url]);
             return [

@@ -26,6 +26,7 @@ use App\Http\Controllers\PMM\CruncyController;
 use App\Http\Controllers\UppSellController;
 use App\Http\Controllers\GLSShipmentController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\GoogleIndexingController;
 use App\Http\Controllers\Job\JobProcessingController;
 use App\Http\Controllers\Job\JobsController;
 use App\Http\Controllers\Job\JobUserController;
@@ -696,4 +697,8 @@ Route::prefix('jobs')
 Route::prefix('job/processing')
      ->group(function(){
      Route::any('/set-remote-1',[JobProcessingController::class,'setRemoteOne']);
+     });
+Route::prefix('google/indexing')
+     ->group(function(){
+     Route::any('/index',[GoogleIndexingController::class,'indexJobs']);
      });

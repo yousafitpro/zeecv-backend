@@ -30,7 +30,7 @@ class JobCareer extends Model
     }
      public function getGoogleIndexingUrl(): string
     {
-        return route('jobs.show', $this->id); // or url("/jobs/{$this->id}")
+        return route('home.jobs.single', $this->slug); // or url("/jobs/{$this->id}")
     }
     public function getCompanyNameAttribute($value)
     {

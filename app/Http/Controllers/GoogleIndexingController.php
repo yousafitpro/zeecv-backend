@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Job\Models\JobCareer;
 use App\Models\JobPosting;
 use App\Services\GoogleIndexingService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
@@ -16,14 +18,43 @@ class GoogleIndexingController extends Controller
     {
         $this->indexingService = $indexingService;
     }
+    public function indexJobs(){
+        // Define batch size and time window (e.g., last 48 hours)
+        $limit = 150;
+        $hours = 1; // change as needed
+        $cutoff = Carbon::now()->subHours($hours);
 
+        // 1. Get up to $limit from the prioritized source
+        $priorityJobs = JobCareer::where('sent_for_indexing_google', 0)
+            ->where('source', 'openwebninja')
+            ->where('created_at', '>=', $cutoff) // optional time filter
+            ->limit($limit)
+            ->get();
+
+        $remaining = $limit - $priorityJobs->count();
+
+        if ($remaining > 0) {
+            // 2. Fill the rest from all other sources
+            $otherJobs = JobCareer::where('sent_for_indexing_google', 0)
+                ->where('source', '!=', 'openwebninja')
+                ->where('created_at', '>=', $cutoff)
+                ->limit($remaining)
+                ->get();
+            
+            // Merge the two collections
+            $jobs = $priorityJobs->merge($otherJobs);
+        } else {
+            $jobs = $priorityJobs;
+        }
+        dd(count($priorityJobs),count($otherJobs));
+    }
     /**
      * Index a single job
      */
     public function indexJob(int $id): JsonResponse
     {
-        $job = JobPosting::findOrFail($id);
-
+        $job = JobCareer::findOrFail($id);
+        dd($job->getGoogleIndexingUrl());
         if (!method_exists($job, 'getGoogleIndexingUrl')) {
             return response()->json([
                 'success' => false,
@@ -31,7 +62,7 @@ class GoogleIndexingController extends Controller
             ], 400);
         }
 
-        $result = $this->indexingService->submitUrl($job->getGoogleIndexingUrl(), 'URL_UPDATED');
+        $result = $this->indexingService->submitUrl($job->getGoogleIndexingUrl(), 'URL_UPDATED',$id);
 
         return response()->json($result);
     }
