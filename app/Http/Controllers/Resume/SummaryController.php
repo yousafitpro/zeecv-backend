@@ -13,7 +13,10 @@ class SummaryController extends Controller
 {
 
     public function process(){
-       return Summary::query()->where('user_id',auth_user_id());
+       return Summary::query()
+       ->when(!is_admin(),function ($query) {
+         return $query->where('user_id',auth_user_id());
+       });
     }
     public function save(Request $request){
       $input=$request->all();

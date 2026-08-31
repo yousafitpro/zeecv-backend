@@ -13,7 +13,10 @@ class CertificateController extends Controller
 {
 
     public function process(){
-       return Certificate::query()->where('user_id',auth_user_id());
+       return Certificate::query()
+       ->when(!is_admin(),function ($query) {
+         return $query->where('user_id',auth_user_id());
+       });
     }
     public function save(Request $request){
       $input=$request->all();

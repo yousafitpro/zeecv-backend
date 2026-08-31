@@ -12,7 +12,10 @@ class ContactController extends Controller
 {
 
     public function process(){
-       return Contact::query()->where('user_id',auth_user_id());
+       return Contact::query()
+       ->when(!is_admin(),function ($query) {
+         return $query->where('user_id',auth_user_id());
+       });
     }
     public function save(Request $request){
       $input=$request->all();
