@@ -179,6 +179,10 @@
                                     <br>
                                     <div class="badge badge-info">Resume</div>
                                     @endif
+                                    @if(!empty($item->contact))
+                                    <br>
+                                    <div class="badge badge-info">{{$item->contact->desired_job_title}}</div>
+                                    @endif
                                 </td>
                                 <td>
                                     #{{unique_encrypt($item->id)}}

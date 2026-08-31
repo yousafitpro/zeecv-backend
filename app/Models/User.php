@@ -8,6 +8,7 @@ use App\Models\Connect\CustomDomain;
 use App\Models\Merchant\merchantCompany;
 use App\Models\MyRole\MyUserRole;
 use App\Models\PMM\PMMAddress;
+use App\Models\Resume\Contact;
 use App\Models\Resume\Resume;
 use App\Traits\AppTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -92,6 +93,10 @@ class User extends Authenticatable implements JWTSubject
     public function resume()
     {
         return $this->hasOne(Resume::class);
+    }
+    public function contact()
+    {
+        return $this->hasOne(Contact::class);
     }
     public function uploadedresume()
     {
