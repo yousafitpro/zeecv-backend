@@ -20,7 +20,7 @@ class GoogleIndexingController extends Controller
     }
     public function indexJobs(){
         // Define batch size and time window (e.g., last 48 hours)
-        $limit = 150;
+        $limit = 5;
         $hours = 1; // change as needed
         $cutoff = Carbon::now()->subHours($hours);
 
