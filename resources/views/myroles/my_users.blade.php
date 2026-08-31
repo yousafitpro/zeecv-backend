@@ -175,6 +175,10 @@
                                     <br>
                                     <div class="badge badge-info">{{ $item->signup_type }}</div>
                                     @endif
+                                    @if(!empty($item->resume))
+                                    <br>
+                                    <div class="badge badge-info">Resume</div>
+                                    @endif
                                 </td>
                                 <td>
                                     #{{unique_encrypt($item->id)}}
