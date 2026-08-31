@@ -18,14 +18,15 @@ class ResumeController extends Controller
       dd(auth()->user()->email);
     }
     public function preview(Request $request){
+      $resume=Resume::find(unique_decrypt($request->resume_id));
          Contact::updateOrCreate(
          [
             'resume_id'=>unique_decrypt($request->resume_id),
-            'user_id'=>auth_user_id()
+            'user_id'=>$resume->user_id
          ]
       );
       $data['cv']=Resume::where([
-         'user_id'=>auth_user_id(),
+         'user_id'=>$resume->user_id,
          'id'=>unique_decrypt($request->resume_id)
          ])
       ->with([
