@@ -173,7 +173,7 @@
                                     {{$item->name}}
                                     @if(!empty($item->signup_type))
                                     <br>
-                                    {{ $item->signup_type }}
+                                    <div class="badge badge-info">{{ $item->signup_type }}</div>
                                     @endif
                                 </td>
                                 <td>
