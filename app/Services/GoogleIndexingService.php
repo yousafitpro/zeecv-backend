@@ -50,13 +50,13 @@ class GoogleIndexingService
     {
         try {
             // 1. Check quota
-            if ($this->isQuotaExceeded()) {
-                return [
-                    'success' => false,
-                    'message' => 'Daily Google Indexing quota exceeded (200 URLs per day).',
-                    'remaining_quota' => $this->getRemainingQuota(),
-                ];
-            }
+            // if ($this->isQuotaExceeded()) {
+            //     return [
+            //         'success' => false,
+            //         'message' => 'Daily Google Indexing quota exceeded (200 URLs per day).',
+            //         'remaining_quota' => $this->getRemainingQuota(),
+            //     ];
+            // }
 
             // 2. Prepare notification
             $notification = new UrlNotification();
