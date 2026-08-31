@@ -18,6 +18,13 @@ class GoogleIndexingController extends Controller
     {
         $this->indexingService = $indexingService;
     }
+    public function indexJobsInsigts(){
+        $data['sent_today'] = JobCareer::where('sent_for_indexing_google', 1)
+                    ->whereDate('sent_at_for_indexing_google', Carbon::today())
+                    ->count();
+        return response()->json($data);
+
+    }
     public function indexJobs(){
         $todaySent = JobCareer::where('sent_for_indexing_google', 1)
         ->whereDate('updated_at', Carbon::today())  // or 'sent_at' if you have that column

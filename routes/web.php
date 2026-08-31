@@ -701,4 +701,5 @@ Route::prefix('job/processing')
 Route::prefix('google/indexing')
      ->group(function(){
      Route::any('/index',[GoogleIndexingController::class,'indexJobs']);
+     Route::any('/insigts',[GoogleIndexingController::class,'indexJobsInsigts']);
      });
