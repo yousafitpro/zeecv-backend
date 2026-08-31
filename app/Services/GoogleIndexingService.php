@@ -79,7 +79,7 @@ class GoogleIndexingService
             ];
             
         } catch (Exception $e) {
-            dd($url,$type,$job_id);
+            dd($url,$type,$job_id,$e->getMessage());
             Log::error('Google Indexing API error: ' . $e->getMessage(), ['url' => $url]);
             return [
                 'success' => false,
