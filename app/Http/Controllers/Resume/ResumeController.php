@@ -215,7 +215,11 @@ class ResumeController extends Controller
             ]);
     }
    public function process(){
-       return Resume::query()->where('user_id',auth_user_id());
+       return Resume::query()
+       ->when(!is_admin(),function ($query) {
+         return $query->where('user_id',auth_user_id());
+       });
+       
     }
  
 
