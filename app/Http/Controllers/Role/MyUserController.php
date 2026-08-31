@@ -34,6 +34,7 @@ class MyUserController extends Controller
         ->when(!is_admin(),function($query){
             $query->where('root_user_id',root_user_id());
         })
+        ->latest('id')
         ->get();
 
         return view('myroles.my_users',$data);
