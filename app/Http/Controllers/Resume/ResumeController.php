@@ -177,22 +177,23 @@ class ResumeController extends Controller
     }
     public function edit($id)
     {
+      $resume=Resume::find(unique_decrypt($id));
       $data['contact']=Contact::updateOrCreate(
          [
             'resume_id'=>unique_decrypt($id),
-            'user_id'=>auth_user_id()
+            'user_id'=>$resume->user_id
          ]
       );
       $data['summary']=Summary::updateOrCreate(
          [
             'resume_id'=>unique_decrypt($id),
-            'user_id'=>auth_user_id()
+            'user_id'=>$resume->user_id
          ]
       );
       $data['template']=Template::updateOrCreate(
          [
             'resume_id'=>unique_decrypt($id),
-            'user_id'=>auth_user_id()
+            'user_id'=>$resume->user_id
          ]
       );
        $data['templates']=zeecv_templates();
