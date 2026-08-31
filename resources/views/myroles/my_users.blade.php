@@ -170,7 +170,8 @@
                                     @endif
                                 </td> --}}
                                 <td>
-                                    {{$item->name}}
+                                    {{$item->name}}<br>
+                                    {{ $item->signup_type }}
                                 </td>
                                 <td>
                                     #{{unique_encrypt($item->id)}}
