@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Http\Controllers\Job\Models\JobCareer;
+use Carbon\Carbon;
 use Google\Client;
 use Google\Service\Indexing;
 use Google\Service\Indexing\UrlNotification;
@@ -68,7 +69,8 @@ class GoogleIndexingService
             // 4. Increment usage
             // $this->incrementUsage();
             JobCareer::where('id',$job_id)->update([
-                            'sent_for_indexing_google'=>1
+                            'sent_for_indexing_google'=>1,
+                            'sent_at_for_indexing_google'=>Carbon::now()
                         ]);
             return [
                 'success' => true,
