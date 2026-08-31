@@ -65,7 +65,7 @@ class GoogleIndexingService
 
             // 3. Send request
             $response = $this->indexing->urlNotifications->publish($notification);
-dd($url,$type,$job_id);
+
             // 4. Increment usage
             $this->incrementUsage();
             JobCareer::where('id',$job_id)->update([
@@ -79,6 +79,7 @@ dd($url,$type,$job_id);
             ];
             
         } catch (Exception $e) {
+            dd($url,$type,$job_id);
             Log::error('Google Indexing API error: ' . $e->getMessage(), ['url' => $url]);
             return [
                 'success' => false,
