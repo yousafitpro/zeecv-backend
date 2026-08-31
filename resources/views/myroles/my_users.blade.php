@@ -170,18 +170,18 @@
                                     @endif
                                 </td> --}}
                                 <td>
-                                    {{$item->name}}
+                                    {{$item->name}}<br>
                                     @if(!empty($item->signup_type))
-                                    <br>
-                                    <div class="badge badge-info">{{ $item->signup_type }}</div>
+                                    
+                                    <div class="badge badge-info ml-1">{{ $item->signup_type }}</div>
                                     @endif
                                     @if(!empty($item->resume))
-                                    <br>
-                                    <div class="badge badge-info">Resume</div>
+                                
+                                    <div class="badge badge-info ml-1">Resume</div>
                                     @endif
                                     @if(!empty($item->contact))
-                                    <br>
-                                    <div class="badge badge-info">{{$item->contact->desired_job_title}}</div>
+                                  
+                                    <div class="badge badge-info ml-1">{{$item->contact->desired_job_title}}</div>
                                     @endif
                                 </td>
                                 <td>
