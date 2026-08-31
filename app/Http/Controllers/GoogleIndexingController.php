@@ -46,7 +46,9 @@ class GoogleIndexingController extends Controller
         } else {
             $jobs = $priorityJobs;
         }
-        dd(count($priorityJobs),count($otherJobs));
+        foreach($jobs as $job){
+            $this->indexJob($job->id);
+        }
     }
     /**
      * Index a single job
@@ -54,7 +56,6 @@ class GoogleIndexingController extends Controller
     public function indexJob(int $id): JsonResponse
     {
         $job = JobCareer::findOrFail($id);
-        dd($job->getGoogleIndexingUrl());
         if (!method_exists($job, 'getGoogleIndexingUrl')) {
             return response()->json([
                 'success' => false,
@@ -63,6 +64,7 @@ class GoogleIndexingController extends Controller
         }
 
         $result = $this->indexingService->submitUrl($job->getGoogleIndexingUrl(), 'URL_UPDATED',$id);
+        dd($result);
 
         return response()->json($result);
     }
