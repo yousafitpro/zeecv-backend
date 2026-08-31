@@ -33,7 +33,7 @@ class GoogleIndexingController extends Controller
            return response()->json(['message'=>'quota reached : '.config('services.google.indexing_quota', 200)]);
         }
         // Define batch size and time window (e.g., last 48 hours)
-        $limit = 20;
+        $limit = 10;
         $hours = 1; // change as needed
         $cutoff = Carbon::now()->subHours($hours);
 
