@@ -55,6 +55,7 @@ class GoogleIndexingController extends Controller
         foreach($jobs as $job){
             $this->indexJob($job->id);
         }
+        return response()->json(['Successfully Sent']);
     }
     /**
      * Index a single job
