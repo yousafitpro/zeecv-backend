@@ -47,10 +47,6 @@ class GenerateSitemap extends Command
             $sitemap->add(Url::create("/blogs/{$blog->slug}"));
         });
 
-        //add jobs
-       (new JobsController())->process()->get()->each(function (JobCareer $job) use ($sitemap) {
-            $sitemap->add(Url::create("/resume-builder/jobs/{$job->slug}"));
-        });
 
         $sitemap->writeToFile(public_path('sitemap.xml'));
     }
