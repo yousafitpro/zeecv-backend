@@ -171,18 +171,20 @@
                                 </td> --}}
                                 <td>
                                     {{$item->name}}<br>
-                                    @if(!empty($item->signup_type))
+                                    <div class="mt-1">
+                                        @if(!empty($item->signup_type))
                                     
-                                    <div class="badge badge-info ml-1">{{ $item->signup_type }}</div>
+                                    <span class="badge badge-info ml-1">{{ $item->signup_type }}</span>
                                     @endif
                                     @if(!empty($item->resume))
                                 
-                                    <div class="badge badge-info ml-1">Resume</div>
+                                    <span class="badge badge-info ml-1">Resume</span>
                                     @endif
                                     @if(!empty($item->contact))
                                   
-                                    <div class="badge badge-info ml-1">{{$item->contact->desired_job_title}}</div>
+                                    <span class="badge badge-info ml-1">{{$item->contact->desired_job_title}}</span>
                                     @endif
+                                    </div>
                                 </td>
                                 <td>
                                     #{{unique_encrypt($item->id)}}
