@@ -106,7 +106,6 @@ class LoginController extends Controller
         Session::put('login_email_2FA',false);
         Session::put('login_try',0);
         auth()->logout();
-        Session::regenerate();
         return redirect()->route('login');
     }
 }
