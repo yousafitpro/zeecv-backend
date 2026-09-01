@@ -603,6 +603,8 @@ Route::prefix('resume-builder')
        Route::any('/user', [JobUserController::class,'index'])->name('home.user.profile');
        Route::any('/user/update', [JobUserController::class,'updateProfile'])->name('home.user.profile.update');
        Route::any('/user/resumes', [JobUserController::class,'resumes'])->name('home.user.resumes');
+       Route::any('/user/myjobs', [JobsController::class,'myjobsIndex'])->name('home.user.myjobs');
+       Route::any('/user/myjobs-ajax', [JobsController::class,'myJobs'])->name('home.user.myjobs.ajax');
        Route::any('/user/resume/custom/upload', [JobUserController::class,'customResumeUpload'])->name('home.user.resume.custom.upload');
        Route::get('/about', [HomeController::class,'about'])->name('home.about');
        Route::get('/contact', [HomeController::class,'contact'])->name('home.contact');
@@ -610,6 +612,7 @@ Route::prefix('resume-builder')
        Route::post('/contact-post', [HomeController::class,'contactPost'])->name('home.contact_post');
        Route::post('/post-a-job-process', [HomeController::class,'postAJobProcess'])->name('home.post_a_job_process');
        Route::get('/jobs/{slug}', [JobsController::class,'jobDetail'])->name('home.jobs.single');
+       Route::post('/jobs/save', [JobsController::class,'saveAjax'])->name('home.jobs.save');
        Route::get('/jobs/apply/{slug}', [JobsController::class,'jobApply'])->name('home.jobs.apply');
        Route::post('/jobs/apply-process/{slug}', [JobsController::class,'jobApplyProcess'])->name('home.jobs.applyProcess');
     });

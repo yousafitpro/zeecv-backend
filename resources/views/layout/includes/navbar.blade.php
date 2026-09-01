@@ -677,6 +677,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 <i class="fas fa-file-alt"></i>
                 My Resumes
               </a> 
+              <a class="dropdown-item" href="{{ route('home.user.myjobs') }}">
+                <i class="fas fa-file-alt"></i>
+                My Jobs
+              </a> 
               <div class="dropdown-divider"></div>
 
               <a class="dropdown-item text-danger" href="{{url('logout')}}" 

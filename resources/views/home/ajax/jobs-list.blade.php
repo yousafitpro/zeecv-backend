@@ -170,8 +170,25 @@
                                 </span>
 
 
-                                <a
+                                <div>
+                                     <a
+                                    data-job-id="{{ $job->slug }}"
+                                    onclick="saveJob(this)"
+                                    href="javascript:void"
+                                    class="job_container_outer_button"
+                                >
+                                    @if(!empty($job->savedjob))
+                                    Saved
+                                    @else
+                                    save
+                                    @endif
+
+                                    <i class="bi bi-arrow-right"></i>
+
+                                </a>
+                                    <a
                                     href="{{ route('home.jobs.single',$job->slug) }}"
+                                    
                                     class="job_container_outer_button"
                                     target="_blank"
                                 >
@@ -181,6 +198,8 @@
                                     <i class="bi bi-arrow-right"></i>
 
                                 </a>
+                               
+                                </div>
 
 
                             </div>
@@ -227,18 +246,18 @@
                          PAGINATION
                     ================================== --}}
 
-                    @if($list->hasPages())
-                        <div class="job_container_outer_pagination">
+                    {{-- @if($list->hasPages())
+                        <div class="job_container_outer_pagination"> --}}
 
                             {{-- <div class="job_container_outer_pagination_info">
                                 Showing {{ $list->firstItem() }}–{{ $list->lastItem() }}
                                 of {{ $list->total() }} jobs
                             </div> --}}
 
-                            <div class="job_container_outer_pagination_links">
+                            {{-- <div class="job_container_outer_pagination_links"> --}}
 
                                 {{-- Previous --}}
-                                @if($list->onFirstPage())
+                                {{-- @if($list->onFirstPage())
                                     <span class="job_container_outer_page disabled" >
                                         ‹
                                     </span>
@@ -246,10 +265,10 @@
                                     <a href="{{ $list->previousPageUrl() }}" class="job_container_outer_page">
                                         ‹
                                     </a>
-                                @endif
+                                @endif --}}
 
                                 {{-- Pages --}}
-                                @foreach($list->getUrlRange(
+                                {{-- @foreach($list->getUrlRange(
                                     max(1, $list->currentPage() - 2),
                                     min($list->lastPage(), $list->currentPage() + 2)
                                 ) as $page => $url)
@@ -264,10 +283,10 @@
                                         </a>
                                     @endif
 
-                                @endforeach
+                                @endforeach --}}
 
                                 {{-- Next --}}
-                                @if($list->hasMorePages())
+                                {{-- @if($list->hasMorePages())
                                     <a href="{{ $list->nextPageUrl() }}" class="job_container_outer_page">
                                         ›
                                     </a>
@@ -280,4 +299,56 @@
                             </div>
 
                         </div>
-                    @endif
+                    @endif --}}
+
+
+<script>
+function saveJob(el) {
+    const jobId = el.getAttribute('data-job-id');
+    if (!jobId) {
+        alert('Job ID not found.');
+        return;
+    }
+
+    // Determine current state (true = saved, false = not saved)
+    const isSaved = el.getAttribute('data-saved') === 'true';
+    const action = isSaved ? 'unsave' : 'save';
+
+    // Store original text for error recovery
+    const originalText = el.innerText;
+    el.innerText = 'Saving…';
+    el.disabled = true;
+
+    const url = "{{ route('home.jobs.save') }}";
+
+    $.ajax({
+        url: url,
+        method: 'POST',
+        data: {
+            job_id: jobId,
+            action: action,
+            _token: "{{ csrf_token() }}"
+        },
+        success: function(response) {
+            // Toggle the visual state
+            if (action === 'save') {
+                el.innerText = 'Saved';
+                el.setAttribute('data-saved', 'true');
+                el.classList.add('saved');
+            } else {
+                el.innerText = 'Save';
+                el.setAttribute('data-saved', 'false');
+                el.classList.remove('saved');
+            }
+            el.disabled = false;
+        },
+        error: function(xhr) {
+            // Revert to original text and re-enable
+            el.innerText = originalText;
+            el.disabled = false;
+            console.error('Error:', xhr.responseText);
+            alert('Action failed. Please try again.');
+        }
+    });
+}
+</script>

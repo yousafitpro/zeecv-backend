@@ -191,6 +191,23 @@ class JobsController extends Controller
                             ->toArray();
         return view('home.jobs',$data);
     }
+        public function myjobsIndex(Request $request)
+    {
+        $input=$request->all();
+        
+        $data['list'] = [];
+        $data['input']=$input;
+        $data['locations'] = JobCareer::pluck('location')
+                            ->filter()
+                            ->flatMap(function ($locations) {
+                                return array_map('trim', explode(',', $locations));
+                            })
+                            ->filter()
+                            ->unique()
+                            ->values()
+                            ->toArray();
+        return view('home.myjobs',$data);
+    }
 public function queryProcess(Request $request)
 {
     $input = $request->all();
@@ -476,6 +493,16 @@ public function dashboardAjax(Request $request)
          if(empty($input['type'])){
             $input['type']='My Jobs';
          }
+         if(!empty($input['is_saved'])){
+            $input['type']='Saved';
+         }
+         elseif(!empty($input['is_applied'])){
+            $input['type']='Applied';
+         }
+         elseif(!empty($input['is_myjobs'])){
+            $input['type']='My Jobs';
+         }
+
         $skills=[];
         $resume=my_resume();
         if(!empty($resume)){
