@@ -222,7 +222,7 @@
                                     data-job-id="{{ $job->slug }}"
                                     onclick="saveJob(this)"
                                     href="javascript:void"
-                                    class="job_container_outer_button"
+                                    class="job_container_outer_button mt-1"
                                 >
                                     @if(!empty($job->savedjob))
                                     Saved
@@ -237,7 +237,7 @@
                                       
                                   <a href="javascript:void(0)"
                                     data-url="{{ route('home.jobs.single.shot', $job->slug) }}"
-                                    class="job_container_outer_button view-job-modal">
+                                    class="job_container_outer_button view-job-modal mt-1">
                                        Quick Apply
                                         <i class="bi bi-arrow-right"></i>
                                     </a>
