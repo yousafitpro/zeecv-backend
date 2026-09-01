@@ -29,9 +29,6 @@ class GoogleIndexingController extends Controller
         $todaySent = JobCareer::where('sent_for_indexing_google', 1)
         ->whereDate('updated_at', Carbon::today())  // or 'sent_at' if you have that column
         ->count();
-        if($todaySent>=config('services.google.indexing_quota', 200)){
-           return response()->json(['message'=>'quota reached : '.config('services.google.indexing_quota', 200)]);
-        }
         // Define batch size and time window (e.g., last 48 hours)
         $limit = 10;
         $hours = 72; // change as needed
@@ -58,6 +55,12 @@ class GoogleIndexingController extends Controller
             $jobs = $priorityJobs->merge($otherJobs);
         } else {
             $jobs = $priorityJobs;
+        }
+        if($todaySent>=config('services.google.indexing_quota', 200)){
+           return response()->json([
+           'p1'=> count($priorityJobs),
+           'p2'=>count($otherJobs),
+           'message'=>'quota reached : '.config('services.google.indexing_quota', 200)]);
         }
         $errors=[];
         foreach($jobs as $job){
