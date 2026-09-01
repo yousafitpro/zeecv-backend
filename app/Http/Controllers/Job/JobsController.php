@@ -142,7 +142,7 @@ class JobsController extends Controller
          if($data['job']->type=='internal' && !empty($data['job']->url)){
             return redirect($data['job']->url);
 
-         }else{
+         }elseif($data['job']->type!='internal'){
             return redirect($data['job']->url);
          }
          if(!auth()->check())
