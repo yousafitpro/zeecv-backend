@@ -29,7 +29,7 @@ class JobsController extends Controller
         $startDate = Carbon::now()->subWeeks(2);
         $endDate   = Carbon::now()->addDay();
 
-        return JobCareer::whereBetween('job_created_at', [
+        return JobCareer::whereBetween('created_at', [
                 $startDate,
                 $endDate
             ])
@@ -455,7 +455,7 @@ public function dashboardAjax(Request $request)
     {
         $input=$request->all();
         
-        $data['list'] = $this->queryProcess($request)->orderBy('job_created_at', 'desc');
+        $data['list'] = $this->queryProcess($request)->orderBy('created_at', 'desc');
     
         if(!is_ma()){
             $data['list']=$data['list']->paginate(20)
@@ -498,7 +498,7 @@ public function dashboardAjax(Request $request)
             ->when((empty($skills) && $input['type'] == 'My Jobs'), function ($query) {
                 $query->where('title','cvcvcvcv');
             })
-            ->orderBy('job_created_at', 'desc');
+            ->orderBy('created_at', 'desc');
     }
     public function myJobs(Request $request)
     {
@@ -660,7 +660,7 @@ public function dashboardAjax(Request $request)
             $query->where('is_contract', 1);
         }
             
-        $data['list']=$query->latest('job_created_at')->paginate(20)
+        $data['list']=$query->latest('created_at')->paginate(20)
         ->withQueryString();
         $data['input']=$input;
         $data['locations'] = JobCareer::pluck('location')
