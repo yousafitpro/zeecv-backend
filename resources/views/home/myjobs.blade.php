@@ -1125,16 +1125,15 @@
     </div>
 </div>
                     <div class="col-md-4" >
-                                <label>Location</label><br>
-                                <select class="form-control select2" name="location" style="max-width: 350px">
-                                    <option value="">--All--</option>
-                                    @foreach ($locations as $lo)
-                                      
-                                      <option value="{{ $lo }}" {{ $lo == ($input['location'] ?? '') ? 'selected' : '' }}>
-                                            {{ $lo }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                        <br>
+                                <div class="row">
+                                    <div class=" col-md-9 mt-2 job_search_btns" >
+                        <button class="btn btn-primary btn-block btn-sm"  type="submit">Search</button>
+                    </div>
+                    <div class="col-md-3 mt-2 job_search_btns" >
+                        <a href="{{ route('home.user.myjobs') }}" class="btn btn-primary btn-sm btn-block"  type="submit">Reset</a>
+                    </div>
+                                </div>
                          
                     </div>
                    
@@ -1171,12 +1170,7 @@
                             Saved
                         </label>
                      </div>
-                     <div class=" col-md-3 mt-2 job_search_btns" >
-                        <button class="btn btn-primary btn-block btn-sm"  type="submit">Search</button>
-                    </div>
-                    <div class="col-md-1 mt-2 job_search_btns" >
-                        <a href="{{ route('home.user.myjobs') }}" class="btn btn-primary btn-sm btn-block"  type="submit">Reset</a>
-                    </div>
+                     
                    </div>
                 </form>
         <div class="container" style="padding-left:0px;padding-right:0px;">
