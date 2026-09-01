@@ -78,6 +78,38 @@ class JobsController extends Controller
         }
          return view('home.jobs-detail',$data);
     }
+    public function jobDetailShort($slug){
+         $data['job']=JobCareer::where('slug',$slug)->first();
+            $currentTags = is_array($data['job']->tags)
+                ? $data['job']->tags
+                : explode(',', $data['job']->tags);
+
+            $data['random_jobs'] = JobResource::collection(JobCareer::where('slug', '!=', $slug)
+                ->where(function ($query) use ($currentTags) {
+
+                    foreach ($currentTags as $tag) {
+
+                        $tag = trim($tag);
+
+                        if ($tag !== '') {
+
+                            $query->orWhere('tags', 'LIKE', '%' . $tag . '%')
+                                ->orWhere('title', 'LIKE', '%' . $tag . '%');
+
+                        }
+                    }
+
+                })
+                ->inRandomOrder()
+                ->limit(4)
+                ->get());
+        if(is_ma()){
+            $data['job']=new JobResource($data['job']);
+            unset($data['random_jobs']);
+            return response()->json($data);
+        }
+         return view('home.jobs-detail-short',$data);
+    }
     public function jobApplyProcess(Request $request,$slug){
 
         $job=JobCareer::where('slug',$slug)->first();

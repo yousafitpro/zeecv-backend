@@ -1,225 +1,4 @@
-@extends('layout.home')
 
-@section('meta_tags')
-
-    @php
-        $jobTitle = trim($job->title ?? 'Job Opportunity');
-
-        $company = trim($job->company_name ?? '');
-
-        $location = trim($job->location ?? '');
-        $job_type = !empty($job->job_types)
-            ? trim(explode(',', $job->job_types)[0])
-            : null;
-        $job_valid_through=$job->expiry_date
-            ? \Carbon\Carbon::parse($job->expiry_date)->format('Y-m-d')
-            : null;
-        $job_type = match (strtolower($job_type ?? '')) {
-            'full time', 'full-time' => 'FULL_TIME',
-            'part time', 'part-time' => 'PART_TIME',
-            'contract', 'contractor' => 'CONTRACTOR',
-            'temporary' => 'TEMPORARY',
-            'intern', 'internship' => 'INTERN',
-            default => null,
-        };
-
-        $description = strip_tags(
-            $job->description
-            ?? 'Find the latest job opportunity on ZeeCV.'
-        );
-
-        $description = \Illuminate\Support\Str::limit(
-            preg_replace('/\s+/', ' ', $description),
-            155,
-            '...'
-        );
-
-        $jobUrl = url()->current();
-
-
-
-        $publishedDate = !empty($job->job_created_at)
-            ? \Carbon\Carbon::parse($job->job_created_at)
-                ->toIso8601String()
-            : null;
-    @endphp
-
-
-    <!-- =====================================================
-         BASIC SEO
-    ====================================================== -->
-
-    <title>
-        {{ $jobTitle }}
-        @if($company)
-            at {{ $company }}
-        @endif
-        | ZeeCV Jobs
-    </title>
-
-    <meta name="description"
-          content="{{ $description }}">
-
-    <meta name="robots"
-          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-
-    <meta name="googlebot"
-          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-
-
-
-    <!-- =====================================================
-         OPEN GRAPH
-    ====================================================== -->
-
-    <meta property="og:type"
-          content="website">
-
-    <meta property="og:title"
-          content="{{ $jobTitle }}@if($company) at {{ $company }}@endif | ZeeCV Jobs">
-
-    <meta property="og:description"
-          content="{{ $description }}">
-
-    <meta property="og:url"
-          content="{{ $jobUrl }}">
-
-    <meta property="og:site_name"
-          content="ZeeCV">
-
-    <meta property="og:locale"
-          content="en_US">
-
-
-
-    <meta property="og:image:alt"
-          content="{{ $jobTitle }} - ZeeCV Jobs">
-
-    <meta property="og:image:width"
-          content="1200">
-
-    <meta property="og:image:height"
-          content="630">
-
-
-    <!-- =====================================================
-         ARTICLE / JOB DATE
-    ====================================================== -->
-
-    @if($publishedDate)
-
-        <meta property="article:published_time"
-              content="{{ $publishedDate }}">
-
-        <meta property="article:modified_time"
-              content="{{ $publishedDate }}">
-
-    @endif
-
-
-    <!-- =====================================================
-         TWITTER / X
-    ====================================================== -->
-
-    <meta name="twitter:card"
-          content="summary_large_image">
-
-    <meta name="twitter:title"
-          content="{{ $jobTitle }}@if($company) at {{ $company }}@endif | ZeeCV Jobs">
-
-    <meta name="twitter:description"
-          content="{{ $description }}">
-
-
-
-    <meta name="twitter:image:alt"
-          content="{{ $jobTitle }} - ZeeCV Jobs">
-
-
-    <!-- =====================================================
-         JOB POSTING STRUCTURED DATA
-    ====================================================== -->
-
-@php
-    $jobPosting = [
-        '@context' => 'https://schema.org',
-        '@type' => 'JobPosting',
-        'employmentType'=>$job_type,
-        'validThrough'=>$job_valid_through,
-        'title' => $jobTitle,
-        'description' => strip_tags($job->description ?? ''),
-        'url' => $jobUrl,
-
-        'identifier' => [
-            '@type' => 'PropertyValue',
-            'name' => 'ZeeCV',
-            'value' => (string) $job->id,
-        ],
-    ];
-
-    if ($publishedDate) {
-        $jobPosting['datePosted'] = $publishedDate;
-    }
-
-
-    if ($company) {
-        $jobPosting['hiringOrganization'] = [
-            '@type' => 'Organization',
-            'name' => $company,
-        ];
-    }
-
-    if ($location) {
-        $jobPosting['jobLocation'] = [
-            '@type' => 'Place',
-            'address' => [
-                '@type' => 'PostalAddress',
-                'addressLocality' => $location,
-            ],
-        ];
-    }
-@endphp
-
-<script type="application/ld+json">
-{!! json_encode($jobPosting, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
-</script>
-
-
-    <!-- =====================================================
-         BREADCRUMB STRUCTURED DATA
-    ====================================================== -->
-
-   <script type="application/ld+json">
-{!! json_encode([
-    '@context' => 'https://schema.org',
-    '@type' => 'BreadcrumbList',
-    'itemListElement' => [
-        [
-            '@type' => 'ListItem',
-            'position' => 1,
-            'name' => 'Home',
-            'item' => url('/'),
-        ],
-        [
-            '@type' => 'ListItem',
-            'position' => 2,
-            'name' => 'Jobs',
-            'item' => url('/resume-builder/jobs'),
-        ],
-        [
-            '@type' => 'ListItem',
-            'position' => 3,
-            'name' => $jobTitle,
-            'item' => $jobUrl,
-        ],
-    ],
-], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
-</script>
-
-@endsection
-
-
-@section('content')
 
 <style>
     /* =========================================
@@ -541,7 +320,7 @@
     .job_container_outer_layout {
         display: grid;
 
-        grid-template-columns: minmax(0, 1fr) 310px;
+         grid-template-columns: 1fr;
 
         gap: 25px;
 
@@ -1181,7 +960,20 @@
 
         <div class="container" style="padding-left: 0px;padding-right: 0px">
 
+ <div class="job_container_outer_apply">
+                                                        <a
+                                href="javascript:void"
+                                onclick="apply_job('{{ route('home.jobs.apply',$job->slug) }}', '{{ $job->slug }}')"
+                                rel="nofollow noopener"
+                                class="job_container_outer_apply_button"
+                            >
 
+                                Apply for this Job
+
+                                <i class="bi bi-box-arrow-up-right"></i>
+
+                            </a>
+                    </div>
             <div class="job_container_outer_layout">
 
 
@@ -1214,194 +1006,7 @@
                 </main>
 
 
-                {{-- =====================================
-                     SIDEBAR
-                ====================================== --}}
-
-                <aside class="job_container_outer_sidebar">
-
-
-                    {{-- Apply --}}
-
-                    <div class="job_container_outer_apply">
-                                                        <a
-                                href="{{ route('home.jobs.apply',request('slug')) }}"
-                                rel="nofollow noopener"
-                                class="job_container_outer_apply_button"
-                            >
-
-                                Apply for this Job
-
-                                <i class="bi bi-box-arrow-up-right"></i>
-
-                            </a>
-                    </div>
-
-
-                    {{-- Job Information --}}
-
-                    <div class="job_container_outer_info">
-
-
-                        <h3 class="job_container_outer_info_title">
-
-                            Job Information
-
-                        </h3>
-
-
-                        @if(!empty($job->company))
-
-                            <div class="job_container_outer_info_item">
-
-                                <div class="job_container_outer_info_icon">
-
-                                    <i class="bi bi-building"></i>
-
-                                </div>
-
-
-                                <div class="job_container_outer_info_content">
-
-                                    <span class="job_container_outer_info_label">
-                                        Company
-                                    </span>
-
-                                    <span class="job_container_outer_info_value">
-                                        {{ $job->company }}
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-                        @endif
-
-
-                        @if(!empty($job->location))
-
-                            <div class="job_container_outer_info_item">
-
-                                <div class="job_container_outer_info_icon">
-
-                                    <i class="fa fa-location"></i>
-
-                                </div>
-
-
-                                <div class="job_container_outer_info_content">
-
-                                    <span class="job_container_outer_info_label">
-                                        Location
-                                    </span>
-
-                                    <span class="job_container_outer_info_value">
-                                        {{ $job->location }}
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-                        @endif
-
-
-                        @if(!empty($job->job_created_at))
-
-                            <div class="job_container_outer_info_item">
-
-                                <div class="job_container_outer_info_icon">
-
-                                    <i class="fa fa-edit"></i>
-
-                                </div>
-
-
-                                <div class="job_container_outer_info_content">
-
-                                    <span class="job_container_outer_info_label">
-                                        Posted
-                                    </span>
-
-                                    <span class="job_container_outer_info_value">
-
-                                        {{ \Carbon\Carbon::parse(
-                                            $job->job_created_at
-                                        )->format('M d, Y') }}
-
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-                        @endif
-
-
-          
-
-
-                    </div>
-
-
-                    {{-- Resume CTA --}}
-
-                    <div class="job_container_outer_resume">
-
-
-                        <div class="job_container_outer_resume_icon">
-
-                             <i class="fa fa-edit"></i>
-
-                        </div>
-
-
-                        <h3 class="job_container_outer_resume_title">
-
-                            Stand Out From Other Candidates
-
-                        </h3>
-
-
-                        <p class="job_container_outer_resume_description">
-
-                            Create a professional, ATS-friendly resume
-                            that helps you make a stronger impression
-                            on employers.
-
-                        </p>
-
-
-                        <a
-                            href="{{ url('/signup') }}"
-                            class="job_container_outer_resume_button"
-                        >
-
-                            Create Your Resume
-
-                            <i class="bi bi-arrow-right"></i>
-
-                        </a>
-
-
-                    </div>
-
-
-                    {{-- Source --}}
-{{-- 
-                    @if(!empty($job->source))
-
-                        <div class="job_container_outer_source">
-
-                            This job opportunity was sourced from
-                            <strong>{{ ucfirst($job->source) }}</strong>.
-
-                        </div>
-
-                    @endif --}}
-
-
-                </aside>
+               
 
 
             </div>
@@ -1413,107 +1018,32 @@
      RANDOM / RELATED JOBS
 ========================================== --}}
 
-@if(!empty($random_jobs) && count($random_jobs) > 0)
 
-    <section class="job_container_outer_random_jobs">
-
-        <div class="container-fluid">
-
-            <div class="job_container_outer_random_jobs_header">
-
-                <h2 class="job_container_outer_random_jobs_title">
-                    More Jobs You May Like
-                </h2>
-
-                <p class="job_container_outer_random_jobs_subtitle">
-                    Explore more opportunities that might be a good fit for you.
-                </p>
-
-            </div>
-
-
-            <div class="job_container_outer_random_jobs_grid">
-
-                @foreach($random_jobs as $random_job)
-
-                    <a
-                        href="{{ route('home.jobs.single', $random_job->slug) }}"
-                        class="job_container_outer_random_job_card"
-                    >
-
-                        <div class="job_container_outer_random_job_top">
-
-                            <div class="job_container_outer_random_job_logo">
-                                {{ strtoupper(
-                                    substr(
-                                        $random_job->company ?? $random_job->title ?? 'J',
-                                        0,
-                                        1
-                                    )
-                                ) }}
-                            </div>
-
-                            <div class="job_container_outer_random_job_content">
-
-                                <h3 class="job_container_outer_random_job_title">
-                                    {{ \Illuminate\Support\Str::limit($random_job->title, 55) }}
-                                </h3>
-
-                                @if(!empty($random_job->company))
-                                    <div class="job_container_outer_random_job_company">
-                                        <i class="bi bi-building"></i>
-                                        {{ \Illuminate\Support\Str::limit($random_job->company, 35) }}
-                                    </div>
-                                @endif
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="job_container_outer_random_job_meta">
-
-                            @if(!empty($random_job->location))
-
-                                <span class="job_container_outer_random_job_meta_item">
-                                    <i class="bi bi-geo-alt"></i>
-                                    {{ \Illuminate\Support\Str::limit($random_job->location, 25) }}
-                                </span>
-
-                            @endif
-
-
-                            @if(!empty($random_job->job_types))
-
-                                <span class="job_container_outer_random_job_meta_item">
-                                    <i class="bi bi-briefcase"></i>
-                                    {{ \Illuminate\Support\Str::limit(str_replace(',', ', ', $random_job->job_types), 25) }}
-                                </span>
-
-                            @endif
-
-                        </div>
-
-
-                        <div class="job_container_outer_random_job_arrow">
-
-                            View Job
-                            <i class="bi bi-arrow-right"></i>
-
-                        </div>
-
-                    </a>
-
-                @endforeach
-
-            </div>
-
-        </div>
-
-    </section>
-
-@endif
 
 </div>
 
-@endsection
+<script>
+function apply_job(url, jobid) {
+    if (!url || !jobid) {
+        alert('Invalid job details.');
+        return;
+    }
+
+    // Open the application URL in a new window/tab
+    window.open(url, '_blank');
+
+    // After 2 seconds, show the confirmation modal
+    setTimeout(function() {
+        // Hide the job detail modal (if it's still open)
+        $('#jobDetailModal').modal('hide');
+
+        // // Store the job ID for the AJAX call
+        $('#applyConfirmModal').data('job-id', jobid);
+
+        // Show the confirmation modal
+      
+         $('#applyConfirmModal').modal('show');
+    }, 2000);
+}
+
+</script>
