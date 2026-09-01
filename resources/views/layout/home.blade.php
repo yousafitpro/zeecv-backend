@@ -80,14 +80,14 @@
 </script>
 </head>
 <body>
-@if(session('is_app','no')=='no')
+{{-- @if(session('is_app','no')=='no') --}}
 <div style="height: 100px"></div>
-@endif
+{{-- @endif --}}
 <div class="container" id="main_content_container">
 
-@if(session('is_app','no')=='no')
+{{-- @if(session('is_app','no')=='no') --}}
 @include('layout.includes.navbar')
-@endif
+{{-- @endif --}}
 <div>
 @yield('content')
 </div>
