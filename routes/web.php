@@ -618,7 +618,7 @@ Route::prefix('resume-builder')
        Route::get('/jobs/apply/{slug}', [JobsController::class,'jobApply'])->name('home.jobs.apply');
        Route::post('/jobs/apply-process/{slug}', [JobsController::class,'jobApplyProcess'])->name('home.jobs.applyProcess');
     });
-//dasdasd
+//dasdasdsdsd
 Route::group([
     'prefix' => 'mobile-app'
 ], function ($router) {
