@@ -42,7 +42,7 @@ class GoogleIndexingController extends Controller
             ->get();
 
         $remaining = $limit - $priorityJobs->count();
-
+        $otherJobs=[];
         if ($remaining > 0) {
             // 2. Fill the rest from all other sources
             $otherJobs = JobCareer::where('sent_for_indexing_google', 0)
