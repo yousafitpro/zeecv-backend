@@ -33,7 +33,6 @@ class MobileAppController extends Controller
     public function loginUsingToken($token)
     {
       $user=User::where('login_token',$token)->first();
-      Session::put('is_app','yes');
       if($user){
         auth()->login($user);
         $resumes=Resume::where('user_id',$user->id)->get();
@@ -45,8 +44,8 @@ class MobileAppController extends Controller
             $resumes=Resume::where('user_id',$user->id)->get();
             $resu=$resumes->first();
         }
-        
-        return redirect()->route('resume.edit',unique_encrypt($resu->id)).'?is_app=no';
+        $url=route('resume.edit',unique_encrypt($resu->id)).'?is_app=no';
+        return redirect($url);
       }
       return response()->json(['message'=>"unauthorized"]);
     }
