@@ -22,6 +22,8 @@ if (!function_exists('reset_description')) {
             'Originally posted on',
             'Himalayas',
             'on Arbeitnow',
+            '<a>',
+            '</a>',
             'jobs in',
             'arbeitnow',
             'www.',
