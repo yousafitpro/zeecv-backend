@@ -1224,17 +1224,22 @@
                     {{-- Apply --}}
 
                     <div class="job_container_outer_apply">
+                        @if(!empty($job->appliedjob))
+                        <a class="job_container_outer_apply_button">Applied</a>
+                        @else
                                                         <a
-                                href="{{ route('home.jobs.apply',request('slug')) }}"
+                                href="javascript:void"
+                                onclick="apply_job('{{ route('home.jobs.apply',$job->slug) }}', '{{ $job->slug }}')"
                                 rel="nofollow noopener"
                                 class="job_container_outer_apply_button"
                             >
-
+                        
                                 Apply for this Job
 
                                 <i class="bi bi-box-arrow-up-right"></i>
 
                             </a>
+                            @endif
                     </div>
 
 
@@ -1515,5 +1520,80 @@
 @endif
 
 </div>
+<script>
+    function applyJob(el){
+        var modal = $('#applyConfirmModal');
+        var jobId = modal.data('job-id');
 
+        if (!jobId) {
+            alert('Job ID not found.');
+            return;
+        }
+
+        $.ajax({
+            url: "{{ route('home.jobs.apply.ajax') }}",
+            method: 'get',
+            data: {
+                job_id: jobId,
+            },
+            success: function(response) {
+                modal.modal('hide');
+                $('.job_container_outer_apply_button').html('<i class="bi bi-check-circle-fill text-success"></i> Applied');
+            },
+            error: function(xhr) {
+                console.error('AJAX Error:', xhr.responseText);
+                alert('Failed to save application status. Please try again.');
+            },
+            complete: function() {
+                // Re-enable button
+                $('#confirmApplyYes').prop('disabled', false).text('Yes, I applied');
+            }
+        });
+    }
+function apply_job(url, jobid) {
+    if (!url || !jobid) {
+        alert('Invalid job details.');
+        return;
+    }
+
+    // Open the application URL in a new window/tab
+    window.open(url, '_blank');
+
+    // After 2 seconds, show the confirmation modal
+    setTimeout(function() {
+        // Hide the job detail modal (if it's still open)
+  
+
+        // // Store the job ID for the AJAX call
+        $('#applyConfirmModal').data('job-id', jobid);
+
+        // Show the confirmation modal
+      
+         $('#applyConfirmModal').modal('show');
+    }, 2000);
+}
+
+</script>
+     <!-- Apply Confirmation Modal -->
+<div class="modal fade" id="applyConfirmModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Application</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center py-4">
+                <i class="bi bi-question-circle fs-1 text-warning mb-3 d-block"></i>
+                <h6>Have you successfully applied for this job?</h6>
+                <p class="text-muted small">This will mark the job as applied in your profile.</p>
+            </div>
+            <div class="modal-footer justify-content-center border-0">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No, Cancel</button>
+                <button type="button" onclick="applyJob(this)" class="btn btn-success" id="confirmApplyYes">
+                    Yes, I applied
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
