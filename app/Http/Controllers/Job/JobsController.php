@@ -352,20 +352,14 @@ public function applyAjax(Request $request)
             'updated_at' => now(),
         ]);
 
-        return response()->json([
+
+    }
+
+          return response()->json([
             'success' => true,
             'applied' => true,
             'message' => 'Successfully Applied',
         ]);
-    }
-
-  
-
-    return response()->json([
-        'success' => true,
-        'applied' => false,
-        'message' => 'Application removed',
-    ]);
 }
 public function saveAjax(Request $request)
 {
