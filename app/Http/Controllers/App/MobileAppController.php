@@ -39,11 +39,14 @@ class MobileAppController extends Controller
         $resumes=Resume::where('user_id',$user->id)->get();
         if(count($resumes)>0){
            $resu=$resumes->first();
-           return redirect()->route('resume.edit',unique_encrypt($resu->id));
          
         }else{
-            return redirect()->route('resume.create');
+            (new ResumeController())->create();
+            $resumes=Resume::where('user_id',$user->id)->get();
+            $resu=$resumes->first();
         }
+        
+        return redirect()->route('resume.edit',unique_encrypt($resu->id)).'?is_app=no';
       }
       return response()->json(['message'=>"unauthorized"]);
     }
