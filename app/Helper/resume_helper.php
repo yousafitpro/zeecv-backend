@@ -18,6 +18,9 @@ if (!function_exists('my_resume')) {
 if (!function_exists('reset_description')) {
     function reset_description($description)
     {
+        // Remove all <a> tags and their inner content
+        $description = preg_replace('/<a[^>]*>.*?<\/a>/i', '', $description);
+
         $texts = [
             'Originally posted on',
             'Himalayas',
