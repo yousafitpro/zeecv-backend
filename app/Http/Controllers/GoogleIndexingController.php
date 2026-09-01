@@ -34,7 +34,7 @@ class GoogleIndexingController extends Controller
         }
         // Define batch size and time window (e.g., last 48 hours)
         $limit = 10;
-        $hours = 1; // change as needed
+        $hours = 72; // change as needed
         $cutoff = Carbon::now()->subHours($hours);
 
         // 1. Get up to $limit from the prioritized source
