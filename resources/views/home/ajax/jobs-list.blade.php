@@ -206,13 +206,17 @@
                                 <span class="job_container_outer_status">
 
                                     <i class="bi bi-check-circle"></i>
-
+                                      @if(!empty($job->appliedjob))
+                                      Applied
+                                      @else
                                     Open Position
+                                    @endif
 
                                 </span>
 
 
                                 <div>
+                                    @if(empty($job->appliedjob))
                                      @if (auth()->check())
                                          <a
                                     data-job-id="{{ $job->slug }}"
@@ -230,12 +234,14 @@
 
                                 </a>
                                      @endif
+                                      
                                   <a href="javascript:void(0)"
                                     data-url="{{ route('home.jobs.single.shot', $job->slug) }}"
                                     class="job_container_outer_button view-job-modal">
                                        Quick Apply
                                         <i class="bi bi-arrow-right"></i>
                                     </a>
+                                    @endif
                                                                 
                                 </div>
 
