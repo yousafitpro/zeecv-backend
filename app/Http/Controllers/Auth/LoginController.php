@@ -101,11 +101,12 @@ class LoginController extends Controller
 
     public function logout()
     {
-
+        Session::flush();
         Session::put('login_2FA',false);
         Session::put('login_email_2FA',false);
         Session::put('login_try',0);
         auth()->logout();
+        Session::regenerate();
         return redirect()->route('login');
     }
 }
