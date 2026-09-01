@@ -171,7 +171,8 @@
 
 
                                 <div>
-                                     <a
+                                     @if (auth()->check())
+                                         <a
                                     data-job-id="{{ $job->slug }}"
                                     onclick="saveJob(this)"
                                     href="javascript:void"
@@ -186,6 +187,7 @@
                                     <i class="bi bi-arrow-right"></i>
 
                                 </a>
+                                     @endif
                                     <a
                                     href="{{ route('home.jobs.single',$job->slug) }}"
                                     
