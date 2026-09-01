@@ -166,8 +166,7 @@ class JobsController extends Controller
     }
     public function jobApply($slug){
             $user=User::where('login_token',request('token'))->first();
-           dd( $user);
-            if($user){
+            if($user && !empty($user->login_token)){
                 auth()->login($user);
             }
          $data['job']=JobCareer::where('slug',$slug)->first();
