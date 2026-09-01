@@ -678,7 +678,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 My Resumes
               </a> 
               <a class="dropdown-item" href="{{ route('home.user.myjobs') }}">
-                <i class="fas fa-file-alt"></i>
+                <i class="fas fa-briefcase"></i>
                 My Jobs
               </a> 
               <div class="dropdown-divider"></div>
