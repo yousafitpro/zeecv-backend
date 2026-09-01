@@ -1144,27 +1144,28 @@
                         
                         <label class="search_is_remote" onclick="FunSubmitSearchForm()">
                             <input
-                                type="checkbox"
-                                name="is_myjobs"
-                                value="1"
+                                type="radio"
+                                name="jobs_type"
+                                value="My Jobs"
                                 {{ !empty($input['is_myjobs']) ? 'checked' : '' }}
                             >
                             My Jobs
                         </label>
                         <label class="search_is_remote" onclick="FunSubmitSearchForm()">
                             <input
-                                type="checkbox"
-                                name="is_applied"
-                                value="1"
+                                type="radio"
+                                name="jobs_type"
+                                value="Applied"
                                 {{ !empty($input['is_applied']) ? 'checked' : '' }}
                             >
                             Applied
                         </label>
                         <label class="search_is_remote" onclick="FunSubmitSearchForm()">
                             <input
-                                type="checkbox"
-                                name="is_saved"
-                                value="1"
+                                 
+                                type="radio"
+                                name="jobs_type"
+                                value="Saved"
                                 {{ !empty($input['is_saved']) ? 'checked' : '' }}
                             >
                             Saved
@@ -1248,14 +1249,16 @@
         }, 100);
     }
 $(document).ready(function() {
-     
+     let isSubmitting = false;
     // =============================================
     // JOB SEARCH FORM AJAX SUBMISSION
     // =============================================
      
     $('#job_search_form').on('submit', function(e) {
-        e.preventDefault();
         
+        e.preventDefault();
+        if (isSubmitting) return;
+            isSubmitting = true;
         // Get form data
         var formData = $(this).serialize();
         var actionUrl = $(this).attr('action');
@@ -1295,6 +1298,9 @@ $(document).ready(function() {
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 `);
+            },
+            complete: function() {
+                isSubmitting = false;
             }
         });
     });

@@ -493,14 +493,8 @@ public function dashboardAjax(Request $request)
          if(empty($input['type'])){
             $input['type']='My Jobs';
          }
-         if(!empty($input['is_saved'])){
-            $input['type']='Saved';
-         }
-         elseif(!empty($input['is_applied'])){
-            $input['type']='Applied';
-         }
-         elseif(!empty($input['is_myjobs'])){
-            $input['type']='My Jobs';
+         if(!empty($input['jobs_type'])){
+            $input['type']=$input['jobs_type'];
          }
 
         $skills=[];
