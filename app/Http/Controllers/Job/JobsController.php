@@ -139,6 +139,12 @@ class JobsController extends Controller
                 auth()->login($user);
             }
          $data['job']=JobCareer::where('slug',$slug)->first();
+         if($data['job']->type=='internal' && !empty($data['job']->url)){
+            return redirect($data['job']->url);
+
+         }else{
+            return redirect($data['job']->url);
+         }
          if(!auth()->check())
           {
               return redirect('signup');

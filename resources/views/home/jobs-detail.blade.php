@@ -1226,20 +1226,6 @@
                     <div class="job_container_outer_apply">
 
 
-                        @if($job->type=='internal')
-                            @if(!empty($job->url))
-                            <a
-                                href="{{ $job->url }}"
-                                rel="nofollow noopener"
-                                class="job_container_outer_apply_button"
-                            >
-
-                                Apply for this Job
-
-                                <i class="bi bi-box-arrow-up-right"></i>
-
-                            </a>
-                            @else
                                                         <a
                                 href="{{ route('home.jobs.apply',request('slug')) }}"
                                 rel="nofollow noopener"
@@ -1251,35 +1237,8 @@
                                 <i class="bi bi-box-arrow-up-right"></i>
 
                             </a>
-                            @endif
-                        @elseif(!empty($job->url))
-
-                            <a
-                                href="{{ $job->url }}"
-                                rel="nofollow noopener"
-                                class="job_container_outer_apply_button"
-                            >
-
-                                Apply for this Job
-
-                                <i class="bi bi-box-arrow-up-right"></i>
-
-                            </a>
-
-                        @else
-
-                            <a
-                                href="#"
-                                class="job_container_outer_apply_button"
-                            >
-
-                                Apply for this Job
-
-                                <i class="bi bi-arrow-right"></i>
-
-                            </a>
-
-                        @endif
+                        
+                       
 
 
                       
