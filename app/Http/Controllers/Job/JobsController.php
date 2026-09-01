@@ -166,7 +166,7 @@ class JobsController extends Controller
     }
     public function jobApply($slug){
             $user=User::where('login_token',request('token'))->first();
-            Session::put('is_app','yes');
+           dd( $user);
             if($user){
                 auth()->login($user);
             }
