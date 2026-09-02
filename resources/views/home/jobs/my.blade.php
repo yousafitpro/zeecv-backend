@@ -870,7 +870,7 @@
 
 <a
                             href="javascript:void" data-toggle="modal" data-target="#jobModal"
-                            class="btn btn-primary" style="float: right"
+                            class="btn btn-primary float-right" 
                         >
 
                             Create New Job
@@ -878,8 +878,6 @@
                             <i class="bi bi-arrow-right"></i>
 
                         </a>
-                        <br>
-                        <br>
 <div class="job_container_outer" style="background: transparent">
 
 
