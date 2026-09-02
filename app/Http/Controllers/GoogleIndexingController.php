@@ -58,8 +58,8 @@ class GoogleIndexingController extends Controller
         } else {
             $jobs = $priorityJobs;
         }
+        
         $expiresAt = Session::get('google_indexing_limit_expires_at');
-
         if ($expiresAt && now()->lessThan($expiresAt)) {
 
             $remainingSeconds = now()->diffInSeconds($expiresAt);
@@ -87,6 +87,33 @@ class GoogleIndexingController extends Controller
         }
         $errors=[];
         foreach($jobs as $job){
+
+        $expiresAt = Session::get('google_indexing_limit_expires_at');
+        if ($expiresAt && now()->lessThan($expiresAt)) {
+
+            $remainingSeconds = now()->diffInSeconds($expiresAt);
+
+            $hours = floor($remainingSeconds / 3600);
+            $minutes = floor(($remainingSeconds % 3600) / 60);
+            $seconds = $remainingSeconds % 60;
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Google indexing limit reached.',
+                'remaining' => [
+                    'hours' => $hours,
+                    'minutes' => $minutes,
+                    'seconds' => $seconds,
+                ],
+                'remaining_formatted' => sprintf(
+                    '%02d:%02d:%02d',
+                    $hours,
+                    $minutes,
+                    $seconds
+                ),
+                'expires_at' => $expiresAt,
+            ], 429);
+        }
            $errors[]= $this->indexJob($job->id);
         }
         return response()->json([
