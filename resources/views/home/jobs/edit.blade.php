@@ -307,7 +307,7 @@
     <div class="job_update_card">
     <br>
     <button type="button"
-        class="job_container_outer_button float-right mr-2 btn-sm btn-primary"
+        class="job_container_outer_button float-right mr-4 btn-sm btn-primary"
         data-url="{{ route('home.jobs.single', $job->slug) }}">
     <i class="fa fa-copy"></i>
 </button>
