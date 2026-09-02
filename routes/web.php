@@ -30,6 +30,7 @@ use App\Http\Controllers\GoogleIndexingController;
 use App\Http\Controllers\Job\JobProcessingController;
 use App\Http\Controllers\Job\JobsController;
 use App\Http\Controllers\Job\JobUserController;
+use App\Http\Controllers\JobDashboardController;
 use App\Http\Controllers\PMM\Lookup\AddressController;
 use App\Http\Controllers\PMM\Lookup\GlsProfile;
 use App\Http\Controllers\Resume\CertificateController;
@@ -707,4 +708,9 @@ Route::prefix('google/indexing')
      ->group(function(){
      Route::any('/index',[GoogleIndexingController::class,'indexJobs']);
      Route::any('/insigts',[GoogleIndexingController::class,'indexJobsInsigts']);
+     });
+Route::prefix('admin-job/dashboard')
+     ->middleware('auth','admin')
+     ->group(function(){
+     Route::any('/index',[JobDashboardController::class,'index'])->name('admin.job.dashboard');
      });

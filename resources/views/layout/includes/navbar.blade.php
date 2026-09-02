@@ -588,6 +588,26 @@ document.addEventListener('DOMContentLoaded', function () {
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home.jobs') }}">Jobs</a>
         </li>
+        @if(auth()->check() && is_admin())
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" 
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            More..
+          </a>
+          <div class="dropdown-menu dropdown-menu-right resume-dropdown" aria-labelledby="moreDropdown">
+
+            <a class="dropdown-item" href="{{ route('admin.job.dashboard') }}">
+              <span class="resume-menu-icon">
+                <i class="fas fa-layer-group"></i>
+              </span>
+              <span>
+                <strong>Dashboard</strong>
+              </span>
+            </a>
+
+          </div>
+        </li>
+      @endif
         @if(!auth()->check())
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home.about') }}">About</a>
@@ -596,7 +616,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <li class="nav-item">
           <a class="nav-link" href="{{ route('pages.page.blogs.list') }}">Blog</a>
         </li>
-      
+
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="resumeDropdown" role="button" 
