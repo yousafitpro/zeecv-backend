@@ -57,15 +57,15 @@ class GoogleIndexingController extends Controller
         } else {
             $jobs = $priorityJobs;
         }
-        if($todaySent>=config('services.google.indexing_quota', 200)){
-           return response()->json([
-           'p1'=> count($priorityJobs),
-           'p2'=>count($otherJobs),
-           'otherJobs'=>$otherJobs,
-           'priorityJobs'=>$priorityJobs,
-           'remaining'=>$remaining,
-           'message'=>'quota reached : '.config('services.google.indexing_quota', 200)]);
-        }
+        // if($todaySent>=config('services.google.indexing_quota', 200)){
+        //    return response()->json([
+        //    'p1'=> count($priorityJobs),
+        //    'p2'=>count($otherJobs),
+        //    'otherJobs'=>$otherJobs,
+        //    'priorityJobs'=>$priorityJobs,
+        //    'remaining'=>$remaining,
+        //    'message'=>'quota reached : '.config('services.google.indexing_quota', 200)]);
+        // }
         $errors=[];
         foreach($jobs as $job){
            $errors[]= $this->indexJob($job->id);
