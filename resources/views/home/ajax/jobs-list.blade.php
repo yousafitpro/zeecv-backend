@@ -73,7 +73,8 @@
 
                                     <h3 class="job_container_outer_title">
 
-                                        <a
+                                        @if (auth()->check())
+                                            <a
                                             href="{{ route('home.jobs.single' , $job->slug) }}"
                                             class="job_container_outer_title_link"
                                         >
@@ -81,6 +82,16 @@
                                             {{ $job->title }}
 
                                         </a>
+                                        @else
+                                        <a
+                                            href="{{ route('signup') }}"
+                                            class="job_container_outer_title_link"
+                                        >
+
+                                            {{ $job->title }}
+
+                                        </a>
+                                        @endif
 
                                     </h3>
 
