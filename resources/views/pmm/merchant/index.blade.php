@@ -20,8 +20,8 @@ font-weight: bold
 
                   <form id="saearchForm" action="{{route('pmm.merchants.search')}}" method="post"onsubmit="submitSearchForm(event, this)">
                                 @csrf
-                                <div class="row no-gutters page-header-outer"   >
-                                    <div class="col-md-6">
+                    <div class="row no-gutters page-header-outer"   >
+                        <div class="col-md-6">
                                <div class="page-header">
                                 <h4 class="page-title">Merchants</h4>
                                 <ul class="breadcrumbs">

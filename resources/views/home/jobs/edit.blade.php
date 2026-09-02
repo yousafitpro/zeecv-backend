@@ -305,7 +305,29 @@
 <div class="job_update_outer">
 
     <div class="job_update_card">
+    <br>
+ <div class="row no-gutters page-header-outer"   >
+    
+                        <div class="col-md-6">
+                               <div class="page-header">
+                                <ul class="breadcrumbs">
+                                    <li class="nav-home">
+                                        <a href="{{route('jobs.my')}}">
+                                            <i class="flaticon-home"></i>
+                                        </a>
+                                    </li>
+                                    <li class="separator">
+                                        <i class="flaticon-right-arrow"></i>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('jobs.my')}}">Post Jobs</a>
+                                    </li>
 
+                                </ul>
+
+                            </div>
+                                    </div>
+                                </div>
         {{-- Header --}}
         <div class="job_update_header">
             <div class="job_update_header_inner">
