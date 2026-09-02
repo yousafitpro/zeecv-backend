@@ -81,7 +81,7 @@ class GoogleIndexingService
             ];
             
         } catch (Exception $e) {
-            dd($e->getMessage(),$e->getCode());
+            dd(json_decode(json_encode($e->getMessage()),true),$e->getCode());
             Log::error('Google Indexing API error: ' . $e->getMessage(), ['url' => $url]);
             return [
                 'success' => false,
