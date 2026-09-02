@@ -564,7 +564,9 @@ document.addEventListener('DOMContentLoaded', function () {
     <a class="navbar-brand py-0" href="{{ url('/') }}">
       <img src="{{ asset('app-icons/logo.png') }}" class="brand-logo" alt="ZeeCV Logo">
     </a>
+    @if(!auth()->check())
      <a href="{{ url('signup') }}" class="btn-nav-primary d-block d-md-none">Sign up</a>
+     @endif
 
     <!-- Mobile Toggler Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar" 
