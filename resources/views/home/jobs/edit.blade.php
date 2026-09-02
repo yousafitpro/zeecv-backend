@@ -342,10 +342,15 @@
                     </p>
                 </div>
 
-                <div class="job_update_badge">
+                {{-- <div class="job_update_badge">
                     <i class="fa fa-pencil mr-1"></i>
                     Edit Listing
-                </div>
+                </div> --}}
+        <button type="button"
+        class="job_container_outer_button float-right"
+        data-url="{{ route('home.jobs.single', $job->slug) }}">
+    <i class="fa fa-copy"></i>
+</button>
 
             </div>
         </div>
@@ -612,5 +617,68 @@
     </div>
 
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
 
+    // Attach click listener to ALL buttons with this class
+    document.querySelectorAll('.job_container_outer_button').forEach(function(button) {
+        button.addEventListener('click', function(e) {
+            e.preventDefault(); // Stops any navigation if it's an <a> tag
+
+            // Get the URL safely from the data attribute
+            var url = this.dataset.url;
+            
+            // Execute copy
+            copyToClipboard(url, this);
+        });
+    });
+
+    // ---------- CORE COPY FUNCTIONS ---------- 
+    function copyToClipboard(text, element) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function() {
+                triggerFeedback(element);
+            }).catch(function() {
+                fallbackCopy(text, element);
+            });
+        } else {
+            fallbackCopy(text, element);
+        }
+    }
+
+    function fallbackCopy(text, element) {
+        var textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'absolute';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+
+        try {
+            textarea.select();
+            var successful = document.execCommand('copy');
+            if (successful) {
+                triggerFeedback(element);
+            } else {
+                alert('Unable to copy. Please copy the URL manually.');
+            }
+        } catch (err) {
+            alert('Unable to copy. Please copy the URL manually.');
+        }
+        document.body.removeChild(textarea);
+    }
+
+    function triggerFeedback(element) {
+        var icon = element.querySelector('i');
+        if (icon) {
+            var originalClass = icon.className;
+            icon.className = 'fa fa-check';
+            setTimeout(function() {
+                icon.className = originalClass;
+            }, 2000);
+        }
+    }
+
+});
+</script>
 @endsection
