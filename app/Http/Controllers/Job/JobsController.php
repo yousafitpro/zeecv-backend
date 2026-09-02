@@ -580,7 +580,7 @@ public function dashboardAjax(Request $request)
                 'location'=>$input['location'],
                 'url'=>$input['url'],
                'expiry_date' => Carbon::parse($input['expiry_date'])->format('Y-m-d'),
-                'slug'=>Str::slug($input['title']).'-'.$user->name.'-zeecv-'.unique_encrypt($user->id),
+             
                 'tags'=>$input['tags'],
                 'description'=>$input['description'],
                 'job_types'=>$input['job_types'],
