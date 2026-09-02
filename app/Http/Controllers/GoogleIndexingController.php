@@ -75,6 +75,8 @@ class GoogleIndexingController extends Controller
             'sent_jobs'=>count($jobs),
             'p1'=> count($priorityJobs),
            'p2'=>count($otherJobs),
+           'otherJobs'=>$otherJobs,
+           'priorityJobs'=>$priorityJobs,
            'remaining'=>$remaining,
             'errors'=>$errors]);
     }
