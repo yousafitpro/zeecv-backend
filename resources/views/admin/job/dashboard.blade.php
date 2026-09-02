@@ -215,16 +215,12 @@
 
 <div class="dashboard-wrapper container-fluid px-4">
 
-    <!-- Page Header -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 font-weight-bold" style="color: #111827;">
-            <i class="fas fa-tachometer-alt mr-2 text-primary"></i>Dashboard
-        </h1>
-        <small class="text-muted">{{ now()->format('l, F j, Y') }}</small>
-    </div>
+
 
     <!-- Filter Form -->
-    <div class="filter-glass row align-items-end g-3">
+    <form action="{{ route('admin.job.dashboard') }}" method="post">
+        @csrf
+         <div class="filter-glass row align-items-end g-3">
         <div class="col-md-3 col-sm-6">
             <label for="start_date" class="form-label small fw-semibold text-secondary">Start Date</label>
             <input type="date" name="start_date" id="start_date" class="form-control" value="{{ $start_date ?? '' }}">
@@ -234,23 +230,15 @@
             <input type="date" name="end_date" id="end_date" class="form-control" value="{{ $end_date ?? '' }}">
         </div>
         <div class="col-md-6 col-sm-12 d-flex gap-2 flex-wrap align-items-center mt-2 mt-sm-0">
-            <button type="button" id="applyFilterBtn" class="btn btn-primary px-4">
+            <button type="submit" id="applyFilterBtn" class="btn btn-primary px-4">
                 <i class="fas fa-filter me-1"></i> Apply
             </button>
             <a href="{{ route('admin.job.dashboard') }}" class="btn btn-outline-secondary px-4">
                 <i class="fas fa-undo me-1"></i> Reset
             </a>
-            <button type="button" class="btn btn-outline-secondary px-4 quick-btn" data-range="today">
-                <i class="far fa-calendar-alt me-1"></i> Today
-            </button>
-            <button type="button" class="btn btn-outline-secondary px-4 quick-btn" data-range="week">
-                <i class="far fa-calendar-alt me-1"></i> This Week
-            </button>
-            <button type="button" class="btn btn-outline-secondary px-4 quick-btn" data-range="month">
-                <i class="far fa-calendar-alt me-1"></i> This Month
-            </button>
         </div>
-    </div>
+    </div> 
+    </form>
 
     <!-- Stat Cards -->
     <div class="row g-4 mb-4">
