@@ -868,7 +868,16 @@
 
 </style>
 
+<a
+                            href="javascript:void" data-toggle="modal" data-target="#jobModal"
+                            class="job_container_outer_sidebar_button"
+                        >
 
+                            Create New Job
+
+                            <i class="bi bi-arrow-right"></i>
+
+                        </a>
 <div class="job_container_outer" style="background: transparent">
 
 
