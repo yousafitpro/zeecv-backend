@@ -895,7 +895,7 @@
                         <label>Search</label><br>
                         <input class="form-control" value="{{ $input['search']??'' }}" name="search" placeholder="Search here...">
                     </div>
-                    <div class="col-md-4" >
+                    <div class="col-md-3" >
                                 <label>Location</label><br>
                                 <select class="form-control select2" name="location" style="max-width: 350px">
                                     <option value="">--All--</option>
@@ -908,8 +908,32 @@
                                 </select>
                          
                     </div>
-                     @if (is_admin())
-                         <div class="col-md-4" >
+                    @if (is_admin())
+                    <div class="col-md-3" >
+                                <label>User</label><br>
+                                <select class="form-control select2" name="user_id" style="max-width: 350px">
+                                    <option value="">--All--</option>
+                                    @foreach ($users as $u)
+                                      
+                                      <option value="{{ $u['id'] }}" {{ $u['id'] == ($input['user_id'] ?? '') ? 'selected' : '' }}>
+                                            {{ $u['name'] }} <small>-{{$u['email']}}</small>
+                                        </option>
+                                    @endforeach
+                                </select>
+                         
+                    </div>
+                    <div class="col-md-3" >
+                                <label>Status</label><br>
+                                <select id="status" name="status" class="form-control">
+                                    <option value="" {{ $input['status']==''?'selected':'' }}>All</option>
+                                    <option value="pending" {{ $input['status']=='pending'?'selected':'' }}>Pending</option>
+                                    <option value="rejected" {{ $input['status']=='rejected'?'selected':'' }}>Rejected</option>
+                                    <option value="approved" {{ $input['status']=='approved'?'selected':'' }}>Approved</option>
+                                </select>
+                         
+                    </div>
+                     
+                         <div class="col-md-3" >
                                 <label>Source</label><br>
                                 <select class="form-control select2" name="source" style="max-width: 350px">
                                     <option value="">--All--</option>

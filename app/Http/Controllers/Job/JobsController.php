@@ -617,8 +617,11 @@ public function dashboardAjax(Request $request)
     }
     public function my(Request $request)
     {
+
         $input=$request->all();
-        
+        if(!isset($input['status'])){
+            $input['status']='';
+        }
         $query = JobCareer::query()
             ->when(!is_admin(),function ($query) {
                 return $query->where('user_id',auth_user_id());
@@ -690,6 +693,12 @@ public function dashboardAjax(Request $request)
         if (isset($input['is_remote'])) {
             $query->where('remote', 1);
         }
+        if (!empty($input['user_id'])) {
+            $query->where('user_id', $input['user_id']);
+        }
+        if (!empty($input['status'])) {
+            $query->where('status', $input['status']);
+        }
         if (isset($input['is_part_time'])) {
             $query->where('is_part_time', 1);
         }
@@ -709,6 +718,8 @@ public function dashboardAjax(Request $request)
         $data['list']=$query->latest('created_at')->paginate(20)
         ->withQueryString();
         $data['input']=$input;
+                $data['users'] = User::query()
+                            ->get()->toArray();
         $data['locations'] = JobCareer::pluck('location')
                             ->filter()
                             ->flatMap(function ($locations) {
