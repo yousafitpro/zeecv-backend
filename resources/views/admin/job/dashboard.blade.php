@@ -68,7 +68,9 @@
     </div>
 
     <!-- Filter Form -->
-    <div class="filter-form row align-items-end">
+    <form action="{{ route('admin.job.dashboard') }}" method="post">
+        @csrf
+        <div class="filter-form row align-items-end">
         <div class="col-md-4 col-sm-6 form-group">
             <label for="start_date">Start Date</label>
             <input type="date" name="start_date" id="start_date" class="form-control" value="{{ $start_date ?? '' }}">
@@ -78,7 +80,7 @@
             <input type="date" name="end_date" id="end_date" class="form-control" value="{{ $end_date ?? '' }}">
         </div>
         <div class="col-md-4 col-sm-12 form-group">
-            <button type="button" id="applyFilterBtn" class="btn btn-primary btn-block">
+            <button type="submit" id="applyFilterBtn" class="btn btn-primary btn-block">
                 <i class="fas fa-filter"></i> Apply Filter
             </button>
             <a href="{{ route('admin.job.dashboard') }}" class="btn btn-outline-secondary btn-block mt-1">
@@ -86,6 +88,7 @@
             </a>
         </div>
     </div>
+    </form>
 
     <!-- Summary Cards -->
     <div class="row">
