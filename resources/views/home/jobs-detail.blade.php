@@ -1227,7 +1227,8 @@
                         @if(!empty($job->appliedjob))
                         <a class="job_container_outer_apply_button">Applied</a>
                         @else
-                                                        <a
+                            @if (auth()->check())
+                                <a
                                 href="javascript:void"
                                 onclick="apply_job('{{ route('home.jobs.apply',$job->slug) }}', '{{ $job->slug }}')"
                                 rel="nofollow noopener"
@@ -1239,6 +1240,18 @@
                                 <i class="bi bi-box-arrow-up-right"></i>
 
                             </a>
+                            @else
+                            <a
+                                href="{{ route('signup') }}"
+                                class="job_container_outer_apply_button"
+                            >
+                        
+                                Apply for this Job
+
+                                <i class="bi bi-box-arrow-up-right"></i>
+
+                            </a>
+                            @endif
                             @endif
                     </div>
 

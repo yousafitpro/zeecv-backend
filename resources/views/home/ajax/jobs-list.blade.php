@@ -230,17 +230,32 @@
                                     save
                                     @endif
 
+
                                     <i class="bi bi-arrow-right"></i>
 
                                 </a>
-                                     @endif
-                                      
-                                  <a href="javascript:void(0)"
+                                <a href="javascript:void(0)"
                                     data-url="{{ route('home.jobs.single.shot', $job->slug) }}"
                                     class="job_container_outer_button view-job-modal mt-1">
                                        Quick Apply
                                         <i class="bi bi-arrow-right"></i>
                                     </a>
+                                     @else
+                                      <a href="{{ route('signup') }}"
+                                        class="job_container_outer_button mt-1"
+                                        >
+                                            save
+
+                                        </a>
+                                         <a href="{{ route('signup') }}"
+                                    class="job_container_outer_button  mt-1">
+                                       Quick Apply
+                                        <i class="bi bi-arrow-right"></i>
+                                    </a>
+                                     @endif
+
+                                      
+                                  
                                     @endif
                                                                 
                                 </div>
@@ -272,12 +287,19 @@
                             </h3>
 
 
-                            <p class="job_container_outer_empty_description">
+                            <div class="job_container_outer_empty" style="border: none;padding:30px 30px !important;">
+    <p class="job_container_outer_empty_description">
+        Please edit your resume first to get personalised job opportunities here.
+    </p>
 
-                                We couldn't find any job opportunities
-                                at the moment. Please check again soon.
+<br>
+<a href="{{ route('resume.create') }}" class="btn btn-primary" style="background: var(--primary) !important">
+    Edit Resume
+</a>
 
-                            </p>
+
+</div>
+
 
 
                         </div>
