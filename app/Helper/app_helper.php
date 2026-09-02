@@ -126,7 +126,12 @@ if ( ! function_exists('get_user_id')){
 if ( ! function_exists('auth_user_id')){
     function auth_user_id()
     {
-       return auth()->user()->id;
+       if(auth()->check()){
+         return auth()->user()->id;
+       }else{
+        return null;
+       }
+       
     }
 }
 if (!function_exists('is_has_role')) {
