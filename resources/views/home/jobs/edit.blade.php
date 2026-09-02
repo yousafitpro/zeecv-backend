@@ -306,6 +306,11 @@
 
     <div class="job_update_card">
     <br>
+    <button type="button"
+        class="job_container_outer_button float-right mr-2"
+        data-url="{{ route('home.jobs.single', $job->slug) }}">
+    <i class="fa fa-copy"></i>
+</button>
  <div class="row no-gutters page-header-outer"   >
     
                         <div class="col-md-6">
@@ -327,6 +332,7 @@
 
                             </div>
                                     </div>
+                                    
                                 </div>
         {{-- Header --}}
         <div class="job_update_header">
@@ -346,11 +352,7 @@
                     <i class="fa fa-pencil mr-1"></i>
                     Edit Listing
                 </div> --}}
-        <button type="button"
-        class="job_container_outer_button float-right"
-        data-url="{{ route('home.jobs.single', $job->slug) }}">
-    <i class="fa fa-copy"></i>
-</button>
+        
 
             </div>
         </div>
