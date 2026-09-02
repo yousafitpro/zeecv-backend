@@ -681,6 +681,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 <i class="fas fa-briefcase"></i>
                 My Jobs
               </a> 
+              @if(is_has_permission('jobs.my.view'))
+              <a class="dropdown-item" href="{{route('jobs.my')}}">
+                <i class="fas fa-briefcase"></i>
+                Posted Jobs
+              </a> 
+              @endif
               <div class="dropdown-divider"></div>
 
               <a class="dropdown-item text-danger" href="{{url('logout')}}" 

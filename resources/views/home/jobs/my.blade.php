@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layout.home')
 @section('content')
 
 <style>
@@ -870,7 +870,7 @@
 
 <a
                             href="javascript:void" data-toggle="modal" data-target="#jobModal"
-                            class="job_container_outer_sidebar_button"
+                            class="btn btn-primary" style="float: right"
                         >
 
                             Create New Job
@@ -878,6 +878,8 @@
                             <i class="bi bi-arrow-right"></i>
 
                         </a>
+                        <br>
+                        <br>
 <div class="job_container_outer" style="background: transparent">
 
 
