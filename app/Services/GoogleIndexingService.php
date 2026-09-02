@@ -10,6 +10,7 @@ use Google\Service\Indexing\UrlNotification;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Exception;
+use Illuminate\Support\Facades\Session;
 
 class GoogleIndexingService
 {
@@ -81,7 +82,9 @@ class GoogleIndexingService
             ];
             
         } catch (Exception $e) {
-            dd(json_decode(json_encode($e->getMessage()),true),$e->getCode());
+            if ($e->getCode() == 429) {
+                Session::put('google_indexing_limit_expires_at', now()->endOfDay());
+            }
             Log::error('Google Indexing API error: ' . $e->getMessage(), ['url' => $url]);
             return [
                 'success' => false,

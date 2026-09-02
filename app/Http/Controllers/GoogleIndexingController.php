@@ -8,6 +8,7 @@ use App\Services\GoogleIndexingService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class GoogleIndexingController extends Controller
@@ -57,15 +58,33 @@ class GoogleIndexingController extends Controller
         } else {
             $jobs = $priorityJobs;
         }
-        // if($todaySent>=config('services.google.indexing_quota', 200)){
-        //    return response()->json([
-        //    'p1'=> count($priorityJobs),
-        //    'p2'=>count($otherJobs),
-        //    'otherJobs'=>$otherJobs,
-        //    'priorityJobs'=>$priorityJobs,
-        //    'remaining'=>$remaining,
-        //    'message'=>'quota reached : '.config('services.google.indexing_quota', 200)]);
-        // }
+        $expiresAt = Session::get('google_indexing_limit_expires_at');
+
+        if ($expiresAt && now()->lessThan($expiresAt)) {
+
+            $remainingSeconds = now()->diffInSeconds($expiresAt);
+
+            $hours = floor($remainingSeconds / 3600);
+            $minutes = floor(($remainingSeconds % 3600) / 60);
+            $seconds = $remainingSeconds % 60;
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Google indexing limit reached.',
+                'remaining' => [
+                    'hours' => $hours,
+                    'minutes' => $minutes,
+                    'seconds' => $seconds,
+                ],
+                'remaining_formatted' => sprintf(
+                    '%02d:%02d:%02d',
+                    $hours,
+                    $minutes,
+                    $seconds
+                ),
+                'expires_at' => $expiresAt,
+            ], 429);
+        }
         $errors=[];
         foreach($jobs as $job){
            $errors[]= $this->indexJob($job->id);
