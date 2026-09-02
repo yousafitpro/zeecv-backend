@@ -49,6 +49,7 @@ class GoogleIndexingController extends Controller
                 ->where('source', '!=', 'openwebninja')
                 ->where('created_at', '>=', $cutoff)
                 ->limit($remaining)
+                ->orderByRaw('user_id IS NULL ASC') 
                 ->get();
             
             // Merge the two collections
