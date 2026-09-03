@@ -176,7 +176,7 @@
     </div>
         </div>
         <div class="col-md-6">
-            <div class="col-xl-12 col-md-12 mb-4">
+            <div class="">
             <div class="card shadow">
                 <div class="card-header card-header-custom">
                     <i class="fas fa-chart-line mr-2"></i> Daily Sign‑up Trend (last 30 days)
