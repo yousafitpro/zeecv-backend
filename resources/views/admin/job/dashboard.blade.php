@@ -279,13 +279,13 @@
 
 </div>
 
-@push('scripts')
+
 <!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-$(document).ready(function(){
-      // Trend chart
-        const ctx = document.getElementById('trendChart').getContext('2d');
+    document.addEventListener('DOMContentLoaded', function() {
+        
+            const ctx = document.getElementById('trendChart').getContext('2d');
         new Chart(ctx, {
             type: 'line',
             data: {
@@ -314,22 +314,9 @@ $(document).ready(function(){
                 }
             }
         });
+});
 
-        // Filter form: on button click, redirect with date params
-        document.getElementById('applyFilterBtn').addEventListener('click', function() {
-            const start = document.getElementById('start_date').value;
-            const end = document.getElementById('end_date').value;
-            let url = "{{ route('admin.job.dashboard') }}";
-            const params = new URLSearchParams();
-            if (start) params.append('start_date', start);
-            if (end) params.append('end_date', end);
-            if (params.toString()) {
-                url += '?' + params.toString();
-            }
-            window.location.href = url;
-        });
-})
 </script>
-@endpush
+
 
 @endsection
