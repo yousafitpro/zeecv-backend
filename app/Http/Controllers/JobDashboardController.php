@@ -98,7 +98,7 @@ class JobDashboardController extends Controller
             ->limit(50)
             ->get();
         $data['recent_index_requests']= (clone $jobQuery)->with('user')
-            ->orderBy('created_at', 'desc')
+            ->orderBy('sent_at_for_indexing_google', 'desc')
             ->limit(50)
             ->get();
 
