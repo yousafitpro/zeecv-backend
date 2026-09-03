@@ -303,6 +303,7 @@
                                 <tr>
                                     <th>User</th>
                                     <th>Job</th>
+                                    <th>Created At</th>
                                     <th>Sent At</th>
                                     <th>Status</th>
                                 </tr>
@@ -312,9 +313,10 @@
                                     <tr>
                                         <td>{{ $jobreq->user?$jobreq->user->name:$jobreq->source}}</td>
                                         <td>{{ $jobreq->title }}</td>
+                                        <td>{{ $jobreq->created_at->format('M d, Y H:i') }}</td>
                                             <td>
                                                     {{ !empty($jobreq->sent_at_for_indexing_google) ? \Carbon\Carbon::parse($jobreq->sent_at_for_indexing_google)->format('M d, Y H:i') : '' }}
-                                                </td>
+                                            </td>
                                         <td><span class="badge badge-apply">Sent</span></td>
                                     </tr>
                                 @empty
