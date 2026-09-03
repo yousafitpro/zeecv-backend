@@ -19,8 +19,18 @@ class JobDashboardController extends Controller
     public function index(Request $request)
     {
         $input = $request->all();
-        $start_date = $input['start_date'] ?? null;
-        $end_date   = $input['end_date'] ?? null;
+        if(empty($input['start_date']) || empty($input['end_date'])){
+           $start_date=Carbon::now()->subDay()->format('Y-m-d');
+           $end_date=Carbon::now()->addDay()->format('Y-m-d');
+           $input['start_date']=$start_date;
+           $input['end_date']=$end_date;
+        }
+        else
+        {
+            $start_date = $input['start_date'];
+            $end_date   = $input['end_date'];
+        }
+        
 
         // Base queries with optional date filter
         $userQuery = User::query();
@@ -55,15 +65,26 @@ class JobDashboardController extends Controller
         $data['trend_data']   = $trendData;
 
         // Recent applications (last 5)
-        $recentApplies = JobCareerApply::with('user')
+        $data['recent_applies']= JobCareerApply::with(['user','job'])
             ->orderBy('created_at', 'desc')
-            ->limit(5)
+            ->whereBetween('created_at', [$start_date, $end_date])
+            ->limit(50)
             ->get();
-        $data['recent_applies'] = $recentApplies;
+        $data['recent_users']= User::with(['resume'])
+            ->orderBy('created_at', 'desc')
+            ->whereBetween('created_at', [$start_date, $end_date])
+            ->limit(50)
+            ->get();
+        $data['recent_saved']= JobCareerSaved::with('user','job')
+            ->orderBy('created_at', 'desc')
+            // ->whereBetween('created_at', [$start_date, $end_date])
+            ->limit(50)
+            ->get();
 
         // Keep the selected dates for the form
         $data['start_date'] = $start_date;
         $data['end_date']   = $end_date;
+        $data['input']=$input;
 
         return view('admin.job.dashboard', $data);
     }

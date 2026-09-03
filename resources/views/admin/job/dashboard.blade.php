@@ -73,11 +73,11 @@
         <div class="filter-form row align-items-end">
         <div class="col-md-4 col-sm-6 form-group">
             <label for="start_date">Start Date</label>
-            <input type="date" name="start_date" id="start_date" class="form-control" value="{{ $start_date ?? '' }}">
+            <input type="date" name="start_date" id="start_date" class="form-control" value="{{ $input['start_date'] ?? '' }}">
         </div>
         <div class="col-md-4 col-sm-6 form-group">
             <label for="end_date">End Date</label>
-            <input type="date" name="end_date" id="end_date" class="form-control" value="{{ $end_date ?? '' }}">
+            <input type="date" name="end_date" id="end_date" class="form-control" value="{{ $input['end_date'] ?? '' }}">
         </div>
         <div class="col-md-4 col-sm-12 form-group">
             <button type="submit" id="applyFilterBtn" class="btn btn-primary btn-block">
@@ -148,6 +148,40 @@
         </div>
     </div>
 
+    <!-- Recent Users Table -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header card-header-custom">
+                    <i class="fas fa-clock mr-2"></i> Recent Users
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-recent">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Signup Via</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($recent_applies as $usr)
+                                    <tr>
+                                        <td>{{ $usr->user->name ?? 'N/A' }}</td>
+                                        <td>{{ $usr->signup_type }}</td>
+                                        <td>{{ $usr->created_at->format('M d, Y H:i') }}</td>
+                                    </tr>
+                                @empty
+                                    <tr><td colspan="3" class="text-center text-muted">No applications yet.</td></tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Recent Applications Table -->
     <div class="row">
         <div class="col-12">
@@ -161,6 +195,7 @@
                             <thead>
                                 <tr>
                                     <th>User</th>
+                                    <th>Job</th>
                                     <th>Applied On</th>
                                     <th>Status</th>
                                 </tr>
@@ -169,8 +204,45 @@
                                 @forelse($recent_applies as $apply)
                                     <tr>
                                         <td>{{ $apply->user->name ?? 'N/A' }}</td>
+                                        <td>{{ $apply->job->title }}</td>
                                         <td>{{ $apply->created_at->format('M d, Y H:i') }}</td>
                                         <td><span class="badge badge-apply">Applied</span></td>
+                                    </tr>
+                                @empty
+                                    <tr><td colspan="3" class="text-center text-muted">No applications yet.</td></tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Recent Saves Table -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow">
+                <div class="card-header card-header-custom">
+                    <i class="fas fa-clock mr-2"></i> Recently Job Saved
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-recent">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Job</th>
+                                    <th>Applied On</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($recent_saved as $sav)
+                                    <tr>
+                                        <td>{{ $sav->user->name ?? 'N/A' }}</td>
+                                        <td>{{ $sav->job->title }}</td>
+                                        <td>{{ $sav->created_at->format('M d, Y H:i') }}</td>
+                                        <td><span class="badge badge-apply">Saved</span></td>
                                     </tr>
                                 @empty
                                     <tr><td colspan="3" class="text-center text-muted">No applications yet.</td></tr>
