@@ -166,7 +166,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($recent_applies as $usr)
+                                @forelse($recent_users as $usr)
                                     <tr>
                                         <td>{{ $usr->user->name ?? 'N/A' }}</td>
                                         <td>{{ $usr->signup_type }}</td>
