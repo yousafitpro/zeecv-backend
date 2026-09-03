@@ -32,6 +32,9 @@ class TrackVisitedUrls
      */
     protected function storeVisit($request)
     {
+        if(auth()->check() && is_admin()){
+            return;
+        }
         Visit::create([
             'url' => $request->fullUrl(),
             'path' => $request->path(),
