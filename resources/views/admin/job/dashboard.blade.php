@@ -233,7 +233,11 @@
                                 @forelse($recent_index_requests as $jobreq)
                                     <tr>
                                         <td>{{ $jobreq->user?$jobreq->user->name:$jobreq->source}}</td>
-                                        <td>{{ $jobreq->title }}</td>
+                                        <td>
+                                            <a href="{{ route('home.jobs.single',$jobreq->slug) }}" target="_blank">
+                                            {{ $jobreq->title }}
+                                            </a>
+                                        </td>
                                         <td>{{ $jobreq->created_at->format('M d, Y H:i') }}</td>
                                             <td>
                                                     {{ !empty($jobreq->sent_at_for_indexing_google) ? \Carbon\Carbon::parse($jobreq->sent_at_for_indexing_google)->format('M d, Y H:i') : '' }}
