@@ -159,7 +159,10 @@
                                     <tr>
                                         <td>
                                             {{ $usr->name ?? 'N/A' }}<br>
-                                            {{ $usr->email ?? 'N/A' }}
+                                            {{ $usr->email ?? 'N/A' }}<br>
+                                        @if(!empty($item->resume))
+                                        <a target="_blank" href="{{ route('resume.edit',unique_encrypt($item->resume->id)) }}" class="badge badge-info ml-1">Resume</a>
+                                        @endif
                                         </td>
                                         <td>{{ $usr->signup_type }}</td>
                                         <td>{{ $usr->created_at->format('M d, Y H:i') }}</td>
