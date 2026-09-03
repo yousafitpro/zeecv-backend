@@ -99,7 +99,6 @@ class JobDashboardController extends Controller
             ->get();
         $data['recent_index_requests']= (clone $jobQuery)->with('user')
             ->orderBy('sent_at_for_indexing_google', 'desc')
-            ->limit(50)
             ->get();
 
         // Keep the selected dates for the form
