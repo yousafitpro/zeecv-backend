@@ -146,7 +146,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="myTable" class="table table-hover table-recent">
+                        <table id="myTable" class="table table-hover table-recent" style="max-height: 300px;overflow:auto">
                             <thead>
                                 <tr>
                                     <th>User</th>
