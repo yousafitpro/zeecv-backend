@@ -310,7 +310,7 @@
                             <tbody>
                                 @forelse($recent_index_requests as $jobreq)
                                     <tr>
-                                        <td>{{ $jobreq->user->name ?? $jobreq->source }}</td>
+                                        <td></td>
                                         <td>{{ $jobreq->title }}</td>
                                         <td>{{ $jobreq->sent_at_for_indexing_google->format('M d, Y H:i') }}</td>
                                         <td><span class="badge badge-apply">Sent</span></td>
