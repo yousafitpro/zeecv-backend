@@ -191,9 +191,11 @@
                                         <a target="_blank" href="{{ route('resume.edit',unique_encrypt($usr->resume->id)) }}" class="badge badge-info ml-1">Resume</a>
                                         @endif
                                         @if(!empty($usr->contact))
-                                  
-                                    <span class="badge badge-info ml-1">{{$usr->contact->desired_job_title}}</span>
-                                    @endif
+                                        <span class="badge badge-info ml-1">{{$usr->contact->desired_job_title}}</span>
+                                        @endif
+                                        @if(!empty($usr->clicks))
+                                        <span class="badge badge-info ml-1">{{count($usr->clicks)}}</span>
+                                        @endif
                                         </td>
                                         <td>{{ $usr->signup_type }}</td>
                                         <td>{{ $usr->created_at->format('M d, Y H:i') }}</td>
