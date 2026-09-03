@@ -247,7 +247,7 @@
                                 </a>
                                 <a href="javascript:void(0)"
                                     data-url="{{ route('home.jobs.single.shot', $job->slug) }}"
-                                    class="job_container_outer_button view-job-modal mt-1">
+                                    class="job_container_outer_button btn-applied view-job-modal mt-1">
                                        Quick Apply
                                         <i class="bi bi-arrow-right"></i>
                                     </a>
@@ -389,7 +389,7 @@ function applyJob(el){
             alert('Job ID not found.');
             return;
         }
-
+        $(el).html('Wait...');
         $.ajax({
             url: "{{ route('home.jobs.apply.ajax') }}",
             method: 'get',
@@ -401,6 +401,10 @@ function applyJob(el){
                 $('[data-job-id="' + jobId + '"]').closest('.job_container_outer_card')
                     .find('.job_container_outer_status')
                     .html('<i class="bi bi-check-circle-fill text-success"></i> Applied');
+                $('[data-job-id="' + jobId + '"]').closest('.job_container_outer_card')
+                    .find('.btn-applied')
+                    .html('Applied');
+               
             },
             error: function(xhr) {
                 console.error('AJAX Error:', xhr.responseText);

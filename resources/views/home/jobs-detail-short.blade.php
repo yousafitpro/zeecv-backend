@@ -1043,7 +1043,7 @@ function apply_job(url, jobid) {
         // Show the confirmation modal
       
          $('#applyConfirmModal').modal('show');
-    }, 2000);
+    }, 1000);
 }
 
 </script>
