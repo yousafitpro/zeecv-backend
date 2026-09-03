@@ -157,7 +157,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-recent">
+                        <table id="myTable" class="table table-hover table-recent">
                             <thead>
                                 <tr>
                                     <th>User</th>
@@ -194,7 +194,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-recent">
+                        <table class="table table-hover table-recent myTable">
                             <thead>
                                 <tr>
                                     <th>User</th>
@@ -230,7 +230,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-recent">
+                        <table class="myTable table table-hover table-recent">
                             <thead>
                                 <tr>
                                     <th>User</th>

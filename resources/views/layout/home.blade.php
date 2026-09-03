@@ -78,6 +78,9 @@
 
 
 </script>
+<!-- Datatables -->
+<script src="{{asset('theme/js/plugin/datatables/datatables.min.js')}}"></script>
+
 </head>
 <body>
 @if(request('is_app','yes')!='no')
@@ -98,5 +101,15 @@
 @include('layout.includes.js')
 <!-- end container -->
 </div>
+<script>
+    $(document).ready(function(){
+        $('#myTable').DataTable({
+            "order": []
+        })
+        $('.myTable').DataTable({
+            "order": []
+        })
+    })
+</script>
 </body>
 </html>
