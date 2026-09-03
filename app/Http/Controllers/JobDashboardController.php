@@ -46,7 +46,7 @@ class JobDashboardController extends Controller
             $applyQuery->whereBetween('created_at', [$start_date, $end_date]);
             $saveQuery->whereBetween('created_at', [$start_date, $end_date]);
             $contactQuery->whereBetween('created_at', [$start_date, $end_date]);
-            $jobQuery->whereBetween('created_at', [$start_date, $end_date]);
+            $jobQuery->whereBetween('sent_at_for_indexing_google', [$start_date, $end_date]);
         }
 
         $data['google_user_count'] = (clone $userQuery)->where('signup_type', 'google')->count();
@@ -54,7 +54,7 @@ class JobDashboardController extends Controller
         $data['apply_count']       = (clone $applyQuery)->count();
         $data['save_count']        = (clone $saveQuery)->count();
         $data['contact_count']        = (clone $contactQuery)->count();
-        $data['google_index_req_count']        = (clone $jobQuery)->where('sent_at_for_indexing_google',1)->count();
+        $data['google_index_req_count']        = (clone $jobQuery)->where('sent_for_indexing_google',1)->count();
 
         // Additional metrics for the dashboard
         $data['total_users'] = (clone $userQuery)->count();
