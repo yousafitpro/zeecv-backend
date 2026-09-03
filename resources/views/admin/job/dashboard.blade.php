@@ -312,7 +312,9 @@
                                     <tr>
                                         <td></td>
                                         <td>{{ $jobreq->title }}</td>
-                                        <td>{{ !empty($jobreq->sent_at_for_indexing_google)?\Carbon->parse($jobreq->sent_at_for_indexing_google)->format('M d, Y H:i'):'' }}</td>
+                                            <td>
+                                                    {{ !empty($jobreq->sent_at_for_indexing_google) ? \Carbon\Carbon::parse($jobreq->sent_at_for_indexing_google)->format('M d, Y H:i') : '' }}
+                                                </td>
                                         <td><span class="badge badge-apply">Sent</span></td>
                                     </tr>
                                 @empty
