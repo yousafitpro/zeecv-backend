@@ -298,7 +298,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="myTable2 table table-hover table-recent">
+                        <table class="myTable8 table table-hover table-recent">
                             <thead>
                                 <tr>
                                     <th>User</th>
