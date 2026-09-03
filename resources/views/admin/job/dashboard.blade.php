@@ -361,7 +361,7 @@
                                             <tr>
                                                 <td>{{ $visit->user->name ?? 'N/A' }}</td>
                                                 <td>{{ $visit->url ?? 'N/A' }}</td>
-                                                <td>{{ $sav->created_at->format('M d, Y H:i') }}</td>
+                                                <td>{{ $visit->created_at->format('M d, Y H:i') }}</td>
                                                 <td><span class="badge badge-apply">Saved</span></td>
                                             </tr>
                                         @empty
