@@ -4,29 +4,29 @@
 <style>
     /* Custom Dashboard Styles */
     .dashboard-stat-card {
-        border-radius: 10px;
+        border-radius: 0px;
         box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
         transition: transform 0.2s;
         background: #fff;
         border-left: 4px solid #4e73df;
-        padding: 15px 20px;
+        padding: 10px 20px;
     }
     .dashboard-stat-card:hover {
         transform: translateY(-5px);
     }
     .stat-icon {
-        font-size: 2.5rem;
+        font-size: 1rem;
         opacity: 0.3;
         float: right;
     }
     .stat-label {
-        font-size: 0.85rem;
+        font-size: 10px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
         color: #6c757d;
     }
     .stat-number {
-        font-size: 1.8rem;
+        font-size:12px;
         font-weight: 700;
         color: #2d3748;
     }
@@ -62,10 +62,7 @@
 </style>
 
 <div class="container-fluid px-4">
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Job Dashboard</h1>
-    </div>
+
 
     <!-- Filter Form -->
     <form action="{{ route('admin.job.dashboard') }}" method="post">
@@ -92,36 +89,46 @@
 
     <!-- Summary Cards -->
     <div class="row">
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-2 col-md-6 mb-4">
             <div class="dashboard-stat-card">
                 <div class="stat-icon"><i class="fas fa-users"></i></div>
                 <div class="stat-label">Total Users</div>
                 <div class="stat-number">{{ $total_users }}</div>
-                <small class="text-muted">All registrations</small>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-2 col-md-6 mb-4">
             <div class="dashboard-stat-card" style="border-left-color: #1cc88a;">
                 <div class="stat-icon"><i class="fab fa-google"></i></div>
                 <div class="stat-label">Google Sign‑ups</div>
                 <div class="stat-number">{{ $google_user_count }}</div>
-                <small class="text-muted">via Google OAuth</small>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-2 col-md-6 mb-4">
             <div class="dashboard-stat-card" style="border-left-color: #f6c23e;">
                 <div class="stat-icon"><i class="fas fa-user-plus"></i></div>
                 <div class="stat-label">Custom Sign‑ups</div>
                 <div class="stat-number">{{ $custom_user_count }}</div>
-                <small class="text-muted">email/password</small>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-2 col-md-6 mb-4">
             <div class="dashboard-stat-card" style="border-left-color: #e74a3b;">
                 <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
-                <div class="stat-label">Applications / Saved</div>
+                <div class="stat-label">Apps / Saved</div>
                 <div class="stat-number">{{ $apply_count }}/ {{ $save_count }}</div>
-                <small class="text-muted">Total job applications</small>
+            </div>
+        </div>
+        <div class="col-xl-2 col-md-6 mb-4">
+            <div class="dashboard-stat-card" style="border-left-color: #e74a3b;">
+                <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
+                <div class="stat-label">Indexing Req</div>
+                <div class="stat-number">{{ $google_index_req_count }}</div>
+            </div>
+        </div>
+        <div class="col-xl-2 col-md-6 mb-4">
+            <div class="dashboard-stat-card" style="border-left-color: #e74a3b;">
+                <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
+                <div class="stat-label">Queries</div>
+                <div class="stat-number">{{ $contact_count }}</div>
             </div>
         </div>
                 

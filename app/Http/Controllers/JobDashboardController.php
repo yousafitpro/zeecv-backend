@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Job\Models\JobCareer;
 use App\Http\Controllers\Job\Models\JobCareerApply;
 use App\Http\Controllers\Job\Models\JobCareerSaved;
+use App\Models\ContactQuery;
 use App\Models\JobPosting;
+use App\Models\Resume\Contact;
 use App\Models\User;
 use App\Services\GoogleIndexingService;
 use Carbon\Carbon;
@@ -34,19 +36,25 @@ class JobDashboardController extends Controller
 
         // Base queries with optional date filter
         $userQuery = User::query();
+        $contactQuery = ContactQuery::query();
         $applyQuery = JobCareerApply::query();
         $saveQuery = JobCareerSaved::query();
+        $jobQuery = JobCareer::query();
 
         if ($start_date && $end_date) {
             $userQuery->whereBetween('created_at', [$start_date, $end_date]);
             $applyQuery->whereBetween('created_at', [$start_date, $end_date]);
             $saveQuery->whereBetween('created_at', [$start_date, $end_date]);
+            $contactQuery->whereBetween('created_at', [$start_date, $end_date]);
+            $jobQuery->whereBetween('created_at', [$start_date, $end_date]);
         }
 
         $data['google_user_count'] = (clone $userQuery)->where('signup_type', 'google')->count();
         $data['custom_user_count'] = (clone $userQuery)->whereNull('signup_type')->count();
         $data['apply_count']       = (clone $applyQuery)->count();
         $data['save_count']        = (clone $saveQuery)->count();
+        $data['contact_count']        = (clone $contactQuery)->count();
+        $data['google_index_req_count']        = (clone $jobQuery)->where('sent_at_for_indexing_google',1)->count();
 
         // Additional metrics for the dashboard
         $data['total_users'] = (clone $userQuery)->count();
