@@ -77,7 +77,7 @@ class JobDashboardController extends Controller
             ->get();
         $data['recent_saved']= JobCareerSaved::with('user','job')
             ->orderBy('created_at', 'desc')
-            // ->whereBetween('created_at', [$start_date, $end_date])
+            ->whereBetween('created_at', [$start_date, $end_date])
             ->limit(50)
             ->get();
 
