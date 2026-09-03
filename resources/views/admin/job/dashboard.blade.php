@@ -147,8 +147,7 @@
             </div>
         </div>
     </div>
-
-    <!-- Recent Users Table -->
+      <!-- Recent Users Table -->
     <div class="row">
         <div class="col-12">
             <div class="card shadow">
@@ -185,7 +184,9 @@
             </div>
         </div>
     </div>
-    <!-- Recent Applications Table -->
+    <div class="row">
+        <div class="col-md-6">
+                <!-- Recent Applications Table -->
     <div class="row">
         <div class="col-12">
             <div class="card shadow">
@@ -221,7 +222,9 @@
             </div>
         </div>
     </div>
-    <!-- Recent Saves Table -->
+        </div>
+        <div class="col-md-6">
+                <!-- Recent Saves Table -->
     <div class="row">
         <div class="col-12">
             <div class="card shadow">
@@ -257,6 +260,11 @@
             </div>
         </div>
     </div>
+        </div>
+    </div>
+  
+
+
 </div>
 
 @push('scripts')
