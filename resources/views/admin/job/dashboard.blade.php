@@ -124,11 +124,7 @@
                 <small class="text-muted">Total job applications</small>
             </div>
         </div>
-    </div>
-
-    <!-- Additional Row: Saves & Chart -->
-    <div class="row">
-        <div class="col-xl-4 col-md-6 mb-4">
+                <div class="col-xl-3 col-md-6 mb-4">
             <div class="dashboard-stat-card" style="border-left-color: #36b9cc;">
                 <div class="stat-icon"><i class="fas fa-heart"></i></div>
                 <div class="stat-label">Saved Jobs</div>
@@ -136,18 +132,12 @@
                 <small class="text-muted">Total saves</small>
             </div>
         </div>
-        <div class="col-xl-8 col-md-6 mb-4">
-            <div class="card shadow">
-                <div class="card-header card-header-custom">
-                    <i class="fas fa-chart-line mr-2"></i> Daily Sign‑up Trend (last 30 days)
-                </div>
-                <div class="card-body">
-                    <canvas id="trendChart" style="width:100%; height:200px;"></canvas>
-                </div>
-            </div>
-        </div>
     </div>
-      <!-- Recent Users Table -->
+
+
+    <div class="row">
+<div class="col-md-6">
+                  <!-- Recent Users Table -->
     <div class="row">
         <div class="col-12">
             <div class="card shadow">
@@ -184,6 +174,21 @@
             </div>
         </div>
     </div>
+        </div>
+        <div class="col-md-6">
+            <div class="col-xl-12 col-md-12 mb-4">
+            <div class="card shadow">
+                <div class="card-header card-header-custom">
+                    <i class="fas fa-chart-line mr-2"></i> Daily Sign‑up Trend (last 30 days)
+                </div>
+                <div class="card-body">
+                    <canvas id="trendChart" style="width:100%; height:200px;"></canvas>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-6">
                 <!-- Recent Applications Table -->
