@@ -83,7 +83,7 @@ class GoogleIndexingService
             
         } catch (Exception $e) {
             if ($e->getCode() == 429) {
-                Session::put('google_indexing_limit_expires_at', now()->endOfDay());
+                Session::put('google_indexing_limit_expires_at', now()->addHours(2));
             }
             Log::error('Google Indexing API error: ' . $e->getMessage(), ['url' => $url]);
             return [
