@@ -55,6 +55,7 @@ class GlobalInputSanitization
         '_method',
         'desired_job_title',
         'password',
+        'title',
         'description',
         'long_description',
         'meta_tags',
