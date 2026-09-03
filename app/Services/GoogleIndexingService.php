@@ -50,7 +50,9 @@ class GoogleIndexingService
      */
     public function submitUrl(string $url, string $type = 'URL_UPDATED',$job_id): array
     {
+        sleep(2);
         try {
+
             // 1. Check quota
             // if ($this->isQuotaExceeded()) {
             //     return [
