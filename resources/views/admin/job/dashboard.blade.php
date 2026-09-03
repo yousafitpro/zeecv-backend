@@ -119,19 +119,12 @@
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="dashboard-stat-card" style="border-left-color: #e74a3b;">
                 <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
-                <div class="stat-label">Applications</div>
-                <div class="stat-number">{{ $apply_count }}</div>
+                <div class="stat-label">Applications / Saved</div>
+                <div class="stat-number">{{ $apply_count }}/ {{ $save_count }}</div>
                 <small class="text-muted">Total job applications</small>
             </div>
         </div>
-                <div class="col-xl-3 col-md-6 mb-4">
-            <div class="dashboard-stat-card" style="border-left-color: #36b9cc;">
-                <div class="stat-icon"><i class="fas fa-heart"></i></div>
-                <div class="stat-label">Saved Jobs</div>
-                <div class="stat-number">{{ $save_count }}</div>
-                <small class="text-muted">Total saves</small>
-            </div>
-        </div>
+                
     </div>
 
 
