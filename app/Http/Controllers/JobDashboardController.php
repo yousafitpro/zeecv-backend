@@ -20,7 +20,7 @@ class JobDashboardController extends Controller
     {
         $input = $request->all();
         if(empty($input['start_date']) || empty($input['end_date'])){
-           $start_date=Carbon::now()->subDay()->format('Y-m-d');
+           $start_date=Carbon::now()->format('Y-m-d');
            $end_date=Carbon::now()->addDay()->format('Y-m-d');
            $input['start_date']=$start_date;
            $input['end_date']=$end_date;
