@@ -359,7 +359,13 @@
                                     <tbody>
                                         @forelse($recent_visits as $visit)
                                             <tr>
-                                                <td>{{ $visit->user->name ?? 'N/A' }}</td>
+                                                <td>
+                                                    {{ $visit->user->name ?? 'N/A' }}
+                                                    <br>
+                                                    {{ $visit->user->email ?? 'N/A' }}
+
+
+                                                </td>
                                                 <td>{{ $visit->url ?? 'N/A' }}</td>
                                                 <td>{{ $visit->created_at->format('M d, Y H:i') }}</td>
                                                 <td><span class="badge badge-apply">Saved</span></td>
