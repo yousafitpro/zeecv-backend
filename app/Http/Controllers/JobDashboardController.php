@@ -97,6 +97,10 @@ class JobDashboardController extends Controller
             ->whereBetween('created_at', [$start_date, $end_date])
             ->limit(50)
             ->get();
+        $data['recent_index_requests']= (clone $jobQuery)->with('user')
+            ->orderBy('created_at', 'desc')
+            ->limit(50)
+            ->get();
 
         // Keep the selected dates for the form
         $data['start_date'] = $start_date;
