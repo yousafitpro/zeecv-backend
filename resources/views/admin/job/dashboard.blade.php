@@ -194,7 +194,7 @@
                                         <span class="badge badge-info ml-1">{{$usr->contact->desired_job_title}}</span>
                                         @endif
                                         @if(!empty($usr->clicks))
-                                        <span class="badge badge-info ml-1">{{count($usr->clicks)}}</span>
+                                        <span class="badge badge-info ml-1">Clicks: {{count($usr->clicks)}}</span>
                                         @endif
                                         </td>
                                         <td>{{ $usr->signup_type }}</td>
