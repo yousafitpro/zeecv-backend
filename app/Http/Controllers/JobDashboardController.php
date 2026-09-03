@@ -63,6 +63,16 @@ class JobDashboardController extends Controller
         }
         $data['trend_labels'] = $trendLabels;
         $data['trend_data']   = $trendData;
+        $appliedLabels = [];
+        $appliedData = [];
+        for ($i = $days - 1; $i >= 0; $i--) {
+            $date = Carbon::now()->subDays($i)->toDateString();
+            $appliedLabels[] = Carbon::now()->subDays($i)->format('M d');
+            $count = JobCareerApply::whereDate('created_at', $date)->count();
+            $appliedData[] = $count;
+        }
+        $data['applied_labels'] = $appliedLabels;
+        $data['applied_data']   = $appliedData;
         // Recent applications (last 5)
         $data['recent_applies']= JobCareerApply::with(['user','job'])
             ->orderBy('created_at', 'desc')

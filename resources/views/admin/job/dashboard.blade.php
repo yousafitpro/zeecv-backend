@@ -130,7 +130,34 @@
 
     <div class="row">
 <div class="col-md-6">
-                  <!-- Recent Users Table -->
+       
+            <div class="card shadow">
+                <div class="card-header card-header-custom">
+                    <i class="fas fa-chart-line mr-2"></i> Daily Applied Trend (last 30 days)
+                </div>
+                <div class="card-body">
+                    <canvas id="appliedChart" style="width:100%; height:200px;"></canvas>
+                </div>
+            </div>
+      
+       
+        </div>
+        <div class="col-md-6">
+       
+            <div class="card shadow">
+                <div class="card-header card-header-custom">
+                    <i class="fas fa-chart-line mr-2"></i> Daily Sign‑up Trend (last 30 days)
+                </div>
+                <div class="card-body">
+                    <canvas id="trendChart" style="width:100%; height:200px;"></canvas>
+                </div>
+            </div>
+      
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+                              <!-- Recent Users Table -->
     <div class="row">
         <div class="col-12">
             <div class="card shadow">
@@ -174,18 +201,6 @@
             </div>
         </div>
     </div>
-        </div>
-        <div class="col-md-6">
-            <div class="">
-            <div class="card shadow">
-                <div class="card-header card-header-custom">
-                    <i class="fas fa-chart-line mr-2"></i> Daily Sign‑up Trend (last 30 days)
-                </div>
-                <div class="card-body">
-                    <canvas id="trendChart" style="width:100%; height:200px;"></canvas>
-                </div>
-            </div>
-        </div>
         </div>
     </div>
 
@@ -278,7 +293,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         
-            const ctx = document.getElementById('trendChart').getContext('2d');
+        const ctx = document.getElementById('trendChart').getContext('2d');
         new Chart(ctx, {
             type: 'line',
             data: {
@@ -286,6 +301,35 @@
                 datasets: [{
                     label: 'New Users',
                     data: @json($trend_data),
+                    backgroundColor: 'rgba(78, 115, 223, 0.2)',
+                    borderColor: '#4e73df',
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    pointBackgroundColor: '#4e73df',
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { beginAtZero: true, ticks: { stepSize: 1 } }
+                }
+            }
+        });
+        const ctx2 = document.getElementById('appliedChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: @json($applied_labels),
+                datasets: [{
+                    label: 'New Users',
+                    data: @json($applied_data),
                     backgroundColor: 'rgba(78, 115, 223, 0.2)',
                     borderColor: '#4e73df',
                     borderWidth: 2,
