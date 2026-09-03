@@ -110,6 +110,13 @@
         });
     })
     $(document).ready(function(){
+               $('.myTable7').DataTable({
+            "order": [],
+            "scrollY": "400px",
+            "scrollCollapse": true  
+        });
+    })
+    $(document).ready(function(){
         $('#myTable').DataTable({
             "order": [],
             "scrollY": "400px",
@@ -150,11 +157,7 @@
             "scrollY": "400px",
             "scrollCollapse": true  
         });
-        $('.myTable7').DataTable({
-            "order": [],
-            "scrollY": "400px",
-            "scrollCollapse": true  
-        });
+  
 
     })
 </script>

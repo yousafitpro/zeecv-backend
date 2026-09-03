@@ -9,6 +9,7 @@ use App\Models\ContactQuery;
 use App\Models\JobPosting;
 use App\Models\Resume\Contact;
 use App\Models\User;
+use App\Models\Visit;
 use App\Services\GoogleIndexingService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -40,12 +41,14 @@ class JobDashboardController extends Controller
         $applyQuery = JobCareerApply::query();
         $saveQuery = JobCareerSaved::query();
         $jobQuery = JobCareer::query();
+        $visitQuery = Visit::query();
 
         if ($start_date && $end_date) {
             $userQuery->whereBetween('created_at', [$start_date, $end_date]);
             $applyQuery->whereBetween('created_at', [$start_date, $end_date]);
             $saveQuery->whereBetween('created_at', [$start_date, $end_date]);
             $contactQuery->whereBetween('created_at', [$start_date, $end_date]);
+            $visitQuery->whereBetween('created_at', [$start_date, $end_date]);
             $jobQuery->whereBetween('sent_at_for_indexing_google', [$start_date, $end_date]);
         }
 
@@ -99,6 +102,10 @@ class JobDashboardController extends Controller
             ->get();
         $data['recent_index_requests']= (clone $jobQuery)->with('user')
             ->orderBy('sent_at_for_indexing_google', 'desc')
+            ->limit(500)
+            ->get();
+        $data['recent_visits']= (clone $visitQuery)->with('user')
+            ->orderBy('created_at', 'desc')
             ->limit(500)
             ->get();
 
