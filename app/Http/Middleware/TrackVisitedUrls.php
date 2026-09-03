@@ -35,6 +35,9 @@ class TrackVisitedUrls
         if(auth()->check() && is_admin()){
             return;
         }
+        if(!auth()->check()){
+            return;
+        }
         Visit::create([
             'url' => $request->fullUrl(),
             'path' => $request->path(),
