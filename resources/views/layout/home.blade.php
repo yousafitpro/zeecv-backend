@@ -104,10 +104,14 @@
 <script>
     $(document).ready(function(){
         $('#myTable').DataTable({
-            "order": []
+            "order": [],
+            "scrollY": "400px",
+            "scrollCollapse": true  
         })
         $('.myTable').DataTable({
-            "order": []
+            "order": [],
+            "scrollY": "400px",
+            "scrollCollapse": true  
         })
     })
 </script>
