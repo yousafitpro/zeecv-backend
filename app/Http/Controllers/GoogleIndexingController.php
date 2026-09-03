@@ -20,7 +20,7 @@ class GoogleIndexingController extends Controller
         $this->indexingService = $indexingService;
     }
     public function indexJobsInsigts(){
-        Session::remove('google_indexing_limit_expires_at');
+        
         $data['sent_today'] = JobCareer::where('sent_for_indexing_google', 1)
                     ->whereDate('sent_at_for_indexing_google', Carbon::today())
                     ->count();
