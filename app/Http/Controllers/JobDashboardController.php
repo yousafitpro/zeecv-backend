@@ -63,7 +63,6 @@ class JobDashboardController extends Controller
         }
         $data['trend_labels'] = $trendLabels;
         $data['trend_data']   = $trendData;
-
         // Recent applications (last 5)
         $data['recent_applies']= JobCareerApply::with(['user','job'])
             ->orderBy('created_at', 'desc')

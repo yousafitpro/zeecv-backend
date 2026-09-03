@@ -283,8 +283,8 @@
 <!-- Chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    (function() {
-        // Trend chart
+$(document).ready(function(){
+      // Trend chart
         const ctx = document.getElementById('trendChart').getContext('2d');
         new Chart(ctx, {
             type: 'line',
@@ -328,7 +328,7 @@
             }
             window.location.href = url;
         });
-    })();
+})
 </script>
 @endpush
 
