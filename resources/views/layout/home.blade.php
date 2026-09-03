@@ -148,7 +148,7 @@
             "scrollY": "400px",
             "scrollCollapse": true  
         })
-        $('.myTable7').DataTable({
+        $('.myTable8').DataTable({
             "order": [],
             "scrollY": "400px",
             "scrollCollapse": true  
