@@ -160,12 +160,12 @@
                                         <td>
                                             {{ $usr->name ?? 'N/A' }}<br>
                                             {{ $usr->email ?? 'N/A' }}<br>
-                                        @if(!empty($item->resume))
-                                        <a target="_blank" href="{{ route('resume.edit',unique_encrypt($item->resume->id)) }}" class="badge badge-info ml-1">Resume</a>
+                                        @if(!empty($usr->resume))
+                                        <a target="_blank" href="{{ route('resume.edit',unique_encrypt($usr->resume->id)) }}" class="badge badge-info ml-1">Resume</a>
                                         @endif
-                                        @if(!empty($item->contact))
+                                        @if(!empty($usr->contact))
                                   
-                                    <span class="badge badge-info ml-1">{{$item->contact->desired_job_title}}</span>
+                                    <span class="badge badge-info ml-1">{{$usr->contact->desired_job_title}}</span>
                                     @endif
                                         </td>
                                         <td>{{ $usr->signup_type }}</td>
