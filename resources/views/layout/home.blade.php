@@ -113,6 +113,46 @@
             "scrollY": "400px",
             "scrollCollapse": true  
         })
+        $('.myTable1').DataTable({
+            "order": [],
+            "scrollY": "400px",
+            "scrollCollapse": true  
+        })
+        $('.myTable2').DataTable({
+            "order": [],
+            "scrollY": "400px",
+            "scrollCollapse": true  
+        })
+        $('.myTable3').DataTable({
+            "order": [],
+            "scrollY": "400px",
+            "scrollCollapse": true  
+        })
+        $('.myTable4').DataTable({
+            "order": [],
+            "scrollY": "400px",
+            "scrollCollapse": true  
+        })
+        $('.myTable5').DataTable({
+            "order": [],
+            "scrollY": "400px",
+            "scrollCollapse": true  
+        })
+        $('.myTable6').DataTable({
+            "order": [],
+            "scrollY": "400px",
+            "scrollCollapse": true  
+        })
+        $('.myTable7').DataTable({
+            "order": [],
+            "scrollY": "400px",
+            "scrollCollapse": true  
+        })
+        $('.myTable7').DataTable({
+            "order": [],
+            "scrollY": "400px",
+            "scrollCollapse": true  
+        })
     })
 </script>
 </body>
