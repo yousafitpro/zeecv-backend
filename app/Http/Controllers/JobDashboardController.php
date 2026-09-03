@@ -70,7 +70,7 @@ class JobDashboardController extends Controller
             ->whereBetween('created_at', [$start_date, $end_date])
             ->limit(50)
             ->get();
-        $data['recent_users']= User::with(['resume'])
+        $data['recent_users']= User::with(['resume','contact'])
             ->orderBy('created_at', 'desc')
             ->whereBetween('created_at', [$start_date, $end_date])
             ->limit(50)

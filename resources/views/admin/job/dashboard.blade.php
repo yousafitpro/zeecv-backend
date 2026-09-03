@@ -163,6 +163,10 @@
                                         @if(!empty($item->resume))
                                         <a target="_blank" href="{{ route('resume.edit',unique_encrypt($item->resume->id)) }}" class="badge badge-info ml-1">Resume</a>
                                         @endif
+                                        @if(!empty($item->contact))
+                                  
+                                    <span class="badge badge-info ml-1">{{$item->contact->desired_job_title}}</span>
+                                    @endif
                                         </td>
                                         <td>{{ $usr->signup_type }}</td>
                                         <td>{{ $usr->created_at->format('M d, Y H:i') }}</td>
