@@ -168,7 +168,10 @@
                             <tbody>
                                 @forelse($recent_users as $usr)
                                     <tr>
-                                        <td>{{ $usr->user->name ?? 'N/A' }}</td>
+                                        <td>
+                                            {{ $usr->name ?? 'N/A' }}<br>
+                                            {{ $usr->email ?? 'N/A' }}
+                                        </td>
                                         <td>{{ $usr->signup_type }}</td>
                                         <td>{{ $usr->created_at->format('M d, Y H:i') }}</td>
                                     </tr>
