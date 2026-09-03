@@ -106,6 +106,7 @@ class JobDashboardController extends Controller
             ->get();
         $data['recent_visits']= (clone $visitQuery)->with('user')
             ->orderBy('created_at', 'desc')
+            ->whereNotNull('user_id')
             ->limit(500)
             ->get();
 
