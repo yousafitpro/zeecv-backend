@@ -27,7 +27,7 @@ class Resume extends Model
     }
     public function experiences()
     {
-        return $this->hasMany(Experience::class, 'resume_id');
+        return $this->hasMany(Experience::class, 'resume_id')->orderBy('sort_order', 'ASC');
     }
     public function educations()
     {
