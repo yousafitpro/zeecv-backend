@@ -13,7 +13,14 @@ class GlobalInputSanitization
      * Use route names, full URIs, or patterns with wildcards (*).
      */
     protected $excludedRoutes = [
-        'resume.summary.save'
+        'resume.summary.save',
+        'resume.contact.save',
+        'resume.language.save',
+        'resume.skill.save',
+        'resume.certificate.save',
+        'resume.education.save',
+        'resume.experience.save',
+        'resume.template.save'
     ];
 
     /**
