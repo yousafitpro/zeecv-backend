@@ -7,7 +7,7 @@
         <div class="p-3 bg-light d-flex justify-content-between align-items-start"
              >
              <i class="fas fa-grip-vertical text-muted mr-3 drag-handle"
-                   style="cursor: move;"></i>
+                   style="cursor: move;margin-top:5px;"></i>
             <div class="flex-grow-1 pr-2">
                 <h6 class="mb-0 text-dark font-weight-bold">
                     {{ $item->job_title }}
