@@ -544,6 +544,7 @@ Route::prefix('Call-Center/operators')
     });
 Route::prefix('v2/resume')
     ->group(function () {
+        Route::post('/update-sort-order', [ResumeController::class,'updateSortOrder'])->name('resume.update.sortorder');
         Route::get('/email-test', [ResumeController::class,'emailTest'])->name('resume.emailtest');
         Route::get('/pay-and-unlock', [ResumeController::class,'payAndUnlock'])->name('resume.pay_and_unlock');
         Route::get('/', [ResumeController::class,'create'])->name('resume.create');

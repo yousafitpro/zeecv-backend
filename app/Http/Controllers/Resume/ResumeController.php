@@ -5,6 +5,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\WebAuthController;
 use App\Models\Resume\Contact;
+use App\Models\Resume\Experience;
 use App\Models\Resume\Resume;
 use App\Models\Resume\Summary;
 use App\Models\Resume\Template;
@@ -13,6 +14,23 @@ use Illuminate\Http\Request;
 
 class ResumeController extends Controller
 {
+    public function updateSortOrder(Request $request){
+        $order = $request->input('order', []);
+
+         foreach ($order as $item) {
+
+            Experience::where('id', $item['id'])
+                  ->where('resume_id', unique_decrypt($request->resume_id))
+                  ->update([
+                     'sort_order' => $item['sort_order']
+                  ]);
+         }
+
+         return response()->json([
+            'success' => true,
+            'message' => 'Experience order updated successfully'
+         ]);
+    }
     public function emailTest(Request $request){
       (new WebAuthController())->createEmailVerification(auth()->user()->id);
       dd(auth()->user()->email);

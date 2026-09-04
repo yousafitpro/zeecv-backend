@@ -21,6 +21,8 @@
   <link rel="stylesheet" href="{{ asset('resume/css/font-awesome-5.15.4.css') }}">
     <!-- JS Dependencies -->
   <script src="{{ asset("resume/js/jquery-3.5.1.min.js") }}"></script>
+  
+<script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
   <script src="{{ asset('resume/js/bootstrap-4.6.2.bundle.min.js') }}"></script>
       <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">

@@ -64,7 +64,10 @@ class ExperienceController extends Controller
     }
     public function list()
     {
-       $data['list']=$this->process()->get()->where('resume_id',unique_decrypt(request('resume_id')));
+       $data['list']=$this->process()
+                           ->where('resume_id',unique_decrypt(request('resume_id')))
+                           ->orderBy('sort_order', 'ASC')->get();
+       $data['resume_id']=request('resume_id');
        return view('zeecv.resume.ajax.experience-list',$data);
     }
  
