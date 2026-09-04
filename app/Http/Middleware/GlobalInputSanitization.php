@@ -13,10 +13,7 @@ class GlobalInputSanitization
      * Use route names, full URIs, or patterns with wildcards (*).
      */
     protected $excludedRoutes = [
-        // 'api.webhook',           // by route name
-        // 'admin/*',               // by URI pattern
-        // 'payment/callback',      // by exact URI
-        // Add your excluded routes here
+        'resume.summary.save'
     ];
 
     /**
