@@ -4,9 +4,21 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class GlobalInputSanitization
 {
+    /**
+     * Routes that should be excluded from sanitization.
+     * Use route names, full URIs, or patterns with wildcards (*).
+     */
+    protected $excludedRoutes = [
+        // 'api.webhook',           // by route name
+        // 'admin/*',               // by URI pattern
+        // 'payment/callback',      // by exact URI
+        // Add your excluded routes here
+    ];
+
     /**
      * Fields that should be completely stripped of ALL HTML/special chars
      */
@@ -66,6 +78,11 @@ class GlobalInputSanitization
 
     public function handle(Request $request, Closure $next)
     {
+        // Skip if the route is excluded
+        if ($this->shouldExcludeRoute($request)) {
+            return $next($request);
+        }
+
         // Only sanitize POST, PUT, PATCH requests
         if ($request->isMethod('post') || $request->isMethod('put') || $request->isMethod('patch')) {
             $input = $request->all();
@@ -77,6 +94,36 @@ class GlobalInputSanitization
             $request->replace($sanitizedInput);
         }
         return $next($request);
+    }
+
+    /**
+     * Determine if the current route should be excluded.
+     */
+    protected function shouldExcludeRoute(Request $request): bool
+    {
+        $route = $request->route();
+
+        // If there's no route (e.g., 404), we won't exclude
+        if (!$route) {
+            return false;
+        }
+
+        $routeName = $route->getName();
+        $uri = $request->path(); // e.g., 'admin/users'
+
+        foreach ($this->excludedRoutes as $pattern) {
+            // Check by route name
+            if ($routeName && $routeName === $pattern) {
+                return true;
+            }
+
+            // Check by URI with wildcard matching
+            if (Str::is($pattern, $uri)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
