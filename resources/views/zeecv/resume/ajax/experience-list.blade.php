@@ -94,7 +94,7 @@ function saveSortOrder(order) {
 
         success: function (response) {
 
-            console.log('Experience order saved');
+            loadExperiences();
 
         },
 

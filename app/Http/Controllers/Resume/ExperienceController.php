@@ -51,10 +51,12 @@ class ExperienceController extends Controller
     }
     public function add(Request $request){
       $input=$request->all();
+      $latestExp=Experience::where(['resume_id'=>unique_decrypt($request->resume_id)])->latest('sort_order')->first();
       $item=Experience::create([
          'status'=>"Created",
          'user_id'=>auth_user_id(),
          'resume_id'=>unique_decrypt($request->resume_id),
+         'sort_order'=>$latestExp->sort_order
       ]);
       return response()->json([
          'code'=>'1',
