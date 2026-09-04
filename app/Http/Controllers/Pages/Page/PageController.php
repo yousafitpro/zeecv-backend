@@ -138,7 +138,7 @@ class PageController extends Controller
         $Payload['old'] = $post->replicate();
         $post->update([
                 'title'=>$data['title'],
-                'slug'=> Str::slug($data['title']),
+                // 'slug'=> Str::slug($data['title']),
                 'metadata'=>html_entity_decode($data['description']),
                 'meta_tags'=>html_entity_decode($data['meta_tags']),
                 'long_description'=>html_entity_decode($data['long_description']),
