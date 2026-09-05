@@ -65,7 +65,7 @@
 
 
     <!-- Filter Form -->
-    <form action="{{ route('admin.job.dashboard') }}" method="post">
+    <form action="{{ route('admin.visit.dashboard') }}" method="post">
         @csrf
         <div class="filter-form row align-items-end">
         <div class="col-md-4 col-sm-6 form-group">
@@ -80,7 +80,7 @@
             <button type="submit" id="applyFilterBtn" class="btn btn-primary btn-block">
                 <i class="fas fa-filter"></i> Apply Filter
             </button>
-            <a href="{{ route('admin.job.dashboard') }}" class="btn btn-outline-secondary btn-block mt-1">
+            <a href="{{ route('admin.visit.dashboard') }}" class="btn btn-outline-secondary btn-block mt-1">
                 <i class="fas fa-undo"></i> Reset
             </a>
         </div>
