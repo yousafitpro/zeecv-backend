@@ -71,6 +71,7 @@ class TrackVisitedUrls
                     parse_str(parse_url($request->fullUrl(), PHP_URL_QUERY) ?? '', $query);
                     $utmSource = $query['utm_source'] ?? null;
                 }
+                $routeName = $request->route() ? $request->route()->getName() : null;
                 $payload=[
                     'url' => $request->fullUrl(),
                     'path' => $request->path(),
@@ -79,6 +80,7 @@ class TrackVisitedUrls
                     'user_id' => Auth::id(),
                     'method' => $request->method(),
                     'referer' => $request->header('referer'),
+                    'route_name'=>$routeName,
                     'utm_source' => $utmSource,
                     'created_at' => now(),
                 ];
