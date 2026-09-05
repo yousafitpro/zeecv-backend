@@ -53,21 +53,36 @@ class VisitorDashboardController extends Controller
 
         // Trend data: daily signups for the last 30 days (if no date filter)
         $days = 30;
-        $visits_graph_hour_labels = [];
-        $visits_graph_hour_data = [];
-        $visits_graph_hour = Visit::where('created_at', '>=', Carbon::now()->subHours(24))
-                ->select(DB::raw('HOUR(created_at) as hour'), DB::raw('count(*) as count'))
-                ->groupBy('hour')
-                ->orderBy('hour')
-                ->get()
-                ->keyBy('hour');
-            for ($hour = 0; $hour < 24; $hour++) {
-                $visits_graph_hour_labels[] = sprintf('%02d:00', $hour);   // "00:00", "01:00", ...
-                $visits_graph_hour_data[] = $visits_graph_hour->get($hour)?->count ?? 0;
-            }
+        // How many hours to look back
+        $hours = 12;
 
-            $data['hour_labels'] = $visits_graph_hour_labels;
-            $data['hour_data']   = $visits_graph_hour_data;
+        // Start time (12 hours ago from now)
+        $start = Carbon::now()->subHours($hours);
+
+        // Query visits within this period, grouped by hour-of-day (0-23)
+        $visitsByHour = Visit::where('created_at', '>=', $start)
+            ->select(DB::raw('HOUR(created_at) as hour'), DB::raw('count(*) as count'))
+            ->groupBy('hour')
+            ->orderBy('hour')
+            ->get()
+            ->keyBy('hour');
+
+        // Build labels and data for each hour in the 12-hour window
+        $visits_graph_hour_labels = [];
+        $visits_graph_hour_data   = [];
+
+        for ($i = $hours - 1; $i >= 0; $i--) {
+            // The exact time for this hour slot, going backwards from now
+            $time = Carbon::now()->subHours($i);
+            $hour = (int) $time->format('H');  // hour number 0-23
+            $label = $time->format('H:00');    // e.g. "03:00"
+
+            $visits_graph_hour_labels[] = $label;
+            $visits_graph_hour_data[]   = $visitsByHour->get($hour)?->count ?? 0;
+        }
+
+        $data['hour_labels'] = $visits_graph_hour_labels;
+        $data['hour_data']   = $visits_graph_hour_data;
 
 
         $monthlyVisitLabels = [];
