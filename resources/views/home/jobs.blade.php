@@ -1246,7 +1246,7 @@
 
                 <div class="job_container_outer_list" id="job_container_outer_list">
 
-
+                      @include('home.ajax.jobs-list')
    
 
 
@@ -1413,7 +1413,7 @@ $(document).ready(function() {
         $('#job_search_form').submit();
     });
 
-     $('#job_search_form').submit()
+    //  $('#job_search_form').submit()
 })
 
 </script>

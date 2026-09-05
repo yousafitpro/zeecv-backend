@@ -220,6 +220,9 @@ class JobsController extends Controller
                             ->unique()
                             ->values()
                             ->toArray();
+        $data['list'] = $this->queryProcess($request)->orderBy('created_at', 'desc');
+        $data['list']=$data['list']->paginate(50)
+        ->withQueryString()->setPath(route('home.jobs'));
         return view('home.jobs',$data);
     }
         public function myjobsIndex(Request $request)
@@ -501,7 +504,7 @@ public function dashboardAjax(Request $request)
     
         if(!is_ma()){
             $data['list']=$data['list']->paginate(50)
-        ->withQueryString()->setPath(route('home.jobs'));;
+        ->withQueryString()->setPath(route('home.jobs'));
         return view('home.ajax.jobs-list',$data);
         }else{
           $data['list']= JobResource::collection($data['list']->take(20)->get()); 
