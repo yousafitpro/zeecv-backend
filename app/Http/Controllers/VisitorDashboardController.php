@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Visit;
 use App\Services\GoogleIndexingService;
 use Carbon\Carbon;
+use Google\Service\AnalyticsData\OrderBy;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
@@ -108,6 +109,7 @@ class VisitorDashboardController extends Controller
         $data['jobs_visits']= (clone $jobQuery)->with('user')
             ->withCount('visits')
             ->take(20)
+            ->orderByDesc('visits_count')
             ->get();
 
         // Keep the selected dates for the form

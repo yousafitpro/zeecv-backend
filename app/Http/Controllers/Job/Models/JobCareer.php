@@ -51,6 +51,6 @@ class JobCareer extends Model
     }
     public function visits()
     {
-        return $this->hasMany(Visit::class,'job_slug');
+       return $this->hasMany(Visit::class, 'job_slug', 'slug');
     }
 }

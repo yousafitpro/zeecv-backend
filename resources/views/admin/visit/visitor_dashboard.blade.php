@@ -230,6 +230,7 @@
                                     <thead>
                                         <tr>
                                             <th>Title</th>
+                                            <th>Count</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -237,6 +238,9 @@
                                             <tr>
                                                 <td>
                                                     {{ $jobvisit->title }}
+                                                </td>
+                                                <td>
+                                                    {{ $jobvisit->visits_count }}
                                                 </td>
                                             </tr>
                                         @empty
