@@ -14,6 +14,7 @@ use App\Services\GoogleIndexingService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -43,7 +44,10 @@ class VisitorDashboardController extends Controller
         }
 
         $data['total_visit_count'] = (clone $visitQuery)->count();
-        $data['sources'] = (clone $visitQuery)->count();
+        $data['sources'] = Visit::whereNotNull('utm_source')
+                        ->select('utm_source', DB::raw('count(*) as count'))
+                        ->groupBy('utm_source')
+                        ->get();
 
 
 

@@ -98,6 +98,51 @@
         </div>
                 
     </div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">📊 Traffic Sources</h5>
+            </div>
+            <div class="card-body p-0">
+                @if($sources->isEmpty())
+                    <div class="text-center py-4 text-muted">
+                        No UTM sources found yet.
+                    </div>
+                @else
+                    <table class="table table-hover table-striped mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Source</th>
+                                <th class="text-end">Visits</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($sources as $index => $source)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                        <span class="badge bg-secondary" style="color: white !important">{{ $source->utm_source }}</span>
+                                    </td>
+                                    <td class="text-end fw-bold" >
+                                        {{ number_format($source->count) }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot class="table-light fw-bold">
+                            <tr>
+                                <td colspan="2" class="text-end">Total</td>
+                                <td class="text-end">{{ number_format($sources->sum('count')) }}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
 
 
     <div class="row">
