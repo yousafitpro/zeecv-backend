@@ -32,19 +32,42 @@ class TrackVisitedUrls
      */
     protected function storeVisit($request)
     {
-        if(auth()->check() && is_admin()){
-            return;
-        }
+            // Skip if admin
+            if (auth()->check() && is_admin()) {
+                return;
+            }
 
-        Visit::create([
-            'url' => $request->fullUrl(),
-            'path' => $request->path(),
-            'ip_address' => $request->ip(),
-            'user_agent' => $request->userAgent(),
-            'user_id' => Auth::id(),
-            'method' => $request->method(),
-            'referer' => $request->header('referer'),
-            'created_at' => now(),
-        ]);
+            // Define allowed route names
+            $allowedRoutes = [
+                'home',
+                'home.jobs.single',
+                'home.jobs',
+                'home.user.resumes',
+                'home.user.profile.update',
+                'home.pricing',
+                'home.templates',
+                'home.features',
+                'home.post_a_job',
+                'home.jobs.single.shot',
+                'home.jobs.save',
+                'home.jobs.apply.ajax',
+                'home.jobs.apply',
+                'home.jobs.applyProcess',
+                'resume.edit',
+            ];
+
+            // Only track if current route name is in the allowed list
+            if ($request->route() && $request->routeIs(...$allowedRoutes)) {
+                Visit::create([
+                    'url' => $request->fullUrl(),
+                    'path' => $request->path(),
+                    'ip_address' => $request->ip(),
+                    'user_agent' => $request->userAgent(),
+                    'user_id' => Auth::id(),
+                    'method' => $request->method(),
+                    'referer' => $request->header('referer'),
+                    'created_at' => now(),
+                ]);
+            }
     }
 }
