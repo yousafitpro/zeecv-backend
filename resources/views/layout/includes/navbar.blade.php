@@ -604,6 +604,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 <strong>Dashboard</strong>
               </span>
             </a>
+                        <a class="dropdown-item" href="{{ route('admin.visit.dashboard') }}">
+              <span class="resume-menu-icon">
+                <i class="fas fa-layer-group"></i>
+              </span>
+              <span>
+                <strong>Visitor Insights</strong>
+              </span>
+            </a>
 
           </div>
         </li>

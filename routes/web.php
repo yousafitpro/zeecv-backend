@@ -42,6 +42,7 @@ use App\Http\Controllers\Resume\ResumeController;
 use App\Http\Controllers\Resume\SkillController;
 use App\Http\Controllers\Resume\SummaryController;
 use App\Http\Controllers\Resume\TemplateController;
+use App\Http\Controllers\VisitorDashboardController;
 use App\Models\Resume\Template;
 use Illuminate\Support\Facades\Artisan;
 
@@ -714,4 +715,5 @@ Route::prefix('admin-job/dashboard')
      ->middleware('auth','admin')
      ->group(function(){
      Route::any('/index',[JobDashboardController::class,'index'])->name('admin.job.dashboard');
+     Route::any('/visitor/index',[VisitorDashboardController::class,'index'])->name('admin.visit.dashboard');
      });
