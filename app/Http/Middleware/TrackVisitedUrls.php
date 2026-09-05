@@ -72,6 +72,10 @@ class TrackVisitedUrls
                     $utmSource = $query['utm_source'] ?? null;
                 }
                 $routeName = $request->route() ? $request->route()->getName() : null;
+                $slug = null;
+                if ($request->route() && $request->route()->getName() === 'home.jobs.single') {
+                    $slug = $request->route()->parameter('slug');
+                }
                 $payload=[
                     'url' => $request->fullUrl(),
                     'path' => $request->path(),
@@ -83,6 +87,7 @@ class TrackVisitedUrls
                     'route_name'=>$routeName,
                     'utm_source' => $utmSource,
                     'created_at' => now(),
+                    'job_slug'=>$slug
                 ];
                 Visit::create($payload);
             }
