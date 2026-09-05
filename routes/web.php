@@ -596,16 +596,16 @@ Route::prefix('v2/resume')
 
         Route::any('/preview', [ResumeController::class,'preview'])->name('resume.preview');
     });
-Route::any('/jobs', [JobsController::class,'index'])->name('home.jobs2');
+Route::any('/jobs', [JobsController::class,'index'])->name('home.jobs');
 Route::any('/careers', [JobsController::class,'index'])->name('home.jobs3');
-Route::get('/jobs/{slug}', [JobsController::class,'jobDetail'])->name('home.jobs.single2');
+Route::get('/jobs/{slug}', [JobsController::class,'jobDetail'])->name('home.jobs.single');
 Route::get('/careers/{slug}', [JobsController::class,'jobDetail'])->name('home.jobs.single2');
 Route::prefix('resume-builder')
     ->group(function () {
        Route::get('/features', [HomeController::class,'features'])->name('home.features');
        Route::get('/pricing', [HomeController::class,'pricing'])->name('home.pricing');
        Route::get('/templates', [HomeController::class,'templates'])->name('home.templates');
-       Route::any('/jobs', [JobsController::class,'index'])->name('home.jobs');
+       Route::any('/jobs', [JobsController::class,'index'])->name('home.jobs2');
        Route::any('/jobs/ajax', [JobsController::class,'indexAjax'])->name('home.jobs.ajax');
        Route::any('/user', [JobUserController::class,'index'])->name('home.user.profile');
        Route::any('/user/update', [JobUserController::class,'updateProfile'])->name('home.user.profile.update');
@@ -618,7 +618,7 @@ Route::prefix('resume-builder')
        Route::get('/post-a-job', [HomeController::class,'postAJob'])->name('home.post_a_job');
        Route::post('/contact-post', [HomeController::class,'contactPost'])->name('home.contact_post');
        Route::post('/post-a-job-process', [HomeController::class,'postAJobProcess'])->name('home.post_a_job_process');
-       Route::get('/jobs/{slug}', [JobsController::class,'jobDetail'])->name('home.jobs.single');
+       Route::get('/jobs/{slug}', [JobsController::class,'jobDetail'])->name('home.jobs.single2');
        Route::get('/jobs/short/{slug}', [JobsController::class,'jobDetailShort'])->name('home.jobs.single.shot');
        Route::any('/jobs-save', [JobsController::class,'saveAjax'])->name('home.jobs.save');
        Route::any('apply-ajax', [JobsController::class,'applyAjax'])->name('home.jobs.apply.ajax');
