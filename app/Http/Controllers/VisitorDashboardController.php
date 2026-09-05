@@ -86,7 +86,7 @@ class VisitorDashboardController extends Controller
             ->get();
         $data['recent_visits']= (clone $visitQuery)->with('user')
             ->orderBy('created_at', 'desc')
-            ->limit(500)
+            ->limit(5000)
             ->get();
 
         // Keep the selected dates for the form
