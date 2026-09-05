@@ -268,7 +268,7 @@
         
         const ctx = document.getElementById('monthlyVisitChart').getContext('2d');
         new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: @json($monthly_visit_labels),
                 datasets: [{

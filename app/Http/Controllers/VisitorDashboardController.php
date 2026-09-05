@@ -84,18 +84,26 @@ class VisitorDashboardController extends Controller
 
 
         $monthlyVisitLabels = [];
-        $monthlyVisitData = [];
-        for ($i = $days - 1; $i >= 0; $i--) {
-            $date = Carbon::now()->subDays($i)->toDateString();
-            $monthlyVisitLabels[] = Carbon::now()->subDays($i)->format('M d');
-            $count = Visit::whereDate('created_at', $date)->count();
+        $monthlyVisitData   = [];
+
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $today        = Carbon::now()->startOfDay();
+
+        for ($date = $startOfMonth->copy(); $date->lte($today); $date->addDay()) {
+
+            $monthlyVisitLabels[] = $date->format('d');
+
+            $count = Visit::whereDate('created_at', $date->toDateString())->count();
+
             $monthlyVisitData[] = $count;
         }
+
         $data['monthly_visit_labels'] = $monthlyVisitLabels;
         $data['monthly_visit_data']   = $monthlyVisitData;
-        // Recent applications (last 5)
- 
-        $data['recent_visits']= (clone $visitQuery)->with('user')
+
+        // Recent applications / visits
+        $data['recent_visits'] = (clone $visitQuery)
+            ->with('user')
             ->orderBy('created_at', 'desc')
             ->limit(500)
             ->get();
