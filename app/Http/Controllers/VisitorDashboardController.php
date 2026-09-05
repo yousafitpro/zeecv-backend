@@ -75,7 +75,7 @@ class VisitorDashboardController extends Controller
         for ($i = $days - 1; $i >= 0; $i--) {
             $date = Carbon::now()->subDays($i)->toDateString();
             $monthlyVisitLabels[] = Carbon::now()->subDays($i)->format('M d');
-            $count = JobCareerApply::whereDate('created_at', $date)->count();
+            $count = Visit::whereDate('created_at', $date)->count();
             $monthlyVisitData[] = $count;
         }
         $data['monthly_visit_labels'] = $monthlyVisitLabels;
