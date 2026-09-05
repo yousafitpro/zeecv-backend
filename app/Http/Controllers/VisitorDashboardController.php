@@ -70,16 +70,16 @@ class VisitorDashboardController extends Controller
             $data['hour_data']   = $visits_graph_hour_data;
 
 
-        $appliedLabels = [];
-        $appliedData = [];
+        $monthlyVisitLabels = [];
+        $monthlyVisitData = [];
         for ($i = $days - 1; $i >= 0; $i--) {
             $date = Carbon::now()->subDays($i)->toDateString();
-            $appliedLabels[] = Carbon::now()->subDays($i)->format('M d');
+            $monthlyVisitLabels[] = Carbon::now()->subDays($i)->format('M d');
             $count = JobCareerApply::whereDate('created_at', $date)->count();
-            $appliedData[] = $count;
+            $monthlyVisitData[] = $count;
         }
-        $data['applied_labels'] = $appliedLabels;
-        $data['applied_data']   = $appliedData;
+        $data['monthly_visit_labels'] = $monthlyVisitLabels;
+        $data['monthly_visit_data']   = $monthlyVisitData;
         // Recent applications (last 5)
         $data['recent_applies']= JobCareerApply::with(['user','job'])
             ->orderBy('created_at', 'desc')

@@ -163,10 +163,10 @@
        
             <div class="card shadow">
                 <div class="card-header card-header-custom">
-                    <i class="fas fa-chart-line mr-2"></i> Daily Sign‑up Trend (last 30 days)
+                    <i class="fas fa-chart-line mr-2"></i> Monthly Visit Trend (last 30 days)
                 </div>
                 <div class="card-body">
-                    <canvas id="trendChart" style="width:100%; height:200px;"></canvas>
+                    <canvas id="monthlyVisitChart" style="width:100%; height:200px;"></canvas>
                 </div>
             </div>
       
@@ -228,14 +228,14 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         
-        const ctx = document.getElementById('trendChart').getContext('2d');
+        const ctx = document.getElementById('monthlyVisitChart').getContext('2d');
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: @json($applied_labels),
+                labels: @json($monthly_visit_labels),
                 datasets: [{
-                    label: 'New Users',
-                    data: @json($applied_data),
+                    label: 'Monthly Visits',
+                    data: @json($monthly_visit_data),
                     backgroundColor: 'rgba(78, 115, 223, 0.2)',
                     borderColor: '#4e73df',
                     borderWidth: 2,
