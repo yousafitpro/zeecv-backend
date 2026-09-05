@@ -53,16 +53,23 @@ class VisitorDashboardController extends Controller
 
         // Trend data: daily signups for the last 30 days (if no date filter)
         $days = 30;
-        $trendLabels = [];
-        $trendData = [];
-        for ($i = $days - 1; $i >= 0; $i--) {
-            $date = Carbon::now()->subDays($i)->toDateString();
-            $trendLabels[] = Carbon::now()->subDays($i)->format('M d');
-            $count = User::whereDate('created_at', $date)->count();
-            $trendData[] = $count;
-        }
-        $data['trend_labels'] = $trendLabels;
-        $data['trend_data']   = $trendData;
+        $visits_graph_hour_labels = [];
+        $visits_graph_hour_data = [];
+        $visits_graph_hour = Visit::where('created_at', '>=', Carbon::now()->subHours(24))
+                ->select(DB::raw('HOUR(created_at) as hour'), DB::raw('count(*) as count'))
+                ->groupBy('hour')
+                ->orderBy('hour')
+                ->get()
+                ->keyBy('hour');
+            for ($hour = 0; $hour < 24; $hour++) {
+                $visits_graph_hour_labels[] = sprintf('%02d:00', $hour);   // "00:00", "01:00", ...
+                $visits_graph_hour_data[] = $visits_graph_hour->get($hour)?->count ?? 0;
+            }
+
+            $data['hour_labels'] = $visits_graph_hour_labels;
+            $data['hour_data']   = $visits_graph_hour_data;
+
+
         $appliedLabels = [];
         $appliedData = [];
         for ($i = $days - 1; $i >= 0; $i--) {

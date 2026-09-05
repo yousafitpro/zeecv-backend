@@ -150,10 +150,10 @@
        
             <div class="card shadow">
                 <div class="card-header card-header-custom">
-                    <i class="fas fa-chart-line mr-2"></i> Daily Applied Trend (last 30 days)
+                    <i class="fas fa-chart-line mr-2"></i> Hourly (last 24 Hours)
                 </div>
                 <div class="card-body">
-                    <canvas id="appliedChart" style="width:100%; height:200px;"></canvas>
+                    <canvas id="hourlyVisitChart" style="width:100%; height:200px;"></canvas>
                 </div>
             </div>
       
@@ -232,10 +232,10 @@
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: @json($trend_labels),
+                labels: @json($applied_labels),
                 datasets: [{
                     label: 'New Users',
-                    data: @json($trend_data),
+                    data: @json($applied_data),
                     backgroundColor: 'rgba(78, 115, 223, 0.2)',
                     borderColor: '#4e73df',
                     borderWidth: 2,
@@ -257,14 +257,14 @@
                 }
             }
         });
-        const ctx2 = document.getElementById('appliedChart').getContext('2d');
+        const ctx2 = document.getElementById('hourlyVisitChart').getContext('2d');
         new Chart(ctx2, {
             type: 'line',
             data: {
-                labels: @json($applied_labels),
+                labels: @json($hour_labels),
                 datasets: [{
-                    label: 'New Users',
-                    data: @json($applied_data),
+                    label: 'Hourly Visits',
+                    data: @json($hour_data),
                     backgroundColor: 'rgba(78, 115, 223, 0.2)',
                     borderColor: '#4e73df',
                     borderWidth: 2,
