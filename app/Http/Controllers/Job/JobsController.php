@@ -500,7 +500,7 @@ public function dashboardAjax(Request $request)
         $data['list'] = $this->queryProcess($request)->orderBy('created_at', 'desc');
     
         if(!is_ma()){
-            $data['list']=$data['list']->paginate(20)
+            $data['list']=$data['list']->paginate(50)
         ->withQueryString()->setPath(route('home.jobs'));;
         return view('home.ajax.jobs-list',$data);
         }else{
