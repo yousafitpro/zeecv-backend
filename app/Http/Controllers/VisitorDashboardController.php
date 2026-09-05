@@ -75,7 +75,7 @@ class VisitorDashboardController extends Controller
 
             $time = Carbon::today()->setHour($hour);
 
-            $visits_graph_hour_labels[] = $time->format('h A');
+            $visits_graph_hour_labels[] = $time->format('H');
             $visits_graph_hour_data[]   = $visitsByHour->get($hour)?->count ?? 0;
         }
 
