@@ -39,7 +39,7 @@ class VisitorDashboardController extends Controller
 
         // Base queries with optional date filter
         $visitQuery = Visit::query();
-        $jobQuery = JobCareer::query()->with(['visits']);
+        $jobQuery = JobCareer::query()->take(1)->with(['visits']);
 
         if ($start_date && $end_date) {
             $visitQuery->whereBetween('created_at', [$start_date, $end_date]);
@@ -108,7 +108,6 @@ class VisitorDashboardController extends Controller
             ->get();
         $data['jobs_visits']= (clone $jobQuery)
             ->withCount('visits')
-            ->take(5)
             ->orderByDesc('visits_count')
             ->get();
 
