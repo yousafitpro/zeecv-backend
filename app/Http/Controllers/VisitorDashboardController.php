@@ -106,7 +106,7 @@ class VisitorDashboardController extends Controller
             ->orderBy('created_at', 'desc')
             ->limit(500)
             ->get();
-        $data['jobs_visits']= (clone $jobQuery)->with('user')
+        $data['jobs_visits']= (clone $jobQuery)
             ->withCount('visits')
             ->take(20)
             ->orderByDesc('visits_count')
