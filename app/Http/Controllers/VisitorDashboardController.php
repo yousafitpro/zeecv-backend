@@ -54,7 +54,7 @@ class VisitorDashboardController extends Controller
         // Trend data: daily signups for the last 30 days (if no date filter)
         $days = 30;
         // How many hours to look back
-        $hours = 12;
+        $hours = 24;
 
         // Start time (12 hours ago from now)
         $start = Carbon::now()->subHours($hours);
