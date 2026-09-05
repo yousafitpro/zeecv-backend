@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Job\Models;
 
 use App\Models\User;
+use App\Models\Visit;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -47,5 +48,9 @@ class JobCareer extends Model
     public function applications()
     {
         return $this->hasMany(JobApplication::class,'job_id');
+    }
+    public function visits()
+    {
+        return $this->hasMany(Visit::class,'job_slug');
     }
 }

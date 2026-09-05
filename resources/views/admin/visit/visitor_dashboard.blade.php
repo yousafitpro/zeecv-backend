@@ -175,7 +175,7 @@
 
 
 
-  <div class="row">
+    <div class="row">
                 <div class="col-12">
                     <div class="card shadow">
                         <div class="card-header card-header-custom">
@@ -207,6 +207,37 @@
                                                 <td>{{ $visit->url ?? 'N/A' }}</td>
                                                 <td>{{ $visit->created_at->format('M d, Y H:i') }}</td>
                                                 <td><span class="badge badge-apply">Saved</span></td>
+                                            </tr>
+                                        @empty
+                                            <tr><td colspan="3" class="text-center text-muted">No applications yet.</td></tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <div class="row">
+                <div class="col-12">
+                    <div class="card shadow">
+                        <div class="card-header card-header-custom">
+                            <i class="fas fa-clock mr-2"></i> jobs visits
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="myTable7 table table-hover table-recent">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse($jobs_visits as $jobvisit)
+                                            <tr>
+                                                <td>
+                                                    {{ $jobvisit->title }}
+                                                </td>
                                             </tr>
                                         @empty
                                             <tr><td colspan="3" class="text-center text-muted">No applications yet.</td></tr>

@@ -38,9 +38,13 @@ class VisitorDashboardController extends Controller
 
         // Base queries with optional date filter
         $visitQuery = Visit::query();
+        $jobQuery = JobCareer::query()->with(['visits']);
 
         if ($start_date && $end_date) {
             $visitQuery->whereBetween('created_at', [$start_date, $end_date]);
+            $jobQuery->whereHas('visits', function ($query) use ($start_date, $end_date) {
+                $query->whereBetween('created_at', [$start_date, $end_date]);
+            });
         }
 
         $data['total_visit_count'] = (clone $visitQuery)->count();
@@ -96,24 +100,14 @@ class VisitorDashboardController extends Controller
         $data['monthly_visit_labels'] = $monthlyVisitLabels;
         $data['monthly_visit_data']   = $monthlyVisitData;
         // Recent applications (last 5)
-        $data['recent_applies']= JobCareerApply::with(['user','job'])
-            ->orderBy('created_at', 'desc')
-            ->whereBetween('created_at', [$start_date, $end_date])
-            ->limit(50)
-            ->get();
-        $data['recent_users']= User::with(['resume','contact','clicks'])
-            ->orderBy('created_at', 'desc')
-            ->whereBetween('created_at', [$start_date, $end_date])
-            ->limit(50)
-            ->get();
-        $data['recent_saved']= JobCareerSaved::with('user','job')
-            ->orderBy('created_at', 'desc')
-            ->whereBetween('created_at', [$start_date, $end_date])
-            ->limit(50)
-            ->get();
+ 
         $data['recent_visits']= (clone $visitQuery)->with('user')
             ->orderBy('created_at', 'desc')
             ->limit(500)
+            ->get();
+        $data['jobs_visits']= (clone $jobQuery)->with('user')
+            ->withCount('visits')
+            ->take(20)
             ->get();
 
         // Keep the selected dates for the form
