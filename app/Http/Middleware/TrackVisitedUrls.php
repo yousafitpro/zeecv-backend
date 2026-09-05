@@ -58,7 +58,9 @@ class TrackVisitedUrls
 
             // Only track if current route name is in the allowed list
             if ($request->route() && $request->routeIs(...$allowedRoutes)) {
-                Visit::create([
+                $payload=[];
+                
+                $payload=[
                     'url' => $request->fullUrl(),
                     'path' => $request->path(),
                     'ip_address' => $request->ip(),
@@ -67,7 +69,8 @@ class TrackVisitedUrls
                     'method' => $request->method(),
                     'referer' => $request->header('referer'),
                     'created_at' => now(),
-                ]);
+                ];
+                Visit::create($payload);
             }
     }
 }
