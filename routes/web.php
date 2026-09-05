@@ -596,6 +596,10 @@ Route::prefix('v2/resume')
 
         Route::any('/preview', [ResumeController::class,'preview'])->name('resume.preview');
     });
+Route::any('/jobs', [JobsController::class,'index'])->name('home.jobs2');
+Route::any('/careers', [JobsController::class,'index'])->name('home.jobs3');
+Route::get('/jobs/{slug}', [JobsController::class,'jobDetail'])->name('home.jobs.single2');
+Route::get('/careers/{slug}', [JobsController::class,'jobDetail'])->name('home.jobs.single2');
 Route::prefix('resume-builder')
     ->group(function () {
        Route::get('/features', [HomeController::class,'features'])->name('home.features');
