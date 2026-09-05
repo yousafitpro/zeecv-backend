@@ -39,13 +39,13 @@ class VisitorDashboardController extends Controller
 
         // Base queries with optional date filter
         $visitQuery = Visit::query();
-        $jobQuery = JobCareer::query()->take(1)->with(['visits']);
+        $jobQuery   = JobCareer::query()->with(['visits']);
 
         if ($start_date && $end_date) {
             $visitQuery->whereBetween('created_at', [$start_date, $end_date]);
-            $jobQuery->whereHas('visits', function ($query) use ($start_date, $end_date) {
-                $query->whereBetween('created_at', [$start_date, $end_date]);
-            });
+            // $jobQuery->whereHas('visits', function ($query) use ($start_date, $end_date) {
+            //     $query->whereBetween('created_at', [$start_date, $end_date]);
+            // });
         }
 
         $data['total_visit_count'] = (clone $visitQuery)->count();
@@ -106,11 +106,16 @@ class VisitorDashboardController extends Controller
             ->orderBy('created_at', 'desc')
             ->limit(500)
             ->get();
-        // $data['jobs_visits']= (clone $jobQuery)
-        //     ->withCount('visits')
-        //     ->orderByDesc('visits_count')
-        //     ->get();
-                   $data['jobs_visits']= [];
+        $data['jobs_visits'] = (clone $jobQuery)
+                    ->withCount(['visits' => function ($q) use ($start_date, $end_date) {
+                        // Only count visits that fall within the date range (if any)
+                        if ($start_date && $end_date) {
+                            $q->whereBetween('created_at', [$start_date, $end_date]);
+                        }
+                    }])
+                    ->orderByDesc('visits_count')
+                    ->take(2)   // ← place the limit here, after sorting
+                    ->get();
 
         // Keep the selected dates for the form
         $data['start_date'] = $start_date;
