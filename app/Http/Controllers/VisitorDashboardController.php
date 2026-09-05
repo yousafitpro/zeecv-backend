@@ -43,9 +43,9 @@ class VisitorDashboardController extends Controller
 
         if ($start_date && $end_date) {
             $visitQuery->whereBetween('created_at', [$start_date, $end_date]);
-            // $jobQuery->whereHas('visits', function ($query) use ($start_date, $end_date) {
-            //     $query->whereBetween('created_at', [$start_date, $end_date]);
-            // });
+            $jobQuery->whereHas('visits', function ($query) use ($start_date, $end_date) {
+                $query->whereBetween('created_at', [$start_date, $end_date]);
+            });
         }
 
         $data['total_visit_count'] = (clone $visitQuery)->count();
