@@ -351,6 +351,7 @@
                                     <thead>
                                         <tr>
                                             <th>User</th>
+                                            <th>IP</th>
                                             <th>URL</th>
                                             <th>Visited At</th>
                                             <th>Status</th>
@@ -366,6 +367,7 @@
 
 
                                                 </td>
+                                                <td>{{ $visit->ip_address ?? 'N/A' }}</td>
                                                 <td>{{ $visit->url ?? 'N/A' }}</td>
                                                 <td>{{ $visit->created_at->format('M d, Y H:i') }}</td>
                                                 <td><span class="badge badge-apply">Saved</span></td>
