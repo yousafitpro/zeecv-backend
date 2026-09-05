@@ -75,7 +75,7 @@ class VisitorDashboardController extends Controller
             // The exact time for this hour slot, going backwards from now
             $time = Carbon::now()->subHours($i);
             $hour = (int) $time->format('H');  // hour number 0-23
-            $label = $time->format('H:00');    // e.g. "03:00"
+            $label = $time->format('H');    // e.g. "03:00"
 
             $visits_graph_hour_labels[] = $label;
             $visits_graph_hour_data[]   = $visitsByHour->get($hour)?->count ?? 0;
