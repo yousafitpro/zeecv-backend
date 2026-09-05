@@ -108,7 +108,7 @@ class VisitorDashboardController extends Controller
             ->get();
         $data['jobs_visits']= (clone $jobQuery)
             ->withCount('visits')
-            ->take(20)
+            ->take(5)
             ->orderByDesc('visits_count')
             ->get();
 
