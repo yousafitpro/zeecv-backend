@@ -43,6 +43,7 @@ class VisitorDashboardController extends Controller
         }
 
         $data['total_visit_count'] = (clone $visitQuery)->count();
+        $data['sources'] = (clone $visitQuery)->count();
 
 
 
@@ -86,7 +87,7 @@ class VisitorDashboardController extends Controller
             ->get();
         $data['recent_visits']= (clone $visitQuery)->with('user')
             ->orderBy('created_at', 'desc')
-            ->limit(5000)
+            ->limit(500)
             ->get();
 
         // Keep the selected dates for the form

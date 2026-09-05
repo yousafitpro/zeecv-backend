@@ -59,7 +59,14 @@ class TrackVisitedUrls
             // Only track if current route name is in the allowed list
             if ($request->route() && $request->routeIs(...$allowedRoutes)) {
                 $payload=[];
-                
+                $utmSource = null;
+                if ($request->query('utm_source')) {
+                    $utmSource = $request->query('utm_source');
+                } else {
+                    // Or parse from fullUrl if you prefer
+                    parse_str(parse_url($request->fullUrl(), PHP_URL_QUERY) ?? '', $query);
+                    $utmSource = $query['utm_source'] ?? null;
+                }
                 $payload=[
                     'url' => $request->fullUrl(),
                     'path' => $request->path(),
@@ -68,6 +75,7 @@ class TrackVisitedUrls
                     'user_id' => Auth::id(),
                     'method' => $request->method(),
                     'referer' => $request->header('referer'),
+                    'utm_source' => $utmSource,
                     'created_at' => now(),
                 ];
                 Visit::create($payload);
