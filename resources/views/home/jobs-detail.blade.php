@@ -1242,7 +1242,7 @@
                             </a>
                             @else
                             <a
-                                href="{{ route('signup') }}"
+                                href="javascrip:void" data-toggle="modal" data-target="#loginRegModal"
                                 class="job_container_outer_apply_button"
                             >
                         

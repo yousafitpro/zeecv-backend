@@ -782,7 +782,7 @@
                         type="email"
                         class="form-control"
                         placeholder="Email Address"
-                        value="{{ old('email') }}"
+                        value="{{ request('email')??old('email') }}"
                         required
                         autocomplete="email"
                     >

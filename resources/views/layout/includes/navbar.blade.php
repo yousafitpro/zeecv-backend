@@ -736,10 +736,10 @@ document.addEventListener('DOMContentLoaded', function () {
                ACTION BUTTONS (LOGGED OUT)
           ============================================== -->
           <li class="nav-item my-2 my-lg-0 ml-lg-3">
-            <a href="{{ url('login') }}" class="btn-nav-outline w-100">Log in</a>
+            <a href="javascrip:void" data-toggle="modal" data-target="#loginModal" class="btn-nav-outline w-100">Log in</a>
           </li>
           <li class="nav-item my-2 my-lg-0 ml-lg-2">
-            <a href="{{ url('signup') }}" class="btn-nav-primary w-100">Free Sign up</a>
+            <a href="javascrip:void" data-toggle="modal" data-target="#loginRegModal" class="btn-nav-primary w-100">Free Sign up</a>
           </li>
         @endif
 

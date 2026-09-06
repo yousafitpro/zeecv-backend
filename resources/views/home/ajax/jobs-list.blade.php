@@ -84,7 +84,7 @@
                                         </a>
                                         @else
                                         <a
-                                            href="{{ route('signup') }}"
+                                            href="javascrip:void" data-toggle="modal" data-target="#loginRegModal"
                                             class="job_container_outer_title_link"
                                         >
 
@@ -252,13 +252,13 @@
                                         <i class="bi bi-arrow-right"></i>
                                     </a>
                                      @else
-                                      <a href="{{ route('signup') }}"
+                                      <a href="javascrip:void" data-toggle="modal" data-target="#loginRegModal"
                                         class="job_container_outer_button mt-1"
                                         >
                                             save
 
                                         </a>
-                                         <a href="{{ route('signup') }}"
+                                         <a href="javascrip:void" data-toggle="modal" data-target="#loginRegModal"
                                     class="job_container_outer_button  mt-1">
                                        Quick Apply
                                         <i class="bi bi-arrow-right"></i>

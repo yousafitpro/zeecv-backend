@@ -83,6 +83,117 @@
 
 </head>
 <body>
+<!-- =============================================
+     SCRIPTS
+============================================= -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script>
+    (function() {
+        'use strict';
+
+        // =============================================
+        // PASSWORD TOGGLE
+        // =============================================
+        const toggleBtn = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        if (toggleBtn && passwordInput) {
+            toggleBtn.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.querySelector('i').classList.toggle('fa-eye');
+                this.querySelector('i').classList.toggle('fa-eye-slash');
+            });
+        }
+
+        // =============================================
+        // FORM VALIDATION
+        // =============================================
+        const form = document.getElementById('loginForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                const email = document.getElementById('email');
+                const password = document.getElementById('password');
+                let isValid = true;
+
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email.value.trim() || !emailRegex.test(email.value.trim())) {
+                    email.classList.add('error');
+                    document.getElementById('emailError').classList.add('show');
+                    isValid = false;
+                } else {
+                    email.classList.remove('error');
+                    document.getElementById('emailError').classList.remove('show');
+                }
+
+                // Password validation
+                if (!password.value || password.value.length < 1) {
+                    password.classList.add('error');
+                    document.getElementById('passwordError').classList.add('show');
+                    isValid = false;
+                } else {
+                    password.classList.remove('error');
+                    document.getElementById('passwordError').classList.remove('show');
+                }
+
+                if (!isValid) {
+                    e.preventDefault();
+                    submitBtn.classList.remove('loading');
+                } else {
+                    submitBtn.classList.add('loading');
+                }
+            });
+        }
+
+        // =============================================
+        // CLEAR ERRORS ON INPUT
+        // =============================================
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('input', function() {
+                this.classList.remove('error');
+                const errorId = this.id + 'Error';
+                const errorEl = document.getElementById(errorId);
+                if (errorEl) {
+                    errorEl.classList.remove('show');
+                }
+            });
+        });
+
+        // =============================================
+        // GOOGLE LOGIN
+        // =============================================
+        window.handleGoogleResponse = function(response) {
+            fetch("{{ route('auth.google') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                body: JSON.stringify({
+                    credential: response.credential
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = data.redirect;
+                } else {
+                    alert(data.message || 'Google login failed. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Google login error:', error);
+                alert('Google login failed. Please try again.');
+            });
+        };
+
+    })();
+</script>
+
 @if(request('is_app','yes')!='no')
 <div style="height: 100px"></div>
 @endif
@@ -161,5 +272,6 @@
 
     })
 </script>
+@include('modals.signin-model')
 </body>
 </html>
