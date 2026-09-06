@@ -43,8 +43,8 @@ class LinkedinAuthController extends Controller
 
         if (!$user) {
             $user = User::create([
-                'name' => $userInfo['email'],
-                'email' => $userInfo['name'],
+                'name' => $userInfo['name'],
+                'email' => $userInfo['email'],
                 'signup_type'=>'linkedin',
                 'external_dp_image'=>$userInfo['picture'],
                 'type'=>'User',
