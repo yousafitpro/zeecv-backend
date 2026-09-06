@@ -721,3 +721,7 @@ Route::prefix('admin-job/dashboard')
      Route::any('/index',[JobDashboardController::class,'index'])->name('admin.job.dashboard');
      Route::any('/visitor/index',[VisitorDashboardController::class,'index'])->name('admin.visit.dashboard');
      });
+Route::prefix('linkedin')
+     ->group(function(){
+     Route::any('/callback',[JobDashboardController::class,'index'])->name('admin.job.dashboard');
+     });
