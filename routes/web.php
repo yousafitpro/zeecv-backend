@@ -724,5 +724,6 @@ Route::prefix('admin-job/dashboard')
      });
 Route::prefix('linkedin')
      ->group(function(){
-     Route::any('/callback',[LinkedinAuthController::class,'callback'])->name('admin.job.dashboard');
+     Route::any('/callback',[LinkedinAuthController::class,'callback'])->name('linkedin.callback');
+     Route::any('/auth',[LinkedinAuthController::class,'auth'])->name('linkedin.auth');
      });

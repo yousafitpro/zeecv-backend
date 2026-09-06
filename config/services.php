@@ -42,6 +42,10 @@ return [
         'pk_key'=>env('Stripe_public_key', 'none'),
         'sign'=>env('Stripe_Signature', 'none')
     ],
+    'linkedin' =>[
+        'client_id'=>env('LINKEDIN_CLIENT_ID', 'none'),
+        'secret'=>env('LINKEDIN_SECRET', 'none'),
+    ],
 
 
 ];
