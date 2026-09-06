@@ -50,7 +50,7 @@ class VisitorDashboardController extends Controller
         }
 
         $data['total_visit_count'] = (clone $visitQuery)->count();
-        $data['sources'] = Visit::whereNotNull('utm_source')
+        $data['sources'] = (clone $visitQuery)->whereNotNull('utm_source')
                         ->select('utm_source', DB::raw('count(*) as count'))
                         ->groupBy('utm_source')
                         ->get();
