@@ -96,7 +96,7 @@
       padding: 0.7rem;
       font-weight: 500;
       font-size: 1rem;
-      border: 1px solid #e2e8f0;
+      /* border: 1px solid #e2e8f0; */
       background-color: #ffffff;
       transition: background-color 0.2s, border-color 0.2s;
       display: flex;
@@ -192,7 +192,7 @@
                         data-callback="handleGoogleResponse">
                     </div>
                     <div class="g_id_signin-wrapper">
-                        <div class="g_id_signin"
+                        <div class="g_id_signin social-btn"
                             data-type="standard"
                             data-size="large"
                             data-theme="outline"
@@ -281,7 +281,7 @@
                         data-callback="handleGoogleResponse">
                     </div>
                     <div class="g_id_signin-wrapper">
-                        <div class="g_id_signin"
+                        <div class="g_id_signin social-btn google"
                             data-type="standard"
                             data-size="large"
                             data-theme="outline"
@@ -294,7 +294,9 @@
                 </div>
             {{-- <button class="social-btn google">
               <i class="fab fa-google fa-lg"></i> Google
-            </button>
+            </button> --}}
+           
+             {{-- 
             <button class="social-btn facebook">
               <i class="fab fa-facebook fa-lg"></i> Facebook
             </button> --}}
