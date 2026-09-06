@@ -31,6 +31,7 @@ use App\Http\Controllers\Job\JobProcessingController;
 use App\Http\Controllers\Job\JobsController;
 use App\Http\Controllers\Job\JobUserController;
 use App\Http\Controllers\JobDashboardController;
+use App\Http\Controllers\LinkedinAuthController;
 use App\Http\Controllers\PMM\Lookup\AddressController;
 use App\Http\Controllers\PMM\Lookup\GlsProfile;
 use App\Http\Controllers\Resume\CertificateController;
@@ -723,5 +724,5 @@ Route::prefix('admin-job/dashboard')
      });
 Route::prefix('linkedin')
      ->group(function(){
-     Route::any('/callback',[JobDashboardController::class,'index'])->name('admin.job.dashboard');
+     Route::any('/callback',[LinkedinAuthController::class,'callback'])->name('admin.job.dashboard');
      });
