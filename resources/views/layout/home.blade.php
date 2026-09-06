@@ -86,7 +86,8 @@
 <!-- =============================================
      SCRIPTS
 ============================================= -->
-<script src="https://accounts.google.com/gsi/client" async defer></script>
+@if (!auth()->check())
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <script>
     (function() {
@@ -193,6 +194,7 @@
 
     })();
 </script>
+@endif
 
 @if(request('is_app','yes')!='no')
 <div style="height: 100px"></div>
