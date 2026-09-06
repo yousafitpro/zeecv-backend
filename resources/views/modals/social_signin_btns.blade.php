@@ -2,10 +2,10 @@
                 /* Social buttons */
     .login_reg_modal .social-btn {
       border-radius: 10px;
-      padding: 0.7rem;
+      /* padding: 0.7rem; */
       font-weight: 500;
       font-size: 1rem;
-      border: 1px solid #e2e8f0;
+      /* border: 1px solid #e2e8f0; */
       background-color: #ffffff;
       transition: background-color 0.2s, border-color 0.2s;
       display: flex;
@@ -15,6 +15,11 @@
       width: 100%;
       color: #1e293b;
       text-decoration: none;
+    }
+    .login_reg_modal .linkedin-btn {
+      border: 1px solid #e2e8f0;
+      background: white;
+      padding: 5px 10px;
     }
     .login_reg_modal .social-btn:hover {
       background-color: #f8fafc;
@@ -48,7 +53,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <a href="{{ route('linkedin.auth') }}" class="social-btn facebook">
+                <a href="{{ route('linkedin.auth') }}" class="social-btn linkedin-btn">
               <i class="fab fa-linkedin fa-lg"></i> Linkedin
             </a>
             </div>
