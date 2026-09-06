@@ -33,10 +33,13 @@
     .login_reg_modal .social-btn.facebook i {
       color: #1877f2;
     }
+    .social-btns img{
+      width: 30px;
+    }
         </style>
-        <div class="row">
+        <div class="row social-btns">
             <div class="col-md-6">
-                <div class="social-login" style="margin-top: -20px;">
+                <div class="social-login" >
                     <div id="g_id_onload"
                         data-client_id="{{ config('services.google.client_id') }}"
                         data-callback="handleGoogleResponse">
@@ -56,7 +59,7 @@
             </div>
             <div class="col-md-6">
                 <a href="{{ route('linkedin.auth') }}" class="social-btn linkedin-btn">
-              <i class="fab fa-linkedin fa-lg"></i> Linkedin
+              <img src="{{ asset('assets/icons/linkedin.png') }}" > Linkedin
             </a>
             </div>
         </div>
