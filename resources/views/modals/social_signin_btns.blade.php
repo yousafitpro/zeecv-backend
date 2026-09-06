@@ -16,12 +16,17 @@
       color: #1e293b;
       text-decoration: none;
     }
-    .login_reg_modal .linkedin-btn {
+    .social-btns .linkedin-btn {
+      cursor: pointer;
       border: 1px solid #e2e8f0;
       background: white !important;
       padding: 5px 10px;
+      border-radius: 5px;
     
       //asdasd
+    }
+    .social-btns .linkedin-btn a{
+      text-decoration: none;
     }
     .login_reg_modal .social-btn:hover {
       background-color: #f8fafc;
@@ -36,31 +41,37 @@
     .social-btns img{
       width: 30px;
     }
+
         </style>
         <div class="row social-btns">
             <div class="col-md-6">
                 <div class="social-login" >
-                    <div id="g_id_onload"
-                        data-client_id="{{ config('services.google.client_id') }}"
-                        data-callback="handleGoogleResponse">
-                    </div>
-                    <div class="g_id_signin-wrapper">
-                        <div class="g_id_signin social-btn google"
-                            data-type="standard"
-                            data-size="large"
-                            data-theme="outline"
-                            data-text="signin_with"
-                            data-shape="rectangular"
-                            data-logo_alignment="left"
-                            data-width="60%">
-                        </div>
-                    </div>
+                   <div id="g_id_onload"
+    data-client_id="{{ config('services.google.client_id') }}"
+    data-callback="handleGoogleResponse"
+    data-context="signin"
+    data-auto_select="false">
+</div>
+
+<div class="g_id_signin-wrapper">
+    <div class="g_id_signin social-btn google"
+        data-type="standard"
+        data-size="large"
+        data-theme="outline"
+        data-text="signin_with"
+        data-shape="rectangular"
+        data-logo_alignment="left"
+        data-width="100%">
+    </div>
+</div>
                 </div>
             </div>
             <div class="col-md-6">
-                <a href="{{ route('linkedin.auth') }}" class="social-btn linkedin-btn">
+                <div class="social-btn linkedin-btn">
+                  <a href="{{ route('linkedin.auth') }}">
               <img src="{{ asset('assets/icons/linkedin.png') }}" > Linkedin
             </a>
+                </div>
             </div>
         </div>
       
