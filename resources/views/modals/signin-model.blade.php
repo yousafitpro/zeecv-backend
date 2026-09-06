@@ -91,33 +91,7 @@
       white-space: nowrap;
     }
 
-    /* Social buttons */
-    .login_reg_modal .social-btn {
-      border-radius: 10px;
-      padding: 0.7rem;
-      font-weight: 500;
-      font-size: 1rem;
-      /* border: 1px solid #e2e8f0; */
-      background-color: #ffffff;
-      transition: background-color 0.2s, border-color 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      color: #1e293b;
-      text-decoration: none;
-    }
-    .login_reg_modal .social-btn:hover {
-      background-color: #f8fafc;
-      border-color: #cbd5e1;
-    }
-    .login_reg_modal .social-btn.google i {
-      color: #ea4335;
-    }
-    .login_reg_modal .social-btn.facebook i {
-      color: #1877f2;
-    }
+
 
     /* Footer privacy text */
     .login_reg_modal .privacy-text {
