@@ -18,8 +18,9 @@
     }
     .login_reg_modal .linkedin-btn {
       border: 1px solid #e2e8f0;
-      background: white;
+      background: white !important;
       padding: 5px 10px;
+    
       //asdasd
     }
     .login_reg_modal .social-btn:hover {
@@ -48,7 +49,7 @@
                             data-text="signin_with"
                             data-shape="rectangular"
                             data-logo_alignment="left"
-                            data-width="100%">
+                            data-width="60%">
                         </div>
                     </div>
                 </div>

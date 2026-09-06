@@ -39,11 +39,13 @@ class VisitorDashboardController extends Controller
 
         // Base queries with optional date filter
         $visitQuery = Visit::query();
+        $userQuery = User::query();
         $jobQuery   = JobCareer::query();
 
         if ($start_date && $end_date) {
             $visitQuery->whereBetween('created_at', [$start_date, $end_date]);
             $jobQuery->whereBetween('created_at', [$start_date, $end_date]);
+            $userQuery->whereBetween('created_at', [$start_date, $end_date]);
             // $jobQuery->whereHas('visits', function ($query) use ($start_date, $end_date) {
             //     $query->whereBetween('created_at', [$start_date, $end_date]);
             // });
@@ -57,6 +59,10 @@ class VisitorDashboardController extends Controller
         $data['job_sources'] = (clone $jobQuery)->whereNotNull('source')
                         ->select('source', DB::raw('count(*) as count'))
                         ->groupBy('source')
+                        ->get();
+        $data['user_types'] = (clone $userQuery)
+                        ->select('signup_type', DB::raw('count(*) as count'))
+                        ->groupBy('signup_type')
                         ->get();
 
 
