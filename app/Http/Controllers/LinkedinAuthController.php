@@ -22,6 +22,9 @@ class LinkedinAuthController extends Controller
     public function callback(Request $request)
    {
         $input=$request->all();
+        if(!empty($input['error'])){
+            return redirect()->route('home.jobs');
+        }
         $response = Http::asForm()->post('https://www.linkedin.com/oauth/v2/accessToken', [
         'grant_type'    => 'authorization_code',
         'code'          => $input['code'],  // The code from the callback
