@@ -565,7 +565,7 @@ document.addEventListener('DOMContentLoaded', function () {
       <img src="{{ asset('app-icons/logo.png') }}" class="brand-logo" alt="ZeeCV Logo">
     </a>
     @if(!auth()->check())
-     <a href="{{ url('signup') }}" class="btn-nav-primary d-block d-md-none">Sign up</a>
+     <a href="javascrip:void" data-toggle="modal" data-target="#loginRegModal" class="btn-nav-primary d-block d-md-none">Sign up</a>
      @endif
 
     <!-- Mobile Toggler Button -->
