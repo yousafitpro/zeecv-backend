@@ -442,54 +442,6 @@
     }
 
     /* =============================================
-       SOCIAL BUTTONS
-    ============================================= */
-    .social-login {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .btn-google {
-        width: 100%;
-        padding: 12px;
-        background: #ffffff;
-        border: 2px solid var(--border-light);
-        border-radius: var(--radius-input);
-        font-size: 14px;
-        font-weight: 600;
-        color: var(--text-dark);
-        cursor: pointer;
-        transition: var(--transition);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        font-family: inherit;
-    }
-
-    .btn-google:hover {
-        border-color: var(--primary);
-        background: #f8fafc;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
-    }
-
-    .btn-google img {
-        width: 20px;
-        height: 20px;
-    }
-
-    /* Google Sign-In override */
-    #g_id_onload,
-    .g_id_signin {
-        /* width: 100% !important; */
-    }
-
-    .g_id_signin > div {
-        /* width: 100% !important; */
-    }
-
-    /* =============================================
        SIGN UP LINK
     ============================================= */
     .signup-link {
@@ -643,24 +595,6 @@
     .mb-1 { margin-bottom: 4px; }
     .gap-1 { gap: 4px; }
 
-
-    /* Google Sign-In Wrapper */
-.g_id_signin-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.g_id_signin-wrapper > div {
-    /* width: 100% !important; */
-    max-width: 400px;
-}
-
-.g_id_signin iframe {
-    width: 100% !important;
-    min-width: 100% !important;
-}
 </style>
 
 <div class="login-page">
