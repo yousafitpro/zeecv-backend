@@ -20,6 +20,7 @@
       border: 1px solid #e2e8f0;
       background: white;
       padding: 5px 10px;
+      //asdasd
     }
     .login_reg_modal .social-btn:hover {
       background-color: #f8fafc;
