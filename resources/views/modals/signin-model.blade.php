@@ -13,6 +13,7 @@
 
     /* Close button (X) styling */
     .login_reg_modal .btn-close {
+     border: none;
       position: absolute;
       top: 18px;
       right: 22px;
