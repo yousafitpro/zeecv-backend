@@ -177,7 +177,7 @@
                         <tfoot class="table-light fw-bold">
                             <tr>
                                 <td colspan="2" class="text-end">Total</td>
-                                <td class="text-end">{{ number_format($sources->sum('count')) }}</td>
+                                <td class="text-end">{{ number_format($job_sources->sum('count')) }}</td>
                             </tr>
                         </tfoot>
                     </table>
