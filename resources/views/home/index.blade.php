@@ -562,7 +562,7 @@
      JOB PREVIEW SECTION (NEW)
 ========================================== -->
 <section class="job-preview-section">
-    <h2 class="section-title" style="margin-top: 0;">🔥 Latest <span style="background: linear-gradient(135deg, #2563eb, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">jobs</span> from our board</h2>
+    <h2 class="section-title" style="margin-top: 0;">Latest <span style="background: linear-gradient(135deg, #2563eb, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">jobs</span> from our board</h2>
     <p class="section-sub">Thousands of companies post jobs on ZeeCV every day. Here's what's trending right now.</p>
 
     <div class="job-preview-grid">
