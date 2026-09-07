@@ -45,7 +45,7 @@
         </style>
         <div class="row social-btns">
             <div class="col-md-6">
-                <div class="social-login" >
+                <div class="social-login mt-2" >
                    <div id="g_id_onload"
     data-client_id="{{ config('services.google.client_id') }}"
     data-callback="handleGoogleResponse"
