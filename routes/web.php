@@ -727,5 +727,10 @@ Route::prefix('linkedin')
      Route::any('/callback',[LinkedinAuthController::class,'callback'])->name('linkedin.callback');
      Route::any('/auth',[LinkedinAuthController::class,'auth'])->name('linkedin.auth');
      });
+Route::prefix('facebook')
+     ->group(function(){
+     Route::any('/callback',[LinkedinAuthController::class,'callback'])->name('facebook.callback');
+     Route::any('/auth',[LinkedinAuthController::class,'auth'])->name('facebook.auth');
+     });
 
      
