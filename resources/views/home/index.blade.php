@@ -557,6 +557,41 @@
     </div>
 </section>
 
+
+<!-- ==========================================
+     JOB PREVIEW SECTION (NEW)
+========================================== -->
+<section class="job-preview-section">
+    <h2 class="section-title" style="margin-top: 0;">🔥 Latest <span style="background: linear-gradient(135deg, #2563eb, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">jobs</span> from our board</h2>
+    <p class="section-sub">Thousands of companies post jobs on ZeeCV every day. Here's what's trending right now.</p>
+
+    <div class="job-preview-grid">
+        <!-- Job 1 -->
+        @foreach ($list as $job)
+            <div class="job-preview-card">
+            <div class="job-title">{{$job->title}}</div>
+            <div class="job-company">{{ $job->company_name }}</div>
+            <div class="job-meta">
+                @if($job->remote==1)
+                <span><i class="fas fa-map-marker-alt"></i> Remote</span>
+                @endif
+                @if($job->is_full_time==1)
+                <span><i class="fas fa-clock"></i> Full-time</span>
+                @endif
+            </div>
+            {{-- <span class="job-tag">🔥 50+ applicants</span> --}}
+        </div>
+        @endforeach
+
+    </div>
+
+    <div class="text-center">
+        <a href="{{ route('home.jobs') }}" class="view-all-jobs-btn">
+            View all jobs <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</section>
+
 <!-- ==========================================
      FEATURES
 ========================================== -->
@@ -585,56 +620,6 @@
         <p>Apply to jobs directly with your ZeeCV resume. No more re‑typing your details over and over.</p>
     </div>
 </div>
-
-<!-- ==========================================
-     JOB PREVIEW SECTION (NEW)
-========================================== -->
-<section class="job-preview-section">
-    <h2 class="section-title" style="margin-top: 0;">🔥 Latest <span style="background: linear-gradient(135deg, #2563eb, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">jobs</span> from our board</h2>
-    <p class="section-sub">Thousands of companies post jobs on ZeeCV every day. Here's what's trending right now.</p>
-
-    <div class="job-preview-grid">
-        <!-- Job 1 -->
-        <div class="job-preview-card">
-            <div class="job-title">Senior Full-Stack Engineer</div>
-            <div class="job-company">TechVibe Inc.</div>
-            <div class="job-meta">
-                <span><i class="fas fa-map-marker-alt"></i> Remote</span>
-                <span><i class="fas fa-clock"></i> Full-time</span>
-            </div>
-            <span class="job-tag">🔥 50+ applicants</span>
-        </div>
-
-        <!-- Job 2 -->
-        <div class="job-preview-card">
-            <div class="job-title">Product Marketing Manager</div>
-            <div class="job-company">GrowthLabs</div>
-            <div class="job-meta">
-                <span><i class="fas fa-map-marker-alt"></i> New York, NY</span>
-                <span><i class="fas fa-clock"></i> Full-time</span>
-            </div>
-            <span class="job-tag">⭐ Featured</span>
-        </div>
-
-        <!-- Job 3 -->
-        <div class="job-preview-card">
-            <div class="job-title">UX/UI Designer</div>
-            <div class="job-company">DesignSphere</div>
-            <div class="job-meta">
-                <span><i class="fas fa-map-marker-alt"></i> London, UK</span>
-                <span><i class="fas fa-clock"></i> Contract</span>
-            </div>
-            <span class="job-tag">📅 Posted 2 days ago</span>
-        </div>
-    </div>
-
-    <div class="text-center">
-        <a href="{{ route('home.jobs') }}" class="view-all-jobs-btn">
-            View all jobs <i class="fas fa-arrow-right"></i>
-        </a>
-    </div>
-</section>
-
 <!-- ==========================================
      AI ADVANCED SHOWCASE
 ========================================== -->

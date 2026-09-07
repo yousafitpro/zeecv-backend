@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\App\AppGoogleRecaptchaController;
+use App\Http\Controllers\Job\JobsController;
 use App\Models\ContactQuery;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(){
-        return view('home.index');
+    public function index(Request $request){
+        $data['list'] = (new JobsController())->queryProcess($request)->orderBy('created_at', 'desc');
+        $data['list']=$data['list']->paginate(50);
+        return view('home.index',$data);
     }
     public function features(){
         return view('home.features');

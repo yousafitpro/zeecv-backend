@@ -375,7 +375,7 @@ Route::prefix('system')
     });
     });
 });
-Route::get('/',[JobsController::class,'index'])->name('home');
+Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/please-verify-account',[HomeController::class,'pleaseVerifyAccount']);
 Route::get('/shop',[FrontendController::class,'shop'])->name('frontend.shop');
 Route::get('/terms',[FrontendController::class,'terms'])->name('frontend.terms');
