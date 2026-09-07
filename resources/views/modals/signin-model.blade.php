@@ -30,7 +30,7 @@
     .login_reg_modal .modal-title-custom {
       font-size: 1.8rem;
       font-weight: 700;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.5rem;
       letter-spacing: -0.3px;
     }
 
@@ -133,8 +133,9 @@
           </button>
 
           <!-- Heading -->
-          <h2 class="modal-title-custom">Login / Register</h2>
-
+          <h2 class="modal-title-custom">Almost There!</h2>
+          <small>Complete this final step to finish the process.</small>
+          <br>
           <form action="{{ route('signup') }}" method="get">
             <!-- Email Field -->
           <div class="mb-3">
@@ -197,8 +198,9 @@
           </button>
 
           <!-- Heading -->
-          <h2 class="modal-title-custom">Login / Register</h2>
-
+          <h2 class="modal-title-custom">Almost There!</h2>
+          <small>Complete this final step to finish the process.</small>
+          <br>
           <form action="{{ route('login') }}" method="get">
             <!-- Email Field -->
           <div class="mb-3">
