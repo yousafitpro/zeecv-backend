@@ -1243,14 +1243,14 @@
                 {{-- =====================================
                      JOB LIST
                 ====================================== --}}
-{{-- 
-                <div class="job_container_outer_list" id="job_container_outer_list">
+
+                <div class="job_container_outer_list" id="job_container_outer_list55">
 
                       @include('home.ajax.jobs-list')
    
 
 
-                </div> --}}
+                </div>
 
 
                 {{-- =====================================
