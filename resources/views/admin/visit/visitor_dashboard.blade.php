@@ -145,49 +145,6 @@
     <div class="col-md-6">
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white">
-                <h5 class="mb-0">📊 Job Sources</h5>
-            </div>
-            <div class="card-body p-0">
-                @if($job_sources->isEmpty())
-                    <div class="text-center py-4 text-muted">
-                        No UTM sources found yet.
-                    </div>
-                @else
-                    <table class="table table-hover table-striped mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th>#</th>
-                                <th>Source</th>
-                                <th class="text-end">Count</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($job_sources as $index => $js)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>
-                                        <span class="badge bg-secondary" style="color: white !important">{{ $js->source }}</span>
-                                    </td>
-                                    <td class="text-end fw-bold" >
-                                        {{ number_format($js->count) }}
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                        <tfoot class="table-light fw-bold">
-                            <tr>
-                                <td colspan="2" class="text-end">Total</td>
-                                <td class="text-end">{{ number_format($job_sources->sum('count')) }}</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                @endif
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">
                 <h5 class="mb-0">User Types</h5>
             </div>
             <div class="card-body p-0">
@@ -228,6 +185,79 @@
             </div>
         </div>
     </div>
+</div>
+<div class="row">
+        <div class="col-md-6">
+       
+            <div class="card shadow">
+                <div class="card-header card-header-custom">
+                    <i class="fas fa-chart-line mr-2"></i> Hourly (last 24 Hours)
+                </div>
+                <div class="card-body">
+                    <canvas id="hourlyVisitChart" style="width:100%; height:200px;"></canvas>
+                </div>
+            </div>
+      
+       
+        </div>
+        <div class="col-md-6">
+       
+            <div class="card shadow">
+                <div class="card-header card-header-custom">
+                    <i class="fas fa-chart-line mr-2"></i> Monthly Visit Trend (last 30 days)
+                </div>
+                <div class="card-body">
+                    <canvas id="monthlyVisitChart" style="width:100%; height:200px;"></canvas>
+                </div>
+            </div>
+      
+        </div>
+    </div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">📊 Job Sources</h5>
+            </div>
+            <div class="card-body p-0">
+                @if($job_sources->isEmpty())
+                    <div class="text-center py-4 text-muted">
+                        No UTM sources found yet.
+                    </div>
+                @else
+                    <table class="table table-hover table-striped mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Source</th>
+                                <th class="text-end">Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($job_sources as $index => $js)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                        <span class="badge bg-secondary" style="color: white !important">{{ $js->source }}</span>
+                                    </td>
+                                    <td class="text-end fw-bold" >
+                                        {{ number_format($js->count) }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot class="table-light fw-bold">
+                            <tr>
+                                <td colspan="2" class="text-end">Total</td>
+                                <td class="text-end">{{ number_format($job_sources->sum('count')) }}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                @endif
+            </div>
+        </div>
+    </div>
+
     <div class="col-md-6">
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white">
@@ -273,6 +303,7 @@
             </div>
         </div>
     </div>
+</div>
     {{-- <div class="col-md-6">
             <div class="row">
                 <div class="col-12">
@@ -313,33 +344,7 @@
 </div>
 
 
-    <div class="row">
-<div class="col-md-6">
-       
-            <div class="card shadow">
-                <div class="card-header card-header-custom">
-                    <i class="fas fa-chart-line mr-2"></i> Hourly (last 24 Hours)
-                </div>
-                <div class="card-body">
-                    <canvas id="hourlyVisitChart" style="width:100%; height:200px;"></canvas>
-                </div>
-            </div>
-      
-       
-        </div>
-        <div class="col-md-6">
-       
-            <div class="card shadow">
-                <div class="card-header card-header-custom">
-                    <i class="fas fa-chart-line mr-2"></i> Monthly Visit Trend (last 30 days)
-                </div>
-                <div class="card-body">
-                    <canvas id="monthlyVisitChart" style="width:100%; height:200px;"></canvas>
-                </div>
-            </div>
-      
-        </div>
-    </div>
+
 
 
 
