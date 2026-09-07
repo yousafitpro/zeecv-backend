@@ -58,7 +58,7 @@ class VisitorDashboardController extends Controller
                         ->get();
         $data['top_clicked_jobs'] = (clone $visitQuery)->whereNotNull('job_slug')
                         ->select('job_slug', DB::raw('count(*) as count'))
-                        ->groupBy('job_slug')
+                        ->groupBy('count')
                         ->take(20)
                         ->get();
         $data['job_sources'] = (clone $jobQuery)->whereNotNull('source')
