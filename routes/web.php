@@ -728,5 +728,4 @@ Route::prefix('linkedin')
      Route::any('/auth',[LinkedinAuthController::class,'auth'])->name('linkedin.auth');
      });
 
-
-     ///asdasd
+     
