@@ -574,7 +574,7 @@
             <div class="job-meta">
                 @if(!empty($job->job_created_at))
                 <span>
-                        <i class="fas fa-clock"></i>
+                        <i style="color: gray" class="fas fa-clock"></i>
                         {{ \Carbon\Carbon::parse($job->job_created_at)->diffForHumans() }}
                     </span>
                 @endif
