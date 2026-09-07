@@ -1244,9 +1244,9 @@
                      JOB LIST
                 ====================================== --}}
 
-                <div class="job_container_outer_list" id="job_container_outer_list55">
+                <div class="job_container_outer_list" id="job_container_outer_list">
 
-                      @include('home.ajax.jobs-list')
+                      {{-- @include('home.ajax.jobs-list') --}}
    
 
 
