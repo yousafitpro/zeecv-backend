@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Job\Models\JobCareer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,6 +23,10 @@ class Visit extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function job()
+    {
+        return $this->belongsTo(JobCareer::class,'job_slug','slug');
     }
 
     // Scope for filtering

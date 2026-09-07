@@ -252,7 +252,9 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                        <span class="badge bg-secondary" style="color: white !important">{{ $cj->job_slug }}</span>
+                                       <a href="{{ route('home.jobs.single',$cj->job_slug) }}">
+                                        {{ $cj->job->title }}
+                                       </a>
                                     </td>
                                     <td class="text-end fw-bold" >
                                         {{ number_format($cj->count) }}
