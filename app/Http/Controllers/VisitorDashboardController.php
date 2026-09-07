@@ -56,6 +56,10 @@ class VisitorDashboardController extends Controller
                         ->select('utm_source', DB::raw('count(*) as count'))
                         ->groupBy('utm_source')
                         ->get();
+        $data['top_clicked_jobs'] = (clone $visitQuery)->whereNotNull('job_slug')
+                        ->select('job_slug', DB::raw('count(*) as count'))
+                        ->groupBy('job_slug')
+                        ->get();
         $data['job_sources'] = (clone $jobQuery)->whereNotNull('source')
                         ->select('source', DB::raw('count(*) as count'))
                         ->groupBy('source')
