@@ -253,7 +253,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
                                        <a href="{{ route('home.jobs.single',$cj->job_slug) }}">
-                                        {{ $cj->job->title }}
+                                        {{ $cj->job->id}}
                                        </a>
                                     </td>
                                     <td class="text-end fw-bold" >
