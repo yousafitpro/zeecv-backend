@@ -21,6 +21,7 @@ class LinkedinAuthController extends Controller
     }
     public function callback(Request $request)
    {
+       
         $input=$request->all();
         if(!empty($input['error'])){
             return redirect()->route('home.jobs');
