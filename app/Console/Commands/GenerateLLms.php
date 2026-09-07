@@ -38,8 +38,8 @@ class Generatellms extends Command
 
         $content = "# ZeeCV\n\n";
 
-        $content .= "> ZeeCV is a professional CV and resume builder that helps users "
-                . "AI Resume Builder + Job Board\n\n"
+        $content .= "> AI Resume Builder + Job Board\n\n"
+                ."ZeeCV is a professional CV and resume builder that helps users \n\n"
                 . "ZeeCV helps you build an AI-powered CV and connects you with thousands of jobs posted by companies worldwide. Build your resume, apply instantly, and land your dream role — all in one place.\n\n"
                 . "create professional resumes and discover relevant job opportunities.\n\n";
 
