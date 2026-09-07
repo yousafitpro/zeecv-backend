@@ -690,6 +690,15 @@ Route::get('/generate-sitemap', function () {
         'message' => 'Sitemap generated successfully.',
     ]);
 });
+Route::get('/generate-llms', function () {
+
+    Artisan::call('app:generate-llms');
+
+    return response()->json([
+        'success' => true,
+        'message' => 'llms generated successfully.',
+    ]);
+});
 Route::get('/privacy-policy', function () {
 
     return redirect(url('page-view/privacy-policy'));
