@@ -727,3 +727,6 @@ Route::prefix('linkedin')
      Route::any('/callback',[LinkedinAuthController::class,'callback'])->name('linkedin.callback');
      Route::any('/auth',[LinkedinAuthController::class,'auth'])->name('linkedin.auth');
      });
+
+
+     ///asdasd
