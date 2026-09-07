@@ -572,6 +572,12 @@
             <div class="job-title">{{$job->title}}</div>
             <div class="job-company">{{ $job->company_name }}</div>
             <div class="job-meta">
+                @if(!empty($job->job_created_at))
+                <span>
+                        <i class="fas fa-clock"></i>
+                        {{ \Carbon\Carbon::parse($job->job_created_at)->diffForHumans() }}
+                    </span>
+                @endif
                 @if($job->remote==1)
                 <span><i class="fas fa-map-marker-alt"></i> Remote</span>
                 @endif
