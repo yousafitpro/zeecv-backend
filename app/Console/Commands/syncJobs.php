@@ -32,6 +32,6 @@ class syncJobs extends Command
     {
         dump("started");
         $result=(new JobsController())->openwebJobs();
-        return response()->json($result);
+        dump("completed");
     }
 }
