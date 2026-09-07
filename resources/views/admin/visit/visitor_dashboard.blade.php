@@ -274,6 +274,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Job</th>
+                                <th>source</th>
                                 <th class="text-end">Count</th>
                             </tr>
                         </thead>
@@ -286,6 +287,7 @@
                                        {{ $cj->job?->title ?? '' }}
                                        </a>
                                     </td>
+                                    <td>{{ $cj->job?->source ?? '' }}</td>
                                     <td class="text-end fw-bold" >
                                         {{ number_format($cj->count) }}
                                     </td>
