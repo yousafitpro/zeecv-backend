@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Callcenter\OperatorController;
+use App\Http\Controllers\FaceBookAuthController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentGateways\StripeController;
@@ -729,8 +730,8 @@ Route::prefix('linkedin')
      });
 Route::prefix('facebook')
      ->group(function(){
-     Route::any('/callback',[LinkedinAuthController::class,'callback'])->name('facebook.callback');
-     Route::any('/auth',[LinkedinAuthController::class,'auth'])->name('facebook.auth');
+     Route::any('/callback',[FaceBookAuthController::class,'callback'])->name('facebook.callback');
+     Route::any('/auth',[FaceBookAuthController::class,'auth'])->name('facebook.auth');
      });
 
      
