@@ -252,7 +252,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                       <a href="{{ route('home.jobs.single',$cj->job_slug) }}">
+                                       <a target="_blank" href="{{ route('home.jobs.single',$cj->job_slug) }}">
                                         {{ $cj->job_slug }}
                                        </a>
                                     </td>
