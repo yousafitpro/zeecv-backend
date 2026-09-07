@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /*?page=
 Sitemap: https://zeecv.com/sitemap.xml
+Sitemap: https://zeecv.com/llms.txt
