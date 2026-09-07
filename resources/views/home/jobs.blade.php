@@ -619,6 +619,9 @@
 
             font-size: 14px;
             line-height: 1.7;
+            word-wrap: break-word;      /* For older browsers */
+            overflow-wrap: break-word;  /* Modern standard */
+            max-width: 100%;            /* Ensure it doesn't exceed its parent */
         }
 
 
