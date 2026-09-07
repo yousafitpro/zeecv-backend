@@ -139,7 +139,7 @@
           <form action="{{ route('signup') }}" method="get">
             <!-- Email Field -->
           <div class="mb-3">
-            <label for="emailInput" class="form-label">Enter Email</label>
+            <label for="emailInput" class="form-label">Signup Email</label>
             <input 
               type="email" 
               name="email"
@@ -204,7 +204,7 @@
           <form action="{{ route('login') }}" method="get">
             <!-- Email Field -->
           <div class="mb-3">
-            <label for="emailInput" class="form-label">Enter Email</label>
+            <label for="emailInput" class="form-label">Login Email</label>
             <input 
               type="email" 
               name="email"
