@@ -269,11 +269,11 @@
                         No UTM sources found yet.
                     </div>
                 @else
-                    <table class="table table-hover table-striped mb-0">
+                    <table class="table myTable7 table-hover table-striped mb-0">
                         <thead class="table-light">
                             <tr>
                                 <th>#</th>
-                                <th>Jobs</th>
+                                <th>Job</th>
                                 <th class="text-end">Count</th>
                             </tr>
                         </thead>
