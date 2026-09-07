@@ -46,7 +46,6 @@ class Generatellms extends Command
         $content .= "## Main Pages\n\n";
         $content .= "- https://zeecv.com/\n";
         $content .= "- https://zeecv.com/jobs\n";
-        $content .= "- https://zeecv.com/resume/create\n\n";
 
         $content .= "## Jobs\n\n";
 
