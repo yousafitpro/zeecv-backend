@@ -88,8 +88,44 @@
 ============================================= -->
 @if (!auth()->check())
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-
 <script>
+  // Initialize the Facebook JavaScript SDK
+  window.fbAsyncInit = function () {
+    FB.init({
+      appId: '2452590951949685',
+      xfbml: true,
+      version: 'v26.0',
+    });
+  };
+
+  // Handle clicks on the "Log in with Facebook" button
+  function loginWithFacebook() {
+    FB.login(function (response) {
+      if (response.authResponse) {
+        console.log("Welcome! Fetching your information.... ");
+        // After successful login, fetch the user's information
+        FB.api("/me", { fields: "name, email" }, function (response) {
+          document.getElementById("profile").innerHTML =
+            "Good to see you, " + response.name + ". I see your email address is " + response.email;
+        });
+      } else {
+        console.log("User cancelled login or did not fully authorize.");
+      }
+    });
+  }
+
+  // Load the JavaScript SDK asynchronously
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) { return; }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  })(document, "script", "facebook-jssdk");
+</script>
+<script>
+    
     (function() {
         'use strict';
 
