@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="social-btn linkedin-btn">
+                <div class="social-btn linkedin-btn mt-2">
                   <a href="{{ route('linkedin.auth') }}">
               <img src="{{ asset('assets/icons/linkedin.png') }}" > Linkedin
             </a>
