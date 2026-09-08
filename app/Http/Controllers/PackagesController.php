@@ -24,7 +24,7 @@ class PackagesController extends Controller
   public function unsubscribe(){
     $sub=my_subscription();
  
-      if((new StripeController())->cancel_subscription($sub)){
+      if((new StripeController())->cancel_subscription($sub['sub'])){
         return redirect()->back()
             ->with([
                 'toast' => [
