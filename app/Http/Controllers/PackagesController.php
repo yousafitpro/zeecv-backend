@@ -49,7 +49,7 @@ class PackagesController extends Controller
        $package=Package::find(unique_decrypt($id));
        $subscription=my_subscription();
        if(empty($subscription)){
-        $sub=Subscription::updateOrCreate([
+        $sub=Subscription::create([
             'user_id'=>auth_user_id()
           ],[
             'package_id'=>$package->id,
