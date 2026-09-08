@@ -25,7 +25,8 @@ class SubscriptionMiddleware
         return redirect()->route('packages.subscribe');
       }
       if( !empty($subscription['is_expired']) && $subscription['is_expired']){
-        return redirect()->route('account.index');
+        $url=route('account.index');
+        return redirect($url.'?tab=subscription');
       }
       if(!empty($subscription) && $subscription['sub']->status=='processing'){
         return redirect()->route('packages.waitingpayment',unique_encrypt($subscription['sub']->id));
