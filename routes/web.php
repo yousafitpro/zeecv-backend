@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\App\AppAlertController;
 use App\Http\Controllers\App\MobileAppController;
 use App\Http\Controllers\Auth\LoginController;
@@ -747,6 +749,7 @@ Route::prefix('facebook')
 Route::prefix('packages')
      ->group(function(){
      Route::any('/subscribe',[PackagesController::class,'subscribe'])->name('packages.subscribe');
+     Route::any('/unsubscribe',[PackagesController::class,'unsubscribe'])->name('packages.unsubscribe');
      Route::any('/pay/{id}',[PackagesController::class,'pay'])->name('packages.pay');
      });
 Route::any('/payment-test',[PaymentTestController::class,'index'])->middleware('subscription');
@@ -754,4 +757,9 @@ Route::prefix('stripe-gateway')
     ->group(function () {
         Route::get('/success-url/{id}', [App\Http\Controllers\Stripe\StripeController::class,'success_url'])->name('stripeg.success_url');
         Route::get('/cancel-url/{id}', [App\Http\Controllers\Stripe\StripeController::class,'cancel_url'])->name('stripeg.cancel_url');
+});
+Route::prefix('user-account')
+     ->name('account.')
+    ->group(function () {
+        Route::get('/', [AccountController::class,'index'])->name('index');
 });

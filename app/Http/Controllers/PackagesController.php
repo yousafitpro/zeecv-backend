@@ -12,6 +12,16 @@ class PackagesController extends Controller
     $data['packages']=Package::where('status','active')->get();
     return view('packages.subscribe',$data);
   }
+  public function unsubscribe(){
+      return redirect()->back()
+    ->with([
+        'toast' => [
+            'heading' => 'Success!',
+            'message' =>"Subscription canceled successfully",
+            'type' => 'success',
+        ]
+    ]);
+  }
   public function pay($id){
         $package=Package::find(unique_decrypt($id));
         if(Subscription::where([
