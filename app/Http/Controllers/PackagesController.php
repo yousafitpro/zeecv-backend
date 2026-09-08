@@ -55,6 +55,7 @@ class PackagesController extends Controller
             'package_id'=>$package->id,
             'status'=>'pending'
         ]);
+        dd($subscription);
         return (new StripeController())->createSubscription($sub->id);
         }
         
