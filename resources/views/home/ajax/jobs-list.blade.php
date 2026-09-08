@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Confirm Application</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center py-4">
                 <i class="bi bi-question-circle fs-1 text-warning mb-3 d-block"></i>
@@ -12,7 +12,7 @@
                 <p class="text-muted small">This will mark the job as applied in your profile.</p>
             </div>
             <div class="modal-footer justify-content-center border-0">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No, Cancel</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                 <button type="button" onclick="applyJob(this)" class="btn btn-success" id="confirmApplyYes">
                     Yes, I applied
                 </button>
