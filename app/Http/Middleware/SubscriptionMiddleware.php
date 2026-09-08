@@ -27,7 +27,7 @@ class SubscriptionMiddleware
       if( !empty($subscription['is_expired']) && $subscription['is_expired']){
         return redirect()->route('account.index');
       }
-      if( !empty($subscription) && $subscription['sub']->status=='processing'){
+      if(!empty($subscription) && $subscription['sub']->status=='processing'){
         return view('packages.wait_payment_in_progress');
       }
    
