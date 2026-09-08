@@ -71,7 +71,7 @@
                                                 <td>{{ $invoice->created_at->format('M d, Y') }}</td>
                                                 <td>${{  number_format($invoice->amount, 2)  }}</td>
                                                 <td>
-                                                    @if($invoice->status == 'paid')
+                                                    @if($invoice->status == 'Completed')
                                                         <span class="badge bg-success">Paid</span>
                                                     @elseif($invoice->status == 'pending')
                                                         <span class="badge bg-warning text-dark">Pending</span>
