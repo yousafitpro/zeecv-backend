@@ -99,7 +99,7 @@
                         {{-- SUBSCRIPTION TAB --}}
                         <h4 class="fw-bold mb-4"><i class="fas fa-crown text-primary me-2"></i>Your Subscription</h4>
 
-                        @if($subscription)
+                        @if($subscription && $subscription->status=='active' && !is_expired)
                             <div class="row g-4">
                                 {{-- Subscription details --}}
                                 <div class="col-md-6">

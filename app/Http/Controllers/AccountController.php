@@ -12,7 +12,8 @@ class AccountController extends Controller
     public function index()
     {
         $data['invoices']=Payment::where('user_id',auth_user_id())->get();
-        $data['subscription']=Subscription::where('user_id',auth_user_id())->latest()->first();
+        $data['subscription']=my_subscription()['sub'];
+        $data['is_expired']=my_subscription()['is_expired'];
         return view('account.index',$data);
     }
 }
