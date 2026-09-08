@@ -19,7 +19,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
-class StripeWebhookReceivedJob //implements ShouldQueue
+class StripeWebhookReceivedJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -43,7 +43,7 @@ class StripeWebhookReceivedJob //implements ShouldQueue
 
     public function handle()
     {
-  try{
+  // try{
         $stripe = new \Stripe\StripeClient(config('services.Stripe.sk_key'));
 
         // This is your Stripe CLI webhook secret for testing your endpoint locally.
@@ -145,9 +145,10 @@ class StripeWebhookReceivedJob //implements ShouldQueue
 
 
         http_response_code(200);
-        }catch(\Exception $e){
-            Log::channel('error_log')->error($e->getMessage());
-        }
+        // }catch(\Exception $e){
+        //     Log::channel('error_log')->error($e->getMessage());
+        //     dd()
+        // }
     }
 
     public function dispatchOrderCompletionJob($id,$amount=0)
