@@ -1349,14 +1349,15 @@
         }, 100);
     }
 $(document).ready(function() {
-     
+     let isSubmitting = false;
     // =============================================
     // JOB SEARCH FORM AJAX SUBMISSION
     // =============================================
      
     $('#job_search_form').on('submit', function(e) {
         e.preventDefault();
-        
+        if (isSubmitting) return;
+            isSubmitting = true;
         // Get form data
         var formData = $(this).serialize();
         var actionUrl = $(this).attr('action');
@@ -1396,6 +1397,9 @@ $(document).ready(function() {
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 `);
+            },
+            complete: function() {
+                isSubmitting = false;
             }
         });
     });
