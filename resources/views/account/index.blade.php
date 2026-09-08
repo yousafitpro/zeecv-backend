@@ -128,7 +128,7 @@
                                     <div class="p-3 bg-light rounded-3 h-100 d-flex flex-column justify-content-center align-items-center">
                                        
                                             <p class="text-muted text-center">Cancel your subscription anytime. You will continue to have access until the end of the current billing period.</p>
-                                            <form action="{{ url('packages.unsubscribe') }}" method="POST" onsubmit="return confirm('Are you sure you want to cancel your subscription? You will lose access after the current billing period.');">
+                                            <form action="{{ route('packages.unsubscribe') }}" method="POST" onsubmit="return confirm('Are you sure you want to cancel your subscription? You will lose access after the current billing period.');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="hidden" name="payment_id" value="{{ $subscription->payment_id }}">

@@ -22,6 +22,8 @@ class PackagesController extends Controller
        return view('packages.wait_payment_in_progress');
   }
   public function unsubscribe(){
+    $sub=my_subscription();
+    dd($sub);
       // (new StripeController())->cancel_subscription()
       return redirect()->back()
     ->with([
