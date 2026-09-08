@@ -23,16 +23,27 @@ class PackagesController extends Controller
   }
   public function unsubscribe(){
     $sub=my_subscription();
-    dd($sub);
-      // (new StripeController())->cancel_subscription()
-      return redirect()->back()
+ 
+      if((new StripeController())->cancel_subscription($sub)){
+        return redirect()->back()
+            ->with([
+                'toast' => [
+                    'heading' => 'Success!',
+                    'message' =>"Subscription canceled successfully",
+                    'type' => 'success',
+                ]
+            ]);
+      }else{
+        return redirect()->back()
     ->with([
         'toast' => [
-            'heading' => 'Success!',
-            'message' =>"Subscription canceled successfully",
-            'type' => 'success',
+            'heading' => 'Error!',
+            'message' =>"Subscription cannot be canceled",
+            'type' => 'danger',
         ]
     ]);
+      }
+      
   }
   public function pay($id){
        $package=Package::find(unique_decrypt($id));

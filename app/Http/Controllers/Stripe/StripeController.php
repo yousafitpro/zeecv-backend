@@ -48,25 +48,21 @@ class StripeController extends Controller
         return redirect(url('/'));
 
     }
-    function cancel_subscription($payment_id)
+    function cancel_subscription($sub)
    {
 
-    $payment=Payment::find($payment_id);
-    $stripe = new StripeClient(config('services.Stripe.sk_key'));
-
-    // Retrieve the user's active subscription (assuming it's stored in the database)
-
-    if (!$payment) {
-        return response()->json(['error' => 'No active subscription found'], 404);
-    }
-
+    
+    try{
+        $stripe = new StripeClient(config('services.Stripe.sk_key'));
     // Cancel the subscription
 
-    $subscription = $stripe->subscriptions->cancel($payment->subscription_id);
-
+    $subscription = $stripe->subscriptions->cancel($sub->stripe_subscription_id);
     // Update the payment record to mark it as canceled
-    $payment->update(['status' => 'canceled']);
+    $sub->update(['status' => 'canceled']);
     return true;
+    }catch(\Exception $e){
+        return false;
+    }
 
    }
     public function createSubscription($sub_id)
