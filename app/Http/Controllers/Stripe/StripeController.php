@@ -52,17 +52,17 @@ class StripeController extends Controller
    {
 
     
-    try{
+    // try{
         $stripe = new StripeClient(config('services.Stripe.sk_key'));
     // Cancel the subscription
 
     $subscription = $stripe->subscriptions->cancel($sub->stripe_subscription_id);
     // Update the payment record to mark it as canceled
     $sub->update(['status' => 'canceled']);
-    return true;
-    }catch(\Exception $e){
-        return false;
-    }
+    // return true;
+    // }catch(\Exception $e){
+    //     return false;
+    // }
 
    }
     public function createSubscription($sub_id)
