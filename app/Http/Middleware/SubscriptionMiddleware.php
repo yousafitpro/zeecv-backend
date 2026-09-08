@@ -21,7 +21,7 @@ class SubscriptionMiddleware
     public function handle(Request $request, Closure $next)
     {
       $subscription=my_subscription();
-      if(empty($subscription)){
+      if(empty($subscription) || (!empty($subscription['is_expired']) && $subscription['is_expired'])){
         return redirect()->route('packages.subscribe');
       }
       if($subscription['sub']->status=='processing'){

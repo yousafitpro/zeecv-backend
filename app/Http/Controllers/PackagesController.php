@@ -30,13 +30,14 @@ class PackagesController extends Controller
   public function pay($id){
        $package=Package::find(unique_decrypt($id));
        $subscription=my_subscription();
-       dd($subscription);
-      $sub=Subscription::updateOrCreate([
-          'user_id'=>auth_user_id()
-         ],[
-          'package_id'=>$package->id,
-          'status'=>'pending'
-      ]);
+       if(empty($subscription) || (!empty($subscription['is_expired']) && $subscription['is_expired'])){
+        $sub=Subscription::updateOrCreate([
+            'user_id'=>auth_user_id()
+          ],[
+            'package_id'=>$package->id,
+            'status'=>'pending'
+        ]);
+        }
         
         
         return (new StripeController())->createSubscription($sub->id);
