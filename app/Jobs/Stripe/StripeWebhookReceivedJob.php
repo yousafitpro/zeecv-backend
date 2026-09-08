@@ -9,6 +9,7 @@ use App\Mail\PM\PMTaskAssignedMail;
 use App\Mail\PM\PMTaskCommentAddedMail;
 use App\Models\Payment\Ledger;
 use App\Models\Payment\Payment;
+use App\Models\Subscription;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -154,5 +155,8 @@ class StripeWebhookReceivedJob implements ShouldQueue
           $payment=Payment::find($id);
           $payment->status='completed';
           $payment->save();
+          $sub=Subscription::find($payment->app_subscription_id);
+          $sub->status='completed';
+          $sub->save();
     }
 }

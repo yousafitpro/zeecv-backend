@@ -112,7 +112,7 @@ class StripeController extends Controller
         $payment = Payment::create([
             'user_id' => $user->id,
             'package_id' => $package->id,
-            'subscription_id' => $sub->id,
+            'app_subscription_id' => $sub->id,
             'gateway'=>'stripe',
             'stripe_session_id' => $session->id, // add this column if needed
             'status' => 'pending',
