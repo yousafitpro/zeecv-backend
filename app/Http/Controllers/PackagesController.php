@@ -51,7 +51,8 @@ class PackagesController extends Controller
        if(empty($subscription)){
         $sub=Subscription::create([
             'package_id'=>$package->id,
-            'status'=>'pending'
+            'status'=>'pending',
+            'user_id'=>auth_user_id()
         ]);
         
         }else{
