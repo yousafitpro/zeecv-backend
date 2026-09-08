@@ -55,3 +55,7 @@ Route::group([
  Route::any("google-console/webhook",function(){
     return response()->json(['message'=>"successfully received"]);
  });
+ Route::prefix('stripe-gateway')
+    ->group(function () {
+        Route::any('/webhook', [App\Http\Controllers\Stripe\StripeController::class,'webhook'])->name('stripeg.webhook');
+});

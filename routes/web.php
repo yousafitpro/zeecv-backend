@@ -752,7 +752,6 @@ Route::prefix('packages')
 Route::any('/payment-test',[PaymentTestController::class,'index'])->middleware('subscription');
 Route::prefix('stripe-gateway')
     ->group(function () {
-        Route::any('/webhook', [App\Http\Controllers\Stripe\StripeController::class,'webhook'])->name('stripeg.webhook');
         Route::get('/success-url/{id}', [App\Http\Controllers\Stripe\StripeController::class,'success_url'])->name('stripeg.success_url');
         Route::get('/cancel-url/{id}', [App\Http\Controllers\Stripe\StripeController::class,'cancel_url'])->name('stripeg.cancel_url');
 });
