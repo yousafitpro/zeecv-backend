@@ -8,7 +8,8 @@
 
   <style>
     :root{
-        --primary:#111827 !important
+        --primary:#111827 !important;
+        --blue:#111827 !important;
     }
     .job_container__jobs_type_tag{
         border:solid 2px var(--primary);
