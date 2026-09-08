@@ -50,15 +50,14 @@ class PackagesController extends Controller
        $subscription=my_subscription();
        if(empty($subscription)){
         $sub=Subscription::create([
-            'user_id'=>auth_user_id()
-          ],[
             'package_id'=>$package->id,
             'status'=>'pending'
         ]);
-        dd($subscription);
-        return (new StripeController())->createSubscription($sub->id);
-        }
         
+        }else{
+          $sub=$subscription['sub'];
+        }
+        return (new StripeController())->createSubscription($sub->id);
         
         
         
