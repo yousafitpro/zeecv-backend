@@ -1157,14 +1157,14 @@
                                 @endif
 
 
-                                @if(!empty($job->job_created_at))
+                                @if(!empty($job->created_at))
 
                                     <span class="job_container_outer_meta_item">
 
                                         <i class="bi bi-clock"></i>
 
                                       {{ \Carbon\Carbon::parse(
-                                            $job->job_created_at
+                                            $job->created_at
                                         )->format('M d, Y') }}
 
                                     </span>
