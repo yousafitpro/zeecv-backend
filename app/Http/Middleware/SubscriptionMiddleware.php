@@ -28,7 +28,7 @@ class SubscriptionMiddleware
         return redirect()->route('account.index');
       }
       if(!empty($subscription) && $subscription['sub']->status=='processing'){
-        dd("ok");
+        return redirect()->route('packages.waitingpayment',unique_encrypt($subscription['sub']->id));
       }
    
       return $next($request);

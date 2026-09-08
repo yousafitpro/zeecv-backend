@@ -17,6 +17,10 @@ class PackagesController extends Controller
        $data['sub']=Subscription::find(unique_decrypt($payment_id));
        return view('packages.thankyou');
   }
+  public function waitingpayment($payment_id){
+       $data['sub']=Subscription::find(unique_decrypt($payment_id));
+       return view('packages.wait_payment_in_progress');
+  }
   public function unsubscribe(){
       return redirect()->back()
     ->with([
