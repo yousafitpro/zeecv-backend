@@ -110,7 +110,7 @@ class StripeController extends Controller
             'stripe_session_id' => $session->id, // add this column if needed
             'status' => 'pending',
             'amount' => $package->amount,
-            'currency' => 'EUR',
+            'currency' => 'USD',
         ]);
 
         return redirect($session->url);
