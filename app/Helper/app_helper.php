@@ -139,8 +139,8 @@ if ( ! function_exists('my_subscription')){
     function my_subscription()
     {
         $sub = Subscription::where('user_id', auth()->id())
-                        ->whereNotIn('status',['canceled'])
-                        ->first();
+                        // ->whereNotIn('status',['canceled'])
+                        ->latest()->first();
         if (!$sub) {
             return null;
         }
@@ -153,8 +153,10 @@ if ( ! function_exists('my_subscription')){
         }
 
         // Determine if expired (for view logic)
-        $isExpired = $sub->expire_at ? now()->gt($sub->expire_at) : false;
-
+        $isExpired = $sub->expire_at === null || now()->gt($sub->expire_at);
+        if($isExpired){
+            return null;
+        }
         return [
             'sub' => $sub,
             'is_expired' => $isExpired,
