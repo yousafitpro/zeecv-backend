@@ -1024,59 +1024,59 @@ public function openwebJobs($search = null)
         0 => [
             'api_key' => env('OPENWEBNINJA_API_KEY_1'),
             'urls' => [
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Portugal&country=pt',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Czech Republic&country=cz',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Romania&country=ro',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Hungary&country=hu',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Greece&country=gr',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Luxembourg&country=lu',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Portugal&country=pt',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Czech Republic&country=cz',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Romania&country=ro',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Hungary&country=hu',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Greece&country=gr',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Luxembourg&country=lu',
             ]
         ],
 
         1 => [
             'api_key' => env('OPENWEBNINJA_API_KEY_2'),
             'urls' => [
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Norway&country=no',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Denmark&country=dk',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Finland&country=fi',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Belgium&country=be',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Austria&country=at',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Ireland&country=ie',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Norway&country=no',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Denmark&country=dk',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Finland&country=fi',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Belgium&country=be',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Austria&country=at',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Ireland&country=ie',
             ]
         ],
 
         2 => [
             'api_key' => env('OPENWEBNINJA_API_KEY_3'),
             'urls' => [
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in France&country=fr',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Netherlands&country=nl',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Sweden&country=se',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Spain&country=es',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Poland&country=pl',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Switzerland&country=ch',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in France&country=fr',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Netherlands&country=nl',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Sweden&country=se',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Spain&country=es',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Poland&country=pl',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Switzerland&country=ch',
             ]
         ],
 
         3 => [
             'api_key' => env('OPENWEBNINJA_API_KEY_4'),
             'urls' => [
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in United Kingdom&country=gb',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Germany&country=de',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in United States&country=us',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Italy&country=it',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in United Arab Emirates&country=ae',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Canada&country=ca',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in United Kingdom&country=gb',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Germany&country=de',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in United States&country=us',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Italy&country=it',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in United Arab Emirates&country=ae',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Canada&country=ca',
             ]
         ],
         4 => [
             'api_key' => env('OPENWEBNINJA_API_KEY_5'),
             'urls' => [
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Slovakia&country=sk',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Slovenia&country=si',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Croatia&country=hr',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Bulgaria&country=bg',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Estonia&country=ee',
-                'https://api.openwebninja.com/jsearch/search-v2?query=developer jobs in Pakistan&country=pk',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Slovakia&country=sk',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Slovenia&country=si',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Croatia&country=hr',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Bulgaria&country=bg',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Estonia&country=ee',
+                'https://api.openwebninja.com/jsearch/search-v2?query=jobs in Pakistan&country=pk',
             ]
         ],
     ];
@@ -1099,7 +1099,7 @@ public function openwebJobs($search = null)
                     $failed++;
                     continue;
                 }
-
+dd($res->json(),$url);
                 $jobs = $res->json('data.jobs', []);
 
                 if (!is_array($jobs)) {
