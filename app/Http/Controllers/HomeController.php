@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index(Request $request){
         $data['list'] = (new JobsController())->queryProcess($request)->orderBy('created_at', 'desc');
-        $data['list']=$data['list']->paginate(50);
+        $data['list']=$data['list']->inRandomOrder()->paginate(50);
         return view('home.index',$data);
     }
     public function features(){

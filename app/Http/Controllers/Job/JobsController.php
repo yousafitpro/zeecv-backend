@@ -221,7 +221,7 @@ class JobsController extends Controller
                             ->values()
                             ->toArray();
         $data['list'] = $this->queryProcess($request)->orderBy('created_at', 'desc');
-        $data['list']=$data['list']->paginate(50)
+        $data['list']=$data['list']->inRandomOrder()->paginate(50)
         ->withQueryString()->setPath(route('home.jobs'));
         return view('home.jobs',$data);
     }
@@ -503,7 +503,7 @@ public function dashboardAjax(Request $request)
         $data['list'] = $this->queryProcess($request)->orderBy('created_at', 'desc');
     
         if(!is_ma()){
-            $data['list']=$data['list']->paginate(50)
+            $data['list']=$data['list']->inRandomOrder()->paginate(50)
         ->withQueryString()->setPath(route('home.jobs'));
         return view('home.ajax.jobs-list',$data);
         }else{
