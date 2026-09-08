@@ -33,7 +33,7 @@ class StripeController extends Controller
         $sub=Subscription::find(unique_decrypt($id));
         $sub->status='processing';
         $sub->save();
-        return view('packages.thankyou');
+        return redirect()->route('packages.thankyou',$id);
 
     }
     public function cancel_url(Request $request,$id)

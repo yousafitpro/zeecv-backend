@@ -20,10 +20,14 @@ class SubscriptionMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-      $subscription=Subscription::where('user_id',auth_user_id())->latest('id')->first();
+      $subscription=my_subscription();
       if(empty($subscription)){
         return redirect()->route('packages.subscribe');
       }
+      if($subscription['sub']->status=='processing'){
+        return redirect()->route('packages.thankyou',unique_encrypt($subscription['sub']->id));
+      }
+      
       return $next($request);
     }
 }

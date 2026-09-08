@@ -750,6 +750,7 @@ Route::prefix('packages')
      ->group(function(){
      Route::any('/subscribe',[PackagesController::class,'subscribe'])->name('packages.subscribe');
      Route::any('/unsubscribe',[PackagesController::class,'unsubscribe'])->name('packages.unsubscribe');
+     Route::any('/thankyou/{id}',[PackagesController::class,'thankyou'])->name('packages.thankyou');
      Route::any('/pay/{id}',[PackagesController::class,'pay'])->name('packages.pay');
      });
 Route::any('/payment-test',[PaymentTestController::class,'index'])->middleware('subscription');

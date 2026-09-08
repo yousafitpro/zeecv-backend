@@ -11,6 +11,7 @@ use App\Models\MyRole\MyUserRole;
 use App\Models\Payment\Payment;
 use App\Models\Payments\Ledger;
 use App\Models\PMM\AffiliateLink\PMMAffiliateLink;
+use App\Models\Subscription;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
@@ -132,6 +133,22 @@ if ( ! function_exists('auth_user_id')){
         return null;
        }
        
+    }
+}
+if ( ! function_exists('my_subscription')){
+    function my_subscription()
+    {
+       $sub=Subscription::where('user_id',auth_user_id())->first();
+       if(empty($sub)){
+        return null;
+       }
+       $data['is_expired']=now()>$sub->expire_at;
+       if($data['is_expired']){
+        $sub->status='expired';
+        $sub->save();
+       }
+       $data['sub']=$sub->refresh();
+       return $data;
     }
 }
 if (!function_exists('is_has_role')) {
