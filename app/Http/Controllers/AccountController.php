@@ -11,10 +11,11 @@ class AccountController extends Controller
 {
     public function index()
     {
+        $mysub=my_subscription();
         $data['invoices']=Payment::where('user_id',auth_user_id())->get();
-        if(!empty(my_subscription())){
-            $data['subscription']=my_subscription()['sub'];
-            $data['is_expired']=my_subscription()['is_expired'];
+        if(!empty($mysub)){
+            $data['subscription']=$mysub['sub'];
+            $data['is_expired']=$mysub['is_expired'];
         }else{
             $data['subscription']=null;
             $data['is_expired']=true;

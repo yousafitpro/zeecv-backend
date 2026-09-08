@@ -114,11 +114,11 @@
                                         </p>
                                         <p class="text-muted mb-0">
                                             <i class="far fa-calendar-alt me-1"></i> 
-                                            Next billing: {{ $subscription->expires_at ? $subscription->expires_at->format('M d, Y') : 'N/A' }}
+                                        Next billing: {{ $subscription?->expire_at ?? 'N/A' }}
                                         </p>
                                         <p class="text-muted">
-                                            <i class="fas fa-euro-sign me-1"></i> 
-                                            {{ number_format($subscription->package->price ?? 0, 2) }} / {{ $subscription->package->billing_cycle ?? 'month' }}
+                                           
+                                            ${{ number_format($subscription->package->amount ?? 0, 2) }} / {{ $subscription->package->billing_cycle ?? 'month' }}
                                         </p>
                                     </div>
                                 </div>
@@ -146,7 +146,7 @@
                             <div class="mt-4">
                                 <p class="text-muted small">
                                     <i class="fas fa-info-circle me-1"></i> 
-                                    Started on {{ $subscription->started_at ? $subscription->started_at->format('M d, Y') : 'N/A' }}
+                                    Started on {{ $subscription->created_at ? $subscription->created_at->format('M d, Y') : 'N/A' }}
                                 </p>
                             </div>
 
