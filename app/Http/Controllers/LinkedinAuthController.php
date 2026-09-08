@@ -51,9 +51,12 @@ class LinkedinAuthController extends Controller
                 'type'=>'User',
                 'password' => bcrypt(Str::random(32)),
             ]);
+            $redirect_url=route('packages.subscribe');
+        }else{
+            $redirect_url=route('home.jobs');
         }
         Auth::login($user, true);
-        $redirect_url=route('home.jobs');
+        
         return redirect($redirect_url);
             // Store the token or use it for subsequent API calls
         }

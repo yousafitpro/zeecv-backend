@@ -46,10 +46,13 @@ class GoogleAuthController extends Controller
                 'type'=>'User',
                 'password' => bcrypt(Str::random(32)),
             ]);
+            $redirect_url=route('packages.subscribe');
+        }else{
+          $redirect_url=route('home.jobs');
         }
 
         Auth::login($user, true);
-        $redirect_url=route('home.jobs');
+        
         // $resumes=Resume::where('user_id',$user->id)->get();
         // if(count($resumes)>0){
         //    $resu=$resumes->first();

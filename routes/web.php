@@ -628,7 +628,7 @@ Route::prefix('resume-builder')
        Route::get('/jobs/short/{slug}', [JobsController::class,'jobDetailShort'])->name('home.jobs.single.shot');
        Route::any('/jobs-save', [JobsController::class,'saveAjax'])->name('home.jobs.save');
        Route::any('apply-ajax', [JobsController::class,'applyAjax'])->name('home.jobs.apply.ajax');
-       Route::get('/jobs/apply/{slug}', [JobsController::class,'jobApply'])->name('home.jobs.apply');
+       Route::get('/jobs/apply/{slug}', [JobsController::class,'jobApply'])->name('home.jobs.apply')->middleware('subscription');
        Route::post('/jobs/apply-process/{slug}', [JobsController::class,'jobApplyProcess'])->name('home.jobs.applyProcess');
     });
 //dasdasdsdsd
