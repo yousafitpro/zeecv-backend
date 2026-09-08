@@ -1099,7 +1099,6 @@ public function openwebJobs($search = null)
                     $failed++;
                     continue;
                 }
-dd($res->json(),$url);
                 $jobs = $res->json('data.jobs', []);
 
                 if (!is_array($jobs)) {
