@@ -156,7 +156,7 @@
                                 <i class="fas fa-crown text-muted" style="font-size: 48px;"></i>
                                 <h5 class="mt-3">No active subscription</h5>
                                 <p class="text-muted">You are currently on the free plan. Upgrade to access premium features.</p>
-                                <a href="{{ url('packages.index') }}" class="btn btn-primary">
+                                <a href="{{ route('packages.subscribe') }}" class="btn btn-primary">
                                     <i class="fas fa-rocket me-2"></i>View Plans
                                 </a>
                             </div>
