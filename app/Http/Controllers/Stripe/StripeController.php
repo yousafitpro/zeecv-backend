@@ -57,6 +57,7 @@ class StripeController extends Controller
     // Cancel the subscription
 
     $subscription = $stripe->subscriptions->cancel($sub->stripe_subscription_id);
+    dd($subscription);
     // Update the payment record to mark it as canceled
     $sub->update(['status' => 'canceled']);
     // return true;
