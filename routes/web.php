@@ -764,4 +764,5 @@ Route::prefix('user-account')
      ->name('account.')
     ->group(function () {
         Route::get('/', [AccountController::class,'index'])->name('index');
+        Route::get('/invoice-pdf/{id}', [AccountController::class,'invoicePdf'])->name('invoice.pdf');
 });

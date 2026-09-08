@@ -66,10 +66,10 @@
                                         @foreach($invoices as $invoice)
                                             <tr>
                                                 <td>
-                                                    <strong>#{{ $invoice->invoice_number ?? $invoice->id }}</strong>
+                                                    <strong>#{{ unique_encrypt($invoice->id) }}</strong>
                                                 </td>
                                                 <td>{{ $invoice->created_at->format('M d, Y') }}</td>
-                                                <td>€{{ number_format($invoice->amount, 2) }}</td>
+                                                <td>${{  number_format($invoice->amount, 2)  }}</td>
                                                 <td>
                                                     @if($invoice->status == 'paid')
                                                         <span class="badge bg-success">Paid</span>
@@ -80,10 +80,8 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-end">
-                                                    <a href="{{ url('invoice.view', $invoice->id) }}" class="btn btn-sm btn-outline-primary me-1" title="View">
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                    <a href="{{ url('invoice.download', $invoice->id) }}" class="btn btn-sm btn-primary" title="Download">
+                                              
+                                                    <a target="_blank" href="{{ route('account.invoice.pdf', unique_encrypt($invoice->id)) }}" class="btn btn-sm btn-primary" title="Download">
                                                         <i class="fas fa-download"></i>
                                                     </a>
                                                 </td>

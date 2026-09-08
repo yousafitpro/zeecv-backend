@@ -3,6 +3,7 @@
 namespace App\Models\Payment;
 
 use App\Models\DataLogs;
+use App\Models\Package;
 use App\Models\Parcel;
 use App\Models\PMM\AffiliateLink\PMMAffiliateLink;
 use App\Models\PMM\Order\PMMOrder;
@@ -20,6 +21,10 @@ class Payment extends Model
     public function user()
     {
        return $this->belongsTo(User::class,'user_id');
+    }
+    public function package()
+    {
+       return $this->belongsTo(Package::class,'package_id');
     }
     public function notes()
 {
