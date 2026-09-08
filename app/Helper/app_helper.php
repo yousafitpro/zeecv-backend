@@ -138,18 +138,30 @@ if ( ! function_exists('auth_user_id')){
 if ( ! function_exists('my_subscription')){
     function my_subscription()
     {
-       $sub=Subscription::where('user_id',auth_user_id())->first();
-       if(empty($sub)){
-        return null;
-       }
-       $data['is_expired']=now()>$sub->expire_at;
-       if($data['is_expired']){
-        $sub->status='expired';
-        $sub->save();
-       }
-       $data['sub']=$sub->refresh();
-       return $data;
+        $sub = Subscription::where('user_id', auth()->id())
+                        ->whereIn('status', ['active', 'pending_cancellation'])
+                        ->first();
+
+        if (!$sub) {
+            return null;
+        }
+
+        // If expire_at is set and is in the past, mark as expired
+        if ($sub->expire_at && now()->gt($sub->expire_at)) {
+            $sub->status = 'expired';
+            $sub->save();
+            $sub->refresh();
+        }
+
+        // Determine if expired (for view logic)
+        $isExpired = $sub->expire_at ? now()->gt($sub->expire_at) : false;
+
+        return [
+            'sub' => $sub,
+            'is_expired' => $isExpired,
+        ];
     }
+
 }
 if (!function_exists('is_has_role')) {
     function is_has_role($role_unique_key)

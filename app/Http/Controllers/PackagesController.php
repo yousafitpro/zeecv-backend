@@ -30,6 +30,7 @@ class PackagesController extends Controller
   public function pay($id){
        $package=Package::find(unique_decrypt($id));
        $subscription=my_subscription();
+       dd($subscription);
       $sub=Subscription::updateOrCreate([
           'user_id'=>auth_user_id()
          ],[
