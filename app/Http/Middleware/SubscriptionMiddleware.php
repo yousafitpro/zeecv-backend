@@ -21,13 +21,13 @@ class SubscriptionMiddleware
     public function handle(Request $request, Closure $next)
     {
       $subscription=my_subscription();
-      if(empty($subscription) || (!empty($subscription['is_expired']) && $subscription['is_expired'])){
+      if(empty($subscription)){
         return redirect()->route('packages.subscribe');
       }
-      if($subscription['sub']->status=='processing'){
-        return redirect()->route('packages.thankyou',unique_encrypt($subscription['sub']->id));
+      if( !empty($subscription['is_expired']) && $subscription['is_expired']){
+        return redirect()->route('account.index');
       }
-      
+   
       return $next($request);
     }
 }
