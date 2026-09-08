@@ -649,34 +649,7 @@ public function dashboardAjax(Request $request)
                 }
             });
 
-            /*
-            |--------------------------------------------------------------------------
-            | Relevance Ranking
-            |--------------------------------------------------------------------------
-            */
 
-            $search = trim($input['search']);
-            $searchTerm = '%' . $search . '%';
-
-            $score = "
-                (
-                    CASE
-                        WHEN title LIKE " . \DB::getPdo()->quote($searchTerm) . "
-                            THEN 100
-                        WHEN tags LIKE " . \DB::getPdo()->quote($searchTerm) . "
-                            THEN 80
-                        WHEN company_name LIKE " . \DB::getPdo()->quote($searchTerm) . "
-                            THEN 70
-                        WHEN location LIKE " . \DB::getPdo()->quote($searchTerm) . "
-                            THEN 60
-                        WHEN job_types LIKE " . \DB::getPdo()->quote($searchTerm) . "
-                            THEN 50
-                        ELSE 10
-                    END
-                )
-            ";
-
-            $query->orderByRaw($score . ' DESC');
         }
 
         if (!empty($input['location'])) {
@@ -718,7 +691,7 @@ public function dashboardAjax(Request $request)
             $query->where('is_contract', 1);
         }
             
-        $data['list']=$query->latest('created_at')->paginate(20)
+        $data['list']=$query->latest('created_at')->paginate(100)
         ->withQueryString();
         $data['input']=$input;
                 $data['users'] = User::query()
