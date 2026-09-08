@@ -15,12 +15,12 @@
                     {{-- Gradient header with avatar --}}
                     <div class="card-header bg-gradient-primary text-white border-0 py-3">
                         <div class="d-flex align-items-center gap-3">
-                            <div class="avatar-circle bg-white text-primary d-flex align-items-center justify-content-center">
+                            {{-- <div class="avatar-circle bg-white text-primary d-flex align-items-center justify-content-center">
                                 {{ strtoupper(substr(auth()->user()->name ?? 'U', 0, 1)) }}
-                            </div>
+                            </div> --}}
                             <div>
-                                <h6 class="mb-0 fw-bold">{{ auth()->user()->name ?? 'User' }}</h6>
-                                <small class="text-white-50">{{ auth()->user()->email ?? '' }}</small>
+                                <h6 class="mb-0 fw-bold" style="color: black">{{ auth()->user()->name ?? 'User' }}</h6>
+                                <small class="text-white-50" style="color: black">{{ auth()->user()->email ?? '' }}</small>
                             </div>
                         </div>
                     </div>
