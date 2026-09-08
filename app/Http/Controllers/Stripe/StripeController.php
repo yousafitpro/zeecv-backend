@@ -97,7 +97,7 @@ class StripeController extends Controller
             'payment_method_types' => ['card'],
             'mode' => 'subscription',
             'line_items' => [[
-                'price'    => $package->stripe_product_id,
+                'price'    => $package->stripe_price_id,
                 'quantity' => 1,
             ]],
             'customer' => $user->stripe_customer_id,
