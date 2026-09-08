@@ -37,7 +37,7 @@
                     </div>
 
                     {{-- Action Button --}}
-                    <a href="{{ route('account.index') }}" class="btn btn-primary btn-lg px-5 w-100 w-sm-auto">
+                    <a href="{{ route('account.index') }}?tab=subscription" class="btn btn-primary btn-lg px-5 w-100 w-sm-auto">
                         <i class="fas fa-arrow-right me-2"></i> Check Status Now
                     </a>
 
