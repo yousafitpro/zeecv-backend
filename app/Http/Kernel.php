@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\APIKeyMiddleware;
 use App\Http\Middleware\MobileAppRequestTypeMiddleware;
+use App\Http\Middleware\SubscriptionMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -74,5 +75,6 @@ class Kernel extends HttpKernel
         '2FA'=>\App\Http\Middleware\TwoStepVerificationMiddleware::class,
         'setLang' => \App\Http\Middleware\SetLanguage::class,
         'mobile.app' => MobileAppRequestTypeMiddleware::class,
+        'subscription' => SubscriptionMiddleware::class,
     ];
 }

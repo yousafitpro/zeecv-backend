@@ -153,6 +153,6 @@ class StripeWebhookReceivedJob implements ShouldQueue
     {
             $mailData['payment_id']=$id;
             $mailData['amount']=$amount;
-            PMMProductPaymentCompletedJob::dispatch($mailData);
+            // PMMProductPaymentCompletedJob::dispatch($mailData);
     }
 }

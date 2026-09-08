@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\PMM\Product\PMMProductPaymentCompletedJob;
 use App\Jobs\Stripe\StripeWebhookReceivedJob;
 use App\Models\PMM\AffiliateLink\PMMAffiliateLink;
+use App\Models\Subscription;
 use Illuminate\Support\Facades\Log;
 use Stripe\StripeClient;
 
@@ -21,7 +22,7 @@ class StripeController extends Controller
     {
           $jobData['request_content']=$request->getContent();
           $jobData['sig_header']=$_SERVER['HTTP_STRIPE_SIGNATURE'];
-         Log::channel('error_log')->info("webhook received");
+        //  Log::channel('error_log')->info("webhook received");
          StripeWebhookReceivedJob::dispatch($jobData);
          return response()->json(['message'=>"success"],200);
 
@@ -29,14 +30,18 @@ class StripeController extends Controller
 
     public function success_url(Request $request,$id)
     {
-
-        return redirect(route('frontend.product.thankyou',$id));
+        $sub=Subscription::find(unique_decrypt($id));
+        $sub->status='processing';
+        $sub->save();
+        return view('packages.thankyou');
 
     }
     public function cancel_url(Request $request,$id)
     {
-        $payment=Payment::find(product_decrypt($id));
-        return redirect(route('pmm.product.purchase',product_encrypt($payment->reference)));
+        $sub=Subscription::find(unique_decrypt($id));
+        $sub->status='canceled';
+        $sub->save();
+        return redirect(url('/'));
 
     }
     function cancel_subscription(Request $request)
@@ -67,6 +72,55 @@ class StripeController extends Controller
     ]);
 
    }
+    public function createSubscription($sub_id)
+    {
+        $sub=Subscription::find($sub_id);
+        // Assume you get package_id from request
+        $package =$sub->package;
+        // if (!$package || !$package->stripe_price_id) {
+        //     return back()->withErrors('Invalid package or missing Stripe price.');
+        // }
+
+        // Get or create Stripe customer
+        $user=auth()->user();
+        $stripe = new StripeClient(config('services.Stripe.sk_key'));
+        if (!$user->stripe_customer_id) {
+            $customer = $stripe->customers->create([
+                'email' => $user->email,
+                'name'  => $user->name,
+            ]);
+            $user->stripe_customer_id = $customer->id;
+            $user->save();
+        }
+        // Create Checkout Session
+        $session = $stripe->checkout->sessions->create([
+            'payment_method_types' => ['card'],
+            'mode' => 'subscription',
+            'line_items' => [[
+                'price'    => $package->stripe_product_id,
+                'quantity' => 1,
+            ]],
+            'customer' => $user->stripe_customer_id,
+            'success_url' => route('stripeg.success_url', ['id' => unique_encrypt($sub->id)]), // you already have success_url
+            'cancel_url'  => route('stripeg.cancel_url', ['id' => unique_encrypt($sub->id)]),
+            'metadata' => [
+                'user_id' => $user->id,
+                'package_id' => $package->id,
+            ],
+        ]);
+        // Optionally save a local Payment record with status 'pending' and store session_id
+        $payment = Payment::create([
+            'user_id' => $user->id,
+            'package_id' => $package->id,
+            'gateway'=>'stripe',
+            'stripe_session_id' => $session->id, // add this column if needed
+            'status' => 'pending',
+            'amount' => $package->amount,
+            'currency' => 'EUR',
+        ]);
+
+        return redirect($session->url);
+    }
     public function checkout(Request $request)
     {
 
@@ -74,16 +128,7 @@ class StripeController extends Controller
 
         $input['currency']="EUR";
 
-        if($request->has('subscription'))
-        {
-            $url= create_stripe_subscription_payment_url($input['amount'],$input['currency'],$input['type'],auth()->user()->id,$input['plan_identity'],$request->subscription);
 
-        }
-        else
-        {
-        $url= create_stripe_payment_url($input['amount'],$input['currency'],$input['type'],auth()->user()->id);
-        }
-
-        return redirect($url);
+        // return redirect($url);
     }
 }

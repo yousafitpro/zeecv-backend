@@ -33,6 +33,8 @@ use App\Http\Controllers\Job\JobsController;
 use App\Http\Controllers\Job\JobUserController;
 use App\Http\Controllers\JobDashboardController;
 use App\Http\Controllers\LinkedinAuthController;
+use App\Http\Controllers\PackagesController;
+use App\Http\Controllers\PaymentTestController;
 use App\Http\Controllers\PMM\Lookup\AddressController;
 use App\Http\Controllers\PMM\Lookup\GlsProfile;
 use App\Http\Controllers\Resume\CertificateController;
@@ -742,5 +744,15 @@ Route::prefix('facebook')
      Route::any('/callback',[FaceBookAuthController::class,'callback'])->name('facebook.callback');
      Route::any('/auth',[FaceBookAuthController::class,'auth'])->name('facebook.auth');
      });
-
-     
+Route::prefix('packages')
+     ->group(function(){
+     Route::any('/subscribe',[PackagesController::class,'subscribe'])->name('packages.subscribe');
+     Route::any('/pay/{id}',[PackagesController::class,'pay'])->name('packages.pay');
+     });
+Route::any('/payment-test',[PaymentTestController::class,'index'])->middleware('subscription');
+Route::prefix('stripe-gateway')
+    ->group(function () {
+        Route::any('/webhook', [App\Http\Controllers\Stripe\StripeController::class,'webhook'])->name('stripeg.webhook');
+        Route::get('/success-url/{id}', [App\Http\Controllers\Stripe\StripeController::class,'success_url'])->name('stripeg.success_url');
+        Route::get('/cancel-url/{id}', [App\Http\Controllers\Stripe\StripeController::class,'cancel_url'])->name('stripeg.cancel_url');
+});
