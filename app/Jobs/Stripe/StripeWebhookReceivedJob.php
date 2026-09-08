@@ -83,7 +83,7 @@ class StripeWebhookReceivedJob implements ShouldQueue
             $subscription_id = $session->subscription;
             $amount_total = $session->amount_total ?? 0;
             $amount_total=$amount_total/100;
-            // $payment->status="Completed";
+            $payment->status="Completed";
             $payment->subscription_id=$subscription_id;
             $payment->save();
             $this->dispatchOrderCompletionJob($payment->id,$amount_total);
