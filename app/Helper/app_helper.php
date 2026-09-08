@@ -139,7 +139,6 @@ if ( ! function_exists('my_subscription')){
     function my_subscription()
     {
         $sub = Subscription::where('user_id', auth()->id())
-                        ->whereIn('status', ['active', 'pending_cancellation'])
                         ->first();
 
         if (!$sub) {
