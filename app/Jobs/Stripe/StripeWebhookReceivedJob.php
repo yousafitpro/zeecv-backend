@@ -83,7 +83,7 @@ class StripeWebhookReceivedJob implements ShouldQueue
             $subscription_id = $session->subscription;
             $amount_total = $session->amount_total ?? 0;
             $amount_total=$amount_total/100;
-            $payment->status="Completed";
+            // $payment->status="Completed";
             $payment->subscription_id=$subscription_id;
             $payment->save();
             $this->dispatchOrderCompletionJob($payment->id,$amount_total);
@@ -151,8 +151,8 @@ class StripeWebhookReceivedJob implements ShouldQueue
 
     public function dispatchOrderCompletionJob($id,$amount=0)
     {
-            $mailData['payment_id']=$id;
-            $mailData['amount']=$amount;
-            // PMMProductPaymentCompletedJob::dispatch($mailData);
+          $payment=Payment::find($id);
+          $payment->status='completed';
+          $payment->save();
     }
 }
