@@ -3,8 +3,8 @@
 @section('content')
 <div class="container py-5 pricing-page">
     <div class="text-center mb-5">
-        <span class="pricing-eyebrow">Pricing</span>
-        <h1 class="fw-bold mb-2">Choose Your Plan</h1>
+        
+        <h1 class="fw-bold mb-2">20,000+ Real Jobs Added Daily</h1>
         <p class="text-muted mb-0">Simple pricing, no surprises. Pick the plan that fits you best.</p>
     </div>
 
@@ -17,8 +17,8 @@
                     <div class="card pricing-card h-100 border-0">
                         <div class="card-body text-center d-flex flex-column p-4 p-lg-4">
                             <h3 class="pricing-title mb-2">{{ $package->title }}</h3>
-                            <p class="pricing-desc text-muted mb-2">{{ $package->description ?? 'No description' }} <br>
-                           20,000+ Real Jobs Added Daily
+                            <p class="pricing-desc text-muted mb-2">{{ $package->description ?? 'No description' }} 
+                           
                             </p>
                             <p class="pricing-desc text-muted mb-3" style="font-weight: bold">Cancel Your Subscription Anytime</p>
 
