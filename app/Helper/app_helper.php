@@ -154,7 +154,7 @@ if ( ! function_exists('my_subscription')){
 
         // Determine if expired (for view logic)
         $isExpired = $sub->expire_at === null || now()->gt($sub->expire_at);
-        if($isExpired){
+        if($isExpired && $sub->status!='processing'){
             return null;
         }
         return [
