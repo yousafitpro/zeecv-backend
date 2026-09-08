@@ -16,8 +16,11 @@
                 <div class="col">
                     <div class="card pricing-card h-100 border-0">
                         <div class="card-body text-center d-flex flex-column p-4 p-lg-4">
-                            <h5 class="pricing-title mb-2">{{ $package->title }}</h5>
-                            <p class="pricing-desc text-muted mb-4">{{ $package->description ?? 'No description' }}</p>
+                            <h3 class="pricing-title mb-2">{{ $package->title }}</h3>
+                            <p class="pricing-desc text-muted mb-2">{{ $package->description ?? 'No description' }} <br>
+                           20,000+ Jobs Added Daily
+                            </p>
+                            <p class="pricing-desc text-muted mb-3" style="font-weight: bold">Cancel Your Subscription Anytime</p>
 
                             <div class="pricing-amount mb-4">
                                 <span class="currency">$</span>{{ number_format($package->amount, 2) }}
