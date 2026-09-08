@@ -47,7 +47,6 @@ class PackagesController extends Controller
   }
   public function pay($id){
        $package=Package::find(unique_decrypt($id));
-       dd($package);
        $subscription=my_subscription();
        if(empty($subscription)){
         $sub=Subscription::create([
