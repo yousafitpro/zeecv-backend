@@ -97,7 +97,7 @@
                         {{-- SUBSCRIPTION TAB --}}
                         <h4 class="fw-bold mb-4"><i class="fas fa-crown text-primary me-2"></i>Your Subscription</h4>
 
-                        @if($subscription && $subscription->status=='active' && !$is_expired)
+                        @if($subscription && !$is_expired)
                             <div class="row g-4">
                                 {{-- Subscription details --}}
                                 <div class="col-md-6">
@@ -122,6 +122,7 @@
                                 </div>
 
                                 {{-- Cancel button --}}
+                                @if($subscription && $subscription->status=='active')
                                 <div class="col-md-6">
                                     <div class="p-3 bg-light rounded-3 h-100 d-flex flex-column justify-content-center align-items-center">
                                        
@@ -138,6 +139,7 @@
                                         
                                     </div>
                                 </div>
+                                @endif
                             </div>
 
                             {{-- Subscription history (optional) --}}
