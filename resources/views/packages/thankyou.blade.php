@@ -36,10 +36,10 @@
                         </p> --}}
 
                         <div class="d-flex flex-wrap gap-3 justify-content-center">
-                            <a href="{{ route('home.jobs') }}" class="btn btn-success btn-lg px-5">
+                            <a href="{{ route('home.jobs') }}" class="btn btn-primary btn-lg px-5">
                                 <i class="fas fa-arrow-right me-2"></i> Brows Jobs
                             </a>
-                            <a href="{{ url('') }}" class="btn btn-outline-secondary btn-lg px-4">
+                            <a href="{{ route('account.index') }}?tab=invoices" class="btn btn-outline-secondary btn-lg px-4">
                                 <i class="fas fa-receipt me-2"></i> View Invoices
                             </a>
                         </div>
@@ -51,7 +51,7 @@
             {{-- Trust / Support Line --}}
             <p class="text-center text-muted small mt-4">
                 <i class="fas fa-lock me-1"></i> Secure payment processed via Stripe. 
-                Need help? <a href="#" class="text-decoration-none">Contact Support</a>
+                Need help? <a href="{{ route('home.contact') }}" class="text-decoration-none">Contact Support</a>
             </p>
 
         </div>
