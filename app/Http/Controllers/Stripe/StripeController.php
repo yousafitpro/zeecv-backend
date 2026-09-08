@@ -48,10 +48,10 @@ class StripeController extends Controller
         return redirect(url('/'));
 
     }
-    function cancel_subscription(Request $request)
+    function cancel_subscription($payment_id)
    {
 
-    $payment=Payment::find($request->payment_id);
+    $payment=Payment::find($payment_id);
     $stripe = new StripeClient(config('services.Stripe.sk_key'));
 
     // Retrieve the user's active subscription (assuming it's stored in the database)
@@ -66,14 +66,7 @@ class StripeController extends Controller
 
     // Update the payment record to mark it as canceled
     $payment->update(['status' => 'canceled']);
-    return redirect()->back()
-    ->with([
-        'toast' => [
-            'heading' => 'Success!',
-            'message' =>"Subscription canceled successfully",
-            'type' => 'success',
-        ]
-    ]);
+    return true;
 
    }
     public function createSubscription($sub_id)

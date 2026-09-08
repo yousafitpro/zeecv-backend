@@ -157,6 +157,7 @@ class StripeWebhookReceivedJob //implements ShouldQueue
           $payment->save();
           $sub=Subscription::find($payment->app_subscription_id);
           $sub->expire_at=now()->addDays($sub->package->days);
+          $sub->stripe_subscription_id=$payment->subscription_id;
           $sub->status='active';
           $sub->save();
     }
