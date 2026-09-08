@@ -718,10 +718,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 Posted Jobs
               </a> 
               @endif
-              <a class="dropdown-item" href="{{ route('account.index') }}">
+              {{-- <a class="dropdown-item" href="{{ route('account.index') }}">
                 <i class="fas fa-cog"></i>
                 Account
-              </a> 
+              </a>  --}}
               <div class="dropdown-divider"></div>
 
               <a class="dropdown-item text-danger" href="{{url('logout')}}" 
