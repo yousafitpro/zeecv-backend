@@ -2,5 +2,5 @@
 
 @section('content')
 <h1>Please wait payment is in progress for status of subscription visit link below</h1>
-<a  href="{{ route('account.index') }}">asdasdasd</a>
+<a  href="{{ route('account.index') }}">Check Status</a>
 @endsection
