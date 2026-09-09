@@ -562,7 +562,8 @@ public function dashboardAjax(Request $request)
                     foreach ($desired_job_title_array as $word) {
                         $word = trim($word);
                         if ($word !== '') {
-                            $q->orWhere('tags', 'like', '%' . $word . '%');
+                            $q->orWhere('tags', 'like', '%' . $word . '%')
+                            ->orWhere('title', 'like', '%' . $word . '%');
                         }
                     }
                 });
