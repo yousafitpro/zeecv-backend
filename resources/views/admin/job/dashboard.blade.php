@@ -197,7 +197,7 @@
                                         <span class="badge badge-info ml-1">Clicks: {{count($usr->clicks)}}</span>
                                         @endif
                                         @if(!empty($usr->utmsource))
-                                        <span class="badge badge-info ml-1">{{$usr->utmsource->id}}</span>
+                                        <span class="badge badge-info ml-1">{{$usr->utmsource->utm_source}}</span>
                                         @endif
                                         </td>
                                         <td>{{ $usr->signup_type }}</td>
