@@ -43,11 +43,14 @@ class GoogleAuthController extends Controller
                 'name' => $name,
                 'email' => $email,
                 'signup_type'=>'google',
+                'signup_ip'=>$request->ip(),
                 'type'=>'User',
                 'password' => bcrypt(Str::random(32)),
             ]);
         }
 
+        $user->last_login_ip=$request->ip();
+        $user->save();
         Auth::login($user, true);
         $redirect_url=route('home.jobs');
         // $resumes=Resume::where('user_id',$user->id)->get();
