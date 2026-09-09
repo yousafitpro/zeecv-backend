@@ -49,9 +49,12 @@ class LinkedinAuthController extends Controller
                 'signup_type'=>'linkedin',
                 'external_dp_image'=>$userInfo['picture'],
                 'type'=>'User',
+                'signup_ip'=>$request->ip(),
                 'password' => bcrypt(Str::random(32)),
             ]);
         }
+        $user->last_login_ip=$request->ip();
+        $user->save();
         Auth::login($user, true);
         $redirect_url=route('home.jobs');
         return redirect($redirect_url);

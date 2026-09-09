@@ -96,11 +96,13 @@ class GoogleAuthController extends Controller
                 'email' => $email,
                 'type'=>'User',
                 'signup_type'=>'google',
+                'signup_ip'=>$request->ip(),
                 'password' => $password,
             ]);
         }
         $user->idtoken=$input['idtoken'];
         $user->accesstoken=$input['accesstoken'];
+        $user->last_login_ip=$request->ip();
         $user->save();
        
         $user=User::where('email',$request->email)->first();
