@@ -94,6 +94,13 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasOne(merchantCompany::class);
     }
+    public function utmsource()
+    {
+        return $this->hasOne(Visit::class)
+                ->where('ip_address',$this->signup_ip)
+                ->whereNotNull('utm_source')
+                ->oldest('created_at');
+    }
     public function resume()
     {
         return $this->hasOne(Resume::class);
