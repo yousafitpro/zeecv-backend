@@ -544,7 +544,7 @@ public function dashboardAjax(Request $request)
                     }
                 });
             })
-            ->when((empty($skills) && $input['type'] == 'My Jobs'), function ($query) {
+            ->when((empty($skills) && $input['type'] == 'My Jobs' && empty($resume->contact->desired_job_title)), function ($query) {
                 $query->where('title','cvcvcvcv');
             })
             ->orderBy('created_at', 'desc');
