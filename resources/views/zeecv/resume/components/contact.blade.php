@@ -96,6 +96,7 @@
         success: function(response) {
           if(reload){
             window.location.reload();
+            return;
           }
             if (response.code === '1') {
             $("#collapseContact").collapse('toggle');
