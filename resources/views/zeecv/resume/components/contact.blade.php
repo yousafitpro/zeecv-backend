@@ -70,7 +70,7 @@
             </div>
 
 <script>
-  function saveContact(event, form) {
+  function saveContact(event, form,reload=false) {
     // 1. Prevent the default form submission
     event.preventDefault();
 
@@ -94,6 +94,9 @@
                 .html('<i class="fas fa-spinner fa-spin"></i> Saving...');
         },
         success: function(response) {
+          if(reload){
+            window.location.reload();
+          }
             if (response.code === '1') {
             $("#collapseContact").collapse('toggle');
             LoadCVPreview()
