@@ -588,6 +588,11 @@ document.addEventListener('DOMContentLoaded', function () {
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home.jobs') }}">Jobs</a>
         </li>
+        @if(auth()->check())
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('home.user.myjobs') }}">My Jobs</a>
+        </li>
+        @endif
         @if(auth()->check() && is_admin())
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" 

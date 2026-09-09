@@ -537,6 +537,32 @@ public function dashboardAjax(Request $request)
             ->when($input['type'] == 'Saved', function($q) {
                 return $q->whereHas('savedjob');
             })
+            ->when(empty($skills) && (!empty($resume->contact) && !empty($resume->contact->desired_job_title) && $input['type'] == 'My Jobs'), function ($query) use ($resume) {
+            $title = $resume->contact->desired_job_title;
+
+            // Remove special characters like | & , etc, keep only letters/numbers/spaces
+            $title = preg_replace('/[^\p{L}\p{N}\s]/u', ' ', $title);
+
+            // Collapse multiple spaces
+            $title = preg_replace('/\s+/', ' ', trim($title));
+
+            $desired_job_title_array = explode(' ', $title);
+
+            // Optional: filter out short/noise words
+            $stopWords = ['remote', 'the', 'and', 'or', 'a', 'an', 'of', 'in'];
+            $desired_job_title_array = array_filter($desired_job_title_array, function ($word) use ($stopWords) {
+                $word = trim($word);
+                return $word !== '' && !in_array(strtolower($word), $stopWords);
+            });  
+            $query->where(function ($q) use ($desired_job_title_array) {
+                    foreach ($desired_job_title_array as $word) {
+                        $word = trim($word);
+                        if ($word !== '') {
+                            $q->orWhere('tags', 'like', '%' . $word . '%');
+                        }
+                    }
+                });
+            })
             ->when((!empty($skills) && $input['type'] == 'My Jobs'), function ($query) use ($skills) {
                 $query->where(function ($q) use ($skills) {
                     foreach ($skills as $skill) {
