@@ -33,7 +33,7 @@ class TrackVisitedUrls
     protected function storeVisit($request)
     {
             // Skip if admin
-            if (auth()->check() && is_admin()) {
+            if (is_admin()) {
                 return;
             }
 
@@ -81,7 +81,6 @@ class TrackVisitedUrls
                     'path' => $request->path(),
                     'ip_address' => $request->ip(),
                     'user_agent' => $request->userAgent(),
-                    'user_id' => Auth::id(),
                     'method' => $request->method(),
                     'referer' => $request->header('referer'),
                     'route_name'=>$routeName,
@@ -89,6 +88,9 @@ class TrackVisitedUrls
                     'created_at' => now(),
                     'job_slug'=>$slug
                 ];
+                if(auth()->check()){
+                    $payload['user_id']=Auth::id();
+                }
                 Visit::create($payload);
             }
     }
