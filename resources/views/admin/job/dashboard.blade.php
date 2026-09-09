@@ -201,7 +201,11 @@
                                         @endif
                                         </td>
                                         <td>{{ $usr->signup_type }}</td>
-                                        <td>{{ $usr->created_at->format('M d, Y H:i') }}</td>
+                                        <td>{{ $usr->created_at->format('M d, Y H:i') }}<br>
+                                        <span class="badge badge-info ml-1">{{$usr->signup_ip}}</span>
+                                        
+
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr><td colspan="3" class="text-center text-muted">No applications yet.</td></tr>
