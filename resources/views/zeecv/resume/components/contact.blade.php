@@ -16,7 +16,7 @@
                       <input hidden name="resume_id" value="{{ request('id') }}">
                       <div class="floating-label-group mb-3">
                         <input type="text" id="roleTitle" name="desired_job_title" class="form-control" value="{{ $contact->desired_job_title}}">
-                        <label for="roleTitle">Desired Job title</label>
+                        <label for="roleTitle">Tag Line / Desired Job title</label>
                       </div>
                       <div class="form-row mb-3">
                         <div class="col-6">
