@@ -537,7 +537,7 @@ public function dashboardAjax(Request $request)
             ->when($input['type'] == 'Saved', function($q) {
                 return $q->whereHas('savedjob');
             })
-            ->when(empty($skills) && (!empty($resume->contact) && !empty($resume->contact->desired_job_title) && $input['type'] == 'My Jobs'), function ($query) use ($resume) {
+            ->when((!empty($resume->contact) && !empty($resume->contact->desired_job_title) && $input['type'] == 'My Jobs'), function ($query) use ($resume) {
             $title = $resume->contact->desired_job_title;
 
             // Remove special characters like | & , etc, keep only letters/numbers/spaces
@@ -545,8 +545,12 @@ public function dashboardAjax(Request $request)
 
             // Collapse multiple spaces
             $title = preg_replace('/\s+/', ' ', trim($title));
+            $words = explode(' ', $title);
 
-            $desired_job_title_array = explode(' ', $title);
+            $desired_job_title_array = [];
+            for ($i = 0; $i < count($words) - 1; $i++) {
+                $desired_job_title_array[] = $words[$i] . ' ' . $words[$i + 1];
+            }
 
             // Optional: filter out short/noise words
             $stopWords = ['remote', 'the', 'and', 'or', 'a', 'an', 'of', 'in'];
