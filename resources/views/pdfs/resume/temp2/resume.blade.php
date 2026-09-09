@@ -276,7 +276,7 @@
                             <tr>
                                 <td colspan="2">
                                     <div class="progress-bg">
-                                        <div class="progress-fill" style="width: {{ str_contains(strtolower($lang->proficiency), 'native') ? '100%' : '70%' }};"></div>
+                                        <div class="progress-fill" style="width:100%;"></div>
                                     </div>
                                 </td>
                             </tr>
