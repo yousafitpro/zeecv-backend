@@ -695,9 +695,9 @@
                         <input type="checkbox" name="remember" id="rememberme">
                         <span>Remember Me</span>
                     </label>
-                    <a href="{{ route('webAuth.resetEmail') }}" class="forgot-link">
+                    {{-- <a href="{{ route('webAuth.resetEmail') }}" class="forgot-link">
                         Forgot password?
-                    </a>
+                    </a> --}}
                 </div>
 
                 <!-- Submit -->
