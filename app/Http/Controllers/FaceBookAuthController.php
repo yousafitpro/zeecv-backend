@@ -25,7 +25,35 @@ class FaceBookAuthController extends Controller
    }
     public function auth(Request $request)
    {
-     $url='https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id='.$this->client_id.'&redirect_uri='.$this->callback.'&scope=openid%20profile%20email';
+      $input=$request->all();
+              $facebookId = $input['credential']['id'];
+        $email = $input['credential']['email'];
+        $name = $input['credential']['name'] ?? '';
+        $avatar = $payload['picture'] ?? null;
+
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+            $user = User::create([
+                'name' => $name,
+                'email' => $email,
+                'signup_type'=>'facebook',
+                'signup_ip'=>$request->ip(),
+                'facebook_id'=>$facebookId,
+                'type'=>'User',
+                'password' => bcrypt(Str::random(32)),
+            ]);
+        }
+
+        $user->last_login_ip=$request->ip();
+        $user->save();
+        Auth::login($user, true);
+        $redirect_url=route('home.jobs');
+        return response()->json([
+            'success' => true,
+            'message' => 'Login successful.',
+            'redirect' => $redirect_url,
+        ]);
      return redirect($url);
    }
 }

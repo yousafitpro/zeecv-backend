@@ -101,18 +101,36 @@
 
   // Handle clicks on the "Log in with Facebook" button
   function loginWithFacebook() {
-    FB.login(function (response) {
-      if (response.authResponse) {
-        console.log("Welcome! Fetching your information.... ");
-        // After successful login, fetch the user's information
-        FB.api("/me", { fields: "name, email" }, function (response) {
-          document.getElementById("profile").innerHTML =
-            "Good to see you, " + response.name + ". I see your email address is " + response.email;
-        });
-      } else {
-        console.log("User cancelled login or did not fully authorize.");
-      }
-    });
+        FB.login(function (response) {
+        if (response.authResponse) {
+            FB.api("/me", { fields: "name, email" }, function (response) {
+            fetch("{{ route('facebook.auth') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                body: JSON.stringify({
+                    credential: response
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = data.redirect;
+                } else {
+                    alert(data.message || 'Google login failed. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Google login error:', error);
+                alert('Google login failed. Please try again.');
+            });
+            });
+        } else {
+            console.log("User cancelled login or did not fully authorize.");
+        }
+        }, { scope: 'email' });   // <-- THIS IS THE MISSING PART
   }
 
   // Load the JavaScript SDK asynchronously

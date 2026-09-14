@@ -30,6 +30,13 @@ class LoginController extends Controller
         }
         return view('auth.login');
     }
+    public function indexTest()
+    {
+        if (auth()->check()) {
+            return redirect('dashboard');
+        }
+        return view('auth.loginTest');
+    }
 
     public function postLogin(Request $request)
     {

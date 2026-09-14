@@ -53,14 +53,6 @@ class GoogleAuthController extends Controller
         $user->save();
         Auth::login($user, true);
         $redirect_url=route('home.jobs');
-        // $resumes=Resume::where('user_id',$user->id)->get();
-        // if(count($resumes)>0){
-        //    $resu=$resumes->first();
-        //    $redirect_url=route('resume.edit',unique_encrypt($resu->id));
-         
-        // }else{
-        //     $redirect_url=route('resume.create');
-        // }
         return response()->json([
             'success' => true,
             'message' => 'Login successful.',

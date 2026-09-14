@@ -54,6 +54,7 @@ use Illuminate\Support\Facades\Artisan;
 
 //adasdasdassdssasd
     Route::get('login', [LoginController::class, 'index'])->name('login');
+    Route::get('login-test', [LoginController::class, 'indexTest'])->name('loginTest');
     Route::post('login', [LoginController::class, 'postLogin']);
     Route::any('logout', [LoginController::class, 'logout']);
     Route::resource('register', RegisterController::class);
