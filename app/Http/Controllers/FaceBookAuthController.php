@@ -22,6 +22,7 @@ class FaceBookAuthController extends Controller
     }
     public function callback(Request $request)
    {
+       $input=$request->all();
        return response()->json(['message'=>'success']);
    }
     public function auth(Request $request)
