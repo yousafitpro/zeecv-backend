@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-@include('widgets.app-download')
+{{-- @include('widgets.app-download') --}}
 <style>
     /* =============================================
        ROOT VARIABLES
