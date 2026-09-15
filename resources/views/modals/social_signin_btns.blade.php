@@ -73,13 +73,13 @@
             </a>
                 </div>
             </div>
-            {{-- <div class="col-md-6">
+            <div class="col-md-6">
                 <div class="social-btn linkedin-btn mt-2">
                   <a href="{{ route('facebook.auth') }}">
               <img src="{{ asset('assets/icons/facebook.png') }}" > Facebook
             </a>
                 </div>
-            </div> --}}
+            </div>
         </div>
       
 
