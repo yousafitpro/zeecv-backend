@@ -161,7 +161,7 @@
           <!-- Divider: "or" -->
           <div class="divider-wrapper">
             <hr />
-            <span>or</span>
+            <span style="text-transform: uppercase;">or continue with</span>
             <hr />
           </div>
 
@@ -226,7 +226,7 @@
           <!-- Divider: "or" -->
           <div class="divider-wrapper">
             <hr />
-            <span>or signin with</span>
+            <span style="text-transform: uppercase;">or continue with</span>
             <hr />
           </div>
 
