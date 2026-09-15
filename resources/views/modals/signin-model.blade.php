@@ -1,8 +1,8 @@
     <!-- Custom CSS – scoped under .login_reg_modal -->
  <script>
-  $(document).ready(function(){
-    $("#loginModal").modal("show")
-  })
+  // $(document).ready(function(){
+  //   $("#loginModal").modal("show")
+  // })
  </script>
  <style>
     /* ----- UPPER CLASS: login_reg_modal ----- */
