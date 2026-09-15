@@ -42,7 +42,7 @@ class FaceBookAuthController extends Controller
                 ->with('error', 'We could not retrieve your email from Facebook. Please grant email permission.');
         }
 
-     dd($email);
+     dd($email,$fbUser->getId());
 
 
    }
