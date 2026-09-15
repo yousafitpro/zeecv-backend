@@ -53,7 +53,6 @@ class FaceBookAuthController extends Controller
                 'name' =>$name,
                 'email' =>$email,
                 'signup_type'=>'facebook',
-                'facebook'=>'facebook',
                 'facebook_id'=>$fbUser->getId(),
                 'type'=>'User',
                 'signup_ip'=>$request->ip(),
