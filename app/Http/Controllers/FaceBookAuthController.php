@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 class FaceBookAuthController extends Controller
 {
     public $client_id;
@@ -24,6 +25,12 @@ class FaceBookAuthController extends Controller
        return response()->json(['message'=>'success']);
    }
     public function auth(Request $request)
+   {
+      return Socialite::driver('facebook')
+            ->scopes(['email']) // request email permission
+            ->redirect();
+   }
+    public function oldauth(Request $request)
    {
       $input=$request->all();
               $facebookId = $input['credential']['id'];
