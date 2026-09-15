@@ -36,13 +36,18 @@ class FaceBookAuthController extends Controller
 
         // Facebook may not return email if user denied permission or has no email
         $email = $fbUser->getEmail();
+        $name      = $fbUser->getName();        // full name (e.g., "John Doe")
+        $firstName = $fbUser->user['first_name'] ?? null;
+        $lastName  = $fbUser->user['last_name']  ?? null;
+        $avatar    = $fbUser->getAvatar();      // Facebook profile picture URL
+dd($name);
 
         if (!$email) {
             return redirect()->route('login')
                 ->with('error', 'We could not retrieve your email from Facebook. Please grant email permission.');
         }
 
-             $user = User::where('email', $email)->first();
+     $user = User::where('email', $email)->first();
 
         if (!$user) {
             $user = User::create([
@@ -65,8 +70,16 @@ class FaceBookAuthController extends Controller
    }
     public function auth(Request $request)
    {
-      return Socialite::driver('facebook')
-            ->scopes(['email']) // request email permission
+        return Socialite::driver('facebook')
+            ->scopes(['email', 'public_profile'])   // permissions
+            ->fields([                              // fields to fetch from Graph API
+                'id',
+                'name',
+                'email',
+                'first_name',
+                'last_name',
+                'picture.width(200)',
+            ])
             ->redirect();
    }
     public function oldauth(Request $request)
