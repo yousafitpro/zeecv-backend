@@ -67,15 +67,15 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="social-btn linkedin-btn mt-2">
-                  <a href="{{ route('linkedin.auth') }}">
+                <div class="social-btn linkedin-btn mt-2" onclick="redirectMeToUrl('{{ route('linkedin.auth') }}')">
+                  <a href="javascript:void">
               <img src="{{ asset('assets/icons/linkedin.png') }}" > Linkedin
             </a>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="social-btn linkedin-btn mt-2">
-                  <a href="{{ route('facebook.auth') }}">
+                <div class="social-btn linkedin-btn mt-2" onclick="redirectMeToUrl('{{ route('facebook.auth') }}')">
+                  <a href="javascript:void">
               <img src="{{ asset('assets/icons/facebook.png') }}" > Facebook
             </a>
                 </div>

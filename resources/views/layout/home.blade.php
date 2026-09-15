@@ -330,5 +330,11 @@
     })
 </script>
 @include('modals.signin-model')
+
+<script>
+    function redirectMeToUrl(url){
+     window.location.href = url;
+    }
+</script>
 </body>
 </html>
