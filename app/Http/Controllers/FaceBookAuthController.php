@@ -42,8 +42,25 @@ class FaceBookAuthController extends Controller
                 ->with('error', 'We could not retrieve your email from Facebook. Please grant email permission.');
         }
 
-     dd($email,$fbUser->getId());
+             $user = User::where('email', $email)->first();
 
+        if (!$user) {
+            $user = User::create([
+                'name' => '',
+                'email' =>$email,
+                'signup_type'=>'facebook',
+                'facebook'=>'facebook',
+                'facebook_id'=>$fbUser->getId(),
+                'type'=>'User',
+                'signup_ip'=>$request->ip(),
+                'password' => bcrypt(Str::random(32)),
+            ]);
+        }
+        $user->last_login_ip=$request->ip();
+        $user->save();
+        Auth::login($user, true);
+        $redirect_url=route('home.jobs');
+       return redirect($redirect_url);
 
    }
     public function auth(Request $request)
