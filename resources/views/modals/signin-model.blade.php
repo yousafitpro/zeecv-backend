@@ -1,5 +1,10 @@
     <!-- Custom CSS – scoped under .login_reg_modal -->
-  <style>
+ <script>
+  $(document).ready(function(){
+    $("#loginModal").modal("show")
+  })
+ </script>
+ <style>
     /* ----- UPPER CLASS: login_reg_modal ----- */
     .login_reg_modal .modal-content {
       border: none;
@@ -221,7 +226,7 @@
           <!-- Divider: "or" -->
           <div class="divider-wrapper">
             <hr />
-            <span>or</span>
+            <span>or signin with</span>
             <hr />
           </div>
 
