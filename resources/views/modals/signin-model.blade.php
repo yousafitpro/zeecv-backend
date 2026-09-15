@@ -223,7 +223,7 @@
           <button type="submit" class="btn btn-primary w-100" style="background-color: var(--primary) !important">Continue</button>
 
           </form>
-          <!-- Divider: "or" -->
+          <!-- Divider: "osr" -->
           <div class="divider-wrapper">
             <hr />
             <span style="text-transform: uppercase;">or continue with</span>
