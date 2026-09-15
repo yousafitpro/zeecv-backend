@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
+use Throwable;
+
 class FaceBookAuthController extends Controller
 {
     public $client_id;
@@ -23,7 +25,26 @@ class FaceBookAuthController extends Controller
     public function callback(Request $request)
    {
        $input=$request->all();
-       return response()->json(['message'=>'success']);
+       
+        try {
+            $fbUser = Socialite::driver('facebook')->user();
+        } catch (Throwable $e) {
+            logger()->error('Facebook login failed: ' . $e->getMessage());
+            return redirect()->route('login')
+                ->with('error', 'Facebook login failed. Please try again.');
+        }
+
+        // Facebook may not return email if user denied permission or has no email
+        $email = $fbUser->getEmail();
+
+        if (!$email) {
+            return redirect()->route('login')
+                ->with('error', 'We could not retrieve your email from Facebook. Please grant email permission.');
+        }
+
+     dd($email);
+
+
    }
     public function auth(Request $request)
    {
