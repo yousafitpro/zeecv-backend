@@ -40,7 +40,6 @@ class FaceBookAuthController extends Controller
         $firstName = $fbUser->user['first_name'] ?? null;
         $lastName  = $fbUser->user['last_name']  ?? null;
         $avatar    = $fbUser->getAvatar();      // Facebook profile picture URL
-dd($name);
 
         if (!$email) {
             return redirect()->route('login')
@@ -51,7 +50,7 @@ dd($name);
 
         if (!$user) {
             $user = User::create([
-                'name' => '',
+                'name' =>$name,
                 'email' =>$email,
                 'signup_type'=>'facebook',
                 'facebook'=>'facebook',
