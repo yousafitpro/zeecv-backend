@@ -56,7 +56,7 @@
     
     .download-app-wrapper .light-app-card .card-title-text {
         color: #111827;
-        padding-right: 20px; /* Prevents title text from overlapping close button */
+        padding-right: 10px; /* Prevents title text from overlapping close button */
     }
     
     .download-app-wrapper .light-app-card .card-desc-text {
