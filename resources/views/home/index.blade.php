@@ -223,9 +223,15 @@
         color: #64748b;
     }
 
+    .hero-image img{
+         box-shadow: 0 25px 40px -10px rgba(37, 99, 235, 0.15);
+         padding:0px !important;
+    }
     .hero-image {
         flex: 1 1 380px;
         min-width: 280px;
+        background: transparent !important;
+        box-shadow:none !important;
     }
 
     .cv-preview-badge {
