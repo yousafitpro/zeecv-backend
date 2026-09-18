@@ -100,57 +100,10 @@
                     Create professional, ATS-friendly resumes and stand out
                     with confidence in your next career opportunity.
                 </p>
-
-                {{-- <div class="zeecv_footer_social">
-                    <a href="#" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-
-                    <a href="#" aria-label="Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-
-                    <a href="#" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-
-                    <a href="#" aria-label="X">
-                        <i class="fab fa-x-twitter"></i>
-                    </a>
-                </div> --}}
             </div>
 
 
-            <!-- Product -->
-            <div class="zeecv_footer_column">
-                <h4>Product</h4>
-
-                <ul>
-                    <li>
-                        <a href="{{ url('/') }}">
-                            Resume Builder
-                        </a>
-                    </li>
-
-                    {{-- <li>
-                        <a href="{{ url('/ai-resume') }}">
-                            AI Resume
-                        </a>
-                    </li> --}}
-
-                    <li>
-                        <a href="{{ route('home.templates') }}">
-                            Resume Templates
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{ route('home.jobs') }}">
-                            Find Jobs
-                        </a>
-                    </li>
-                </ul>
-            </div>
+          
 
 
             <!-- Resources -->
@@ -187,6 +140,7 @@
 
 
             <!-- Company -->
+
             <div class="zeecv_footer_column">
                 <h4>Company</h4>
 
@@ -214,9 +168,14 @@
                             Cookie Policy
                         </a>
                     </li>
+                    <li>
+                        
+                    </li>
                 </ul>
             </div>
-
+            <div class="zeecv_footer_column">
+                @include('widgets.footer-app-download')
+            </div>
         </div>
 
 
@@ -267,8 +226,8 @@
 
 .zeecv_footer_main {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 70px;
+    grid-template-columns: 1fr; 
+    gap: 0px;
     padding: 70px 0 55px;
 }
 
@@ -428,7 +387,7 @@
     }
 
     .zeecv_footer_main {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         gap: 35px 25px;
         padding: 50px 0 35px;
     }
