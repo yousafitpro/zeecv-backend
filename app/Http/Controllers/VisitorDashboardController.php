@@ -140,7 +140,9 @@ class VisitorDashboardController extends Controller
         $data['start_date'] = $start_date;
         $data['end_date']   = $end_date;
         $data['input']=$input;
-
+        $data['app_link_visits'] = (clone $visitQuery)
+                ->where('url', 'like', '%' . route('home.jobs.app') . '%')
+                ->count();
         return view('admin.visit.visitor_dashboard', $data);
     }
 }

@@ -96,6 +96,13 @@
                 <div class="stat-number">{{ $total_visit_count }}</div>
             </div>
         </div>
+        <div class="col-xl-2 col-md-6 mb-4">
+            <div class="dashboard-stat-card">
+                <div class="stat-icon"><i class="fa-brands fa-android"></i></div>
+                <div class="stat-label">App Visits</div>
+                <div class="stat-number">{{ $app_link_visits }}</div>
+            </div>
+        </div>
                 
     </div>
 <div class="row">

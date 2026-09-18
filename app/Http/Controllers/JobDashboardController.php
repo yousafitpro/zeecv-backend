@@ -110,6 +110,7 @@ class JobDashboardController extends Controller
             ->limit(500)
             ->get();
 
+
         // Keep the selected dates for the form
         $data['start_date'] = $start_date;
         $data['end_date']   = $end_date;

@@ -39,6 +39,7 @@ class TrackVisitedUrls
 
             // Define allowed route names
             $allowedRoutes = [
+                'home.jobs.app',
                 'home',
                 'home.jobs2',
                 'home.jobs3',
