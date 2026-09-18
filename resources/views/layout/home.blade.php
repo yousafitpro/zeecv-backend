@@ -268,11 +268,18 @@
 
 @include('layout.includes.js')
 @include('widgets.app-download-modal')
+@if (auth()->check())
+<script>
+    $(document).ready(function(){
+    openAppModal()
+    })
+</script>
+@endif
 <!-- end container -->
 </div>
 <script>
     $(document).ready(function(){
-        openAppModal()
+        
                $('.myTable8').DataTable({
             "order": [],
             "scrollY": "400px",
