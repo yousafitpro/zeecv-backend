@@ -205,6 +205,10 @@ class JobsController extends Controller
                 ->get();
          return view('home.jobs-apply',$data);
     }
+    public function mobileApp(Request $request){
+        $url='https://play.google.com/store/apps/details?id=com.zeecv';
+        return redirect($url);
+    }
     public function index(Request $request)
     {
         $input=$request->all();

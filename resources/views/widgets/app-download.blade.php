@@ -118,7 +118,7 @@
             <p class="card-desc-text flex-grow-1">
                 Get the app to apply for jobs on the go, receive instant notifications, and manage your profile easily.
             </p>
-            <a href="https://play.google.com/store/apps/details?id=com.zeecv" target="_blank" class="btn btn-android mt-auto">
+            <a href="{{ route('home.jobs.app') }}" target="_blank" class="btn btn-android mt-auto">
                 <i class="fa-brands fa-google-play me-2"></i> Get it on Google Play
             </a>
         </div>

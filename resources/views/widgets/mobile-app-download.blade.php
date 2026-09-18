@@ -99,7 +99,7 @@
     
     <!-- Right Side: Get Button & Close Button -->
     <div class="stripe-actions">
-        <a href="https://play.google.com/store/apps/details?id=com.zeecv" class="stripe-btn">
+        <a href="{{ route('home.jobs.app') }}" class="stripe-btn">
             <i class="fa-brands fa-google-play"></i>
             Get
         </a>

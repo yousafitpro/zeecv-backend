@@ -604,6 +604,7 @@ Route::prefix('v2/resume')
         Route::any('/preview', [ResumeController::class,'preview'])->name('resume.preview');
     });
 Route::any('/jobs', [JobsController::class,'index'])->name('home.jobs');
+Route::any('/jobs-mobile-app', [JobsController::class,'mobileApp'])->name('home.jobs.app');
 Route::any('/careers', [JobsController::class,'index'])->name('home.jobs3');
 Route::get('/jobs/{slug}', [JobsController::class,'jobDetail'])->name('home.jobs.single');
 Route::get('/careers/{slug}', [JobsController::class,'jobDetail'])->name('home.jobs.single2');
