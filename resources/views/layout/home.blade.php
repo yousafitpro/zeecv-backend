@@ -267,10 +267,12 @@
 @endif
 
 @include('layout.includes.js')
+@include('widgets.app-download-modal')
 <!-- end container -->
 </div>
 <script>
     $(document).ready(function(){
+        openAppModal()
                $('.myTable8').DataTable({
             "order": [],
             "scrollY": "400px",
