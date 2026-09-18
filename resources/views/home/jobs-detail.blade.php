@@ -1009,7 +1009,7 @@
 
 <div class="job_container_outer" style="background: transparent">
 
-
+@include('widgets.mobile-app-download')
     {{-- =========================================
          HERO
     ========================================== --}}
@@ -1220,7 +1220,7 @@
 
                 <aside class="job_container_outer_sidebar">
 
-
+                @include('widgets.app-download')
                     {{-- Apply --}}
 
                     <div class="job_container_outer_apply">
