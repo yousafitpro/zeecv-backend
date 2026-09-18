@@ -1209,6 +1209,7 @@
                     </div>
                    </div>
                 </form>
+                
         <div class="container" style="padding-left:0px;padding-right:0px;">
 
 <br>
@@ -1261,7 +1262,7 @@
                 ====================================== --}}
 
                 <aside class="job_container_outer_sidebar">
-
+                  @include('widgets.app-download')
 
                     <div class="job_container_outer_sidebar_card">
 

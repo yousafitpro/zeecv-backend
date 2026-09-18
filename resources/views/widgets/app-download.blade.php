@@ -1,201 +1,118 @@
-<!-- =============================================
-     DOWNLOAD BANNER
-============================================= -->
-<div id="zeecv_download_banner" class="zeecv_download_banner">
-    <div class="zeecv_download_inner">
-        <div class="zeecv_download_text">
-            Get the app for a faster, better experience.
-            {{-- <a href="{{ url('page-view/download') }}" target="_blank">
-                Learn more
-            </a> --}}
-        </div>
-
-        <div class="zeecv_download_actions">
-            <a href="{{ asset('apps/zeecv.apk') }}"
-               id="zeecv_download_btn"
-               class="zeecv_download_btn"
-               download>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2.2"
-                     stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 3v12"/>
-                    <path d="M7 10l5 5 5-5"/>
-                    <path d="M5 21h14"/>
-                </svg>
-                Download App
-            </a>
-
-            <button type="button"
-                    id="zeecv_download_close"
-                    class="zeecv_download_close"
-                    aria-label="Close">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2.2"
-                     stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 6l12 12"/>
-                    <path d="M18 6L6 18"/>
-                </svg>
-            </button>
-        </div>
-    </div>
-</div>
-
 <style>
-/* =========================================
-   Download Banner
-========================================= */
-.zeecv_download_banner {
-  
-
-    height: 40px;
-    background: #0f172a;
-    color: #ffffff;
-    z-index: 999999;
-    display: none;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);
-    font-family: Inter, Arial, sans-serif;
-}
-
-.zeecv_download_inner {
-    width: 100%;
-    max-width: 1200px;
-    height: 100%;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    box-sizing: border-box;
-}
-
-.zeecv_download_text {
-    font-size: 12px;
-    color: #cbd5e1;
-    line-height: 1.4;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.zeecv_download_text a {
-    color: #60a5fa;
-    text-decoration: none;
-    margin-left: 5px;
-}
-
-.zeecv_download_text a:hover {
-    color: #93c5fd;
-    text-decoration: underline;
-}
-
-.zeecv_download_actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-}
-
-/* Download button (primary style, same family as accept btn) */
-.zeecv_download_btn {
-    height: 28px;
-    padding: 0 13px;
-    border-radius: 5px;
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: #2563eb;
-    border: 1px solid #2563eb;
-    color: #ffffff;
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-.zeecv_download_btn:hover {
-    background: #1d4ed8;
-    border-color: #1d4ed8;
-    color: #ffffff;
-    text-decoration: none;
-}
-
-/* Close icon button */
-.zeecv_download_close {
-    width: 28px;
-    height: 28px;
-    padding: 0;
-    border-radius: 5px;
-    background: transparent;
-    border: 1px solid #475569;
-    color: #cbd5e1;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.zeecv_download_close:hover {
-    background: #1e293b;
-    border-color: #64748b;
-    color: #ffffff;
-}
-
-@media (max-width: 700px) {
-    .zeecv_download_banner {
-        height: auto;
-        min-height: 40px;
+    /* =========================================
+       WRAPPER CLASS STYLES
+       ========================================= */
+    .download-app-wrapper {
+        font-family: system-ui, -apple-system, sans-serif;
     }
-    .zeecv_download_inner {
-        padding: 7px 12px;
-        gap: 10px;
+
+    /* Shared Card Styling */
+    .download-app-wrapper .app-card {
+        border-radius: 16px;
+        border: none;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     }
-    .zeecv_download_text {
-        white-space: normal;
-        font-size: 11px;
-        line-height: 1.4;
+
+    /* Shared Icon Box */
+    .download-app-wrapper .icon-box {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
     }
-    .zeecv_download_actions {
-        gap: 5px;
+
+    /* Shared Typography */
+    .download-app-wrapper .card-title-text {
+        font-weight: 700;
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
     }
-    .zeecv_download_btn {
-        height: 27px;
-        padding: 0 10px;
-        font-size: 11px;
+
+    .download-app-wrapper .card-desc-text {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
     }
-    .zeecv_download_close {
-        width: 27px;
-        height: 27px;
+
+    /* =========================================
+       DARK CARD (As seen in screenshot)
+       ========================================= */
+    .download-app-wrapper .dark-app-card {
+        background-color: #111827;
     }
-}
+    .download-app-wrapper .dark-app-card .icon-box {
+        background-color: #1f2937;
+        color: #ffffff;
+    }
+    .download-app-wrapper .dark-app-card .card-title-text {
+        color: #ffffff;
+    }
+    .download-app-wrapper .dark-app-card .card-desc-text {
+        color: #9ca3af;
+    }
+    .download-app-wrapper .dark-app-card .btn-custom {
+        background-color: #ffffff;
+        color: #111827;
+        font-weight: 600;
+        border-radius: 8px;
+        padding: 12px 20px;
+        width: 100%;
+        border: 2px solid #ffffff;
+    }
+
+    /* =========================================
+       LIGHT CARD (To ask user to download Android app)
+       ========================================= */
+    .download-app-wrapper .light-app-card {
+        background-color: #ffffff;
+        border: 1px solid #e5e7eb; /* Light border for definition */
+    }
+    .download-app-wrapper .light-app-card .icon-box {
+        background-color: #e6f4ea; /* Very light Android green */
+        color: #3ddc84; /* Android green */
+    }
+    .download-app-wrapper .light-app-card .card-title-text {
+        color: #111827;
+    }
+    .download-app-wrapper .light-app-card .card-desc-text {
+        color: #6b7280;
+    }
+    .download-app-wrapper .light-app-card .btn-android {
+        background-color: #3ddc84;
+        color: #000000;
+        font-weight: 600;
+        border-radius: 8px;
+        padding: 12px 20px;
+        width: 100%;
+        border: none;
+        transition: background-color 0.2s;
+    }
+    .download-app-wrapper .light-app-card .btn-android:hover {
+        background-color: #32b56b;
+    }
 </style>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const banner    = document.getElementById('zeecv_download_banner');
-    const download  = document.getElementById('zeecv_download_btn');
-    const closeBtn  = document.getElementById('zeecv_download_close');
-    const KEY       = 'zeecv_download_banner';
-
-    // Show only if user hasn't downloaded or dismissed it yet
-    if (localStorage.getItem(KEY) === null) {
-        banner.style.display = 'block';
-    }
-
-    // On download → remember + hide
-    download.addEventListener('click', function () {
-        localStorage.setItem(KEY, 'downloaded');
-        banner.style.display = 'none';
-    });
-
-    // On close (×) → remember + hide
-    closeBtn.addEventListener('click', function () {
-        localStorage.setItem(KEY, 'dismissed');
-        banner.style.display = 'none';
-    });
-});
-</script>
+<!-- Start of Wrapper -->
+<div class="download-app-wrapper">
+        <!-- 2. LIGHT CARD (To ask user to download Android app) -->
+      
+            <div class="card app-card light-app-card p-4 h-100">
+                <div class="card-body p-0 d-flex flex-column">
+                    <div class="icon-box mb-4">
+                        <i class="fa-brands fa-android"></i>
+                    </div>
+                    <h4 class="card-title-text">Download Android App</h4>
+                    <p class="card-desc-text flex-grow-1">
+                        Get the app to apply for jobs on the go, receive instant notifications, and manage your profile easily.
+                    </p>
+                    <a href="https://play.google.com/store/apps/details?id=com.zeecv" target="_blank" class="btn btn-android mt-auto">
+                        <i class="fa-brands fa-google-play me-2"></i> Get it on Google Play
+                    </a>
+                </div>
+            </div>
+     
+</div>
+<!-- End of Wrapper -->
