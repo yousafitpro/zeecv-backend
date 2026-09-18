@@ -553,7 +553,7 @@
     <div class="job-preview-grid">
         <!-- Job 1 -->
         @foreach ($list as $job)
-            <div class="job-preview-card">
+            <div class="job-preview-card" style="cursor: pointer" onclick="redirectMeToUrl('{{ route('home.jobs.single',$job->slug) }}')">
             <div class="job-title">{{$job->title}}</div>
             <div class="job-company">{{ $job->company_name }}</div>
             <div class="job-meta">
