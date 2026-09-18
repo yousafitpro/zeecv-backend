@@ -461,7 +461,7 @@ public function dashboardAjax(Request $request)
         // Default fallback
         $data['user_name_two'] = 'U';
     }
-    $data['interviews_count']=0;
+    $data['interviews_count']=5;
     $data['recent_activities']=[];
     foreach(JobCareerApply::where('user_id',$user_id)->latest()->take(3)->with(['job'])->get() as $job){
         $data['recent_activities'][]=[
