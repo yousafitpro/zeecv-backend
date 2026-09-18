@@ -518,8 +518,8 @@
             Build your resume, apply instantly, and land your dream role — all in one place.
         </p>
         <div class="hero-actions">
-            <a href="{{ url('signup') }}" class="start-with-ai-app-btn">
-                <i class="fas fa-magic"></i> Build Your CV
+            <a href="https://play.google.com/store/apps/details?id=com.zeecv" target="_blank" class="start-with-ai-app-btn">
+                <i class="fa-brands fa-android" style="color: #3ddc84"></i> Download App Now
             </a>
             <a href="{{ route('home.jobs') }}" class="download-app-btn">
                 <i class="fas fa-briefcase"></i> Browse Jobs
