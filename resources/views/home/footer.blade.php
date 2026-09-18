@@ -151,17 +151,7 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="{{ url('page-view/privacy-policy') }}">
-                            Privacy Policy
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="{{ url('/terms') }}">
-                            Terms & Conditions
-                        </a>
-                    </li>
+           
 
                     <li>
                         <a href="{{ url('/page-view/cookie-policy') }}">
@@ -187,7 +177,7 @@
             </div>
 
             <div class="zeecv_footer_bottom_links">
-                <a href="{{ url('/privacy-policy') }}">
+                <a href="{{ url('page-view/privacy-policy') }}">
                     Privacy
                 </a>
 
@@ -226,7 +216,7 @@
 
 .zeecv_footer_main {
     display: grid;
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1.2fr 0.8fr 0.8fr 1.4fr;
     gap: 0px;
     padding: 70px 0 55px;
 }
@@ -387,7 +377,7 @@
     }
 
     .zeecv_footer_main {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 35px 25px;
         padding: 50px 0 35px;
     }
