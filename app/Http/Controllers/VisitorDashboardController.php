@@ -143,6 +143,9 @@ class VisitorDashboardController extends Controller
         $data['app_link_visits'] = (clone $visitQuery)
                 ->where('url', 'like', '%' . route('home.jobs.app') . '%')
                 ->count();
+        $data['app_users'] = (clone $userQuery)
+                ->whereNotNull('login_token')
+                ->count();
         return view('admin.visit.visitor_dashboard', $data);
     }
 }
