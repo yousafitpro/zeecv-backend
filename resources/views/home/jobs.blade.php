@@ -1056,7 +1056,7 @@
 
 
 <div class="job_container_outer" style="background: transparent">
-
+@include('widgets.mobile-app-download')
 
 
 
