@@ -24,6 +24,9 @@ class MobileAppController extends Controller
         'message'=>"Account Successfully deleted"
       ]);
     }
+    public function appLoginSuccessful(){
+      dd("successful");
+    }
     public function generateLoginToken()
     {
       $user=auth()->user();
