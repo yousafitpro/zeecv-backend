@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 class LinkedinAuthController extends Controller
 {
@@ -56,9 +57,8 @@ class LinkedinAuthController extends Controller
         $user->last_login_ip=$request->ip();
         $user->save();
         Auth::login($user, true);
-        if(isset(session('mobile_app_login'))){
-          
-        dd(session('mobile_app_login'));
+        if (Session::has('mobile_app_login')) {
+            dd(Session::get('mobile_app_login'));
         }
         $redirect_url=route('home.jobs');
         return redirect($redirect_url);
