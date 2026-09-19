@@ -36,7 +36,7 @@
                 alt="{{ $blog->title }}"
                 class="w-100"
                 style="
-                    max-height: 520px;
+                    max-height: 320px;
                     object-fit: cover;
                     display: block; /* Removes tiny space at bottom of image */
                 "
@@ -100,7 +100,6 @@
 <style>
   .blog-detail-page-header img{
     border-radius: 10px;
-    height:200px;
   }
     .zeecv-blog-detail {
         background: transparent;
