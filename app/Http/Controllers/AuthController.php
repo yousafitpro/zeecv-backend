@@ -82,7 +82,7 @@ class AuthController extends Controller
       if($user){
         return response()->json([
             'success' => true,
-            'token' => $token,
+            'token' =>  auth('api')->login($user),
             'loginToken'=> $token,
             'name' => $user->name,
             'email' => $user->email,
