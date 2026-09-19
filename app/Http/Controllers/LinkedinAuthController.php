@@ -56,6 +56,10 @@ class LinkedinAuthController extends Controller
         $user->last_login_ip=$request->ip();
         $user->save();
         Auth::login($user, true);
+        if(isset(session('mobile_app_login'))){
+          
+        dd(session('mobile_app_login'));
+        }
         $redirect_url=route('home.jobs');
         return redirect($redirect_url);
             // Store the token or use it for subsequent API calls
@@ -67,7 +71,7 @@ class LinkedinAuthController extends Controller
      $input=$request->all();
     if (!empty($input['is_app'])) {
             session(['mobile_app_login' => true]);
-            dd(session('mobile_app_login'));
+            
         } else {
             session()->forget('mobile_app_login');
         }
