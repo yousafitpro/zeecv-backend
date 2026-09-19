@@ -64,6 +64,12 @@ class LinkedinAuthController extends Controller
    }
     public function auth(Request $request)
    {
+    if (!empty($input['is_app'])) {
+            session(['mobile_app_login' => true]);
+            session('mobile_app_login');
+        } else {
+            session()->forget('mobile_app_login');
+        }
      $url='https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id='.$this->client_id.'&redirect_uri='.$this->callback.'&scope=openid%20profile%20email';
      return redirect($url);
    }
