@@ -64,6 +64,7 @@ class LinkedinAuthController extends Controller
    }
     public function auth(Request $request)
    {
+     $input=$request->all();
     if (!empty($input['is_app'])) {
             session(['mobile_app_login' => true]);
             dd(session('mobile_app_login'));
