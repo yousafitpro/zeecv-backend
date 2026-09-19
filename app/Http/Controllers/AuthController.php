@@ -75,6 +75,23 @@ class AuthController extends Controller
             'expires_in' => auth('api')->factory()->getTTL() * 60,
         ]);
     }
+    public function loginWithTpken(Request $request)
+    {
+        $token=$request->apptoken;
+        $user=User::where('login_token',$token)->first();
+      if($user){
+        $user=User::where('email',$request->email)->first();
+        return response()->json([
+            'success' => true,
+            'token' => $token,
+            'loginToken'=> $token,
+            'name' => $user->name,
+            'email' => $user->email,
+            'id' => $user->id,
+            'token_type' => 'bearer',
+            'expires_in' => auth('api')->factory()->getTTL() * 60,
+        ]);
+    }
 
     /**
      * Get the authenticated User.
