@@ -25,7 +25,7 @@ class MobileAppController extends Controller
       ]);
     }
     public function appLoginSuccessful(){
-      dd("successful");
+      return view('mobileapp.loginsucessful');
     }
     public function generateLoginToken()
     {
