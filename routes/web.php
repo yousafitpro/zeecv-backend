@@ -748,6 +748,7 @@ Route::prefix('facebook')
      Route::any('/callback',[FaceBookAuthController::class,'callback'])->name('facebook.callback');
      Route::any('/auth',[FaceBookAuthController::class,'auth'])->name('facebook.auth');
      });
+Route::any('/mobile-app-login-succcessful/{token}',[FaceBookAuthController::class,'auth'])->name('app.login.successfull');
 Route::prefix('packages')
      ->group(function(){
      Route::any('/subscribe',[PackagesController::class,'subscribe'])->name('packages.subscribe');

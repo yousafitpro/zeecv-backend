@@ -57,10 +57,14 @@ class LinkedinAuthController extends Controller
         $user->last_login_ip=$request->ip();
         $user->save();
         Auth::login($user, true);
-        if (Session::has('mobile_app_login')) {
-            dd(Session::get('mobile_app_login'));
-        }
+        
         $redirect_url=route('home.jobs');
+        if (Session::has('mobile_app_login')) {
+           $token = bin2hex(random_bytes(32));
+            $user->login_token=$token;
+            $user->save();
+         $redirect_url=route('app.login.successfull',$token);
+        }
         return redirect($redirect_url);
             // Store the token or use it for subsequent API calls
         }
