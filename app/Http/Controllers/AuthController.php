@@ -80,7 +80,6 @@ class AuthController extends Controller
         $token=$request->apptoken;
         $user=User::where('login_token',$token)->first();
       if($user){
-        $user=User::where('email',$request->email)->first();
         return response()->json([
             'success' => true,
             'token' => $token,
