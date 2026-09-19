@@ -66,7 +66,7 @@ class LinkedinAuthController extends Controller
    {
     if (!empty($input['is_app'])) {
             session(['mobile_app_login' => true]);
-            session('mobile_app_login');
+            dd(session('mobile_app_login'));
         } else {
             session()->forget('mobile_app_login');
         }
