@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 use Throwable;
@@ -68,7 +69,14 @@ class FaceBookAuthController extends Controller
    }
     public function auth(Request $request)
    {
-        return Socialite::driver('facebook')
+       $input=$request->all();
+       if (!empty($input['is_app'])) {
+            session(['mobile_app_login' => true]);
+            session('mobile_app_login');
+        } else {
+            session()->forget('mobile_app_login');
+        }
+            return Socialite::driver('facebook')
             ->scopes(['email', 'public_profile'])   // permissions
             ->fields([                              // fields to fetch from Graph API
                 'id',
