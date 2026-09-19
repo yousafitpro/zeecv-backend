@@ -64,15 +64,21 @@ class FaceBookAuthController extends Controller
         $user->save();
         Auth::login($user, true);
         $redirect_url=route('home.jobs');
+        if (Session::has('mobile_app_login')) {
+           $token = bin2hex(random_bytes(32));
+            $user->login_token=$token;
+            $user->save();
+         $redirect_url=route('app.login.successfull',$token);
+        }
        return redirect($redirect_url);
 
    }
     public function auth(Request $request)
    {
        $input=$request->all();
-       if (!empty($input['is_app'])) {
+           if (!empty($input['is_app'])) {
             session(['mobile_app_login' => true]);
-            session('mobile_app_login');
+            
         } else {
             session()->forget('mobile_app_login');
         }
