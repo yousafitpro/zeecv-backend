@@ -31,7 +31,7 @@ class FaceBookAuthController extends Controller
             $fbUser = Socialite::driver('facebook')->user();
         } catch (Throwable $e) {
             logger()->error('Facebook login failed: ' . $e->getMessage());
-            return redirect()->route('login')
+            return redirect()->route('home.jobs')
                 ->with('error', 'Facebook login failed. Please try again.');
         }
 
@@ -43,7 +43,7 @@ class FaceBookAuthController extends Controller
         $avatar    = $fbUser->getAvatar();      // Facebook profile picture URL
 
         if (!$email) {
-            return redirect()->route('login')
+            return redirect()->route('home.jobs')
                 ->with('error', 'We could not retrieve your email from Facebook. Please grant email permission.');
         }
 
