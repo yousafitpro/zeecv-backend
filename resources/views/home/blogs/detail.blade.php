@@ -100,7 +100,7 @@
 <style>
   .blog-detail-page-header img{
     border-radius: 10px;
-    max-height:200px;
+    height:200px;
   }
     .zeecv-blog-detail {
         background: transparent;
