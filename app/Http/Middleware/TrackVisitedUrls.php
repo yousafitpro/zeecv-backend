@@ -46,6 +46,11 @@ class TrackVisitedUrls
             // Define allowed route names
             $allowedRoutes = [
                 'api.login',
+                'api.jobs',
+                'api.jobs.apply',
+                'api.jobs.save',
+                'api.jobs.save',
+                'api.jobs.dashboard',
                 'home.jobs.app',
                 'home',
                 'home.jobs2',

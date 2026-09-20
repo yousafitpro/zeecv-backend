@@ -43,10 +43,10 @@ use FontLib\Table\Type\name;
             'middleware' => 'auth:api',
 
         ], function ($router) {
-    Route::post("jobs",[JobsController::class,'indexAjax']);
-    Route::post("jobs/apply",[JobsController::class,'applyAjax']);
-    Route::post("jobs/save",[JobsController::class,'saveAjax']);
-    Route::post("jobs/dashboard",[JobsController::class,'dashboardAjax']);
+    Route::post("jobs",[JobsController::class,'indexAjax'])->name('jobs');
+    Route::post("jobs/apply",[JobsController::class,'applyAjax'])->name('jobs.apply');
+    Route::post("jobs/save",[JobsController::class,'saveAjax'])->name('jobs.save');
+    Route::post("jobs/dashboard",[JobsController::class,'dashboardAjax'])->name('jobs.dashboard');
 
     Route::post("myjobs",[JobsController::class,'myJobs']);
     Route::delete("delete-account",[JobsController::class,'deleteAccount']);
