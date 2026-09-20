@@ -791,7 +791,7 @@ public function dashboardAjax(Request $request)
 public function himalayasJobs()
 {
     $limit = 20;
-    $maxJobs = 60;
+    $maxJobs = 1000;
 
     for ($offset = 0; $offset < $maxJobs; $offset += $limit) {
 
