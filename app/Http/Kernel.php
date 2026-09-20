@@ -76,5 +76,6 @@ class Kernel extends HttpKernel
         'setLang' => \App\Http\Middleware\SetLanguage::class,
         'mobile.app' => MobileAppRequestTypeMiddleware::class,
         'subscription' => SubscriptionMiddleware::class,
+        'track_visitor' => \App\Http\Middleware\TrackVisitedUrls::class,
     ];
 }

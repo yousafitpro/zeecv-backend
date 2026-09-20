@@ -5,58 +5,61 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\Job\JobsController;
 use App\Http\Controllers\WebAuthController;
+use FontLib\Table\Type\name;
 
-Route::group([
-    'middleware' => 'mobile.app',
-], function ($router) {
+    Route::name('api.')
+    ->middleware(['mobile.app','track_visitor'])
+    ->group(function ($router) {
+        Route::group([
+
+            'middleware' => 'api',
+            'prefix' => 'auth'
+
+        ], function ($router) {
+
+            Route::post('login', [AuthController::class,'login'])->name('login');
+            Route::post('login-with-token', [AuthController::class,'loginWithTpken']);
+            Route::post('logout', [AuthController::class,'logout']);
+            Route::post('register', [AuthController::class,'register']);
+            Route::post('refresh', [AuthController::class,'refresh']);
+            Route::post('me', [AuthController::class,'me']);
+
+        });
+        Route::group([
+            'middleware' => 'auth:api',
+            'prefix' => 'app'
+        ], function ($router) {
+
+            Route::post('generate-login-token', [MobileAppController::class,'generateLoginToken']);
+
+        });
+
+        Route::post("forgot-password",[WebAuthController::class,'reset_email_send']);
+        Route::post("google/register",[GoogleAuthController::class,'appSignup']);
+    
+
+    Route::post("jobs/version",[JobsController::class,'version']);
     Route::group([
+            'middleware' => 'auth:api',
 
-        'middleware' => 'api',
-        'prefix' => 'auth'
+        ], function ($router) {
+    Route::post("jobs",[JobsController::class,'indexAjax']);
+    Route::post("jobs/apply",[JobsController::class,'applyAjax']);
+    Route::post("jobs/save",[JobsController::class,'saveAjax']);
+    Route::post("jobs/dashboard",[JobsController::class,'dashboardAjax']);
 
-    ], function ($router) {
-
-        Route::post('login', [AuthController::class,'login']);
-        Route::post('login-with-token', [AuthController::class,'loginWithTpken']);
-        Route::post('logout', [AuthController::class,'logout']);
-        Route::post('register', [AuthController::class,'register']);
-        Route::post('refresh', [AuthController::class,'refresh']);
-        Route::post('me', [AuthController::class,'me']);
-
-    });
-    Route::group([
-        'middleware' => 'auth:api',
-        'prefix' => 'app'
-    ], function ($router) {
-
-        Route::post('generate-login-token', [MobileAppController::class,'generateLoginToken']);
-
+    Route::post("myjobs",[JobsController::class,'myJobs']);
+    Route::delete("delete-account",[JobsController::class,'deleteAccount']);
+    Route::any("jobs/{slug}",[JobsController::class,'jobDetail']);
+        });
     });
 
-    Route::post("forgot-password",[WebAuthController::class,'reset_email_send']);
-    Route::post("google/register",[GoogleAuthController::class,'appSignup']);
-  
 
-  Route::post("jobs/version",[JobsController::class,'version']);
-Route::group([
-        'middleware' => 'auth:api',
 
-    ], function ($router) {
-  Route::post("jobs",[JobsController::class,'indexAjax']);
-  Route::post("jobs/apply",[JobsController::class,'applyAjax']);
-  Route::post("jobs/save",[JobsController::class,'saveAjax']);
-  Route::post("jobs/dashboard",[JobsController::class,'dashboardAjax']);
-
-  Route::post("myjobs",[JobsController::class,'myJobs']);
-  Route::delete("delete-account",[JobsController::class,'deleteAccount']);
-  Route::any("jobs/{slug}",[JobsController::class,'jobDetail']);
+    Route::prefix('stripe-gateway')
+        ->group(function () {
+            Route::any('/webhook', [App\Http\Controllers\Stripe\StripeController::class,'webhook'])->name('stripeg.webhook');
     });
-});
-
- Route::any("google-console/webhook",function(){
-    return response()->json(['message'=>"successfully received"]);
- });
- Route::prefix('stripe-gateway')
-    ->group(function () {
-        Route::any('/webhook', [App\Http\Controllers\Stripe\StripeController::class,'webhook'])->name('stripeg.webhook');
-});
+        Route::any("google-console/webhook",function(){
+        return response()->json(['message'=>"successfully received"]);
+    });

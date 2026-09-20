@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use App\Models\Visit;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 class TrackVisitedUrls
 {
@@ -31,7 +32,12 @@ class TrackVisitedUrls
      * @return void
      */
     protected function storeVisit($request)
-    {
+    {   
+           $input=$request->all();
+           $request_type='web';
+           if(!empty($input['request-type']) && $input['request-type']=='mobile-app'){
+            $request_type='mobile-app';
+           }
             // Skip if admin
             if (is_admin()) {
                 return;
@@ -39,6 +45,7 @@ class TrackVisitedUrls
 
             // Define allowed route names
             $allowedRoutes = [
+                'api.login',
                 'home.jobs.app',
                 'home',
                 'home.jobs2',
@@ -80,6 +87,7 @@ class TrackVisitedUrls
                 $payload=[
                     'url' => $request->fullUrl(),
                     'path' => $request->path(),
+                    'request_type' => $request_type,
                     'ip_address' => $request->ip(),
                     'user_agent' => $request->userAgent(),
                     'method' => $request->method(),

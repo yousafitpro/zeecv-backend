@@ -99,10 +99,18 @@
         <div class="col-xl-2 col-md-6 mb-4">
             <div class="dashboard-stat-card">
                 <div class="stat-icon"><i class="fa-brands fa-android"></i></div>
-                <div class="stat-label">App Visits</div>
+                <div class="stat-label">App Visitors</div>
+                <div class="stat-number">{{ $app_visits }}</div>
+            </div>
+        </div>
+        <div class="col-xl-2 col-md-6 mb-4">
+            <div class="dashboard-stat-card">
+                <div class="stat-icon"><i class="fa-brands fa-android"></i></div>
+                <div class="stat-label">App Link Visits</div>
                 <div class="stat-number">{{ $app_link_visits }}</div>
             </div>
         </div>
+
         <div class="col-xl-2 col-md-6 mb-4">
             <div class="dashboard-stat-card">
                 <div class="stat-icon"><i class="fa-brands fa-android"></i></div>
@@ -379,6 +387,7 @@
                                         <tr>
                                             <th>User</th>
                                             <th>IP</th>
+                                            <th>Request type</th>
                                             <th>URL</th>
                                             <th>Visited At</th>
                                             <th>Status</th>
@@ -395,6 +404,7 @@
 
                                                 </td>
                                                 <td>{{ $visit->ip_address ?? 'N/A' }}</td>
+                                                <td>{{ $visit->request_type ?? 'N/A' }}</td>
                                                 <td>{{ $visit->url ?? 'N/A' }}</td>
                                                 <td>{{ $visit->created_at->format('M d, Y H:i') }}</td>
                                                 <td><span class="badge badge-apply">Saved</span></td>
