@@ -668,9 +668,9 @@ document.addEventListener('DOMContentLoaded', function () {
         </li>
           @endif
         @if(auth()->check())
-           <li class="nav-item">
+           {{-- <li class="nav-item">
           <a class="nav-link btn-edit-resume" href="{{ route('resume.create') }}"> <i class="fa fa-edit"></i> Edit Resume</a>
-        </li>
+        </li> --}}
           <!-- =============================================
                USER DROPDOWN (LOGGED IN)
           ============================================== -->
@@ -713,10 +713,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 <i class="fas fa-file-alt"></i>
                 My Resumes
               </a> 
-              <a class="dropdown-item" href="{{ route('home.user.myjobs') }}">
+              {{-- <a class="dropdown-item" href="{{ route('home.user.myjobs') }}">
                 <i class="fas fa-briefcase"></i>
                 My Jobs
-              </a> 
+              </a>  --}}
               @if(is_has_permission('jobs.my.view'))
               <a class="dropdown-item" href="{{route('jobs.my')}}">
                 <i class="fas fa-briefcase"></i>
