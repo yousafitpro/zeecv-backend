@@ -562,7 +562,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <div class="container">
     <!-- Brand Logo -->
     <a class="navbar-brand py-0" href="{{ url('/') }}">
-      <img src="{{ asset('app-icons/logo.png') }}" class="brand-logo" alt="ZeeCV Logo">
+      <img src="{{ asset('app-icons/logo2.png') }}" class="brand-logo" alt="ZeeCV Logo">
     </a>
     @if(!auth()->check())
      <a href="javascrip:void" data-toggle="modal" data-target="#loginRegModal" class="btn-nav-primary d-block d-md-none">Sign up</a>
