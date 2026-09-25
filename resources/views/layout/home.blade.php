@@ -7,10 +7,10 @@
     @include("layout.includes.css")
 
   <style>
-     /* linear-gradient(135deg, #19dba1, #00C48A) */
+      /* linear-gradient(135deg, #19dba1, #00C48A) */
     :root{
-        --primary:#00C48A !important;
-        --blue:#00C48A !important;
+        --primary:#111827 !important;
+        --blue:#111827 !important;
     }
     .job_container__jobs_type_tag{
         border:solid 2px var(--primary);

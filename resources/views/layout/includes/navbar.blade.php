@@ -277,7 +277,7 @@
   }
 
   .resume-dropdown .dropdown-item:hover strong {
-    color: #2563eb;
+    color: var(--primary);
   }
 
   .custom-navbar .dropdown-toggle::after {
