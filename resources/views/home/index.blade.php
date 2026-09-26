@@ -1,7 +1,7 @@
 @extends('layout.home')
 
 @section('meta_tags')
-<title>ZeeCV - AI Resume Builder & Job Board | Free</title>
+<title>ZeeCV - Find Your Next Job | Free</title>
 <meta name="description" content="ZeeCV helps you build a professional CV with AI and find jobs from top companies. Create your resume and apply for free today.">
 <meta name="keywords" content="AI resume builder, job board, CV maker, free resume, job search, career">
 @endsection
@@ -98,8 +98,8 @@
         margin: 30px auto 0;
         padding: 12px 32px;
         background: transparent;
-        border: 2px solid #2563eb;
-        color: #2563eb;
+        border: 2px solid var(--primary);
+        color:var(--primary) ;
         border-radius: 40px;
         font-weight: 600;
         text-decoration: none;
@@ -107,7 +107,7 @@
     }
 
     .view-all-jobs-btn:hover {
-        background: #2563eb;
+        background: var(--primary);
         color: white;
     }
 
@@ -290,7 +290,7 @@
 
     .feature-card .icon {
         font-size: 2rem;
-        color: #2563eb;
+        color: var(--primary);
         margin-bottom: 16px;
     }
 
@@ -517,12 +517,12 @@
 ========================================== -->
 <section class="hero">
     <div class="hero-content">
-        <h1>AI Resume Builder + <span>Job Board</span></h1>
-        <p>
-            ZeeCV helps you build an AI-powered CV <strong>and</strong> connects you with 
-            <strong>thousands of jobs</strong> posted by companies worldwide. 
-            Build your resume, apply instantly, and land your dream role — all in one place.
+        <h1>Find Your Next <span>Job</span></h1>
+      <p>
+            ZeeCV connects you with <strong>thousands of job opportunities</strong> from companies worldwide.
+            Search for the right jobs, discover new opportunities, and apply instantly — all in one place.
         </p>
+
         <div class="hero-actions">
             <a href="{{ route('home.jobs.app') }}" target="_blank" class="start-with-ai-app-btn">
                 <i class="fa-brands fa-android" style="color: #3ddc84"></i> Download App Now
@@ -547,7 +547,7 @@
      JOB PREVIEW SECTION (NEW)
 ========================================== -->
 <section class="job-preview-section">
-    <h2 class="section-title" style="margin-top: 0;">Latest <span style="background: linear-gradient(135deg, #2563eb, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">jobs</span> from our board</h2>
+    <h2 class="section-title" style="margin-top: 0;">Latest <span style="background: var(--green-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">jobs</span> from our board</h2>
     <p class="section-sub">Thousands of companies post jobs on ZeeCV every day. Here's what's trending right now.</p>
 
     <div class="job-preview-grid">
@@ -586,7 +586,7 @@
 <!-- ==========================================
      FEATURES
 ========================================== -->
-<h2 class="section-title">Everything you need to <span style="background: linear-gradient(135deg, #2563eb, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">land your next role</span></h2>
+<h2 class="section-title">Everything you need to <span style="background:var(--green-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">land your next role</span></h2>
 <p class="section-sub">From AI-powered resume building to a massive job board with thousands of active listings — ZeeCV is your all-in-one career platform.</p>
 
 <div class="features-grid">
@@ -659,7 +659,7 @@
      CTA
 ========================================== -->
 <div class="cta-section">
-    <h2>Find jobs &amp; build your <span style="background: linear-gradient(135deg, #2563eb, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">AI CV</span> today</h2>
+    <h2>Find jobs &amp; build your <span style="background: var(--green-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">AI CV</span> today</h2>
     <p>Join thousands of professionals who upgraded their careers with ZeeCV's resume builder and job board.</p>
     <a href="{{ url('signup') }}" class="btn-primary"><i class="fas fa-rocket"></i> Get started — it's free</a>
 </div>
