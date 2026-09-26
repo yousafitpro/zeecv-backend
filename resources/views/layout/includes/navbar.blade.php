@@ -28,7 +28,7 @@
   }
 
   .custom-navbar .nav-link:hover {
-    color: #2563eb !important;
+    color: var(--primary) !important;
   }
 
   /* Buttons Styling */
@@ -193,11 +193,11 @@
 
   .user-dropdown-menu .dropdown-item:hover {
     background: #f8fafc;
-    color: #2563eb;
+    color: var(--primary);
   }
 
   .user-dropdown-menu .dropdown-item:hover i {
-    color: #2563eb;
+    color: var(--primary);
   }
 
   .user-dropdown-menu .dropdown-divider {
@@ -256,7 +256,7 @@
     justify-content: center;
     border-radius: 10px;
     background: #eff6ff;
-    color: #2563eb;
+    color: var(--primary);
     font-size: 17px;
   }
 

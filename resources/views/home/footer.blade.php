@@ -40,7 +40,7 @@
             height: 56px;
             border: none;
             border-radius: 50%;
-            background: linear-gradient(135deg, #5d6d8f 0%, #1d4ed8 100%);
+            background: var(--green-gradient);
             color: white;
             font-size: 1.8rem;
             box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
@@ -62,7 +62,7 @@
         }
 
         #backToTopBtn:hover {
-            background: #2563eb;
+            background: var(--primary);
             transform: scale(1.08);
             box-shadow: 0 10px 28px rgba(59, 130, 246, 0.6);
         }
