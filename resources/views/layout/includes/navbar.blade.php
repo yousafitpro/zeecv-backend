@@ -33,9 +33,9 @@
 
   /* Buttons Styling */
   .btn-nav-outline {
-    border: 1.5px solid #2563eb;
+    border: 1.5px solid var(--primary);
     background: transparent;
-    color: #2563eb;
+    color: var(--primary);
     font-weight: 600;
     font-size: 1rem;
     padding: 0.55rem 1.6rem;
@@ -47,13 +47,13 @@
 
   .btn-nav-outline:hover {
     background: rgba(37, 99, 235, 0.08);
-    color: #1d4ed8;
+    color: var(--primary);
     text-decoration: none;
-    border-color: #1d4ed8;
+    border-color: var(--primary);
   }
 
   .btn-nav-primary {
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    background: var(--green-gradient);
     color: #ffffff !important;
     font-weight: 600;
     font-size: 1rem;
@@ -100,7 +100,7 @@
   }
 
   .user-avatar-wrapper:hover {
-    border-color: #2563eb;
+    border-color:  var(--primary);
     background: rgba(37, 99, 235, 0.05);
     text-decoration: none;
   }
@@ -122,7 +122,7 @@
   }
 
   .user-avatar-wrapper:hover .user-avatar {
-    border-color: #2563eb;
+    border-color: var(--primary);
   }
 
   .user-name {
