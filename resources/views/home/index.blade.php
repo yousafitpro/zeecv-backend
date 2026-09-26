@@ -79,13 +79,13 @@
 
     .job-preview-card .job-meta i {
         margin-right: 4px;
-        color: #2563eb;
+        color: var(--primary);
     }
 
     .job-preview-card .job-tag {
         display: inline-block;
         background: #eef2ff;
-        color: #2563eb;
+        color: var(--primary);
         font-size: 0.7rem;
         font-weight: 600;
         padding: 3px 10px;
