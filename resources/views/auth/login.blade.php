@@ -11,10 +11,10 @@
        ROOT VARIABLES
     ============================================= */
     :root {
-        --primary: #2563eb;
+        /* --primary: #2563eb; */
         --primary-dark: #1d4ed8;
         --primary-light: #dbeafe;
-        --primary-gradient: linear-gradient(135deg, #2563eb, #7c3aed);
+        /* --primary-gradient: var(----green-gradient); */
         --bg-dark: #0f172a;
         --text-dark: #0f172a;
         --text-muted: #64748b;

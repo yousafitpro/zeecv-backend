@@ -12,6 +12,7 @@
         --primary:#00C48A !important;
         --blue:#00C48A !important;
         --green-gradient:linear-gradient(135deg, #19dba1, #00C48A);
+        --primary-gradient:linear-gradient(135deg, #19dba1, #00C48A);
         --green:#00C48A;
         --secondary:#0f172a;
     }
